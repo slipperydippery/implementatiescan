@@ -1,0 +1,352 @@
+.red {
+	border: 1px solid red;
+}
+
+
+* {
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+$footer-height: 142px;
+
+body {
+	background: #A6CE39;
+	color: #fff;
+	background: #A6CE39 url("/img/sidebar_sm.png") no-repeat 2rem center;
+}
+
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -$footer-height; 
+}
+
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+
+.site-footer, .page-wrap:after {
+  height: $footer-height; 
+}
+.site-footer {
+  // background: orange;
+}
+
+
+
+
+/**
+ *  PAGES LAYOUT
+ */
+
+.title-img {
+	margin-top: 5rem;
+}
+
+.page-heading {
+	margin-top: 2rem;
+}
+
+.fieldset {
+	position: relative;
+}
+
+.page-content {
+	margin-top: 1rem;
+}
+
+.page-next {
+	float: right; 
+	text-align: right;
+	margin-top: 3em;
+}
+
+
+
+/**
+ *  HOMEPAGE
+ */
+
+.homesidebar {
+	border: 2px solid #fff;
+	border-width: 2px 0;
+	padding: 0 0 1em 0;
+	a {
+		display: block;
+		width: 100%;
+		font-size: 1.5rem;
+		padding: 1rem 0 0 0;
+	}
+
+}
+
+
+/**
+ *  AUTH
+ */
+
+.loginform {
+	margin-top: 15em;
+}
+
+
+
+/**
+ *  WAAR: KAART
+ */
+ .kaart {
+ 	img {
+ 	}
+ }
+
+ .verfijning {
+ }
+
+ /**
+  *  WIE
+  */
+ 
+ .user {
+ 	margin-top: 4rem;
+ 	img {
+ 		width: 40%;
+ 		height: auto;
+ 		display: inline-block;
+ 		margin: 0 30% 1rem;
+ 	}
+ }
+.user-divider{
+	padding-top: 10rem;
+	span {
+		padding-top: 20rem;
+		font-size: 8rem;
+	}
+}
+
+.submitted-users {
+	padding-top: 2 	rem;
+}
+
+.submitted-user {
+ 	text-align: center !important;
+ 	line-height: 1.1em;
+ 	// border: 2px solid rgba(255,255,255,0.3); 
+ 	// border-radius: .5rem;
+ 	padding: 2rem 0;
+ 	margin: .5rem 0;
+ 	span {
+ 		display: block;
+ 		text-align: center;
+ 		line-height: .9em;
+ 	}
+ 	span.functie {
+ 		font-weight: 700;
+ 	}
+ 	img {
+ 		width: 50%;
+ 	}
+ }
+
+ .tester {
+ 	height: 3rem;
+ 	border: 1px solid red;
+ }
+
+
+ /**
+  *  ALGEMEENBEELD
+  */
+ 
+ .pre-resultaat {
+ 	padding: 3rem 0;
+ 	width: 100%;
+ 	text-align: center;
+
+ 	a {
+ 		margin: 0 auto;
+ 	}
+ }
+
+
+ /**
+  *  ALGEMEENBEELDRESULTAAT
+  */
+ .algemeenbeeldslider--group {
+ 	// border: 1px solid red;
+ 	// padding: 2em;
+ 	// background: #fff;
+ }
+
+ .sliders-sub {
+ 	padding: 1rem 0;
+ 	color: #fff;
+ 	font-weight: 500;
+ 	span { 
+ 		font-weight: 300;
+ 	}
+ }
+
+
+
+ .algemeenbeeldslider {
+ 	width: 90%;
+ 	margin: 0 5%;
+ }
+
+$onderwijs: #882d50;
+$gemsd: #2f5256;
+$gemsw: #FA9426;
+$werk: #E75351;
+$zorg: #A856AA;
+$overig: #25AEE4;
+
+.slider-gemiddeld {
+	font-size: 1.2rem;
+}
+
+ .slider-onderwijs {
+ 	border: 6px solid $onderwijs;
+ 	border-width: 0 6px;
+ 	background: rgba($onderwijs, .4);
+ 	// background: #882d50;
+ }
+
+ .slider-gemsd {
+ 	border: 6px solid $gemsd;
+ 	border-width: 0 6px;
+ 	background: rgba($gemsd, .4);
+ }
+
+  .slider-gemsmw {
+ 	border: 6px solid $gemsw;
+ 	border-width: 0 6px;
+ 	background: rgba($gemsw, .4);
+ }
+
+  .slider-werk {
+ 	border: 6px solid $werk;
+ 	border-width: 0 6px;
+ 	background: rgba($werk, .5);
+ }
+
+  .slider-zorg {
+ 	border: 6px solid $zorg;
+ 	border-width: 0 6px;
+ 	background: rgba($zorg, .5);
+ }
+
+  .slider-overig {
+ 	border: 6px solid $overig;
+ 	border-width: 0 6px;
+ 	background: rgba($overig, .5);
+ }
+
+
+ /**
+  *  THEMA RESULTAAT
+  */
+ 
+ #time {
+ 	position: absolute;
+ 	top: 0;
+ 	right: 0;
+ 	padding: .5rem;
+ 	font-size: 2rem;
+ 	background: rgba(#fff, .3);
+ 	// border: 2px solid #22373e;
+ }
+
+ .center {
+ 	text-align: center;
+ }
+
+ .subheading__time {
+ 	width: 90%;
+ }
+
+ .slider-verbeterpunten {
+ 	border: 6px solid #3FDED1;
+ 	border-width: 0 6px;
+ 	background: rgba(#3FDED1, .5);
+ 	text-align: center;
+ }
+
+ .verbetercheck {
+ 	display: inline-block;
+ }
+
+.succesfactoren {
+	margin: 2rem 0 0 0;
+ 	border: 1px solid #ddd;
+ 	background: rgba(#fff, .3);
+}
+
+.succesfactoren > .row {
+	border-bottom: 1px solid #ddd;
+}
+
+ .succesfactoren > .row > .large-1  {
+ 	padding: .5rem;
+ }
+
+ .succesfactoren > .row > .large-11  {
+ 	border-left: 1px solid #ddd;
+ 	padding: .5rem;
+ }
+
+ .succeesfactoren-titel {
+ 	padding: .5rem;
+ 	font-size: 1.5rem;
+ 	text-align: center;
+ }
+
+ /**
+  *  ACTIEPUNTEN
+  */
+ 
+ .actiepunt {
+ 	position: relative;
+ 	margin: 0 0 2rem 0;
+ }
+
+ .actie-verwijderen {
+ 	display: block;
+ 	position: absolute;
+ 	top: 0;
+ 	right: 1rem; 	
+    background: #fff;
+    padding: 0 .5em;
+    font-weight: 500;
+    font-size: .8rem;
+ }
+
+ .actie-omschrijving {
+ 	display: block;
+ 	padding: .5rem;
+ 	text-align: center;
+	background: rgba(#fff, .3);
+ }
+
+ .actie-thema {
+ 	display: block;
+ 	padding: .5rem;
+ 	text-align: center;
+ 	color: #fff;
+ }
+
+.actiepunt-wet {
+ 	background: $werk;	
+}
+
+.actiepunt-kb {
+	background: $onderwijs;
+}
+
+.actiepunt-es {
+	background: $overig;
+}

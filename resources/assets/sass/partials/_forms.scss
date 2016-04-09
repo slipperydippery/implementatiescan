@@ -1,0 +1,30 @@
+
+
+input {
+  border-radius: .4em !important;
+}
+
+input::placeholder {
+  color: #aaa;
+}
+
+/* ==========================================================================
+   Login Form
+   ========================================================================== */
+
+
+.rememberme {
+  display: none;
+}
+
+.login-info {
+  color: #fff;
+  font-weight: 300;
+  font-style: italic;
+  float: right;
+}
+
+span.help-block {
+    color: #C52D2D;
+ 
+}
