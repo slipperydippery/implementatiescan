@@ -20,73 +20,73 @@
 		<h4>Aangemeldde Deelnemers: </h4>
 
 		<div class="large-2 column submitted-user">
-			{!! HTML::image('/img/user_dark.png') !!} <br><br>
+		<img src="{{asset('img/user_dark.png')}}"> <br><br>
 			<span class="first">Gerrit</span> 
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
 		</div>
 		<div class="large-2 column submitted-user">
-			{!! HTML::image('/img/user.png') !!} <br><br>
+			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span> 
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
 		</div>
 		<div class="large-2 column end submitted-user">
-			{!! HTML::image('/img/user.png') !!} <br><br>
+			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span>
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
 		</div>
 		<div class="large-2 column submitted-user">
-			{!! HTML::image('/img/user.png') !!} <br><br>
+			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span> 
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
 		</div>
 		<div class="large-2 column end submitted-user">
-			{!! HTML::image('/img/user.png') !!} <br><br>
+			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span>
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
 		</div>
 		<div class="large-2 column submitted-user">
-			{!! HTML::image('/img/user.png') !!} <br><br>
+			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span> 
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
 		</div>
 		<div class="large-2 column end submitted-user">
-			{!! HTML::image('/img/user.png') !!} <br><br>
+			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span>
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
 		</div>
 		<div class="large-2 column submitted-user">
-			{!! HTML::image('/img/user.png') !!} <br><br>
+			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span> 
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
 		</div>
 		<div class="large-2 column end submitted-user">
-			{!! HTML::image('/img/user.png') !!} <br><br>
+			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span>
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
 		</div>
 		<div class="large-2 column submitted-user">
-			{!! HTML::image('/img/user.png') !!} <br><br>
+			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span> 
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
 		</div>
 		<div class="large-2 column end submitted-user">
-			{!! HTML::image('/img/user.png') !!} <br><br>
+			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span>
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
 		</div>
 		<div class="large-2 column end submitted-user">
-			{!! HTML::image('/img/user.png') !!} <br><br>
+			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span>
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
