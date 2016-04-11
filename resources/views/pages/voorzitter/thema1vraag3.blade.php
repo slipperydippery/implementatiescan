@@ -4,28 +4,61 @@
 
 <div class="row page-heading">
 	<div class="large-12 ">
-		<h1>Thema I: Vraag 3</h1>
+		<h1>Thema I: Focus op werk</h1>
+		<h2>Kernvraag 3: samenwerking andere organisaties</h2>
 		<fieldset class="fieldset">
-  			<legend></legend>
-  			<p class="prequestion">
-  				Geef aan met de slider hoe U denkt over de volgende vraag:
-  			</p>
+  			<legend>Neem één minuut de tijd om de volgende vraag op uw eigen scherm te beantwoorden:</legend>
+  				<div id="time">01:00</div>
+
 			<p class=subheading>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec dui auctor ante vulputate efficitur ut id nisi?
+				Proactief samenwerken met andere organisaties/intermediairs (werkgeversservicepunt, SBB, scholen onderling etc) voor maximale kansen voor het zien en pakken van kansen.
 			</p>
 		</fieldset>
 	</div>
 </div>
 <div class="row page-content">
-</div>
-<div class="row ">
-	<div class="large-4 column end page-next">	
-		<p>
-			Heeft u uw gemeente gevonden? <br />	
-			Dan kunt u door naar de...	
-		</p>
-		<a href="{{ URL::to('thema1vraag4') }}" class="button button-next">Volgende Stap</a>
+	<div class="large-12 columns algemeenbeeldslider--participant">
+		<input type="range" class="algemeenbeeldslider slider__breed" value="50">
+		<span class="slider__label__left">
+			0
+		</span>
+		<span class="slider__label__right">
+			100
+		</span>
 	</div>
+	<div class="large-12 columns pre-resultaat">
+
+		<a class="button" href="{{ URL::to('thema1vraag4') }}">Verstuur antwoord</a><br>
+				
+	</div>	
+
 </div>
+@stop
+
+@section('additional-scripts')
+<script>
+	function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
+window.onload = function () {
+    var oneMinute = 60,
+        display = document.querySelector('#time');
+    startTimer(oneMinute, display);
+};
+</script>
 
 @stop

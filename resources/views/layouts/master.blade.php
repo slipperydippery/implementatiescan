@@ -1,7 +1,8 @@
 @include('layouts.partials.header')
 <div class="page-wrap">
 	<main>
-        @include('layouts.partials.nav')
+       
+        @include('layouts.partials.navbarleft')
 
 
         <div id="content">

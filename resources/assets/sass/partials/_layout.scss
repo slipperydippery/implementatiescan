@@ -16,7 +16,7 @@ $footer-height: 142px;
 body {
 	background: #A6CE39;
 	color: #fff;
-	background: #A6CE39 url("/img/sidebar_sm.png") no-repeat 2rem center;
+	background: #A6CE39 url("/img/sidebar2_sm.png") no-repeat 2rem center;
 }
 
 .page-wrap {
@@ -60,7 +60,13 @@ body {
 	margin-top: 1rem;
 }
 
+.row-page-next {
+	position: absolute;
+	bottom: 0;
+}
+
 .page-next {
+
 	float: right; 
 	text-align: right;
 	margin-top: 3em;
@@ -85,6 +91,50 @@ body {
 
 }
 
+/**
+ *  NAVBAR LEFT
+ */
+
+.navbarleft {
+	position: fixed;
+	left: 0;
+	left: -29.5rem;
+	top: 0rem;
+	padding-top: 2rem;
+	height: 100%;
+	width: 30rem;
+	background: rgba(#fff, 0.8);
+	z-index: 100;
+	transition: all .5s;
+
+	ul {
+		padding: .5rem 1rem .5rem 1rem;
+	}
+}
+
+.navbarleft:hover {
+	left: 0;
+}
+
+.navbarleft>ul>li {
+	font-size: 1.5rem;
+}
+
+.navbarleft>ul>li>ul {
+	display: none;
+	transtion: all .5s;
+	background: none !important;
+	a {
+		padding-left: 3rem;
+	}
+}
+
+.navbarleft>ul>li>ul>li {
+	padding: .5rem 0;
+}
+.navbarleft>ul>li:hover ul{
+	display: block;
+}
 
 /**
  *  AUTH
@@ -94,6 +144,30 @@ body {
 	margin-top: 15em;
 }
 
+ /**
+  *  THEMA RESULTAAT
+  */
+ .email_naar_participant {
+ 	// height: 80%;
+ }
+
+
+/**
+ *  WAAR: KAART
+ */
+
+.gebruikers_aanmelden {
+
+	img {
+		width: 60%;
+		height: auto;
+	}
+	.plus {
+		font-size: 1.5rem;
+		margin: -.5rem 0 0 0rem;
+		font-weight: 500;
+	}
+}
 
 
 /**
@@ -152,6 +226,23 @@ body {
  	}
  }
 
+ .add_submitted_user {
+ 	font-size: 5rem;
+ 	font-weight: 300;
+ 	margin: 1rem 0 0 0;
+ 	color: #fff;
+ }
+
+ .close_submitted_user {
+ 	display: block;
+ 	position: absolute;
+ 	top: 1rem;
+ 	right: 2rem; 
+ 	font-size: 1.5rem;
+	font-weight: 500;
+	color: #fff;
+ }
+
  .tester {
  	height: 3rem;
  	border: 1px solid red;
@@ -159,13 +250,19 @@ body {
 
 
  /**
+  *  ALGEMEENBEELD PARTICIPANT
+  */
+
+
+ /**
   *  ALGEMEENBEELD
   */
- 
+ .algemeenbeeldslider--participant {
+ 	margin-top: 2rem;
+ }
  .pre-resultaat {
  	padding: 3rem 0;
  	width: 100%;
- 	text-align: center;
 
  	a {
  		margin: 0 auto;
@@ -177,9 +274,25 @@ body {
   *  ALGEMEENBEELDRESULTAAT
   */
  .algemeenbeeldslider--group {
+ 	// margin-top: 1rem;
  	// border: 1px solid red;
  	// padding: 2em;
  	// background: #fff;
+ }
+
+.slider__label__left, .slider__label__right {
+	padding: 0 0;
+	font-weight: 500;
+	font-size: .9rem;
+}
+
+ .slider__label__left {
+ 	clear: both;
+ 	float: left;
+ }
+
+ .slider__label__right {
+ 	float: right;
  }
 
  .sliders-sub {
@@ -198,6 +311,11 @@ body {
  	margin: 0 5%;
  }
 
+ .slider__breed {
+ 	width: 100%;
+ 	margin: 0;
+ }
+
 $onderwijs: #882d50;
 $gemsd: #2f5256;
 $gemsw: #FA9426;
@@ -207,8 +325,16 @@ $overig: #25AEE4;
 
 .slider-gemiddeld {
 	font-size: 1.2rem;
+	background: rgba(#fff, .1);
 }
 
+.slider-columnhead {
+	font-weight: 300;
+}
+
+.slider-empty {
+	color: #A6CE39;
+}
  .slider-onderwijs {
  	border: 6px solid $onderwijs;
  	border-width: 0 6px;
@@ -252,9 +378,7 @@ $overig: #25AEE4;
   */
  
  #time {
- 	position: absolute;
- 	top: 0;
- 	right: 0;
+ 	float: right;
  	padding: .5rem;
  	font-size: 2rem;
  	background: rgba(#fff, .3);
@@ -272,7 +396,7 @@ $overig: #25AEE4;
  .slider-verbeterpunten {
  	border: 6px solid #3FDED1;
  	border-width: 0 6px;
- 	background: rgba(#3FDED1, .5);
+ 	background: rgba(#3FDED1, 1);
  	text-align: center;
  }
 
@@ -325,17 +449,24 @@ $overig: #25AEE4;
     font-size: .8rem;
  }
 
+.actie-rij {
+	padding: 0;
+	background: rgba(#fff, .3);
+
+	.form-control {
+		margin: 0;
+	}
+}
+
  .actie-omschrijving {
  	display: block;
  	padding: .5rem;
- 	text-align: center;
 	background: rgba(#fff, .3);
  }
 
  .actie-thema {
  	display: block;
  	padding: .5rem;
- 	text-align: center;
  	color: #fff;
  }
 

@@ -4,29 +4,61 @@
 
 <div class="row page-heading">
 	<div class="large-12 ">
-		<h1>Thema I: Vraag 1</h1>
+		<h1>Thema I: Focus op werk</h1>
+		<h2>Kernvraag 1: werkend leren</h2>
 		<fieldset class="fieldset">
-  			<legend></legend>
-  			<p class="prequestion">
-  				Geef aan met de slider hoe U denkt over de volgende vraag:
-  			</p>
+  			<legend>Neem één minuut de tijd om de volgende vraag op uw eigen scherm te beantwoorden:</legend>
+  				<div id="time">01:00</div>
+
 			<p class=subheading>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec dui auctor ante vulputate efficitur ut id nisi?
+				Werkend leren centraal, ook op school: jongeren met LVB leren het meest en best via learning by doing. Niet schools en simulatie, maar – ‘zo reëel en realistisch mogelijk’ – praktijk centraal: oefenen, (liefst gecertificeerde) werkervaring en vaardigheden opdoen, ontdekken, groeien door iets kunnen en steeds meer (blijken te) kunnen.
 			</p>
 		</fieldset>
 	</div>
 </div>
 <div class="row page-content">
+	<div class="large-12 columns algemeenbeeldslider--participant">
+		<input type="range" class="algemeenbeeldslider slider__breed" value="50">
+		<span class="slider__label__left">
+			0
+		</span>
+		<span class="slider__label__right">
+			100
+		</span>
+	</div>
+	<div class="large-12 columns pre-resultaat">
+
+		<a class="button" href="{{ URL::to('thema1vraag2') }}">Verstuur antwoord</a><br>
+				
+	</div>	
 
 </div>
-<div class="row ">
-	<div class="large-4 column end page-next">	
-		<p>
-			Heeft u uw gemeente gevonden? <br />	
-			Dan kunt u door naar de...	
-		</p>
-		<a href="{{ URL::to('thema1vraag2') }}" class="button button-next">Volgende Stap</a>
-	</div>
-</div>
+@stop
+
+@section('additional-scripts')
+<script>
+	function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
+window.onload = function () {
+    var oneMinute = 60,
+        display = document.querySelector('#time');
+    startTimer(oneMinute, display);
+};
+</script>
 
 @stop

@@ -21,9 +21,11 @@ Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a aug
 		
 	</div>
 	<div class="large-3 columns homesidebar">	
-		<a href="{{ URL::to('regio') }}">Participant > </a>
-		<a href="{{ URL::to('intro') }}">Voorzitter > </a>
+		<a href="{{ URL::to('inlog_voorzitter') }}">Scan Inrichten > </a>
+		<a href="{{ URL::to('intro') }}">Scan Uitvoeren > </a>
 	</div>
 </div>
+
+
 
 @stop

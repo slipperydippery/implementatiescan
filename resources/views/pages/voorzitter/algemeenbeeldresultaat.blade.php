@@ -3,7 +3,7 @@
 @section('content')
 <div class="row page-heading">
 	<div class="large-12 ">
-		<h1>Algemeen beeld</h1>
+		<h1>Resultaat beoordeling samenwerking</h1>
 		<fieldset class="fieldset">
   			<legend>Doel</legend>
 			<p class=subheading>
@@ -65,21 +65,15 @@
 				<input type="range" class="algemeenbeeldslider" value="55">
 			</div>
 		</div>
-
-
-
-
-
-
 		
 	</div>
 </div>
+@stop
+
+@section('site-footer')
 <div class="row ">
 	<div class="large-4 column end page-next">	
-		<p>
-			Heeft iedereen zich kunnen voorstellen? <br />	
-			Dan kunt u door naar de...	
-		</p>
+
 		<a href="{{ URL::to('thema1') }}" class="button button-next">Volgende Stap</a>
 	</div>
 </div>

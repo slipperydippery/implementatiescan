@@ -3,12 +3,12 @@
 @section('content')
 <div class="row page-heading">
 	<div class="large-12 ">
-		<h1>Kennismaken</h1>
+		<h1>Overzicht Deelnemers</h1>
 		<fieldset class="fieldset">
-  			<legend>Even voorstellen</legend>
+  			<legend>Dit is het team dat u heeft samengesteld</legend>
 			<p class=subheading>
-				Vaak zal niet iedereen elkaar kennen. Daarom een voorstelrondje, waarbij iedereen aangeeft: wie ben je? namens welke organisatie, je rol/functie en wat je hoopt dat uit deze sessie komt (wens of droom).<br><br>
-				Hieronder kunt u zien wie is aangemeld. Klopt dit 
+				Hieronder ziet u het team dat u heeft samengesteld. Controleer of uw team compleet is. En controleer of de gegevens juist zijn. De scan is nu bijna klaar voor gebruik. En u kunt alle geselecteerde deelnemers gaan uitnodigen. <br><br> 
+				Op de volgende pagina staat een email klaar die u eventueel kunt aan passen en aan de deelnemers kunt versturen. 
 			</p>
 		</fieldset>
 	</div>
@@ -20,77 +20,79 @@
 		<h4>Aangemeldde Deelnemers: </h4>
 
 		<div class="large-2 column submitted-user">
-		<img src="{{asset('img/user_dark.png')}}"> <br><br>
+		<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span> 
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
+			<span class="close_submitted_user">x</span>
 		</div>
 		<div class="large-2 column submitted-user">
 			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span> 
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
+			<span class="close_submitted_user">x</span>
 		</div>
 		<div class="large-2 column end submitted-user">
 			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span>
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
+			<span class="close_submitted_user">x</span>
 		</div>
 		<div class="large-2 column submitted-user">
 			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span> 
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
+			<span class="close_submitted_user">x</span>
 		</div>
 		<div class="large-2 column end submitted-user">
 			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span>
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
+			<span class="close_submitted_user">x</span>
 		</div>
 		<div class="large-2 column submitted-user">
 			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span> 
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
+			<span class="close_submitted_user">x</span>
 		</div>
 		<div class="large-2 column end submitted-user">
 			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span>
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
+			<span class="close_submitted_user">x</span>
 		</div>
 		<div class="large-2 column submitted-user">
 			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span> 
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
+			<span class="close_submitted_user">x</span>
 		</div>
 		<div class="large-2 column end submitted-user">
 			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span>
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
+			<span class="close_submitted_user">x</span>
 		</div>
 		<div class="large-2 column submitted-user">
 			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span> 
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
+			<span class="close_submitted_user">x</span>
 		</div>
 		<div class="large-2 column end submitted-user">
-			<img src="{{asset('img/user.png')}}"> <br><br>
-			<span class="first">Gerrit</span>
-			<span class="last">Monroe</span> 
-			<span class="functie">UVW</span>
+			<span class="add_submitted_user">+</span>
 		</div>
-		<div class="large-2 column end submitted-user">
-			<img src="{{asset('img/user.png')}}"> <br><br>
-			<span class="first">Gerrit</span>
-			<span class="last">Monroe</span> 
-			<span class="functie">UVW</span>
-		</div>
+
 		
 	</div>
 </div>
@@ -100,7 +102,7 @@
 <div class="row ">
 	<div class="large-4 column end page-next">	
 
-		<a href="{{ URL::to('algemeenbeeld') }}" class="button button-next">Volgende Stap</a>
+		<a href="{{ URL::to('deelnemers_uitnodigen') }}" class="button button-next">Volgende Stap</a>
 	</div>
 </div>
 

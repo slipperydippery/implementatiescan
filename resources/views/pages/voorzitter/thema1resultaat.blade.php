@@ -4,6 +4,7 @@
 <div class="row page-heading">
 	<div class="large-12 ">
 		<h1>Thema 1: resultaat</h1>
+		<h2>Focus op werk en talent</h2>
 		<fieldset class="fieldset">
   			<legend></legend>
   				<div id="time">15:00</div>
@@ -11,13 +12,7 @@
   				Hieronder kunt u zien wat iedereen zojuist heeft ingevuld. Wat valt u op? Bespreek de resultaten de komende 15 minuten, en selecteer dan de in uw ogen belangrijkste 2 verbeterpunten.
 				
   			</p>
-			<p class=question>
-				<b>Vraag 1: </b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec dui auctor ante vulputate efficitur ut id nisi?<br>
-				<b>Vraag 2: </b> In lacinia vel arcu non accumsan. Proin pharetra semper pharetra?<br>
-				<b>Vraag 3: </b>  Etiam porta laoreet tempus. Mauris aliquam accumsan nunc vel eleifend?<br>
-				<b>Vraag 4: </b> Morbi vel neque et nisi condimentum lacinia. Nulla ut mauris orci. Pellentesque arcu ipsum, aliquet id purus?<br>
-				<b>Vraag 5: </b> Nam ipsum nisl, iaculis sit amet consectetur sit amet, aliquam eget ante. Sed eget nibh vitae velit vulputate tristique?
-			</p>
+
 
 		</fieldset>
 	</div>
@@ -27,25 +22,39 @@
 	
 	<div class="large-12 columns algemeenbeeldslider--group">
 		<div class="row sliders-sub slider-gemiddeld">
+			<div class="large-2 columns slider-empty">.
+			 </div>
+			<div class="large-2 columns center slider-columnhead">
+				Werkend leren <br>	
+			</div>
+			<div class="large-2 columns center slider-columnhead">
+				Samenwerking werkgevers <br>	
+			</div>
+			<div class="large-2 columns center slider-columnhead">
+				Samenwerking andere organisaties <br>	
+			</div>
+			<div class="large-2 columns center slider-columnhead">
+				Ontzorgen werkgevers <br>	
+			</div>
+			<div class="large-2 columns center slider-columnhead">
+				Beschikbaarheid werkgevers <br>	
+			</div>
+		</div>
+		<div class="row sliders-sub ">
 			<div class="large-2 columns">Gemiddelde beoordeling</div>
 			<div class="large-2 columns center">
-				1 <br>
 				<input type="range" class="algemeenbeeldslider" value="62">
 			</div>
 			<div class="large-2 columns center">
-				2 <br>
 				<input type="range" class="algemeenbeeldslider" value="62">
 			</div>
 			<div class="large-2 columns center">
-				3 <br>
 				<input type="range" class="algemeenbeeldslider" value="62">
 			</div>
 			<div class="large-2 columns center">
-				4 <br>
 				<input type="range" class="algemeenbeeldslider" value="62">
 			</div>
 			<div class="large-2 columns center">
-				5 <br>
 				<input type="range" class="algemeenbeeldslider" value="62">
 			</div>
 		</div>
@@ -208,60 +217,13 @@
 		</div>		
 	</div>
 
-	<div class="large-12 columns succesfactoren">
-		<div class="row">
-			<div class="large-12 succeesfactoren-titel">
-				Succesfactoren
-			</div>
-		</div>
-		<div class="row">
-			<div class="large-1 columns">
-				1.
-			</div>
-			<div class="large-11 columns">
-				Werkend leren centraal, ook op school: jongeren met LVB leren het meest en best via learning by doing. Niet schools en simulatie, maar – ‘zo reëel en realistisch mogelijk’ – praktijk centraal: oefenen, (liefst gecertificeerde) werkervaring en vaardigheden opdoen, ontdekken, groeien door iets kunnen en steeds meer (blijken te) kunnen.
-			</div>
-		</div>
-		<div class="row">
-			<div class="large-1 columns">
-				2.
-			</div>
-			<div class="large-11 columns">
-				Samenwerking met werkgevers niet als secundaire activiteit (‘erbij’), maar professioneel, door teinvesteren in kennis en relatie. Goed aansluiten op de context, belangen en taal van bedrijven) en zakelijk (open en eerlijk vooraf, goede begeleiding/ontzorgen tijdens, goede evaluatie bij afloop). 
-			</div>
-		</div>
-		<div class="row">
-			<div class="large-1 columns">
-				3.
-			</div>
-			<div class="large-11 columns">
-				Proactief samenwerken met andere organisaties/intermediairs (werkgeversservicepunt, SBB, scholen onderling etc) voor maximale kansen voor het zien en pakken van kansen.
-			</div>
-		</div>
-		<div class="row">
-			<div class="large-1 columns">
-				4.
-			</div>
-			<div class="large-11 columns">
-				Kennis van en vaardigheden voor professioneel ontzorgen en op maat inzet van instrumenten bij werkgevers: administratief, begeleiding, compensatie lagere productiviteit, proefperiode etc. Waar nodig inclusief een rol van arbeidstoeleidingsbedrijven.
-			</div>
-		</div>
-		<div class="row">
-			<div class="large-1 columns">
-				5.
-			</div>
-			<div class="large-11 columns">
-				Beschikbaarheid van voldoende werkgevers om jongeren met LVB passende werkervaring te laten opdoen en kansen te geven.
-			</div>
-		</div>
-	</div>
 </div>
+@stop
+
+@section('site-footer')
 <div class="row ">
 	<div class="large-4 column end page-next">	
-		<p>
-			Heeft iedereen zich kunnen voorstellen? <br />	
-			Dan kunt u door naar de...	
-		</p>
+
 		<a href="{{ URL::to('actieoverzicht') }}" class="button button-next">Volgende Stap</a>
 	</div>
 </div>

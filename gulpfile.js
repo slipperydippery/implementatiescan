@@ -14,7 +14,7 @@ elixir(function(mix) {
 
     // Compile JavaScript
     mix.scripts(
-        ['vendor/modernizr.js', 'vendor/jquery.js', 'foundation.min.js'], // Source files. You can also selective choose only some components
+        ['vendor/modernizr.js', 'vendor/jquery.js', 'foundation.js'], // Source files. You can also selective choose only some components
         'public/js/dependencies.js', // Destination file
         'vendor/bower_components/foundation/js/' // Source files base directory
     );

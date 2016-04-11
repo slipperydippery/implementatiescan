@@ -24,7 +24,7 @@
 		</div>
 
 		<!-- Naam Form Input -->
-		<div class="form-group">1
+		<div class="form-group">
 			{!! Form::label('naam', 'Naam:') !!}
 			{!! Form::text('naam', 'Gerrit Monroe', ['class' => 'form-control']) !!}
 		</div>
@@ -45,13 +45,13 @@
 		
 	</div>
 </div>
+@stop
+
+@section('site-footer')
 <div class="row ">
 	<div class="large-4 column end page-next">	
-		<p>
-			Kloppen uw gegevens? <br />	
-			Dan kunt u door naar de...	
-		</p>
-		<a href="{{ URL::to('1wie') }}" class="button button-next">Volgende Stap</a>
+
+		<a href="{{ URL::to('wacht_pre_algemeen') }}" class="button button-next">Volgende Stap</a>
 	</div>
 </div>
 

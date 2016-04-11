@@ -6662,7 +6662,7 @@ html, body {
 body {
   background: #A6CE39;
   color: #fff;
-  background: #A6CE39 url("/img/sidebar_sm.png") no-repeat 2rem center; }
+  background: #A6CE39 url("/img/sidebar2_sm.png") no-repeat 2rem center; }
 
 .page-wrap {
   min-height: 100%;
@@ -6691,6 +6691,10 @@ body {
 .page-content {
   margin-top: 1rem; }
 
+.row-page-next {
+  position: absolute;
+  bottom: 0; }
+
 .page-next {
   float: right;
   text-align: right;
@@ -6710,10 +6714,61 @@ body {
     padding: 1rem 0 0 0; }
 
 /**
+ *  NAVBAR LEFT
+ */
+.navbarleft {
+  position: fixed;
+  left: 0;
+  left: -29.5rem;
+  top: 0rem;
+  padding-top: 2rem;
+  height: 100%;
+  width: 30rem;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 100;
+  transition: all .5s; }
+  .navbarleft ul {
+    padding: .5rem 1rem .5rem 1rem; }
+
+.navbarleft:hover {
+  left: 0; }
+
+.navbarleft > ul > li {
+  font-size: 1.5rem; }
+
+.navbarleft > ul > li > ul {
+  display: none;
+  transtion: all .5s;
+  background: none !important; }
+  .navbarleft > ul > li > ul a {
+    padding-left: 3rem; }
+
+.navbarleft > ul > li > ul > li {
+  padding: .5rem 0; }
+
+.navbarleft > ul > li:hover ul {
+  display: block; }
+
+/**
  *  AUTH
  */
 .loginform {
   margin-top: 15em; }
+
+/**
+  *  THEMA RESULTAAT
+  */
+/**
+ *  WAAR: KAART
+ */
+.gebruikers_aanmelden img {
+  width: 60%;
+  height: auto; }
+
+.gebruikers_aanmelden .plus {
+  font-size: 1.5rem;
+  margin: -.5rem 0 0 0rem;
+  font-weight: 500; }
 
 /**
  *  WAAR: KAART
@@ -6752,23 +6807,55 @@ body {
   .submitted-user img {
     width: 50%; }
 
+.add_submitted_user {
+  font-size: 5rem;
+  font-weight: 300;
+  margin: 1rem 0 0 0;
+  color: #fff; }
+
+.close_submitted_user {
+  display: block;
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #fff; }
+
 .tester {
   height: 3rem;
   border: 1px solid red; }
 
 /**
+  *  ALGEMEENBEELD PARTICIPANT
+  */
+/**
   *  ALGEMEENBEELD
   */
+.algemeenbeeldslider--participant {
+  margin-top: 2rem; }
+
 .pre-resultaat {
   padding: 3rem 0;
-  width: 100%;
-  text-align: center; }
+  width: 100%; }
   .pre-resultaat a {
     margin: 0 auto; }
 
 /**
   *  ALGEMEENBEELDRESULTAAT
   */
+.slider__label__left, .slider__label__right {
+  padding: 0 0;
+  font-weight: 500;
+  font-size: .9rem; }
+
+.slider__label__left {
+  clear: both;
+  float: left; }
+
+.slider__label__right {
+  float: right; }
+
 .sliders-sub {
   padding: 1rem 0;
   color: #fff;
@@ -6780,8 +6867,19 @@ body {
   width: 90%;
   margin: 0 5%; }
 
+.slider__breed {
+  width: 100%;
+  margin: 0; }
+
 .slider-gemiddeld {
-  font-size: 1.2rem; }
+  font-size: 1.2rem;
+  background: rgba(255, 255, 255, 0.1); }
+
+.slider-columnhead {
+  font-weight: 300; }
+
+.slider-empty {
+  color: #A6CE39; }
 
 .slider-onderwijs {
   border: 6px solid #882d50;
@@ -6817,9 +6915,7 @@ body {
   *  THEMA RESULTAAT
   */
 #time {
-  position: absolute;
-  top: 0;
-  right: 0;
+  float: right;
   padding: .5rem;
   font-size: 2rem;
   background: rgba(255, 255, 255, 0.3); }
@@ -6833,7 +6929,7 @@ body {
 .slider-verbeterpunten {
   border: 6px solid #3FDED1;
   border-width: 0 6px;
-  background: rgba(63, 222, 209, 0.5);
+  background: #3fded1;
   text-align: center; }
 
 .verbetercheck {
@@ -6876,16 +6972,20 @@ body {
   font-weight: 500;
   font-size: .8rem; }
 
+.actie-rij {
+  padding: 0;
+  background: rgba(255, 255, 255, 0.3); }
+  .actie-rij .form-control {
+    margin: 0; }
+
 .actie-omschrijving {
   display: block;
   padding: .5rem;
-  text-align: center;
   background: rgba(255, 255, 255, 0.3); }
 
 .actie-thema {
   display: block;
   padding: .5rem;
-  text-align: center;
   color: #fff; }
 
 .actiepunt-wet {

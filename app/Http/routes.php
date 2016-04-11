@@ -18,6 +18,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/inlog_voorzitter', function () {
+    return view('pages.voorzitter.inlog_voorzitter');
+});
+
+Route::get('/regio_gemeente', function () {
+    return view('pages.voorzitter.regio_gemeente');
+});
+
+Route::get('/deelnemers_overzicht', function () {
+    return view('pages.voorzitter.deelnemers_overzicht');
+});
+
+Route::get('/deelnemers_uitnodigen', function () {
+    return view('pages.voorzitter.deelnemers_uitnodigen');
+});
+
+Route::get('/evenement_beheren', function () {
+    return view('pages.voorzitter.evenement_beheren');
+});
+
+
+
 
 Route::get('regio', function () {
     return view('pages.regio');
@@ -26,6 +48,20 @@ Route::get('regio', function () {
 Route::get('/metwie', function (){
 	return view('pages.metwie');
 });
+
+Route::get('/wacht_pre_algemeen', function (){
+	return view('pages.wacht_pre_algemeen');
+});
+
+Route::get('/algemeenbeeld_participant', function (){
+	return view('pages.algemeenbeeld_participant');
+});
+
+
+
+
+
+
 
 Route::get('/intro', function (){
 	return view('pages.voorzitter.intro');
