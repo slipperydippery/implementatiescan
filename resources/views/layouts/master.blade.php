@@ -1,7 +1,8 @@
 @include('layouts.partials.header')
+       <img src="{{asset('img/paperclip.png')}}" id="paperclip">
 <div class="page-wrap">
-	<main>
-       
+
+    <main>
         @include('layouts.partials.navbarleft')
 
 

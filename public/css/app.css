@@ -6662,9 +6662,11 @@ html, body {
 body {
   background: #A6CE39;
   color: #fff;
-  background: #A6CE39 url("/img/sidebar2_sm.png") no-repeat 2rem center; }
+  background: #A6CE39 url("/img/sidebar2_sm.png") no-repeat 2rem center;
+  position: static; }
 
 .page-wrap {
+  position: relative;
   min-height: 100%;
   /* equal to footer height */
   margin-bottom: -142px; }
@@ -6675,6 +6677,16 @@ body {
 
 .site-footer, .page-wrap:after {
   height: 142px; }
+
+main {
+  z-index: 10; }
+
+#paperclip {
+  position: absolute;
+  top: 0;
+  right: 5%;
+  width: 30%;
+  z-index: 0; }
 
 /**
  *  PAGES LAYOUT
@@ -7027,7 +7039,7 @@ p.subheading {
   font-weight: 300; }
 
 h2 {
-  font-size: 3.2rem;
+  font-size: 3.0rem;
   text-transform: uppercase;
   font-weight: 100;
   margin-top: -1rem; }

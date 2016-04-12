@@ -4,7 +4,8 @@
 <div class="container">
     <div class="row">
         <div class="large-12 title-img">
-            {!! HTML::image('/img/loginlogo.jpg') !!}
+
+        <img src="{{asset('img/loginlogo.jpg')}}"> 
         </div>
     </div>
     <div class="row">

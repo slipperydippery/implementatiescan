@@ -4,7 +4,7 @@
 <div class="row page-heading">
 	<div class="large-12 ">
 		<h1>Implementatiescan</h1>
-		<h2>Met LVB van school naar werk</h2>
+		<h2>de paperclip van school naar werk</h2>
 		<fieldset class="fieldset large-8">
 			<p >
 				<b>Regionale werk agenda</b><br>
