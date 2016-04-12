@@ -6664,8 +6664,7 @@ body {
   color: #fff;
   background: #A6CE39 url("/img/sidebar2_sm.png") no-repeat 2rem center;
   position: static;
-  top: 0;
-  margin: -2rem 0 0 0; }
+  top: 0; }
 
 .page-wrap {
   position: relative;
@@ -6700,7 +6699,7 @@ main {
   margin-top: 5rem; }
 
 .page-heading {
-  margin-top: 2rem; }
+  padding-top: 3rem; }
 
 .fieldset {
   position: relative; }
