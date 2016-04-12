@@ -16,13 +16,15 @@ Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a aug
 		</fieldset>
 	</div>
 </div>
-<div class="row">	
-	<div class="large-3 columns">
-		
+<div class="row triblock--container">	
+	<div class="large-4 columns triblock">
+		<a href="{{ URL::to('inlog_voorzitter') }}">Scan Inrichten >></a>
 	</div>
-	<div class="large-3 columns homesidebar">	
-		<a href="{{ URL::to('inlog_voorzitter') }}">Scan Inrichten > </a>
-		<a href="{{ URL::to('intro') }}">Scan Uitvoeren > </a>
+	<div class="large-4 columns triblock">
+		<a href="{{ URL::to('intro') }}">Scan Uitvoeren >></a>
+	</div>
+	<div class="large-4 columns triblock">	
+		<a href="{{ URL::to('databank') }}">Databank >></a>
 	</div>
 </div>
 

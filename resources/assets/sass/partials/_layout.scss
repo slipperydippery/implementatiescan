@@ -101,8 +101,26 @@ main {
 		font-size: 1.5rem;
 		padding: 1rem 0 0 0;
 	}
-
 }
+
+.triblock {
+	padding-left: 0;
+	padding-right: 30px;
+}
+
+.triblock--container {
+	margin-top: 3rem;
+}
+.triblock a {
+    display: block;
+    padding: 2rem 2rem;
+    /* border: 1px solid #E4E4E4; */
+    background: rgba(255, 255, 255, 0.41);
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
+
 
 /**
  *  NAVBAR LEFT
@@ -163,6 +181,18 @@ main {
  .email_naar_participant {
  	// height: 80%;
  }
+
+ /**
+ *  DATABANK
+ */
+
+.columnhead {
+	font-size: 1.4rem;
+}
+
+.succesfactorrow {
+	border-bottom: 1px solid #e4e4e4;
+}
 
 
 /**

@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/databank', function () {
+    return view('pages.databank');
+});
+
 Route::get('/inlog_voorzitter', function () {
     return view('pages.voorzitter.inlog_voorzitter');
 });

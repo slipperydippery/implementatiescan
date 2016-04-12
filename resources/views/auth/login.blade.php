@@ -1,12 +1,10 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="large-12 title-img">
-
-        <img src="{{asset('img/loginlogo.jpg')}}"> 
-        </div>
+<div class="row page-heading">
+    <div class="large-12 ">
+        <h1>Implementatiescan</h1>
+        <h2>de paperclip van school naar werk</h2>
     </div>
     <div class="row">
         <div class = "large-4 loginform">
