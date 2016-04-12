@@ -11,13 +11,15 @@ html, body {
   height: 100%;
 }
 
-$footer-height: 142px;
+$footer-height: 155px;
 
 body {
 	background: #A6CE39;
 	color: #fff;
 	background: #A6CE39 url("/img/sidebar2_sm.png") no-repeat 2rem center;
 	position: static;
+	top: 0;
+	margin: -2rem 0 0 0;
 }
 
 .page-wrap {
@@ -32,8 +34,13 @@ body {
   display: block;
 }
 
+.site-footer {
+	background: #A6CE39 url("/img/flowmenu.png") no-repeat bottom center;
+}
+
 .site-footer, .page-wrap:after {
-  height: $footer-height; 
+  	height: $footer-height; 
+
 }
 .site-footer {
   // background: orange;

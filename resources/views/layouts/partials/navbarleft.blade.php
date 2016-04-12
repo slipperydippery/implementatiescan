@@ -1,7 +1,7 @@
 <div class="navbarleft">
 	<ul class="accordion" data-accordion>
 		<li class="accordion-navigation">
-			<a href="#">Home</a>
+			<a href="{{ URL::to('/') }}">Home</a>
 		</li>
 		<li class="accordion-navigation">
 			<a href="#scaninrichten">Scan inrichten</a>
