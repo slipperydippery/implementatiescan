@@ -6736,13 +6736,33 @@ main {
 .triblock--container {
   margin-top: 3rem; }
 
-.triblock a {
+.triblock {
+  position: relative;
+  display: inline-block; }
+
+.triblock span.title {
   display: block;
-  padding: 2rem 2rem;
-  /* border: 1px solid #E4E4E4; */
-  background: rgba(255, 255, 255, 0.41);
-  font-weight: 300;
-  font-size: 1.5rem; }
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 6px;
+  line-height: 50px;
+  padding: 0 30px;
+  border-radius: 6px;
+  font-size: 1.3rem;
+  line-height: 5rem;
+  font-weight: 500;
+  background-color: #3B7A86;
+  color: #fff;
+  box-shadow: 0 3px 0 0 #073040;
+  transition: all .5s; }
+
+.triblock span.title:hover {
+  background-color: #073040; }
+
+.triblock span.arrow-left {
+  right: 0;
+  box-shadow: 10px 0 0 0 #00cdae, 10px 3px 0 0 #00ae94;
+  border-right: 10px solid #00cdae; }
 
 /**
  *  NAVBAR LEFT
@@ -6792,8 +6812,15 @@ main {
 /**
  *  DATABANK
  */
+.searchfield {
+  margin: 1rem 0 3rem; }
+
 .columnhead {
   font-size: 1.4rem; }
+
+.has-tip {
+  color: #fff;
+  font-weight: 500 !important; }
 
 .succesfactorrow {
   border-bottom: 1px solid #e4e4e4; }
@@ -6898,6 +6925,7 @@ main {
 
 .sliders-sub {
   padding: 1rem 0;
+  height: 6rem;
   color: #fff;
   font-weight: 500; }
   .sliders-sub span {
@@ -6912,11 +6940,10 @@ main {
   margin: 0; }
 
 .slider-gemiddeld {
-  font-size: 1.2rem;
   background: rgba(255, 255, 255, 0.1); }
 
 .slider-columnhead {
-  font-weight: 300; }
+  font-weight: 500; }
 
 .slider-empty {
   color: #A6CE39; }
@@ -6952,13 +6979,26 @@ main {
   background: rgba(37, 174, 228, 0.5); }
 
 /**
+  *  THEMA VRAGEN
+  */
+.thema-submit-container {
+  width: 100%;
+  text-align: left; }
+
+.thema-submit {
+  margin: 3rem auto; }
+
+/**
   *  THEMA RESULTAAT
   */
 #time {
-  float: right;
-  padding: .5rem;
-  font-size: 2rem;
-  background: rgba(255, 255, 255, 0.3); }
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: -4rem;
+  line-height: 14rem;
+  font-size: 11rem;
+  color: rgba(255, 255, 255, 0.3); }
 
 .center {
   text-align: center; }
@@ -7028,6 +7068,9 @@ main {
   padding: .5rem;
   color: #fff; }
 
+.actie-thema-kop {
+  font-weight: 500; }
+
 .actiepunt-wet {
   background: #E75351; }
 
@@ -7037,6 +7080,22 @@ main {
 .actiepunt-es {
   background: #25AEE4; }
 
+.actiehelper {
+  font-size: 2rem;
+  color: #fff;
+  font-weight: 500; }
+
+.datumrow {
+  margin-left: -30px !important; }
+
+.datum {
+  margin: 2rem 0; }
+
+.datumlabel {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500; }
+
 body, p, h1, h2, h3, h4, h5, h6 {
   color: #22373e; }
 
@@ -7045,7 +7104,7 @@ p, span, body {
   font-weight: 300; }
 
 h1 {
-  font-size: 4rem;
+  font-size: 4.5rem;
   font-weight: 900;
   text-transform: uppercase;
   margin-bottom: 0; }
@@ -7067,7 +7126,7 @@ p.subheading {
   font-weight: 300; }
 
 h2 {
-  font-size: 3.0rem;
+  font-size: 2.5rem;
   text-transform: uppercase;
   font-weight: 100;
   margin-top: -1rem; }
@@ -7150,4 +7209,95 @@ input::placeholder {
 span.help-block {
   color: #C52D2D; }
 
-/*# sourceMappingURL=app.css.map */
+[type=range] {
+  -webkit-appearance: none;
+  margin: 0.65rem 0;
+  width: 100%; }
+  [type=range]:focus {
+    outline: none; }
+  [type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 0.6rem;
+    cursor: pointer;
+    transition: all .2s ease;
+    box-shadow: inset 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.3), 0 0 0.1rem rgba(13, 13, 13, 0.3);
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e21616+0,f7d111+50,039e12+100 */
+    background: #e21616;
+    /* Old browsers */
+    /* FF3.6-15 */
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #e21616 0%, #f7d111 50%, #039e12 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e21616', endColorstr='#039e12',GradientType=1 );
+    /* IE6-9 */
+    background: #eaeaea;
+    border: 0rem solid #dddddd;
+    border-radius: 0.3rem; }
+  [type=range]::-webkit-slider-thumb {
+    box-shadow: inset 0 0 0 #111, 0 0 0 #1e1e1e;
+    border: 0.1rem solid #000;
+    height: 1.3rem;
+    width: 0.6rem;
+    border-radius: 0;
+    background: #555bc8;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -0.35rem; }
+  [type=range]:focus::-webkit-slider-runnable-track {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e21616+0,f7d111+50,039e12+100 */
+    background: #e21616;
+    /* Old browsers */
+    /* FF3.6-15 */
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #e21616 0%, #f7d111 50%, #039e12 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e21616', endColorstr='#039e12',GradientType=1 );
+    /* IE6-9 */ }
+  [type=range]::-moz-range-track {
+    width: 100%;
+    height: 0.6rem;
+    cursor: pointer;
+    transition: all .2s ease;
+    box-shadow: inset 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.3), 0 0 0.1rem rgba(13, 13, 13, 0.3);
+    background: #dddddd;
+    border: 0rem solid #dddddd;
+    border-radius: 0.3rem; }
+  [type=range]::-moz-range-thumb {
+    box-shadow: inset 0 0 0 #111, 0 0 0 #1e1e1e;
+    border: 0.1rem solid #000;
+    height: 1.3rem;
+    width: 0.6rem;
+    border-radius: 0;
+    background: #555bc8;
+    cursor: pointer; }
+  [type=range]::-ms-track {
+    width: 100%;
+    height: 0.6rem;
+    cursor: pointer;
+    transition: all .2s ease;
+    background: transparent;
+    border-color: transparent;
+    border-width: 0.6rem 0;
+    color: transparent; }
+  [type=range]::-ms-fill-lower {
+    box-shadow: inset 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.3), 0 0 0.1rem rgba(13, 13, 13, 0.3);
+    background: #d0d0d0;
+    border: 0rem solid #dddddd;
+    border-radius: 0.6rem; }
+  [type=range]::-ms-fill-upper {
+    box-shadow: inset 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.3), 0 0 0.1rem rgba(13, 13, 13, 0.3);
+    background: #dddddd;
+    border: 0rem solid #dddddd;
+    border-radius: 0.6rem; }
+  [type=range]::-ms-thumb {
+    box-shadow: inset 0 0 0 #111, 0 0 0 #1e1e1e;
+    border: 0.1rem solid #000;
+    height: 1.3rem;
+    width: 0.6rem;
+    border-radius: 0;
+    background: #555bc8;
+    cursor: pointer; }
+  [type=range]:focus::-ms-fill-lower {
+    background: #dddddd; }
+  [type=range]:focus::-ms-fill-upper {
+    background: #eaeaea; }

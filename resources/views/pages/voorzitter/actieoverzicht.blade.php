@@ -19,82 +19,29 @@
 		<div class="row">
 			<div class="large-12">
 				<div class="row">	
-					<div class="large-12 actie-thema actiepunt-es">Thema 1: Focus op werk en talent</div>
-				</div>
-				<div class="row actie-rij">	
-					<div class="large-3 columns actie-omschrijving">Werkend Leren</div>
-					<div class="large-3 columns">
-						<!-- 	actiepunt Form Input -->
-						<div class="form-group">
-							{!! Form::text('actiepunt', null, ['class' => 'form-control','placeholder' => 'actie omschrijving']) !!}
-						</div>	
-					</div>
-					<div class="large-3 columns">
-						<!-- 	Trekker Form Input -->
-						<div class="form-group">
-						    {!! Form::select('trekker', ['piet', 'gerard'], 'selected', ['class' => 'form-control']) !!}
-						</div>
-					</div>
-					<div class="large-3 columns">
-						<!-- 	Trekker Form Input -->
-						<div class="form-group">
-						    {!! Form::select('trekker', ['piet', 'gerard'], 'selected', ['class' => 'form-control']) !!}
-						</div>
-					</div>
-				</div>
-				<div class="row actie-rij">	
-					<div class="large-3 columns actie-omschrijving">Samenwerking Werkgevers</div>
-					<div class="large-3 columns">
-						<!-- 	actiepunt Form Input -->
-						<div class="form-group">
-							{!! Form::text('actiepunt', null, ['class' => 'form-control','placeholder' => 'actie omschrijving']) !!}
-						</div>	
-					</div>
-					<div class="large-3 columns">
-						<!-- 	Trekker Form Input -->
-						<div class="form-group">
-						    {!! Form::select('trekker', ['piet', 'gerard'], 'selected', ['class' => 'form-control']) !!}
-						</div>
-					</div>
-					<div class="large-3 columns">
-						<!-- 	Trekker Form Input -->
-						<div class="form-group">
-						    {!! Form::select('trekker', ['piet', 'gerard'], 'selected', ['class' => 'form-control']) !!}
-						</div>
-					</div>
-				</div>
-				<div class="row actie-rij">	
-					<div class="large-3 columns actie-omschrijving">+</div>
-					<div class="large-9 columns">
+					<div class="large-3 actie-thema actie-thema-kop actiepunt-es columns">Focus op werk en talent</div>
+					<div class="large-3 actie-thema actiepunt-es columns">Omschrijving</div>
+					<div class="large-3 actie-thema actiepunt-es columns">Trekker</div>
+					<div class="large-3 actie-thema actiepunt-es columns">Betrokkenen</div>
 
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="large-12">
-				<div class="row">	
-					<div class="large-12 actie-thema actiepunt-es">Thema 2: Kwaliteit Begeleiding</div>
 				</div>
 				<div class="row actie-rij">	
 					<div class="large-3 columns actie-omschrijving">Werkend Leren</div>
 					<div class="large-3 columns">
 						<!-- 	actiepunt Form Input -->
 						<div class="form-group">
-							{!! Form::text('actiepunt', null, ['class' => 'form-control','placeholder' => 'actie omschrijving']) !!}
+							{!! Form::textarea('actiepunt', null, ['class' => 'form-control','placeholder' => 'actie omschrijving', 'rows' => '1']) !!}
 						</div>	
 					</div>
 					<div class="large-3 columns">
 						<!-- 	Trekker Form Input -->
 						<div class="form-group">
-						    {!! Form::select('trekker', ['piet', 'gerard'], 'selected', ['class' => 'form-control']) !!}
+						    {!! Form::select('trekker', ['', 'piet', 'gerard'], 'selected', ['class' => 'form-control']) !!}
 						</div>
 					</div>
 					<div class="large-3 columns">
 						<!-- 	Trekker Form Input -->
-						<div class="form-group">
-						    {!! Form::select('trekker', ['piet', 'gerard'], 'selected', ['class' => 'form-control']) !!}
-						</div>
+						<span class="actiehelper">+</span>
 					</div>
 				</div>
 				<div class="row actie-rij">	
@@ -102,20 +49,18 @@
 					<div class="large-3 columns">
 						<!-- 	actiepunt Form Input -->
 						<div class="form-group">
-							{!! Form::text('actiepunt', null, ['class' => 'form-control','placeholder' => 'actie omschrijving']) !!}
+							{!! Form::textarea('actiepunt', null, ['class' => 'form-control','placeholder' => 'actie omschrijving', 'rows' => '1']) !!}
 						</div>	
 					</div>
 					<div class="large-3 columns">
 						<!-- 	Trekker Form Input -->
 						<div class="form-group">
-						    {!! Form::select('trekker', ['piet', 'gerard'], 'selected', ['class' => 'form-control']) !!}
+						    {!! Form::select('trekker', ['', 'piet', 'gerard'], 'selected', ['class' => 'form-control']) !!}
 						</div>
 					</div>
 					<div class="large-3 columns">
 						<!-- 	Trekker Form Input -->
-						<div class="form-group">
-						    {!! Form::select('trekker', ['piet', 'gerard'], 'selected', ['class' => 'form-control']) !!}
-						</div>
+						<span class="actiehelper">+</span>
 					</div>
 				</div>
 				<div class="row actie-rij">	
@@ -130,27 +75,29 @@
 		<div class="row">
 			<div class="large-12">
 				<div class="row">	
-					<div class="large-12 actie-thema actiepunt-es">Thema 3: Effectieve samenwerking</div>
+					<div class="large-3 actie-thema actie-thema-kop actiepunt-es columns">Focus op werk en talent</div>
+					<div class="large-3 actie-thema actiepunt-es columns">Omschrijving</div>
+					<div class="large-3 actie-thema actiepunt-es columns">Trekker</div>
+					<div class="large-3 actie-thema actiepunt-es columns">Betrokkenen</div>
+
 				</div>
 				<div class="row actie-rij">	
 					<div class="large-3 columns actie-omschrijving">Werkend Leren</div>
 					<div class="large-3 columns">
 						<!-- 	actiepunt Form Input -->
 						<div class="form-group">
-							{!! Form::text('actiepunt', null, ['class' => 'form-control','placeholder' => 'actie omschrijving']) !!}
+							{!! Form::textarea('actiepunt', null, ['class' => 'form-control','placeholder' => 'actie omschrijving', 'rows' => '1']) !!}
 						</div>	
 					</div>
 					<div class="large-3 columns">
 						<!-- 	Trekker Form Input -->
 						<div class="form-group">
-						    {!! Form::select('trekker', ['piet', 'gerard'], 'selected', ['class' => 'form-control']) !!}
+						    {!! Form::select('trekker', ['', 'piet', 'gerard'], 'selected', ['class' => 'form-control']) !!}
 						</div>
 					</div>
 					<div class="large-3 columns">
 						<!-- 	Trekker Form Input -->
-						<div class="form-group">
-						    {!! Form::select('trekker', ['piet', 'gerard'], 'selected', ['class' => 'form-control']) !!}
-						</div>
+						<span class="actiehelper">+</span>
 					</div>
 				</div>
 				<div class="row actie-rij">	
@@ -158,20 +105,18 @@
 					<div class="large-3 columns">
 						<!-- 	actiepunt Form Input -->
 						<div class="form-group">
-							{!! Form::text('actiepunt', null, ['class' => 'form-control','placeholder' => 'actie omschrijving']) !!}
+							{!! Form::textarea('actiepunt', null, ['class' => 'form-control','placeholder' => 'actie omschrijving', 'rows' => '1']) !!}
 						</div>	
 					</div>
 					<div class="large-3 columns">
 						<!-- 	Trekker Form Input -->
 						<div class="form-group">
-						    {!! Form::select('trekker', ['piet', 'gerard'], 'selected', ['class' => 'form-control']) !!}
+						    {!! Form::select('trekker', ['', 'piet', 'gerard'], 'selected', ['class' => 'form-control']) !!}
 						</div>
 					</div>
 					<div class="large-3 columns">
 						<!-- 	Trekker Form Input -->
-						<div class="form-group">
-						    {!! Form::select('trekker', ['piet', 'gerard'], 'selected', ['class' => 'form-control']) !!}
-						</div>
+						<span class="actiehelper">+</span>
 					</div>
 				</div>
 				<div class="row actie-rij">	
@@ -181,7 +126,72 @@
 					</div>
 				</div>
 			</div>
-		</div>		
+		</div>
+
+		<div class="row">
+			<div class="large-12">
+				<div class="row">	
+					<div class="large-3 actie-thema actie-thema-kop actiepunt-es columns">Focus op werk en talent</div>
+					<div class="large-3 actie-thema actiepunt-es columns">Omschrijving</div>
+					<div class="large-3 actie-thema actiepunt-es columns">Trekker</div>
+					<div class="large-3 actie-thema actiepunt-es columns">Betrokkenen</div>
+
+				</div>
+				<div class="row actie-rij">	
+					<div class="large-3 columns actie-omschrijving">Werkend Leren</div>
+					<div class="large-3 columns">
+						<!-- 	actiepunt Form Input -->
+						<div class="form-group">
+							{!! Form::textarea('actiepunt', null, ['class' => 'form-control','placeholder' => 'actie omschrijving', 'rows' => '1']) !!}
+						</div>	
+					</div>
+					<div class="large-3 columns">
+						<!-- 	Trekker Form Input -->
+						<div class="form-group">
+						    {!! Form::select('trekker', ['', 'piet', 'gerard'], 'selected', ['class' => 'form-control']) !!}
+						</div>
+					</div>
+					<div class="large-3 columns">
+						<!-- 	Trekker Form Input -->
+						<span class="actiehelper">+</span>
+					</div>
+				</div>
+				<div class="row actie-rij">	
+					<div class="large-3 columns actie-omschrijving">Samenwerking Werkgevers</div>
+					<div class="large-3 columns">
+						<!-- 	actiepunt Form Input -->
+						<div class="form-group">
+							{!! Form::textarea('actiepunt', null, ['class' => 'form-control','placeholder' => 'actie omschrijving', 'rows' => '1']) !!}
+						</div>	
+					</div>
+					<div class="large-3 columns">
+						<!-- 	Trekker Form Input -->
+						<div class="form-group">
+						    {!! Form::select('trekker', ['', 'piet', 'gerard'], 'selected', ['class' => 'form-control']) !!}
+						</div>
+					</div>
+					<div class="large-3 columns">
+						<!-- 	Trekker Form Input -->
+						<span class="actiehelper">+</span>
+					</div>
+				</div>
+				<div class="row actie-rij">	
+					<div class="large-3 columns actie-omschrijving">+</div>
+					<div class="large-9 columns">
+
+					</div>
+				</div>
+			</div>
+		</div>	
+		<div class="row datumrow">
+			<div class="large-4 datum">
+				<!-- datum Form Input -->
+				<div class="form-group">
+					{!! Form::label('datum', 'datum:', ['class' => 'datumlabel']) !!}
+					{!! Form::date('datum', null, ['class' => 'form-control']) !!}
+				</div>
+			</div>
+		</div>
 
 
 	</div>

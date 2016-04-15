@@ -8,7 +8,6 @@
 		<h2>Kernvraag 5: beschikbaarheid werkgevers</h2>
 		<fieldset class="fieldset">
   			<legend>Neem één minuut de tijd om de volgende vraag op uw eigen scherm te beantwoorden:</legend>
-  				<div id="time">01:00</div>
 
 			<p class=subheading>
 				Beschikbaarheid van voldoende werkgevers om jongeren met LVB passende werkervaring te laten opdoen en kansen te geven.
@@ -18,6 +17,7 @@
 </div>
 <div class="row page-content">
 	<div class="large-12 columns algemeenbeeldslider--participant">
+		<div id="time">01:00</div>
 		<input type="range" class="algemeenbeeldslider slider__breed" value="50">
 		<span class="slider__label__left">
 			0
@@ -26,9 +26,9 @@
 			100
 		</span>
 	</div>
-	<div class="large-12 columns pre-resultaat">
+	<div class="large-12 columns thema-submit-container">
 
-		<a class="button" href="{{ URL::to('thema1resultaat') }}">Verstuur antwoord</a><br>
+		<a class="button thema-submit" href="{{ URL::to('thema1resultaat') }}">Verstuur antwoord</a><br>
 				
 	</div>	
 

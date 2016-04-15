@@ -21,6 +21,7 @@ body {
 	top: 0;
 }
 
+
 .page-wrap {
 	position: relative;
   min-height: 100%;
@@ -117,15 +118,41 @@ main {
 .triblock--container {
 	margin-top: 3rem;
 }
-.triblock a {
-    display: block;
-    padding: 2rem 2rem;
-    /* border: 1px solid #E4E4E4; */
-    background: rgba(255, 255, 255, 0.41);
-    font-weight: 300;
-    font-size: 1.5rem;
+.triblock {
+    position: relative;
+    display: inline-block;
+
 }
 
+.triblock span.title {
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+    border-radius: 6px;
+    line-height: 50px;
+    padding: 0 30px;
+    border-radius: 6px;
+    font-size: 1.3rem;
+    line-height: 5rem;
+    font-weight: 500;
+    // text-shadow: 0px 1px 1px #888;
+    background-color: #3B7A86;
+    color: #fff;
+    box-shadow: 0 3px 0 0 #073040;
+    transition: all .5s;
+}
+
+.triblock span.title:hover {
+    background-color: #073040;
+
+}
+
+.triblock span.arrow-left{
+	right: 0;
+    -webkit-box-shadow: 10px 0 0 0 #00cdae, 10px 3px 0 0 #00ae94;
+    box-shadow: 10px 0 0 0 #00cdae, 10px 3px 0 0 #00ae94;
+    border-right: 10px solid #00cdae;
+}
 
 
 /**
@@ -192,8 +219,18 @@ main {
  *  DATABANK
  */
 
+.searchfield {
+	margin: 1rem 0 3rem;
+}
+.databank {
+	// background: rgba(#fff, .2);
+}
 .columnhead {
 	font-size: 1.4rem;
+}
+.has-tip  {
+	color: #fff;
+	font-weight: 500 !important;
 }
 
 .succesfactorrow {
@@ -346,6 +383,7 @@ main {
 
  .sliders-sub {
  	padding: 1rem 0;
+ 	height: 6rem;
  	color: #fff;
  	font-weight: 500;
  	span { 
@@ -373,12 +411,12 @@ $zorg: #A856AA;
 $overig: #25AEE4;
 
 .slider-gemiddeld {
-	font-size: 1.2rem;
+	// font-size: 1.2rem;
 	background: rgba(#fff, .1);
 }
 
 .slider-columnhead {
-	font-weight: 300;
+	font-weight: 500;
 }
 
 .slider-empty {
@@ -421,18 +459,35 @@ $overig: #25AEE4;
  	background: rgba($overig, .5);
  }
 
+ /**
+  *  THEMA VRAGEN
+  */
+ .thema-submit-container {
+ 	width: 100%;
+ 	text-align: left;
+ }
+
+ .thema-submit {
+ 	margin: 3rem auto;
+
+ }
 
  /**
   *  THEMA RESULTAAT
   */
  
  #time {
- 	float: right;
- 	padding: .5rem;
- 	font-size: 2rem;
- 	background: rgba(#fff, .3);
+ 	display: block;
+ 	width: 100%;
+ 	text-align: center;
+ 	margin-top: -4rem;
+    line-height: 14rem;
+ 	font-size: 11rem;
+ 	color: rgba(#fff, .3);
+ 	// background: rgba(#fff, .3);
  	// border: 2px solid #22373e;
  }
+
 
  .center {
  	text-align: center;
@@ -519,6 +574,10 @@ $overig: #25AEE4;
  	color: #fff;
  }
 
+ .actie-thema-kop {
+ 	font-weight: 500;
+ }
+
 .actiepunt-wet {
  	background: $werk;	
 }
@@ -529,4 +588,24 @@ $overig: #25AEE4;
 
 .actiepunt-es {
 	background: $overig;
+}
+
+.actiehelper {
+	font-size: 2rem;
+	color: #fff;
+	font-weight: 500;
+}
+
+.datumrow {
+	margin-left: -30px !important;
+}
+
+.datum {
+	margin: 2rem 0;
+}
+
+.datumlabel {
+	color: #fff;
+	font-size: 1.2rem;
+	font-weight: 500;
 }

@@ -19,7 +19,13 @@
 
 	<!-- CC Form Input -->
 	<div class="form-group">
-		{!! Form::label('cc', 'CC:') !!}
+		{!! Form::label('cc', 'Onderwerp:') !!}
+		{!! Form::text('cc', 'Uitnodiging implementatiescan', ['class' => 'form-control']) !!}
+	</div>
+
+	<!-- CC Form Input -->
+	<div class="form-group">
+		{!! Form::label('cc', 'Aan:') !!}
 		{!! Form::text('cc', 'mijnemail@adress.com', ['class' => 'form-control']) !!}
 	</div>
 

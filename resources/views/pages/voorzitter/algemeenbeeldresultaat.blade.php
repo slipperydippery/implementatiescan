@@ -3,7 +3,7 @@
 @section('content')
 <div class="row page-heading">
 	<div class="large-12 ">
-		<h1>Resultaat beoordeling samenwerking</h1>
+		<h1>Resultaat</h1>
 		<fieldset class="fieldset">
   			<legend>Doel</legend>
 			<p class=subheading>

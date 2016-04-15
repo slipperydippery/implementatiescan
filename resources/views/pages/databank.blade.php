@@ -13,9 +13,20 @@
 	</div>
 </div>
 
+
 <div class="row page-content">
+	<div class="large-8 columns">
+		
+	</div>
+	<div class="large-4 columns">
+		<!-- zoek Form Input -->
+		<div class="searchfield">
+			{!! Form::text('zoek', null, ['class' => 'form-control', 'placeholder' => 'zoek']) !!}
+		</div>
+	</div>
+	</div>
 	
-<div class="row">
+<div class="row databank">
 	<div class="large-12">
 		<div class="row succesfactorrow">
 			<div class="large-2 columns columnhead">

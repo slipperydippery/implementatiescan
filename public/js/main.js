@@ -11000,5 +11000,3 @@ new Vue({
 });
 
 },{"./components/Tasks.vue":12,"vue":11,"vue-resource":4}]},{},[13]);
-
-//# sourceMappingURL=main.js.map

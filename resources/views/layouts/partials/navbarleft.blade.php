@@ -13,7 +13,7 @@
 			</ul>
 		</li>
 		<li class="accordion-navigation">
-			<a href="#scanactiveren">Scan activeren</a>
+			<a href="#scanactiveren">Scan starten</a>
 			<ul id="scanactiveren" class="content ">
 				<li>Deelnemers inlog aanmelden</li>
 				<li>Start scan</li>
@@ -58,7 +58,7 @@
 			<a href="#gezamenlijkresultaat">Gezamenlijk resultaat</a>
 			<ul id="gezamenlijkresultaat" class="content">
 				<li>Focus op werk</li>
-				<li>Kwaliteit begelijding</li>
+				<li>Kwaliteit begeleiding</li>
 				<li>Effectief samenwerken</li>
 			</ul>
 		</li>

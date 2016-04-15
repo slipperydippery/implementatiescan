@@ -24,73 +24,75 @@
 			<span class="first">Gerrit</span> 
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
+			<span class="close_submitted_user">x</span>
 		</div>
 		<div class="large-2 column submitted-user">
 			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span> 
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
+			<span class="close_submitted_user">x</span>
 		</div>
 		<div class="large-2 column end submitted-user">
 			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span>
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
+			<span class="close_submitted_user">x</span>
 		</div>
 		<div class="large-2 column submitted-user">
 			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span> 
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
+			<span class="close_submitted_user">x</span>
 		</div>
 		<div class="large-2 column end submitted-user">
 			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span>
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
+			<span class="close_submitted_user">x</span>
 		</div>
 		<div class="large-2 column submitted-user">
 			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span> 
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
+			<span class="close_submitted_user">x</span>
 		</div>
 		<div class="large-2 column end submitted-user">
 			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span>
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
+			<span class="close_submitted_user">x</span>
 		</div>
 		<div class="large-2 column submitted-user">
 			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span> 
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
+			<span class="close_submitted_user">x</span>
 		</div>
 		<div class="large-2 column end submitted-user">
 			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span>
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
+			<span class="close_submitted_user">x</span>
 		</div>
 		<div class="large-2 column submitted-user">
 			<img src="{{asset('img/user.png')}}"> <br><br>
 			<span class="first">Gerrit</span> 
 			<span class="last">Monroe</span> 
 			<span class="functie">UVW</span>
+			<span class="close_submitted_user">x</span>
 		</div>
 		<div class="large-2 column end submitted-user">
-			<img src="{{asset('img/user.png')}}"> <br><br>
-			<span class="first">Gerrit</span>
-			<span class="last">Monroe</span> 
-			<span class="functie">UVW</span>
+			<span class="add_submitted_user">+</span>
 		</div>
-		<div class="large-2 column end submitted-user">
-			<img src="{{asset('img/user.png')}}"> <br><br>
-			<span class="first">Gerrit</span>
-			<span class="last">Monroe</span> 
-			<span class="functie">UVW</span>
-		</div>
+
 		
 	</div>
 </div>
@@ -100,7 +102,7 @@
 <div class="row ">
 	<div class="large-4 column end page-next">	
 
-		<a href="{{ URL::to('algemeenbeeld') }}" class="button button-next">Volgende Stap</a>
+		<a href="{{ URL::to('algemeenbeeld') }}" class="button button-next">Scan Starten</a>
 	</div>
 </div>
 

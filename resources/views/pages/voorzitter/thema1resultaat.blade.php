@@ -7,7 +7,6 @@
 		<h2>Focus op werk en talent</h2>
 		<fieldset class="fieldset">
   			<legend></legend>
-  				<div id="time">15:00</div>
   			<p class="subheading subheading__time">
   				Hieronder kunt u zien wat iedereen zojuist heeft ingevuld. Wat valt u op? Bespreek de resultaten de komende 15 minuten, en selecteer dan de in uw ogen belangrijkste 2 verbeterpunten.
 				
@@ -21,23 +20,25 @@
 <div class="row page-content">
 	
 	<div class="large-12 columns algemeenbeeldslider--group">
+  				<div id="time" >15:00</div>
 		<div class="row sliders-sub slider-gemiddeld">
 			<div class="large-2 columns slider-empty">.
 			 </div>
 			<div class="large-2 columns center slider-columnhead">
-				Werkend leren <br>	
+			<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="Werkend leren centraal, ook op school: jongeren met LVB leren het meest en best via learning by doing. Niet schools en simulatie, maar – ‘zo reëel en realistisch mogelijk’ – praktijk centraal: oefenen, (liefst gecertificeerde) werkervaring en vaardigheden opdoen, ontdekken, groeien door iets kunnen en steeds meer (blijken te) kunnen.">Werkend leren</span>
+					
 			</div>
 			<div class="large-2 columns center slider-columnhead">
-				Samenwerking werkgevers <br>	
+			<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="Werkend leren centraal, ook op school: jongeren met LVB leren het meest en best via learning by doing. Niet schools en simulatie, maar – ‘zo reëel en realistisch mogelijk’ – praktijk centraal: oefenen, (liefst gecertificeerde) werkervaring en vaardigheden opdoen, ontdekken, groeien door iets kunnen en steeds meer (blijken te) kunnen.">Samenwerking werkgevers</span>
 			</div>
 			<div class="large-2 columns center slider-columnhead">
-				Samenwerking andere organisaties <br>	
+			<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="Werkend leren centraal, ook op school: jongeren met LVB leren het meest en best via learning by doing. Niet schools en simulatie, maar – ‘zo reëel en realistisch mogelijk’ – praktijk centraal: oefenen, (liefst gecertificeerde) werkervaring en vaardigheden opdoen, ontdekken, groeien door iets kunnen en steeds meer (blijken te) kunnen.">Samenwerking andere organisaties</span>
 			</div>
 			<div class="large-2 columns center slider-columnhead">
-				Ontzorgen werkgevers <br>	
+			<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="Werkend leren centraal, ook op school: jongeren met LVB leren het meest en best via learning by doing. Niet schools en simulatie, maar – ‘zo reëel en realistisch mogelijk’ – praktijk centraal: oefenen, (liefst gecertificeerde) werkervaring en vaardigheden opdoen, ontdekken, groeien door iets kunnen en steeds meer (blijken te) kunnen.">Ontzorgen werkgevers</span>
 			</div>
 			<div class="large-2 columns center slider-columnhead">
-				Beschikbaarheid werkgevers <br>	
+			<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="Werkend leren centraal, ook op school: jongeren met LVB leren het meest en best via learning by doing. Niet schools en simulatie, maar – ‘zo reëel en realistisch mogelijk’ – praktijk centraal: oefenen, (liefst gecertificeerde) werkervaring en vaardigheden opdoen, ontdekken, groeien door iets kunnen en steeds meer (blijken te) kunnen.">Beschikbaarheid werkgevers</span>
 			</div>
 		</div>
 		<div class="row sliders-sub ">
@@ -62,138 +63,108 @@
 			<div class="large-2 columns">Onderwijs</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider " value="80">
-				<input type="range" class="algemeenbeeldslider" value="75">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider " value="80">
-				<input type="range" class="algemeenbeeldslider" value="75">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider " value="80">
-				<input type="range" class="algemeenbeeldslider" value="75">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider " value="80">
-				<input type="range" class="algemeenbeeldslider" value="75">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider " value="80">
-				<input type="range" class="algemeenbeeldslider" value="75">
 			</div>
 		</div>
 		<div class="row sliders-sub slider-gemsd">
 			<div class="large-2 columns">Gemeenten: <span>sociale dienst en werkbedrijf/intermediair</span></div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="45">
-				<input type="range" class="algemeenbeeldslider" value="40">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="45">
-				<input type="range" class="algemeenbeeldslider" value="40">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="45">
-				<input type="range" class="algemeenbeeldslider" value="40">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="45">
-				<input type="range" class="algemeenbeeldslider" value="40">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="45">
-				<input type="range" class="algemeenbeeldslider" value="40">
 			</div>
 		</div>
 		<div class="row sliders-sub slider-gemsmw">
 			<div class="large-2 columns">Gemeenten: <span>leerplicht / SMW</span></div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="50">
-				<input type="range" class="algemeenbeeldslider" value="60">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="50">
-				<input type="range" class="algemeenbeeldslider" value="60">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="50">
-				<input type="range" class="algemeenbeeldslider" value="60">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="50">
-				<input type="range" class="algemeenbeeldslider" value="60">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="50">
-				<input type="range" class="algemeenbeeldslider" value="60">
 			</div>
 		</div>
 		<div class="row sliders-sub slider-werk">
 			<div class="large-2 columns">Werk: <span>weerkgevers (vertegenwoordigers)</span></div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="90">
-				<input type="range" class="algemeenbeeldslider" value="75">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="90">
-				<input type="range" class="algemeenbeeldslider" value="75">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="90">
-				<input type="range" class="algemeenbeeldslider" value="75">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="90">
-				<input type="range" class="algemeenbeeldslider" value="75">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="90">
-				<input type="range" class="algemeenbeeldslider" value="75">
 			</div>
 		</div>
 		<div class="row sliders-sub slider-zorg">
 			<div class="large-2 columns">Zorg: <span>bijv MEE, Jeugdzorg</span></div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="43">
-				<input type="range" class="algemeenbeeldslider" value="60">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="43">
-				<input type="range" class="algemeenbeeldslider" value="60">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="43">
-				<input type="range" class="algemeenbeeldslider" value="60">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="43">
-				<input type="range" class="algemeenbeeldslider" value="60">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="43">
-				<input type="range" class="algemeenbeeldslider" value="60">
 			</div>
 		</div>
 		<div class="row sliders-sub slider-overig">
 			<div class="large-2 columns">Overig: <span>bijv UWV, Projectorganisaties</span></div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="65">
-				<input type="range" class="algemeenbeeldslider" value="55">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="65">
-				<input type="range" class="algemeenbeeldslider" value="55">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="65">
-				<input type="range" class="algemeenbeeldslider" value="55">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="65">
-				<input type="range" class="algemeenbeeldslider" value="55">
 			</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="65">
-				<input type="range" class="algemeenbeeldslider" value="55">
 			</div>
 		</div>
 

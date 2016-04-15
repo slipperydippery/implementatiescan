@@ -18,13 +18,19 @@ Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a aug
 </div>
 <div class="row triblock--container">	
 	<div class="large-4 columns triblock">
-		<a href="{{ URL::to('inlog_voorzitter') }}">Scan Inrichten >></a>
+		<a href="{{ URL::to('inlog_voorzitter') }}">
+			<span class="title">Scan Inrichten </span>
+		</a>
 	</div>
 	<div class="large-4 columns triblock">
-		<a href="{{ URL::to('intro') }}">Scan Uitvoeren >></a>
+		<a href="{{ URL::to('intro') }}">
+			<span class="title">Scan Starten </span>
+		</a>
 	</div>
 	<div class="large-4 columns triblock">	
-		<a href="{{ URL::to('databank') }}">Databank >></a>
+		<a href="{{ URL::to('databank') }}">
+			<span class="title">Databank</span>
+		</a>
 	</div>
 </div>
 
