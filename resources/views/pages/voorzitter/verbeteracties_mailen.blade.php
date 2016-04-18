@@ -70,7 +70,7 @@ VSO School
 		{!! Form::textarea('mail_intro', $emailtext, ['class' => 'form-control email_naar_participant', 'rows' => '18']) !!}
 	</div>
 
-	<a href="{{ URL::to('bedankt') }}" class="button right">Verzend verbeteracties</a>
+	<a href="{{ URL::to('werkagenda') }}" class="button right">Verzend verbeteracties</a>
 </div>
 @stop
 
