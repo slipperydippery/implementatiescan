@@ -20,8 +20,7 @@
 <div class="row page-content">
 	
 	<div class="large-12 columns algemeenbeeldslider--group">
-  				<div id="time" >15:00</div>
-		<div class="row sliders-sub slider-gemiddeld">
+		<div class="row sliders-sub slider-gemiddeld__thema">
 			<div class="large-2 columns slider-empty">.
 			 </div>
 			<div class="large-2 columns center slider-columnhead">
@@ -41,8 +40,8 @@
 			<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="Werkend leren centraal, ook op school: jongeren met LVB leren het meest en best via learning by doing. Niet schools en simulatie, maar – ‘zo reëel en realistisch mogelijk’ – praktijk centraal: oefenen, (liefst gecertificeerde) werkervaring en vaardigheden opdoen, ontdekken, groeien door iets kunnen en steeds meer (blijken te) kunnen.">Beschikbaarheid werkgevers</span>
 			</div>
 		</div>
-		<div class="row sliders-sub ">
-			<div class="large-2 columns">Gemiddelde beoordeling</div>
+		<div class="row sliders-sub sliders-sub__thema ">
+			<div class="large-2 columns">Gemiddeld</div>
 			<div class="large-2 columns center">
 				<input type="range" class="algemeenbeeldslider" value="62">
 			</div>
@@ -59,7 +58,7 @@
 				<input type="range" class="algemeenbeeldslider" value="62">
 			</div>
 		</div>
-		<div class="row sliders-sub slider-onderwijs">
+		<div class="row sliders-sub sliders-sub__thema slider-onderwijs">
 			<div class="large-2 columns">Onderwijs</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider " value="80">
@@ -77,8 +76,10 @@
 				<input type="range" class="algemeenbeeldslider " value="80">
 			</div>
 		</div>
-		<div class="row sliders-sub slider-gemsd">
-			<div class="large-2 columns">Gemeenten: <span>sociale dienst en werkbedrijf/intermediair</span></div>
+		<div class="row sliders-sub sliders-sub__thema slider-gemsd">
+			<div class="large-2 columns">
+				<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="sociale dienst en werkbedrijf/intermediair.">Gemeenten</span>
+				</div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="45">
 			</div>
@@ -95,8 +96,9 @@
 				<input type="range" class="algemeenbeeldslider" value="45">
 			</div>
 		</div>
-		<div class="row sliders-sub slider-gemsmw">
-			<div class="large-2 columns">Gemeenten: <span>leerplicht / SMW</span></div>
+		<div class="row sliders-sub sliders-sub__thema slider-gemsmw">
+			<div class="large-2 columns">
+				<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="leerplicht / SMW.">Gemeenten</span></div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="50">
 			</div>
@@ -113,8 +115,9 @@
 				<input type="range" class="algemeenbeeldslider" value="50">
 			</div>
 		</div>
-		<div class="row sliders-sub slider-werk">
-			<div class="large-2 columns">Werk: <span>weerkgevers (vertegenwoordigers)</span></div>
+		<div class="row sliders-sub sliders-sub__thema slider-werk">
+			<div class="large-2 columns">
+				<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="weerkgevers (vertegenwoordigers).">Werk</span></div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="90">
 			</div>
@@ -131,8 +134,9 @@
 				<input type="range" class="algemeenbeeldslider" value="90">
 			</div>
 		</div>
-		<div class="row sliders-sub slider-zorg">
-			<div class="large-2 columns">Zorg: <span>bijv MEE, Jeugdzorg</span></div>
+		<div class="row sliders-sub sliders-sub__thema slider-zorg">
+			<div class="large-2 columns">
+				<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="bijv MEE, Jeugdzorg.">Zorg</span></div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="43">
 			</div>
@@ -149,8 +153,9 @@
 				<input type="range" class="algemeenbeeldslider" value="43">
 			</div>
 		</div>
-		<div class="row sliders-sub slider-overig">
-			<div class="large-2 columns">Overig: <span>bijv UWV, Projectorganisaties</span></div>
+		<div class="row sliders-sub sliders-sub__thema slider-overig">
+			<div class="large-2 columns">
+			<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="bijv UWV, Projectorganisaties.">Overig</span></div>
 			<div class="large-2 columns">
 				<input type="range" class="algemeenbeeldslider" value="65">
 			</div>
@@ -169,7 +174,7 @@
 		</div>
 
 		<div class="row sliders-sub slider-verbeterpunten">
-			<div class="large-2 columns">Verbeterpunt:</div>
+			<div class="large-2 columns"><span class="left"><b>Verbeterpunten</b></span></div>
 			<div class="large-2 columns">
 				<input type="checkbox" class="verbetercheck">
 			</div>
@@ -185,21 +190,21 @@
 			<div class="large-2 columns">
 				<input type="checkbox" class="verbetercheck">
 			</div>
-		</div>		
+		</div>	
+  		
 	</div>
+
+	<div class="large-12 columns thema-submit-container">
+
+		<a class="button thema-submit" href="{{ URL::to('actieoverzicht') }}">Bevestig verbeterpunten</a><br>
+				
+  		<div id="time">01:00</div>
+	</div>	
 
 </div>
 @stop
 
-@section('site-footer')
-<div class="row ">
-	<div class="large-4 column end page-next">	
 
-		<a href="{{ URL::to('actieoverzicht') }}" class="button button-next">Volgende Stap</a>
-	</div>
-</div>
-
-@stop
 
 @section('additional-scripts')
 <script>

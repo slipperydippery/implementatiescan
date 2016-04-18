@@ -115,6 +115,18 @@ Route::get('/actieoverzicht', function (){
 	return view('pages.voorzitter.actieoverzicht');
 });
 
+Route::get('/werkagenda', function (){
+	return view('pages.voorzitter.werkagenda');
+});
+
+Route::get('/bedankt', function (){
+	return view('pages.voorzitter.bedankt');
+});
+
+Route::get('/verbeteracties_mailen', function (){
+	return view('pages.voorzitter.verbeteracties_mailen');
+});
+
 
 
 Route::get('/waar', function (){

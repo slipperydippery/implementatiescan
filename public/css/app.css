@@ -6699,7 +6699,7 @@ main {
   margin-top: 5rem; }
 
 .page-heading {
-  padding-top: 3rem; }
+  padding-top: 1rem; }
 
 .fieldset {
   position: relative; }
@@ -6924,12 +6924,15 @@ main {
   float: right; }
 
 .sliders-sub {
-  padding: 1rem 0;
-  height: 6rem;
+  padding: .5rem 0;
+  height: 5rem;
   color: #fff;
   font-weight: 500; }
   .sliders-sub span {
     font-weight: 300; }
+
+.sliders-sub__thema {
+  height: 4rem; }
 
 .algemeenbeeldslider {
   width: 90%;
@@ -6940,6 +6943,10 @@ main {
   margin: 0; }
 
 .slider-gemiddeld {
+  background: rgba(255, 255, 255, 0.1);
+  height: 3rem; }
+
+.slider-gemiddeld__thema {
   background: rgba(255, 255, 255, 0.1); }
 
 .slider-columnhead {
@@ -6983,7 +6990,7 @@ main {
   */
 .thema-submit-container {
   width: 100%;
-  text-align: left; }
+  text-align: right; }
 
 .thema-submit {
   margin: 3rem auto; }
@@ -7061,7 +7068,13 @@ main {
 .actie-omschrijving {
   display: block;
   padding: .5rem;
-  background: rgba(255, 255, 255, 0.3); }
+  background: rgba(255, 255, 255, 0.3);
+  font-weight: 500;
+  margin-bottom: 1rem; }
+
+.actie-omschrijving__subactie {
+  padding-left: 2rem;
+  font-weight: 300; }
 
 .actie-thema {
   display: block;
@@ -7104,7 +7117,7 @@ p, span, body {
   font-weight: 300; }
 
 h1 {
-  font-size: 4.5rem;
+  font-size: 3rem;
   font-weight: 900;
   text-transform: uppercase;
   margin-bottom: 0; }
@@ -7126,7 +7139,7 @@ p.subheading {
   font-weight: 300; }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: 1.67rem;
   text-transform: uppercase;
   font-weight: 100;
   margin-top: -1rem; }
@@ -7244,14 +7257,14 @@ span.help-block {
     -webkit-appearance: none;
     margin-top: -0.35rem; }
   [type=range]:focus::-webkit-slider-runnable-track {
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e21616+0,f7d111+50,039e12+100 */
-    background: #e21616;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#32bf13+0,32bf13+89,cf0404+90,cf0404+100,cf0404+100 */
+    background: #32bf13;
     /* Old browsers */
     /* FF3.6-15 */
     /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to right, #e21616 0%, #f7d111 50%, #039e12 100%);
+    background: linear-gradient(to right, #32bf13 0%, #32bf13 89%, #cf0404 90%, #cf0404 100%, #cf0404 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e21616', endColorstr='#039e12',GradientType=1 );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#32bf13', endColorstr='#cf0404',GradientType=1 );
     /* IE6-9 */ }
   [type=range]::-moz-range-track {
     width: 100%;

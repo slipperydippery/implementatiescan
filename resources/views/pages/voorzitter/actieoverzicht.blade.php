@@ -187,7 +187,7 @@
 			<div class="large-4 datum">
 				<!-- datum Form Input -->
 				<div class="form-group">
-					{!! Form::label('datum', 'datum:', ['class' => 'datumlabel']) !!}
+					{!! Form::label('datum', 'Plan sessie twee', ['class' => 'datumlabel']) !!}
 					{!! Form::date('datum', null, ['class' => 'form-control']) !!}
 				</div>
 			</div>
@@ -196,17 +196,18 @@
 
 	</div>
 
+	<div class="large-12 columns thema-submit-container">
+
+		<a class="button thema-submit" href="{{ URL::to('verbeteracties_mailen') }}">Verbeteracties Mailen</a><br>
+				
+	</div>	
+
 
 </div>
 @stop
 
 @section('site-footer')
-<div class="row ">
-	<div class="large-4 column end page-next">	
 
-		<a href="{{ URL::to('actieoverzicht') }}" class="button button-next">Volgende Stap</a>
-	</div>
-</div>
 
 @stop
 

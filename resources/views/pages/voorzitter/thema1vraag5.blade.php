@@ -17,7 +17,6 @@
 </div>
 <div class="row page-content">
 	<div class="large-12 columns algemeenbeeldslider--participant">
-		<div id="time">01:00</div>
 		<input type="range" class="algemeenbeeldslider slider__breed" value="50">
 		<span class="slider__label__left">
 			0
@@ -30,6 +29,7 @@
 
 		<a class="button thema-submit" href="{{ URL::to('thema1resultaat') }}">Verstuur antwoord</a><br>
 				
+		<div id="time">01:00</div>
 	</div>	
 
 </div>

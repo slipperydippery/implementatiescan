@@ -62,5 +62,12 @@
 				<li>Effectief samenwerken</li>
 			</ul>
 		</li>
+		<li class="accordion-navigation">
+			<a href="#werkagenda">Werkagenda</a>
+			<ul id="werkagenda" class="content">
+				<li>Werkagenda maken</li>
+				<li>Werkagenda mailen</li>
+			</ul>
+		</li>
 	</ul>
 </div>

@@ -45,7 +45,7 @@
 			</div>
 		</div>
 		<div class="row sliders-sub slider-werk">
-			<div class="large-3 columns">Werk: <span>weerkgevers (vertegenwoordigers)</span></div>
+			<div class="large-3 columns">Werk: <span>werkgevers (vertegenwoordigers)</span></div>
 			<div class="large-9 columns">
 				<input type="range" class="algemeenbeeldslider" value="90">
 				<input type="range" class="algemeenbeeldslider" value="75">
