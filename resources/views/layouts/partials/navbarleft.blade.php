@@ -6,26 +6,18 @@
 		<li class="accordion-navigation">
 			<a href="#scaninrichten">Scan inrichten</a>
 			<ul id="scaninrichten" class="content ">
-				<li>Inlog beheerders school</li>
-				<li>Deelnemers uitnodigen</li>
-				<li>Overzicht deelnemers</li>
-				<li>Email deelnemers</li>
+				<li>Inlog beheerder</li>
+				<li>Invoeren deelnemersgegevens</li>
+				<li>Controleren deelnemersgegevens</li>
+				<li>Mailen van uitnodiging aan deelnemers</li>
 			</ul>
 		</li>
 		<li class="accordion-navigation">
 			<a href="#scanactiveren">Scan starten</a>
 			<ul id="scanactiveren" class="content ">
-				<li>Deelnemers inlog aanmelden</li>
-				<li>Start scan</li>
-			</ul>
-		</li>
-		<li class="accordion-navigation">
-			<a href="#introductiescan">Introductie Scan</a>
-			<ul id="introductiescan" class="content">
-				<li>Intro film</li>
-				<li>Kennis maken</li>
-				<li>Beoordeling samenwerking</li>
-				<li>Resultaat samenwerking</li>
+				<li>Introductiefilm</li>
+				<li>Beoordeel de samenwerking</li>
+				<li>Resultaat beoordeling samenwerking</li>
 			</ul>
 		</li>
 		<li class="accordion-navigation">
@@ -37,9 +29,8 @@
 				<li>Kernvraag 3: Samenwerking andere organisaties</li>
 				<li>Kernvraag 4: Ontzorgen werkgevers</li>
 				<li>Kernvraag 5: Beschikbaarheid werkgevers</li>
-				<li>Overzicht resultaat: focus op werk</li>
-				<li>Dialoog verbeterpunten</li>
-				<li>Invullen verbeter acties</li>
+				<li>Overzicht van resultaat thema 1</li>
+				<li>Invoeren verbeteracties voor thema 1</li>
 			</ul>
 		</li>
 		<li class="accordion-navigation">
@@ -55,18 +46,19 @@
 			</ul>
 		</li>
 		<li class="accordion-navigation">
-			<a href="#gezamenlijkresultaat">Gezamenlijk resultaat</a>
+			<a href="#gezamenlijkresultaat">Verbeteracties formuleren</a>
 			<ul id="gezamenlijkresultaat" class="content">
-				<li>Focus op werk</li>
-				<li>Kwaliteit begeleiding</li>
-				<li>Effectief samenwerken</li>
+				<li>Invoeren verbeteracties </li>
+				<li>Plannen vervolgafspraak </li>
+				<li>Mailen verbeteracties</li>
 			</ul>
 		</li>
 		<li class="accordion-navigation">
-			<a href="#werkagenda">Werkagenda</a>
+			<a href="#werkagenda">Werkagenda samenstellen</a>
 			<ul id="werkagenda" class="content">
-				<li>Werkagenda maken</li>
-				<li>Werkagenda mailen</li>
+				<li>Overzicht verbeteracties</li>
+				<li>Invoeren nieuwe acties per onderdeel en plannen van deadline</li>
+				<li>Mailen van werkagenda</li>
 			</ul>
 		</li>
 	</ul>

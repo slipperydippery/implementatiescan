@@ -31,35 +31,41 @@
 			</div>
 		</div>
 		<div class="row sliders-sub slider-gemsd">
-			<div class="large-3 columns">Gemeenten: <span>sociale dienst en werkbedrijf/intermediair</span></div>
+			<div class="large-2 columns">
+				<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="sociale dienst en werkbedrijf/intermediair.">Gemeenten</span>
+				</div>
 			<div class="large-9 columns">
 				<input type="range" class="algemeenbeeldslider" value="45">
 				<input type="range" class="algemeenbeeldslider" value="40">
 			</div>
 		</div>
 		<div class="row sliders-sub slider-gemsmw">
-			<div class="large-3 columns">Gemeenten: <span>leerplicht / SMW</span></div>
+			<div class="large-2 columns">
+				<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="leerplicht / SMW.">Gemeenten</span></div>
 			<div class="large-9 columns">
 				<input type="range" class="algemeenbeeldslider" value="50">
 				<input type="range" class="algemeenbeeldslider" value="60">
 			</div>
 		</div>
 		<div class="row sliders-sub slider-werk">
-			<div class="large-3 columns">Werk: <span>werkgevers (vertegenwoordigers)</span></div>
+			<div class="large-2 columns">
+				<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="weerkgevers (vertegenwoordigers).">Werk</span></div>
 			<div class="large-9 columns">
 				<input type="range" class="algemeenbeeldslider" value="90">
 				<input type="range" class="algemeenbeeldslider" value="75">
 			</div>
 		</div>
 		<div class="row sliders-sub slider-zorg">
-			<div class="large-3 columns">Zorg: <span>bijv MEE, Jeugdzorg</span></div>
+			<div class="large-2 columns">
+				<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="bijv MEE, Jeugdzorg.">Zorg</span></div>
 			<div class="large-9 columns">
 				<input type="range" class="algemeenbeeldslider" value="43">
 				<input type="range" class="algemeenbeeldslider" value="60">
 			</div>
 		</div>
 		<div class="row sliders-sub slider-overig">
-			<div class="large-3 columns">Overig: <span>bijv UWV, Projectorganisaties</span></div>
+			<div class="large-2 columns">
+			<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="bijv UWV, Projectorganisaties.">Overig</span></div>
 			<div class="large-9 columns">
 				<input type="range" class="algemeenbeeldslider" value="65">
 				<input type="range" class="algemeenbeeldslider" value="55">
