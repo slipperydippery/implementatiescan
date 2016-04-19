@@ -41,7 +41,7 @@
 					</div>
 					<div class="large-3 columns">
 						<!-- 	Trekker Form Input -->
-						<span class="actiehelper">+</span>
+						<span class="actiehelper">+</span>						
 					</div>
 				</div>
 				<div class="row actie-rij">	

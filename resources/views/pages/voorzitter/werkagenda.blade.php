@@ -61,6 +61,8 @@
 					<div class="large-3 columns">
 						<!-- 	Trekker Form Input -->
 						<span class="actiehelper">+</span>
+						
+						<input type="date" class="smalldate">
 					</div>
 				</div>	
 				<div class="row actie-rij actie-rij__subactie">	
@@ -141,6 +143,7 @@
 					<div class="large-3 columns">
 						<!-- 	Trekker Form Input -->
 						<span class="actiehelper">+</span>
+						<input type="date" class="smalldate">
 					</div>
 				</div>	
 				<div class="row actie-rij actie-rij__subactie">	
@@ -222,6 +225,7 @@
 					<div class="large-3 columns">
 						<!-- 	Trekker Form Input -->
 						<span class="actiehelper">+</span>
+						<input type="date" class="smalldate">
 					</div>
 				</div>	
 				<div class="row actie-rij actie-rij__subactie">	
