@@ -3,7 +3,7 @@
 @section('content')
 <div class="row page-heading">
 	<div class="large-12 ">
-		<h1>Overzicht Deelnemers</h1>
+		<h1>Controleren deelnemersgegevens</h1>
 		<fieldset class="fieldset">
   			<legend>Dit is het team dat u heeft samengesteld</legend>
 			<p class=subheading>

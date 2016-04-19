@@ -127,6 +127,12 @@ Route::get('/verbeteracties_mailen', function (){
 	return view('pages.voorzitter.verbeteracties_mailen');
 });
 
+Route::get('/verbeteracties_bedankt', function (){
+	return view('pages.voorzitter.verbeteracties_bedankt');
+});
+
+
+
 
 
 Route::get('/waar', function (){

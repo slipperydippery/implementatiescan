@@ -3,7 +3,7 @@
 @section('content')
 <div class="row page-heading">
 	<div class="large-12 ">
-		<h1>Deelnemers uitnodigen</h1>
+		<h1>Invoeren deelnemersgegevens</h1>
 		<fieldset class="fieldset large-8">
 			<legend>Instructie om deelnemers uit te nodigen</legend>
 			<p>

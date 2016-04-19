@@ -3,7 +3,7 @@
 @section('content')
 <div class="row page-heading">
 	<div class="large-12 ">
-		<h1>Email versturen</h1>
+		<h1>Mailen van uitnodiging </h1>
 		<fieldset class="fieldset">
   			<legend>Verstuur nu een email naar de deelnemers die u heeft aangemeld</legend>
 			<p class=subheading>

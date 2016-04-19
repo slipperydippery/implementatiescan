@@ -36,13 +36,27 @@
 		<li class="accordion-navigation">
 			<a href="#scanthema2">Scan Thema 2: Begeleiding op weg naar werk</a>
 			<ul id="scanthema2" class="content">
-				<li></li>
+				<li>Film</li>
+				<li>Kernvraag 1: </li>
+				<li>Kernvraag 2: </li>
+				<li>Kernvraag 3: </li>
+				<li>Kernvraag 4: </li>
+				<li>Kernvraag 5: </li>
+				<li>Overzicht van resultaat thema 2</li>
+				<li>Invoeren verbeteracties voor thema 2</li>
 			</ul>
 		</li>
 		<li class="accordion-navigation">
 			<a href="scanthema3">Scan Thema 3: Kwaliteit van de samenwerking</a>
 			<ul id="scanthema3" class="content">
-				<li></li>
+				<li>Film</li>
+				<li>Kernvraag 1: </li>
+				<li>Kernvraag 2: </li>
+				<li>Kernvraag 3: </li>
+				<li>Kernvraag 4: </li>
+				<li>Kernvraag 5: </li>
+				<li>Overzicht van resultaat thema 3</li>
+				<li>Invoeren verbeteracties voor thema 3</li>
 			</ul>
 		</li>
 		<li class="accordion-navigation">

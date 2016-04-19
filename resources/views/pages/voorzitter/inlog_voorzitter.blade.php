@@ -3,7 +3,7 @@
 @section('content')
 <div class="row page-heading">
 	<div class="large-12 ">
-		<h1>scan Inrichten</h1>
+		<h1>Inlog beheerder</h1>
 		<fieldset class="fieldset large-8">
 		<legend>Instructie voor de voorzitter</legend>
 			<p >

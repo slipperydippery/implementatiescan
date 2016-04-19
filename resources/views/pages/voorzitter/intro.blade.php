@@ -4,7 +4,7 @@
 
 <div class="row page-heading">
 	<div class="large-12 ">
-		<h1>Introductie</h1>
+		<h1>Introductiefilm</h1>
 		<fieldset class="fieldset">
   			<legend></legend>
 			<p class=subheading>
