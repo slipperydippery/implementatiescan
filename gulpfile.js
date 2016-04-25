@@ -1,13 +1,8 @@
 var elixir = require('laravel-elixir');
 
-var path = {
-    node:       'vendor/bower_components/',
-    foundation: 'foundation-sites/',
-    motionui:   'motion-ui/',
-};
 
 
-elixir.config.sourcemaps = process.env.APP_DEBUG;
+// elixir.config.sourcemaps = process.env.APP_DEBUG;
 
 require('laravel-elixir-vueify');
 
@@ -19,6 +14,7 @@ elixir(function(mix) {
         {includePaths: ['vendor/bower_components/foundation/scss']}
     );
 
+
     mix.browserify('main.js');
 
     // Compile JavaScript
@@ -27,9 +23,6 @@ elixir(function(mix) {
         'public/js/dependencies.js', // Destination file
         'vendor/bower_components/foundation/js/' // Source files base directory
     );
-
-
-
 
 
 });

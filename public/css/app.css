@@ -6662,7 +6662,7 @@ html, body {
 body {
   background: #A6CE39;
   color: #fff;
-  background: #A6CE39 url("/img/sidebar2_sm.png") no-repeat 2rem center;
+  background: #A6CE39;
   position: static;
   top: 0; }
 
@@ -6691,6 +6691,17 @@ main {
   right: 5%;
   width: 30%;
   z-index: 0; }
+
+.backgroundtextleft {
+  position: absolute;
+  left: -3em;
+  top: 3em;
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 6rem;
+  font-weight: 500;
+  text-decoration: underline; }
 
 /**
  *  PAGES LAYOUT
@@ -7318,3 +7329,5 @@ span.help-block {
     background: #dddddd; }
   [type=range]:focus::-ms-fill-upper {
     background: #eaeaea; }
+
+/*# sourceMappingURL=app.css.map */

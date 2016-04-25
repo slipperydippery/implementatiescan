@@ -3,6 +3,7 @@
 <div class="page-wrap">
 
     <main>
+    <span class="backgroundtextleft">succesfactoren</span>
         @include('layouts.partials.navbarleft')
 
 

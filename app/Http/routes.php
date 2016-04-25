@@ -18,9 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/databank', function () {
-    return view('pages.databank');
-});
+Route::get('/databank', ['as' => 'databank', 'uses' => 'PagesController@databank']);
+Route::get('/testpage', ['as' => 'testpage', 'uses' => 'PagesController@testpage']);
+
 
 Route::get('/inlog_voorzitter', function () {
     return view('pages.voorzitter.inlog_voorzitter');
