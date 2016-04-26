@@ -3,7 +3,7 @@
 @section('content')
 <div class="row page-heading">
 	<div class="large-12 ">
-		<h1>Resultaat beoordeling samenwerking</h1>
+		<h1>RESULTAAT BEOORDELING ALGEMEEN BEELD AANPAK EN SAMENWERKING</h1>
 		<fieldset class="fieldset">
   			<legend>Doel</legend>
 			<p class=subheading>
@@ -24,7 +24,7 @@
 			</div>
 		</div>
 		<div class="row sliders-sub slider-onderwijs">
-			<div class="large-2 small-2 columns">Onderwijs</div>
+			<div class="large-2 small-2 columns">Scholen</div>
 			<div class="large-10 small-10 columns">
 				<input type="range" class="algemeenbeeldslider " value="80">
 				<input type="range" class="algemeenbeeldslider" value="75">
@@ -32,7 +32,7 @@
 		</div>
 		<div class="row sliders-sub slider-gemsd">
 			<div class="large-2 small-2 columns">
-				<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="sociale dienst en werkbedrijf/intermediair.">Gemeenten</span>
+				<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="sociale dienst en werkbedrijf/intermediair.">Sociale Diensten/Werkbedrijf</span>
 				</div>
 			<div class="large-10 small-10 columns">
 				<input type="range" class="algemeenbeeldslider" value="45">
@@ -41,7 +41,7 @@
 		</div>
 		<div class="row sliders-sub slider-gemsmw">
 			<div class="large-2 small-2 columns">
-				<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="leerplicht / SMW.">Gemeenten</span></div>
+				<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="leerplicht / SMW.">Leerplicht/SMW </span></div>
 			<div class="large-10 small-10 columns">
 				<input type="range" class="algemeenbeeldslider" value="50">
 				<input type="range" class="algemeenbeeldslider" value="60">
@@ -49,7 +49,7 @@
 		</div>
 		<div class="row sliders-sub slider-werk">
 			<div class="large-2 small-2 columns">
-				<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="weerkgevers (vertegenwoordigers).">Werk</span></div>
+				<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="weerkgevers (vertegenwoordigers).">Werkgevers (vertegenwoordigers)</span></div>
 			<div class="large-10 small-10 columns">
 				<input type="range" class="algemeenbeeldslider" value="90">
 				<input type="range" class="algemeenbeeldslider" value="75">

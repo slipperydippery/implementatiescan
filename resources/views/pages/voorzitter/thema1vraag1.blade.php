@@ -10,7 +10,7 @@
   			<legend>Neem één minuut de tijd om de volgende vraag op uw eigen scherm te beantwoorden:</legend>
 
 			<p class=subheading>
-				Werkend leren centraal, ook op school: jongeren met LVB leren het meest en best via learning by doing. Niet schools en simulatie, maar – ‘zo reëel en realistisch mogelijk’ – praktijk centraal: oefenen, (liefst gecertificeerde) werkervaring en vaardigheden opdoen, ontdekken, groeien door iets kunnen en steeds meer (blijken te) kunnen.
+				School werkt volgens het principe: Learning by doing. Het, zo reëel en realistisch mogelijk, werkend  leren staat centraal. 
 			</p>
 		</fieldset>
 	</div>

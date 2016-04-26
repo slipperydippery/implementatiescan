@@ -3,11 +3,11 @@
 @section('content')
 <div class="row page-heading">
 	<div class="large-12 ">
-		<h1>Beoordeel de samenwerking</h1>
+		<h1>ALGEMEEN BEELD HUIDIGE AANPAK EN SAMENWERKING</h1>
 		<fieldset class="fieldset">
-  			<legend>Algemeen beeld van de huidige samenwerking beoordelen</legend>
+  			<legend>Algemeen beeld van de huidige aanpak en samenwerking beoordelen </legend>
 			<p class=subheading>
-				Hieronder ziet u een schuif van 0 tot 100. Kunt u in algemene zin aangeven op uw eigen scherm in welke mate uw organisatie goed samenwerkt met de andere netwerk partners om jongeren met LVB aan het werk te helpen? Nul is geen goede samenwerking, en honderd is perfecte samenwerking. 
+				Hieronder ziet u een schuif van 0 tot 100. Kunt u in algemene zin aangeven op uw eigen scherm hoe goed onze regio het volgens u doet voor wat betreft de huidige aanpak en samenwerking om kwetsbare jongeren, zoals jongeren met LVB, tijdens en na hun schooloopbaanl goed te begeleiden naar werk?  Nul is ‘we doen dat als regio slecht’ en honderd is ‘we doen dat als regio perfect’.
 			</p>
 		</fieldset>
 	</div>

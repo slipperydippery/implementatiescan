@@ -7,7 +7,7 @@
 		<fieldset class="fieldset large-8">
 		<legend>Instructie voor de voorzitter</legend>
 			<p >
-				Als voorzitter kunt u hier de scan inrichten. Log eerst in met uw eigen inloggegevens die in de email staan. Daarna kunt u deelnemers uitnodigen om aan de scan mee te doen. Dit process wijst vanzelf. 
+				Als voorzitter kunt u hier de scan inrichten. Log eerst in met uw eigen inloggegevens die in de email staan. Daarna kunt u de deelnemers aan de Implementatiescan-sessie uitnodigen om mee te doen. Dit proces wijst zichzelf.
 				
 			</p>
 		</fieldset>

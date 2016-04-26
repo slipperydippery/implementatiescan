@@ -7,8 +7,8 @@
 		<fieldset class="fieldset large-8">
 			<legend>Instructie om deelnemers uit te nodigen</legend>
 			<p>
-				Als voorzitter van de school kunt u meerdere deelnemers uitnodigen voor het uitvoeren van de scan. Op uw initiatief kunt u maximaal 6 netwerkpartners uitnodigen. Van elke netwerkpartner kunnen 2 vertegenwoordigers aan tafel schuiven. Netwerkpartners zijn onder andere Gemeenten, Werkgevers, Zorg, Arbeidsreïntegratiebureaus, etc. Vul van elke partij die u uitnodigt de naam van de organisatie, de naam van de deelnemer, en zijn of haar email in. Vul ook de regio in waarin de partijen werkzaam zijn. <br><br>
-				Na het invullen van alle deelnemers versturen dit systeem een email met uitnodiging en inloggegevens aan alle genodigden. 
+				Als initiatiefnemer voor de Implementiescan-sessie kunt u maximaal 12 deelnemers uitnodigen om gezamenlijk de scan uit te voeren. Met welke sleutelpersonen op management-/beleidsniveau uit uw (gewenste) netwerk wilt u in gesprek over verbetering van de aanpak? U kunt maximaal 2 netwerkpartners per ‘geleding’ uitnodigen. De zes geledingen zijn: (1) VSO/PRO, (2) Sociale Diensten/Werkbedrijf, (3) Leerplicht/SMW, (4) Werkgevers(vertegenwoordigers), (5) Zorg (bijv MEE, OBC) en (6) overig (bijv UWV of een regionale organisatie).  Vul van elke partij die u uitnodigt de naam van de organisatie, de naam van de deelnemer, en zijn of haar email in. Denk vooraf goed na over de regioafbakening: de keuze van de deelnemers moet passen bij de gewenste schaal van de gezamenlijke aanpak. <br><br>
+				Na het invullen van alle deelnemers verstuurt het systeem een email met uitnodiging en inloggegevens aan alle genodigden.
 			</p>
 		</fieldset>
 	</div>
