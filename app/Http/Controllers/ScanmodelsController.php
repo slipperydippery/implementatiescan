@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use App\Thema;
+use App\Scanmodel;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 
 class ScanmodelsController extends Controller
 {
@@ -15,7 +16,8 @@ class ScanmodelsController extends Controller
      */
     public function index()
     {
-        //
+        $scanmodels = Scanmodel::get();
+        return view ('scanmodels.index', compact('scanmodels'));
     }
 
     /**
@@ -45,9 +47,20 @@ class ScanmodelsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($scanmodel)
     {
-        //
+        $themalist = Thema::lists('title', 'id');
+        return view ('scanmodels.show', compact('scanmodel', 'themalist'));
+    }
+
+    public function addthema(Request $request)
+    {
+        // return ($request->thema_id);
+        $thema = Thema::findOrFail($request->thema_id);
+        $scanmodel = Scanmodel::findOrFail($request->scanmodel_id);
+        $scanmodel->themas()->save($thema);
+        $themalist = Thema::lists('title', 'id');
+        return Redirect::route('scanmodels.show', compact('scanmodel', 'themalist'));
     }
 
     /**

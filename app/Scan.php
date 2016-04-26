@@ -10,8 +10,5 @@ class Scan extends Model
     	'name'
     ];
 
-    public function themas()
-    {
-    	return $this->belongsToMany('App\Thema');
-    }
+
 }
