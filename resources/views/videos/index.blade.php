@@ -3,11 +3,11 @@
 @section('content')
 <div class="row page-heading">
 	<div class="large-12 ">
-		<h1>Overzicht Scans</h1>
+		<h1>Overzicht Videos</h1>
 		<fieldset class="fieldset">
   			<legend></legend>
   			<p class="subheading subheading__time">
-  				Hier is een overzicht van all uw scans
+  				Hier is een overzicht van all uw videos
 
   			</p>
 
@@ -20,11 +20,12 @@
 	
 	<div class="large-12 columns submitted-users">
 	
-		@foreach($scans as $scan)
-			<a href=" {{ route('scans.show', $scan->id) }} "><h2>{{ $scan->name }}</h2></a>
+		@foreach($videos as $video)
+			<a href=" {{ route('videos.show', $video->id) }} "><h2>{{ $video->title }}</h2></a>
 			    
 		@endforeach
-		<a href=" {{ route('scans.create') }} " class="button">Create new Scan</a>
+
+		<a href=" {{ route('videos.create') }} " class="button">Create new Video</a>
 
 	</div>
 </div>

@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Thema;
-use App\Video;
-use App\Http\Requests;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
-class ThemasController extends Controller
+use App\Http\Requests;
+
+class ScanmodelsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +15,7 @@ class ThemasController extends Controller
      */
     public function index()
     {
-        $themas = Thema::get();
-
-        return view ('themas.index', compact('themas'));
+        //
     }
 
     /**
@@ -29,8 +25,7 @@ class ThemasController extends Controller
      */
     public function create()
     {
-        $videolist = Video::lists('title', 'id');
-        return view ('themas.create', compact('videolist'));
+        //
     }
 
     /**
@@ -41,9 +36,7 @@ class ThemasController extends Controller
      */
     public function store(Request $request)
     {
-        $thema = new Thema($request->all());
-        $thema->save();
-        return Redirect::route('themas.index');
+        //
     }
 
     /**
@@ -52,9 +45,9 @@ class ThemasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Thema $thema)
+    public function show($id)
     {
-        return view ('themas.show', compact('thema'));
+        //
     }
 
     /**

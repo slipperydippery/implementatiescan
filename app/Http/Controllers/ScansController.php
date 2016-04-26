@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Scan;
+use App\Thema;
+use App\Video;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -27,7 +29,8 @@ class ScansController extends Controller
      */
     public function create()
     {
-        return view ('scans.create');
+        $videolist = Video::lists('title', 'id');
+        return view ('scans.create', compact('videolist'));
     }
 
     /**
@@ -52,7 +55,18 @@ class ScansController extends Controller
      */
     public function show(Scan $scan)
     {
-        return view ('scans.show', compact('scan'));
+        $themalist = Thema::lists('title', 'id');
+        return view ('scans.show', compact('scan', 'themalist'));
+    }
+
+    public function addthema(Request $request)
+    {
+        // return ($request->thema_id);
+        $thema = Thema::findOrFail($request->thema_id);
+        $scan = Scan::findOrFail($request->scan_id);
+        $scan->themas()->save($thema);
+        $themalist = Thema::lists('title', 'id');
+        return Redirect::route('scans.show', compact('scan', 'themalist'));
     }
 
     /**

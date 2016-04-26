@@ -10,6 +10,12 @@
 	{!! Form::text('beheerder_email', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Intro video Form Input -->
+<div class="form-group">
+    {!! Form::label('video_id', 'Intro video:') !!}
+    {!! Form::select('video_id', $videolist, null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Add Submit Field -->
 <div class="form-group">
     {!! Form::submit($submittext, ['class' => 'btn form-control']) !!}

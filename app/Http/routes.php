@@ -17,6 +17,10 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::resource('scans', 'ScansController');
     Route::resource('themas', 'ThemasController');
+    Route::resource('videos', 'VideosController');
+    Route::resource('scanmodels', 'ScanmodelsController');
+
+    Route::post('/scans/addthema', ['as' => 'scans.addthemas', 'uses' => 'ScansController@addthema']);
 });
 
 

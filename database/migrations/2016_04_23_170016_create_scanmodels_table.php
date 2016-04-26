@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAnswersheetsTable extends Migration
+class CreateScanmodelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,10 @@ class CreateAnswersheetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('answersheets', function (Blueprint $table) {
+        Schema::create('scanmodels', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('title');
+            $table->text('blurb');
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ class CreateAnswersheetsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('answersheets');
+        Schema::drop('scanmodels');
     }
 }

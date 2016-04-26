@@ -15,10 +15,8 @@ class CreateThemasTable extends Migration
         Schema::create('themas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->string('blurbtitle');
             $table->text('blurb');
-            $table->text('succesfactor');
-            $table->text('weergave_succesfactor');
-            $table->text('norm');
             $table->integer('video_id')->unsigned();
             $table->foreign('video_id')->references('id')->on('videos')->onDelete('cascade');
             $table->timestamps();

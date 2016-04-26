@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateScansTable extends Migration
+class CreateScanmodelThemaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,12 @@ class CreateScansTable extends Migration
      */
     public function up()
     {
-        Schema::create('scans', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title');
-            $table->string('blurb');
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        Schema::create('scanmodel_thema', function (Blueprint $table) {
             $table->integer('scanmodel_id')->unsigned();
             $table->foreign('scanmodel_id')->references('id')->on('scanmodels')->onDelete('cascade');
-            $table->timestamps();
+            $table->integer('thema_id')->unsigned();
+            $table->foreign('thema_id')->references('id')->on('themas')->onDelete('cascade');
+            $table->primary(['scanmodel_id', 'thema_id']);
         });
     }
 
@@ -31,7 +28,6 @@ class CreateScansTable extends Migration
      */
     public function down()
     {
-        Schema::drop('scans');
+        Schema::drop('scanmodel_thema');
     }
 }
-
