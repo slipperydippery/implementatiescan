@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Scan;
+use App\User;
 use App\Thema;
 use App\Video;
 use App\Http\Requests;
@@ -41,7 +42,19 @@ class ScansController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $scan = new Scan($request->all());
+        // return $scan;
+        if (! User::where('email', '=', $request->beheerder_email)->get()->count())
+        {
+            $user = new User();
+            $user->email = $request->beheerder_email;
+            $user->save();
+        }
+        $user = User::where('email', '=', $request->beheerder_email)->first();
+        // return $user->id;
+        $scan->user_id = $user->id;
+        // return $user->id;
         // $question->order = ($question->questionable->questions->count() > 0) ? $question->questionable->questions->sortByDesc('order')->first()->order + 1 : 1;
         $scan->save();
         return Redirect::route('scans.index');

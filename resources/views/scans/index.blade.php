@@ -21,23 +21,11 @@
 	<div class="large-12 columns submitted-users">
 	
 		@foreach($scans as $scan)
-			<a href=" {{ route('scans.show', $scan->id) }} "><h2>{{ $scan->name }}</h2></a>
+			<a href=" {{ route('scans.show', $scan->id) }} "><h2>{{ $scan->title }}</h2></a>
 			    
 		@endforeach
-		<a href=" {{ route('scans.create') }} " class="button">Create new Scan</a>
+		<a href=" {{ route('scans.create') }} " class="button">Maak een nieuwe scan aan</a>
 
-	</div>
-</div>
-
-@stop
-
-
-
-@section('site-footer')
-<div class="row ">
-	<div class="large-4 column end page-next">	
-
-		<a href="{{ URL::to('algemeenbeeld') }}" class="button button-next">Scan Starten</a>
 	</div>
 </div>
 

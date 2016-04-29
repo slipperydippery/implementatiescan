@@ -15,6 +15,7 @@ class ScanmodelsTableSeeder extends Seeder
 
         $scanmodels = [
             [
+            	'id' => '1',
                 'title' => 'Basis Implementatiescan',
                 'blurb' => 'Dit is de basis implementatiescan. Dit is de scan zoals hij in de originele opdracht is opgegeven.'
             ]

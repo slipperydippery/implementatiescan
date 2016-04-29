@@ -1,7 +1,7 @@
 <!-- Naam Form Input -->
 <div class="form-group">
-	{!! Form::label('name', 'Naam:') !!}
-	{!! Form::text('name', null, ['class' => 'form-control']) !!}
+	{!! Form::label('title', 'Naam:') !!}
+	{!! Form::text('title', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Email adress beheerder Form Input -->
@@ -11,10 +11,19 @@
 </div>
 
 <!-- Intro video Form Input -->
-<div class="form-group">
+<!-- <div class="form-group">
     {!! Form::label('video_id', 'Intro video:') !!}
     {!! Form::select('video_id', $videolist, null, ['class' => 'form-control']) !!}
-</div>
+</div> -->
+
+<!-- Hidden video_id Type Form Input -->
+{!! Form::hidden('video_id', '1', null) !!}
+
+<!-- Hidden scanmodel Type Form Input -->
+{!! Form::hidden('scanmodel_id', '1', null) !!}
+
+    
+
 
 <!-- Add Submit Field -->
 <div class="form-group">

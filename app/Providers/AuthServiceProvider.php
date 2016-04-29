@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Permission;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -26,10 +27,19 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies($gate);
 
-        $gate->define('show-post', function($user, $post){
-            return $user->id == $post->user_id;
-        });
+        foreach ($this->getPermissions() as $permission)
+        {
+            $gate->define($permission->name, function ($user) use ($permission)
+            {
+               return $user->hasRole($permission->roles);
+            });
+        }
 
         //
+    }
+
+    public function getPermissions()
+    {
+        return Permission::with('roles')->get();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Role;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -12,7 +13,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username',
+        'email', 
+        'password',
+        'active',
+        'confirmed',
+        'confirmation_code',
+        'name_first', 
+        'name_last', 
     ];
 
     /**
@@ -29,10 +37,23 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
-    public function assignRole (Role $role)
+    public function assignRole ($role)
     {
-        return $this->roles->save($role);
+        return $this->roles()->save(
+            Role::whereName($role)->firstOrFail()
+
+        );
+        // return $this->roles->save($role);
     }
 
-    // public function hasRole($role)
+    // user->hasRole('manager')
+    public function hasRole($role)
+    {
+        if (is_string($role))
+        {
+            return $this->roles->contains('name', $role);
+        }
+
+        return !! $role->intersect($this->roles)->count();
+    }
 }
