@@ -19,8 +19,8 @@
 		{!! Form::open(['route' => ['scans.store_algemeenbeeld', $scan]]) !!}
 			<!-- bal Form Input -->
 			<div class="form-group">
-				{!! Form::label('bla', 'bal:') !!}
-				{!! Form::text('bla', null, ['class' => 'form-control']) !!}
+				{!! Form::label('value', 'bal:') !!}
+				{!! Form::text('value', null, ['class' => 'form-control']) !!}
 			</div>
 
 			<!-- Add Submit Field -->

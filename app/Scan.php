@@ -29,6 +29,11 @@ class Scan extends Model
     public function answers()
     {
         return $this->morphMany('App\Answer', 'answerable');
-    }    
+    }  
+
+    public function participants()
+      {
+          return $this->hasMany('App\User');
+      }  
 
 }

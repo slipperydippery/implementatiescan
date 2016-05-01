@@ -96,27 +96,17 @@ class ScansController extends Controller
         $answer = new Answer();
         // $answer->save();
         $answer->user_id = $user->id;
+        $answer->value = $request->value;
         // $answer->answerable()->save($scan);
         $scan->answers()->save($answer);
         return Redirect::route('scans.algemeenbeeldresultaat', compact('scan'));
     }
 
-    public function addthema(Request $request)
-    {
-        // return ($request->thema_id);
-        $thema = Thema::findOrFail($request->thema_id);
-        $scan = Scan::findOrFail($request->scan_id);
-        // return ($request->all());
-        $scan->value = $request->value;
-        return ($scan->value);
-        $scan->save();
-        $scan->themas()->save($thema);
-        $themalist = Thema::lists('title', 'id');
-        return Redirect::route('scans.show', compact('scan', 'themalist'));
-    }
+
 
     public function algemeenbeeldresultaat(Scan $scan)
     {
+
         return view ('scans.algemeenbeeldresultaat', compact('scans'));
     }
 
