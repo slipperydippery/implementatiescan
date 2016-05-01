@@ -16,6 +16,8 @@ class CreateScanmodelsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('blurb');
+            $table->integer('video_id')->unsigned();
+            $table->foreign('video_id')->references('id')->on('videos')->onDelete('cascade');
             $table->timestamps();
         });
     }

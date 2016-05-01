@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Scan;
 use App\User;
 use App\Thema;
 use App\Video;
+use App\Answer;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -72,14 +74,50 @@ class ScansController extends Controller
         return view ('scans.show', compact('scan', 'themalist'));
     }
 
+    public function intro(Scan $scan)
+    {
+        $video = $scan->scanmodel->video;
+        return view ('scans.intro', compact('video', 'scan'));
+    }
+
+    public function kennismaken(Scan $scan)
+    {
+        return view ('scans.kennismaken', compact('scan'));
+    }
+
+    public function algemeenbeeld(Scan $scan)
+    {
+        return view ('scans.algemeenbeeld', compact('scan'));
+    }
+
+    public function store_algemeenbeeld(Scan $scan, Request $request)
+    {
+        $user = Auth::user();
+        $answer = new Answer();
+        // $answer->save();
+        $answer->user_id = $user->id;
+        // $answer->answerable()->save($scan);
+        $scan->answers()->save($answer);
+        return Redirect::route('scans.algemeenbeeldresultaat', compact('scan'));
+    }
+
     public function addthema(Request $request)
     {
         // return ($request->thema_id);
         $thema = Thema::findOrFail($request->thema_id);
         $scan = Scan::findOrFail($request->scan_id);
+        // return ($request->all());
+        $scan->value = $request->value;
+        return ($scan->value);
+        $scan->save();
         $scan->themas()->save($thema);
         $themalist = Thema::lists('title', 'id');
         return Redirect::route('scans.show', compact('scan', 'themalist'));
+    }
+
+    public function algemeenbeeldresultaat(Scan $scan)
+    {
+        return view ('scans.algemeenbeeldresultaat', compact('scans'));
     }
 
     /**

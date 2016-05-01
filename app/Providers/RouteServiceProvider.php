@@ -29,6 +29,7 @@ class RouteServiceProvider extends ServiceProvider
         $router->model('videos', 'App\Video');
         $router->model('scanmodels', 'App\Scanmodel');
         $router->model('users', 'App\User');
+        $router->model('questions', 'App\Question');
 
         parent::boot($router);
     }

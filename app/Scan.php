@@ -3,6 +3,7 @@
 namespace App;
 
 use App\User;
+use App\Scanmodel;
 use Illuminate\Database\Eloquent\Model;
 
 class Scan extends Model
@@ -12,10 +13,22 @@ class Scan extends Model
     	'blurb',
     	'user_id',
     	'scanmodel_id',
+        'value'
     ];
 
     public function beheerder()
     {
     	return $this->belongsTo(User::class);
     }
+
+    public function scanmodel()
+    {
+        return $this->belongsTo(Scanmodel::class);
+    }
+
+    public function answers()
+    {
+        return $this->morphMany('App\Answer', 'answerable');
+    }    
+
 }
