@@ -4,7 +4,7 @@
 
     <main>
     <span class="backgroundtextleft">succesfactoren</span>
-        @include('layouts.partials.navbarleft')
+        <!-- @include('layouts.partials.navbarleft') -->
 
 
         <div id="content">

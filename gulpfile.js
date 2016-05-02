@@ -16,9 +16,9 @@ elixir(function(mix) {
     mix.browserify('main.js');
 
     mix.scripts(
-        ['vendor/modernizr.js', 'vendor/jquery.js', 'foundation.js'], // Source files. You can also selective choose only some components
+        ['modernizr/modernizr.js', 'jquery/dist/jquery.js', 'foundation-sites/dist/foundation.js'], // Source files. You can also selective choose only some components
         'public/js/dependencies.js', // Destination file
-        'vendor/bower_components/foundation/js/' // Source files base directory
+        'vendor/bower_components/' // Source files base directory
     );
 
 });

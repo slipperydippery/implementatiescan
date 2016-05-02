@@ -17,16 +17,60 @@
 
 <div class="row page-content">
 	<div class="large-12 columns">
-<ul class="vertical menu" data-accordion-menu>
+		<ul class="vertical menu" data-accordion-menu>
+		  <li>
+		    <a href="#">Item 1</a>
+		    <ul class="menu vertical nested">
+		      <li><a href="#">Item 1A</a></li>
+		      <li><a href="#">Item 1B</a></li>
+		    </ul>
+		  </li>
+		  <li><a href="#">Item 2</a></li>
+		</ul>
+
+
+
+
+<ul class="dropdown menu" data-accordion-menu>
   <li>
-    <a href="#">Item 1</a>
-    <ul class="menu vertical nested">
+    <a>Item 1</a>
+    <ul class="menu">
       <li><a href="#">Item 1A</a></li>
-      <li><a href="#">Item 1B</a></li>
+      <li>
+        <a href="#">Item 1B</a>
+        <ul class="menu">
+          <li><a href="#">Item 1B i</a></li>
+          <li><a href="#">Item 1B ii</a></li>
+          <li>
+            <a href="#">Item 1B iii</a>
+            <ul class="menu">
+              <li><a href="#">Item 1B iii alpha</a></li>
+              <li><a href="#">Item 1B iii omega</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Item 1B iv</a>
+            <ul class="menu">
+              <li><a href="#">Item 1B iv alpha</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#">Item 1C</a></li>
     </ul>
   </li>
-  <li><a href="#">Item 2</a></li>
-</ul>
+  <li>
+    <a href="#">Item 2</a>
+    <ul class="menu">
+      <li><a href="#">Item 2A</a></li>
+      <li><a href="#">Item 2B</a></li>
+    </ul>
+  </li>
+  <li><a href="#">Item 3</a></li>
+  <li><a href="#">Item 4</a></li>
+  </ul>
+
+
 
 
 		<div class="slider" data-slider data-initial-start="50" data-end="200">
