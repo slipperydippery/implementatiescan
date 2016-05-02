@@ -19,26 +19,8 @@
 
 <div class="row page-content">
 	<div class="large-12 columns">
-		@foreach($scan->themas as $thema)
-			{{ $thema->title }} <br>
-		@endforeach
+	scanneplan
 
-		{!! Form::open(['route' => 'scans.addthemas']) !!}
-			<!-- Add Thema Form Input -->
-			<div class="form-group">
-			    {!! Form::label('thema_id', 'Voeg Thema toe:') !!}
-			    {!! Form::select('thema_id', $themalist, null, ['class' => 'form-control']) !!}
-			</div>
-
-			<!-- Hidden scan_id Type Form Input -->
-			{!! Form::hidden('scan_id', $scan->id, null) !!}
-			
-			    
-			<!-- Add Submit Field -->
-			<div class="form-group">
-			    {!! Form::submit('add Thema', ['class' => 'btn form-control']) !!}
-			</div>
-		{!! Form::close() !!}
 
 	</div>
 </div>

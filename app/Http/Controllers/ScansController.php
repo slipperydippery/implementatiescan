@@ -8,6 +8,7 @@ use App\User;
 use App\Thema;
 use App\Video;
 use App\Answer;
+use App\Instantie;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -44,9 +45,7 @@ class ScansController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
         $scan = new Scan($request->all());
-        // return $scan;
         if (! User::where('email', '=', $request->beheerder_email)->get()->count())
         {
             $user = new User();
@@ -54,11 +53,16 @@ class ScansController extends Controller
             $user->save();
         }
         $user = User::where('email', '=', $request->beheerder_email)->first();
-        // return $user->id;
         $scan->user_id = $user->id;
-        // return $user->id;
-        // $question->order = ($question->questionable->questions->count() > 0) ? $question->questionable->questions->sortByDesc('order')->first()->order + 1 : 1;
         $scan->save();
+        foreach($scan->scanmodel->instantiemodels as $instantiemodel)
+        {
+            $instantie = new Instantie();
+            $instantie->title = $instantiemodel->title;
+            $instantie->blurb = $instantiemodel->blurb;
+            $instantie->scan_id = $scan->id;
+            $instantie->save();
+        }
         return Redirect::route('scans.index');
     }
 
@@ -74,8 +78,47 @@ class ScansController extends Controller
         return view ('scans.show', compact('scan', 'themalist'));
     }
 
+    public function director(Scan $scan, $thema_nr, $question_nr)
+    {
+        
+        $thema = $scan->scanmodel->themas->get($thema_nr - 1);
+        if ($question_nr == 0)
+        {
+            return view ('scans.themaintro', compact('scan', 'thema', 'thema_nr', 'question_nr'));
+        }
+        else if ($question_nr == (count($thema->questions) + 1))
+        {
+            return view ('scans.themaresultaat', compact('scan', 'thema', 'thema_nr', 'question_nr'));
+        }
+        else if ($question_nr > (count($thema->questions) + 1))
+        {
+            if($thema_nr == count($scan->scanmodel->themas))
+            {
+                return redirect('scans/' . $scan->id . '/actieoverzicht');
+            }
+
+            $thema = $scan->scanmodel->themas->get($thema_nr);
+            $thema_nr++;
+            return redirect('scans/' . $scan->id . '/thema/' . $thema_nr . '/vraag/0' );
+        }
+        else
+        {
+            $question = $thema->questions->get($question_nr - 1);
+            return view ('scans.question', compact('scan', 'thema', 'question', 'thema_nr', 'question_nr'));
+        }
+    }
+
     public function intro(Scan $scan)
     {
+        ////////////////////////////
+        ////TEMP MANUAL LOGIN!!!////
+        ////////////////////////////
+        Auth::loginUsingId(3);
+        ////////////////////////////
+        ////TEMP MANUAL LOGIN!!!////
+        ////////////////////////////
+
+
         $video = $scan->scanmodel->video;
         return view ('scans.intro', compact('video', 'scan'));
     }
@@ -107,7 +150,17 @@ class ScansController extends Controller
     public function algemeenbeeldresultaat(Scan $scan)
     {
 
-        return view ('scans.algemeenbeeldresultaat', compact('scans'));
+        return view ('scans.algemeenbeeldresultaat', compact('scan'));
+    }
+
+    public function actieoverzicht(Scan $scan)
+    {
+        return view ('scans.actieoverzicht', compact('scan'));
+    }
+
+    public function actiesmailen(Scan $scan)
+    {
+        return view ('scans.actiesmailen', $scan);
     }
 
     /**

@@ -71,6 +71,12 @@
 				<input type="range" class="algemeenbeeldslider" value="55">
 			</div>
 		</div>
+
+		Scan nr = {{ $scan->id }} <br>
+		Scan nr of themas = {{ count($scan->scanmodel->themas) }} <br>
+		nr of Questions thema 1 = {{ count($scan->scanmodel->themas->first()->questions) }} <br>
+		nr of instanties = {{ count($scan->scanmodel->instantiemodels) }}
+
 		
 	</div>
 </div>
@@ -80,7 +86,7 @@
 <div class="row ">
 	<div class="large-4 column end page-next">	
 
-		<a href="{{ URL::to('thema1') }}" class="button button-next">Volgende Stap</a>
+		<a href="{{ URL::route('scans.director', [$scan, 1, 0]) }}" class="button button-next">Volgende Stap</a>
 	</div>
 </div>
 

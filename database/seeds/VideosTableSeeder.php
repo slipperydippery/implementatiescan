@@ -19,7 +19,7 @@ class VideosTableSeeder extends Seeder
                 'subtitle' => 'To be used as a test',
                 'blurbtitle' => 'A box of introtext',
                 'blurb' => 'lorem ipsum...',
-                'adress' => 'https://www.youtube.com/watch?v=P5_GlAOCHyE'
+                'adress' => 'P5_GlAOCHyE'
             ]
         ];
 

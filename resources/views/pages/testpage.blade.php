@@ -14,18 +14,19 @@
 </div>
 
 
+
 <div class="row page-content">
 	<div class="large-12 columns">
-		<ul class="vertical menu" data-accordion-menu>
-		  <li>
-		    <a href="#">Item 1</a>
-		    <ul class="menu vertical nested">
-		      <li><a href="#">Item 1A</a></li>
-		      <li><a href="#">Item 1B</a></li>
-		    </ul>
-		  </li>
-		  <li><a href="#">Item 2</a></li>
-		</ul>
+<ul class="vertical menu" data-accordion-menu>
+  <li>
+    <a href="#">Item 1</a>
+    <ul class="menu vertical nested">
+      <li><a href="#">Item 1A</a></li>
+      <li><a href="#">Item 1B</a></li>
+    </ul>
+  </li>
+  <li><a href="#">Item 2</a></li>
+</ul>
 
 
 		<div class="slider" data-slider data-initial-start="50" data-end="200">

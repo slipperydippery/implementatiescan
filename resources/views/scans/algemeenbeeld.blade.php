@@ -18,39 +18,28 @@
 
 		{!! Form::open(['route' => ['scans.store_algemeenbeeld', $scan]]) !!}
 			<!-- bal Form Input -->
-			<div class="form-group">
-				{!! Form::label('value', 'bal:') !!}
-				{!! Form::text('value', null, ['class' => 'form-control']) !!}
-			</div>
+
+
+			<input type="range" name="value" id="value" class="fullslider algemeenbeeldslider" value="50">
+			<span class="slider__label__left">
+				0
+			</span>
+			<span class="slider__label__right">
+				100
+			</span>
+
+			<br><br>
 
 			<!-- Add Submit Field -->
 			<div class="form-group">
-			    {!! Form::submit('Verstuur Antwoord', ['class' => 'btn form-control']) !!}
+			    {!! Form::submit('Verstuur Antwoord', ['class' => 'button']) !!}
 			</div>
 		{!! Form::close() !!}
 
-
-		<input type="range" class="fullslider algemeenbeeldslider" value="50">
-		<span class="slider__label__left">
-			0
-		</span>
-		<span class="slider__label__right">
-			100
-		</span>
-
-		<div class="slider" data-slider data-initial-start="50" data-end="200">
-		  <span class="slider-handle"  data-slider-handle role="slider" tabindex="1"></span>
-		  <span class="slider-fill" data-slider-fill></span>
-		  <input type="hidden">
-		</div>	
 		
 	</div>
 	
-	<div class="large-12 columns pre-resultaat">
 
-		<a class="button" href="{{ URL::to('algemeenbeeldresultaat', $scan) }}">Verstuur antwoord</a><br>
-				
-	</div>
 </div>
 
 

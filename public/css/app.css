@@ -7207,9 +7207,6 @@ h2 {
   padding: .5rem 3rem .6rem 2.5rem;
   margin-right: -1.5rem; }
 
-input {
-  border-radius: .4em !important; }
-
 input::-webkit-input-placeholder {
   color: #aaa; }
 

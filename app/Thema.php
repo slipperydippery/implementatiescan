@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Video;
+use App\Question;
 use Illuminate\Database\Eloquent\Model;
 
 class Thema extends Model
@@ -18,5 +20,10 @@ class Thema extends Model
     public function video()
     {
     	return $this->belongsTo('App\Video');
+    }
+
+    public function questions()
+    {
+        return $this->belongsToMany('App\Question');
     }
 }

@@ -21,4 +21,9 @@ class Scanmodel extends Model
     {
     	return $this->belongsTo('App\Video');
     }
+
+    public function instantiemodels()
+    {
+        return $this->hasMany('App\Instantiemodel');
+    }
 }
