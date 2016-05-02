@@ -10,6 +10,8 @@
     <meta name="csrf-token" value="{{ csrf_token() }}">
     <link href="{{ URL::asset('/css/app.css') }}" rel="stylesheet">
 
+    <script src="{{ URL::asset('js/modernizr.js') }}"></script>
+
   </head>
   
   <body>

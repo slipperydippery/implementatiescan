@@ -14,6 +14,10 @@ class CreateInstantieUserTable extends Migration
     {
         Schema::create('instantie_user', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('instantie_id')->unsigned();
+            $table->foreign('instantie_id')->references('id')->on('instanties')->onDelete('cascade');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
