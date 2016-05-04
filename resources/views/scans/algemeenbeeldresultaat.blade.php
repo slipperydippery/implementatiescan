@@ -73,6 +73,7 @@
 		</div>
 
 		Scan nr = {{ $scan->id }} <br>
+		Scan beheerder = {{ $scan->beheerder }} <br>
 		Scan nr of themas = {{ count($scan->scanmodel->themas) }} <br>
 		nr of Questions thema 1 = {{ count($scan->scanmodel->themas->first()->questions) }} <br>
 		nr of instanties = {{ count($scan->scanmodel->instantiemodels) }}

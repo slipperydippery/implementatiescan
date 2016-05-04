@@ -66,4 +66,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Instantie');
     }
+
+    public function beheert()
+    {
+        return $this->hasMany('App\Scan');
+    }
 }

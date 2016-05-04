@@ -53,7 +53,8 @@ class ScansController extends Controller
             $user->save();
         }
         $user = User::where('email', '=', $request->beheerder_email)->first();
-        $scan->user_id = $user->id;
+        $user->beheert()->save($scan);
+        // $scan->beheerder()->save($user);
         $scan->save();
         foreach($scan->scanmodel->instantiemodels as $instantiemodel)
         {
@@ -75,7 +76,7 @@ class ScansController extends Controller
     public function show(Scan $scan)
     {
         $themalist = Thema::lists('title', 'id');
-        return view ('scans.show', compact('scan', 'themalist'));
+        return view ('scans.show', compact('scan', 'themalist', 'beheerder'));
     }
 
     public function director(Scan $scan, $thema_nr, $question_nr)

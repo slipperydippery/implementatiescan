@@ -19,7 +19,13 @@
 
 <div class="row page-content">
 	<div class="large-12 columns">
-	scanneplan
+	beheerder: <br>
+	{{ $scan->beheerder->email }} <br>
+	participants: <br>
+	@foreach($scan->participants as $participant)	
+		{{ $participant->email }}
+	@endforeach
+	<a href="">add participants</a>
 
 
 	</div>

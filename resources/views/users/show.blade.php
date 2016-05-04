@@ -19,16 +19,23 @@
 
 <div class="row page-content">
 	<div class="large-12 columns">
-		<h2>Scans</h2>
+		<h2>Beheerder van Scans:</h2>
+		<ul>
+			@foreach($user->beheert as $scan)
+				<li>{{ $scan->title }}</li>
+			@endforeach
+		</ul>
+		<h2>Participant in Scans:</h2>
 		<ul>
 			@foreach($user->scans as $scan)
-				<li>$scan->title</li>
+				<li>{{ $scan->title }}</li>
 			@endforeach
 			@if(count($user->scans) == 0)
 				<li>Gebruiker heeft geen scans</li>
 			@endif
 
 		</ul>
+
 
 
 	</div>
