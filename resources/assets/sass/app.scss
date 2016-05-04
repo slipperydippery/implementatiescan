@@ -1,16 +1,18 @@
-@import "normalize";
+// @import "normalize";
 
 @import "settings";
 
 // Include all foundation
 @import "foundation";
+@include foundation-everything;
 
 @import "partials/layout";
 @import "partials/typography";
 @import "partials/users";
-@import "partials/questions";
+// @import "partials/questions";
 @import "partials/buttons";
 @import "partials/forms";
+
 @import "partials/sliders";
 
 

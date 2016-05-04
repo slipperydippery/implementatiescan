@@ -16,12 +16,12 @@
 <div class="row page-content">
 	<iframe width="853" height="480" src="https://www.youtube.com/embed/{{ $video->adress }}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
 </div>
+
 @stop
 
 @section('site-footer')
 <div class="row ">
-	<div class="large-4 column end page-next">	
-
+	<div class="large-4 columns page-next">	
 		<a href="{{ URL::route('scans.kennismaken', $scan) }}" class="button button-next">Volgende Stap</a>
 	</div>
 </div>

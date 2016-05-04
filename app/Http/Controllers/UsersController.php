@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Scan;
 use App\User;
+use App\Instantie;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class UsersController extends Controller
 {
@@ -46,9 +49,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        // return ($user);
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -60,6 +64,25 @@ class UsersController extends Controller
     public function edit($id)
     {
         //
+    }
+
+    public function edituserinfo(User $user, Scan $scan)
+    {
+        // return view('users.edituserinfo')
+    }
+
+    public function saveuserinfo(Request $request, User $user, Scan $scan)
+    {
+        $user->update($request->all());
+        $user->save();
+        $instantie = Instantie::findOrFail($request->instantie);
+        // $instantie->users->save($user);
+        foreach($user->instanties->intersect($scan->instanties) as $this_instantie)
+        {
+            $user->instanties()->detach($this_instantie);
+        }
+        $user->instanties()->save($instantie);
+        return Redirect::back();
     }
 
     /**

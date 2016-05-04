@@ -110,15 +110,6 @@ class ScansController extends Controller
 
     public function intro(Scan $scan)
     {
-        ////////////////////////////
-        ////TEMP MANUAL LOGIN!!!////
-        ////////////////////////////
-        Auth::loginUsingId(3);
-        ////////////////////////////
-        ////TEMP MANUAL LOGIN!!!////
-        ////////////////////////////
-
-
         $video = $scan->scanmodel->video;
         return view ('scans.intro', compact('video', 'scan'));
     }
@@ -135,6 +126,7 @@ class ScansController extends Controller
 
     public function store_algemeenbeeld(Scan $scan, Request $request)
     {
+        // return $request->all();
         $user = Auth::user();
         $answer = new Answer();
         // $answer->save();

@@ -32,8 +32,12 @@ class Scan extends Model
     }  
 
     public function participants()
-      {
-          return $this->hasMany('App\User');
-      }  
+    {
+        return $this->hasMany('App\User');
+    }
 
+    public function instanties()
+    {
+        return $this->hasMany('App\Instantie');
+    }  
 }

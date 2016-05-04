@@ -1,3 +1,5 @@
+$body-background: #A6CE39;
+
 .red {
 	border: 1px solid red;
 }
@@ -14,6 +16,9 @@ html, body {
 $footer-height: 155px;
 
 body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 	background: #A6CE39;
 	color: #fff;
 	background: #A6CE39;
@@ -23,19 +28,26 @@ body {
 
 
 .page-wrap {
-	position: relative;
-  min-height: 100%;
+	flex: 1;
+	z-index: 10;
+	// position: relative;
+
+
+  // min-height: 100%;
+  // z-index: 90;
   /* equal to footer height */
-  margin-bottom: -$footer-height; 
+  // margin-bottom: -$footer-height; 
 }
 
+/* 
 .page-wrap:after {
   content: "";
   display: block;
-}
+} */
 
 .site-footer {
 	background: #A6CE39 url("/img/flowmenu.png") no-repeat bottom center;
+	z-index: 100;
 }
 
 .site-footer, .page-wrap:after {
@@ -55,7 +67,7 @@ main {
 	top: 0;
 	right: 5%; 
 	width: 30%;
-	z-index: 0;	
+	z-index: -10;	
 
 }
 
@@ -104,7 +116,9 @@ main {
 }
 
 
-
+.fieldset legend {
+	font-weight: bold;
+}
 
 
 /**
@@ -306,6 +320,8 @@ main {
 }
 
 .submitted-user {
+	background: none;
+	border: 0;
  	text-align: center !important;
  	line-height: 1.1em;
  	// border: 2px solid rgba(255,255,255,0.3); 

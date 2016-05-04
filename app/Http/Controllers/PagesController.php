@@ -14,10 +14,15 @@ class PagesController extends Controller
 	{
 	    $this->middleware('auth');
 	}
-	
+    
     public function testpage ()
     {
-    	return view ('pages.testpage');
+        return view ('pages.testpage');
+    }
+    
+    public function foundation ()
+    {
+        return view ('pages.foundation');
     }
 
     public function databank()

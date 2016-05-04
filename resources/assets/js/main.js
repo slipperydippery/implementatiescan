@@ -6,8 +6,11 @@ Vue.use(require('vue-resource'));
 import Tasks from './components/Tasks.vue';
 
 new Vue({
-	el: 'body', 
+	el: 'form', 
 
+	data: {
+		slider_input: '50'
+	},
 
 	components: { Tasks }
 

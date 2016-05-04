@@ -9,11 +9,11 @@ elixir(function(mix) {
     mix.sass(
         'app.scss', // Source files
         'public/css', // Destination folder
-        {includePaths: ['vendor/bower_components/foundation/scss']}
+        {includePaths: ['vendor/bower_components/foundation-sites/scss']}
     );
 
     // Compile JavaScript
-    mix.browserify('main.js');
+    mix.browserify('main.js', 'scripts.js');
 
     mix.scripts(
         ['modernizr/modernizr.js', 'jquery/dist/jquery.js', 'foundation-sites/dist/foundation.js'], // Source files. You can also selective choose only some components

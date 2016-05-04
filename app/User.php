@@ -56,4 +56,14 @@ class User extends Authenticatable
 
         return !! $role->intersect($this->roles)->count();
     }
+
+    public function scans()
+    {
+        return $this->belongsToMany('App\Scan');
+    }
+
+    public function instanties()
+    {
+        return $this->belongsToMany('App\Instantie');
+    }
 }

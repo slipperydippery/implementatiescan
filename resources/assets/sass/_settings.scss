@@ -1,12 +1,29 @@
 // Custom settings for Zurb Foundation. Default settings can be found at
 // vendor/bower_components/foundation/scss/foundation/_settings.scss
  
-$font-family-sans-serif: Lato, "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+// $font-family-sans-serif: Lato, "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif !default;
+$body-font-family: Lato, 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif !default;
 
 // We use these as default colors throughout
-$primary-color: #22373e;
+$primary-color: #22373e !default;
 // $secondary-color: #e7e7e7;
 // $alert-color: #f04124;
 // $success-color: #43AC6A;
 // $warning-color: #f08a24;
 // $info-color: #a0d3e8;
+
+$foundation-palette: (
+  primary: #22373e,
+  secondary: #777,
+  success: #3adb76,
+  warning: #ffae00,
+  alert: #ec5840,
+);
+
+$light-gray: #e6e6e6;
+
+$fieldset-border: 1px solid $light-gray !default;
+$body-background: none !default;
+
+$alert: #ec5840;
+$slider-fill-background: $alert;

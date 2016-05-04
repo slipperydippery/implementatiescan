@@ -19,9 +19,12 @@
 
 .button-next {
   background: #fff url(/img/button_arrow_right.png) no-repeat right top;
+  height: 37px;
   color: $primary-color;
-  padding: .5rem 3rem .6rem 2.5rem;
+  padding-left: 2.5rem;
+  padding-right: 3rem;
   margin-right: -1.5rem;
+  border: 0;
 }
 
 
