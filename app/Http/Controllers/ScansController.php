@@ -78,8 +78,8 @@ class ScansController extends Controller
      */
     public function show(Scan $scan)
     {
-        $themalist = Thema::lists('title', 'id');
-        return view ('scans.show', compact('scan', 'themalist', 'beheerder'));
+        $users = User::get();
+        return view ('scans.show', compact('scan', 'users'));
     }
 
     public function director(Scan $scan, $thema_nr, $question_nr)
@@ -141,8 +141,6 @@ class ScansController extends Controller
         return Redirect::route('scans.algemeenbeeldresultaat', compact('scan'));
     }
 
-
-
     public function algemeenbeeldresultaat(Scan $scan)
     {
 
@@ -158,6 +156,7 @@ class ScansController extends Controller
     {
         return view ('scans.actiesmailen', $scan);
     }
+
 
     public function invoerendeelnemers(Scan $scan)
     {
@@ -198,6 +197,13 @@ class ScansController extends Controller
     public function uitnodigendeelnemers(Scan $scan)
     {
         return view ('scans.inrichten.uitnodigendeelnemers', compact('scan'));
+    }
+
+    public function addparticipant(Request $request, Scan $scan)
+    {
+        $scan->participants()->save(User::findOrFail($request->user_id));
+        return Redirect::back();
+
     }
 
     /**
