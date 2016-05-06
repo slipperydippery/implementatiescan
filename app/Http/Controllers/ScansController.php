@@ -11,6 +11,7 @@ use App\Answer;
 use App\Instantie;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
 class ScansController extends Controller
@@ -62,6 +63,8 @@ class ScansController extends Controller
             $instantie->title = $instantiemodel->title;
             $instantie->blurb = $instantiemodel->blurb;
             $instantie->scan_id = $scan->id;
+            $instantiemodel->instanties()->save($instantie);
+            // $instantie->instantiemodel()->save($instantiemodel);
             $instantie->save();
         }
         return Redirect::route('scans.index');
@@ -154,6 +157,47 @@ class ScansController extends Controller
     public function actiesmailen(Scan $scan)
     {
         return view ('scans.actiesmailen', $scan);
+    }
+
+    public function invoerendeelnemers(Scan $scan)
+    {
+        $instantieoptions = [];
+        foreach($scan->instanties as $instantie)
+        {
+            if(count($instantie->users) < 2)
+            {
+                $instantieoptions[$instantie->id] = $instantie->title ;
+            }
+        }
+        // return $instantieoptions;
+        return view ('scans.inrichten.invoerendeelnemers', compact('scan', 'instantieoptions'));
+    }
+
+    public function storedeelnemer(Scan $scan, Request $request)
+    {
+        if (! User::where('email', '=', $request->email)->get()->count())
+        {
+            $user = new User($request->all());
+            $user->initial_pwd = str_random(8);
+            $user->password = Hash::make($user->initial_pwd);
+            $user->save();
+        }        
+        $user = User::where('email', '=', $request->email)->first();
+        $user->scans()->save($scan);
+        $instantie = Instantie::findOrFail($request->instantie);
+        $instantie->users()->save($user);
+
+        return Redirect::back();    
+    }
+
+    public function controlerendeelnemers(Scan $scan)
+    {
+        return view ('scans.inrichten.controlerendeelnemers', compact('scan'));
+    }
+
+    public function uitnodigendeelnemers(Scan $scan)
+    {
+        return view ('scans.inrichten.uitnodigendeelnemers', compact('scan'));
     }
 
     /**

@@ -16,6 +16,8 @@ class CreateInstantiesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('blurb');
+            $table->integer('instantiemodel_id')->unsigned();
+            $table->foreign('instantiemodel_id')->references('id')->on('instantiemodels')->onDelete('cascade');
             $table->integer('scan_id')->unsigned();
             $table->foreign('scan_id')->references('id')->on('scans')->onDelete('cascade');
             $table->timestamps();

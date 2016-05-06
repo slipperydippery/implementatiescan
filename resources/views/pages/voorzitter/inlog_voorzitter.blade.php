@@ -28,7 +28,7 @@
 			{!! Form::text('wachtwoord', null, ['class' => 'form-control']) !!}
 		</div>
 
-		<a class="button" href="{{ URL::to('regio_gemeente') }}">Log in</a><br>
+		<a href="{{ URL::route('scans.invoerendeelnemers', 2) }}" class="button">Log in</a>
 	</div>
 </div>
 

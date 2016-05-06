@@ -1,3 +1,10 @@
+$instantie1: #882d50;
+$instantie2: #2f5256;
+$instantie3: #FA9426;
+$instantie4: #E75351;
+$instantie5: #A856AA;
+$instantie6: #25AEE4;
+
 $body-background: #A6CE39;
 
 .red {
@@ -436,12 +443,6 @@ main {
  	margin: 0;
  }
 
-$onderwijs: #882d50;
-$gemsd: #2f5256;
-$gemsw: #FA9426;
-$werk: #E75351;
-$zorg: #A856AA;
-$overig: #25AEE4;
 
 .slider-gemiddeld {
 	// font-size: 1.2rem;
@@ -460,41 +461,41 @@ $overig: #25AEE4;
 .slider-empty {
 	color: #A6CE39;
 }
- .slider-onderwijs {
- 	border: 6px solid $onderwijs;
+ .slider-1 {
+ 	border: 6px solid $instantie1;
  	border-width: 0 6px;
- 	background: rgba($onderwijs, .4);
+ 	background: rgba($instantie1, .4);
  	// background: #882d50;
  }
 
- .slider-gemsd {
- 	border: 6px solid $gemsd;
+ .slider-2 {
+ 	border: 6px solid $instantie2;
  	border-width: 0 6px;
- 	background: rgba($gemsd, .4);
+ 	background: rgba($instantie2, .4);
  }
 
-  .slider-gemsmw {
- 	border: 6px solid $gemsw;
+  .slider-3 {
+ 	border: 6px solid $instantie3;
  	border-width: 0 6px;
- 	background: rgba($gemsw, .4);
+ 	background: rgba($instantie3, .4);
  }
 
-  .slider-werk {
- 	border: 6px solid $werk;
+  .slider-4 {
+ 	border: 6px solid $instantie4;
  	border-width: 0 6px;
- 	background: rgba($werk, .5);
+ 	background: rgba($instantie4, .5);
  }
 
-  .slider-zorg {
- 	border: 6px solid $zorg;
+  .slider-5 {
+ 	border: 6px solid $instantie5;
  	border-width: 0 6px;
- 	background: rgba($zorg, .5);
+ 	background: rgba($instantie5, .5);
  }
 
-  .slider-overig {
- 	border: 6px solid $overig;
+  .slider-6 {
+ 	border: 6px solid $instantie6;
  	border-width: 0 6px;
- 	background: rgba($overig, .5);
+ 	background: rgba($instantie6, .5);
  }
 
  /**
@@ -629,15 +630,15 @@ $overig: #25AEE4;
  }
 
 .actiepunt-wet {
- 	background: $werk;	
+ 	background: $instantie4;	
 }
 
 .actiepunt-kb {
-	background: $onderwijs;
+	background: $instantie5;
 }
 
 .actiepunt-es {
-	background: $overig;
+	background: $instantie6;
 }
 
 .actiehelper {

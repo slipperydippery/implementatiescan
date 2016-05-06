@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             // $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password', 60);
+            $table->string('initial_pwd', 60);
             $table->boolean('active')->default(0);
             $table->boolean('confirmed')->default(0);
             $table->string('confirmation_code')->nullable();

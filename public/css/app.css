@@ -3812,32 +3812,32 @@ main {
 .slider-empty {
   color: #A6CE39; }
 
-.slider-onderwijs {
+.slider-1 {
   border: 6px solid #882d50;
   border-width: 0 6px;
   background: rgba(136, 45, 80, 0.4); }
 
-.slider-gemsd {
+.slider-2 {
   border: 6px solid #2f5256;
   border-width: 0 6px;
   background: rgba(47, 82, 86, 0.4); }
 
-.slider-gemsmw {
+.slider-3 {
   border: 6px solid #FA9426;
   border-width: 0 6px;
   background: rgba(250, 148, 38, 0.4); }
 
-.slider-werk {
+.slider-4 {
   border: 6px solid #E75351;
   border-width: 0 6px;
   background: rgba(231, 83, 81, 0.5); }
 
-.slider-zorg {
+.slider-5 {
   border: 6px solid #A856AA;
   border-width: 0 6px;
   background: rgba(168, 86, 170, 0.5); }
 
-.slider-overig {
+.slider-6 {
   border: 6px solid #25AEE4;
   border-width: 0 6px;
   background: rgba(37, 174, 228, 0.5); }
@@ -3945,7 +3945,7 @@ main {
   background: #E75351; }
 
 .actiepunt-kb {
-  background: #882d50; }
+  background: #A856AA; }
 
 .actiepunt-es {
   background: #25AEE4; }

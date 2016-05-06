@@ -10,4 +10,9 @@ class Instantiemodel extends Model
     {
     	return $this->belongsTo('App\Scanmodel');
     }
+
+    public function instanties()
+    {
+    	return $this->hasMany('App\Instantie');
+    }
 }

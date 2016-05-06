@@ -19,78 +19,25 @@
 	<div class="large-12 columns submitted-users">
 		<h4>Aangemeldde Deelnemers: </h4>
 
-		<div class="large-2 column submitted-user callout">
-			<button class="close-button" aria-label="Close alert" type="button">
-			    <span aria-hidden="true">&times;</span>
-			</button>
-			<img src="{{asset('img/user_dark.png')}}"> <br><br>
-			<span class="first">Gerrit</span> 
-			<span class="last">Monroe</span> 
-			<span class="functie">UVW</span>
-		</div>
-		<div class="large-2 column submitted-user callout">
-			<button class="close-button" aria-label="Close alert" type="button">
-			    <span aria-hidden="true">&times;</span>
-			</button>
-			<img src="{{asset('img/user_dark.png')}}"> <br><br>
-			<span class="first">Gerrit</span> 
-			<span class="last">Monroe</span> 
-			<span class="functie">UVW</span>
-		</div>
-		<div class="large-2 column submitted-user">
-			<img src="{{asset('img/user.png')}}"> <br><br>
-			<span class="first">Gerrit</span> 
-			<span class="last">Monroe</span> 
-			<span class="functie">UVW</span>
-		</div>
-		<div class="large-2 column end submitted-user">
-			<img src="{{asset('img/user.png')}}"> <br><br>
-			<span class="first">Gerrit</span>
-			<span class="last">Monroe</span> 
-			<span class="functie">UVW</span>
-		</div>
-		<div class="large-2 column submitted-user">
-			<img src="{{asset('img/user.png')}}"> <br><br>
-			<span class="first">Gerrit</span> 
-			<span class="last">Monroe</span> 
-			<span class="functie">UVW</span>
-		</div>
-		<div class="large-2 column end submitted-user">
-			<img src="{{asset('img/user.png')}}"> <br><br>
-			<span class="first">Gerrit</span>
-			<span class="last">Monroe</span> 
-			<span class="functie">UVW</span>
-		</div>
-		<div class="large-2 column submitted-user">
-			<img src="{{asset('img/user.png')}}"> <br><br>
-			<span class="first">Gerrit</span> 
-			<span class="last">Monroe</span> 
-			<span class="functie">UVW</span>
-		</div>
-		<div class="large-2 column end submitted-user">
-			<img src="{{asset('img/user.png')}}"> <br><br>
-			<span class="first">Gerrit</span>
-			<span class="last">Monroe</span> 
-			<span class="functie">UVW</span>
-		</div>
-		<div class="large-2 column submitted-user">
-			<img src="{{asset('img/user.png')}}"> <br><br>
-			<span class="first">Gerrit</span> 
-			<span class="last">Monroe</span> 
-			<span class="functie">UVW</span>
-		</div>
-		<div class="large-2 column end submitted-user">
-			<img src="{{asset('img/user.png')}}"> <br><br>
-			<span class="first">Gerrit</span>
-			<span class="last">Monroe</span> 
-			<span class="functie">UVW</span>
-		</div>
-		<div class="large-2 column submitted-user">
-			<img src="{{asset('img/user.png')}}"> <br><br>
-			<span class="first">Gerrit</span> 
-			<span class="last">Monroe</span> 
-			<span class="functie">UVW</span>
-		</div>
+		@foreach($scan->instanties as $instantie)
+			@foreach($instantie->users as $participant)
+				@if($participant->id == Auth::user()->id)
+					<div class="large-2 column submitted-user callout success">
+				@else
+					<div class="large-2 column submitted-user callout">
+				@endif
+
+					<button class="close-button" aria-label="Close alert" type="button">
+					    <span aria-hidden="true">&times;</span>
+					</button>
+					<img src="{{asset('img/user_dark.png')}}"> <br><br>
+					<span class="first">{{ $participant->name_first ? $participant->name_first : "---" }}</span> 
+					<span class="last">{{ $participant->name_last ? $participant->name_last : "---" }}</span> 
+					<span class="functie"> {{ $instantie->title }} </span>
+				</div>
+			@endforeach
+		@endforeach
+
 		<div class="large-2 column end submitted-user">
 			<span class="add_submitted_user">+</span>
 		</div>

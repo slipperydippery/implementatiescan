@@ -23,7 +23,7 @@ We weten veel over wat werkt om de kansen voor jongeren in het VSO en PRO te ver
 		</a>
 	</div>
 	<div class="large-4 columns triblock">
-		<a href="{{ URL::route('scans.intro', [1]) }}">
+		<a href="{{ URL::route('scans.intro', [2]) }}">
 			<span class="title">Scan Starten </span>
 		</a>
 	</div>

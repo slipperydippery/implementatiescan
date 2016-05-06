@@ -19,17 +19,34 @@
 		<div class="row sliders-sub slider-gemiddeld">
 			<div class="large-2 small-2 small-2 columns">Gemiddeld</div>
 			<div class="large-10 small-10 small-10 columns">
-				
-				<input type="range" class="algemeenbeeldslider" value="62">
+				<!-- Slider -->
+				<div class="small-12 columns">
+					<div class="slider" data-slider data-initial-start="50">
+						<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
+						<span class="slider-fill" data-slider-fill></span>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="row sliders-sub slider-onderwijs">
-			<div class="large-2 small-2 columns">Scholen</div>
-			<div class="large-10 small-10 columns">
-				<input type="range" class="algemeenbeeldslider " value="80">
-				<input type="range" class="algemeenbeeldslider" value="75">
+
+		@foreach($scan->instanties as $instantie)
+			<div class="row sliders-sub slider-{{$instantie->instantiemodel->id}}">
+				<div class="large-2 small-2 columns">{{ $instantie->title }}</div>
+				<div class="large-10 small-10 columns">
+					@foreach($instantie->users as $participant)
+						<!-- Slider -->
+						<div class="small-12 columns">
+
+						  <div class="slider" data-slider data-initial-start="50">
+						    <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
+						    <span class="slider-fill" data-slider-fill></span>
+						  </div>
+						</div>
+					@endforeach
+				</div>
 			</div>
-		</div>
+		@endforeach
+
 		<div class="row sliders-sub slider-gemsd">
 			<div class="large-2 small-2 columns">
 				<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="sociale dienst en werkbedrijf/intermediair.">Sociale Diensten/Werkbedrijf</span>
@@ -71,14 +88,7 @@
 				<input type="range" class="algemeenbeeldslider" value="55">
 			</div>
 		</div>
-
-		Scan nr = {{ $scan->id }} <br>
-		Scan beheerder = {{ $scan->beheerder }} <br>
-		Scan nr of themas = {{ count($scan->scanmodel->themas) }} <br>
-		nr of Questions thema 1 = {{ count($scan->scanmodel->themas->first()->questions) }} <br>
-		nr of instanties = {{ count($scan->scanmodel->instantiemodels) }}
-
-		
+	
 	</div>
 </div>
 @stop

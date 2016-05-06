@@ -28,6 +28,10 @@ Route::group(['middleware' => 'web'], function () {
     // Route::post('/scans/addthema', ['as' => 'scans.addthemas', 'uses' => 'ScansController@addthema']);
     Route::post('/scanmodels/addthema', ['as' => 'scanmodels.addthemas', 'uses' => 'ScanmodelsController@addthema']);
 
+    /**
+     * Scan Deelnemen
+     */
+
 	Route::get('/scans/{scans}/intro', ['as' => 'scans.intro', 'uses' => 'ScansController@intro']);
     Route::get('/scans/{scans}/kennismaken', ['as' => 'scans.kennismaken', 'uses' => 'ScansController@kennismaken']);
     Route::get('/scans/{scans}/algemeenbeeld', ['as' => 'scans.algemeenbeeld', 'uses' => 'ScansController@algemeenbeeld']);
@@ -36,6 +40,16 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/scans/{scans}/thema/{thema_nr}/vraag/{question_nr}', ['as' => 'scans.director', 'uses' => 'ScansController@director']);
     Route::get('/scans/{scan}/actieoverzicht', ['as' => 'scans.actieoverzicht', 'uses' => 'ScansController@actieoverzicht']);
     Route::get('/scans/{scan}/actiesmailen', ['as' => 'scans.actiesmailen', 'uses' => 'ScansController@actiesmailen']);
+
+    /**
+     * Scan inrichten
+     */
+    
+    Route::get('/scans/{scan}/inrichten/invoerendeelnemers', ['as'=> 'scans.invoerendeelnemers', 'uses' => 'ScansController@invoerendeelnemers']);
+    Route::post('/scans/{scan}/inrichten/invoerendeelnemers', ['as'=> 'scans.storedeelnemer', 'uses' => 'ScansController@storedeelnemer']);
+    Route::get('/scans/{scan}/inrichten/controlerendeelnemers', ['as'=> 'scans.controlerendeelnemers', 'uses' => 'ScansController@controlerendeelnemers']);
+    Route::get('/scans/{scan}/inrichten/uitnodigendeelnemers', ['as'=> 'scans.uitnodigendeelnemers', 'uses' => 'ScansController@uitnodigendeelnemers']);
+    Route::post('/scans/{scan}/inrichten/uitnodigendeelnemers', ['as'=> 'scans.post_uitnodigendeelnemers', 'uses' => 'ScansController@post_uitnodigendeelnemers']);
 
 
 

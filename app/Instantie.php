@@ -21,4 +21,9 @@ class Instantie extends Model
     {
     	return $this->belongsToMany('App\User');
     }
+
+    public function instantiemodel()
+    {
+        return $this->belongsTo('App\Instantiemodel');
+    }
 }
