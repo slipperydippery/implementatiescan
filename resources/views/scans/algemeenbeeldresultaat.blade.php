@@ -14,7 +14,7 @@
 </div>
 
 <div class="row page-content">
-	
+
 	<div class="large-12 columns algemeenbeeldslider--group">
 		<div class="row sliders-sub slider-gemiddeld">
 			<div class="large-2 small-2 small-2 columns">Gemiddeld</div>
@@ -36,8 +36,7 @@
 					@foreach($instantie->users as $participant)
 						<!-- Slider -->
 						<div class="small-12 columns">
-
-						  <div class="slider" data-slider data-initial-start="50">
+						  <div class="slider" data-slider data-initial-start="{{ $participant->answers->intersect($scan->answers)->last()->value }}">
 						    <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
 						    <span class="slider-fill" data-slider-fill></span>
 						  </div>
