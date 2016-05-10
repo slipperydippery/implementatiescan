@@ -37,7 +37,14 @@
 	@yield('site-footer')	
   <div class="row">
     <div class="large-12 columns footer-nav">
-    
+      <a href=" {{ URL::route('home', $scan) }} "><img src="{{asset('img/home.png')}}"></a>
+      <a href=" {{ URL::route('scans.kennismaken', $scan) }} "><img src="{{asset('img/kennismaken.png')}}"></a>
+      <a href=" {{ URL::route('scans.director', [$scan, 1, 0]) }} "><img src="{{asset('img/scanicon.png')}}" class="scan_icon"></a>
+      <a href=" {{ URL::route('scans.director', [$scan, 1, 0]) }} "><img src="{{asset('img/scanicon.png')}}" class="scan_icon"></a>
+      <a href=" {{ URL::route('scans.director', [$scan, 1, 0]) }} "><img src="{{asset('img/scanicon.png')}}" class="scan_icon"></a>
+      <a href=" {{ URL::route('scans.actieoverzicht', $scan) }} "><img src="{{asset('img/verbeteracties.png')}}"></a>
+      <a href=" {{ URL::route('scans.actiesmailen', $scan) }} "><img src="{{asset('img/mail.png')}}"></a>
+      
     </div>
   </div>
 </div>

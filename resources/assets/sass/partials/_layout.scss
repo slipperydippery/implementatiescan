@@ -66,20 +66,26 @@ body {
 } */
 
 .site-footer {
-	// background: #A6CE39 url("/img/flowmenu.png") no-repeat bottom center;
 	z-index: 100;
 
-
 	.footer-nav {
+		display: flex;
+		flex-direction: row;
+		flex-flow: space-between;
+		justify-content: space-around;
 		width: 100%;
 		height: 4rem;
-		background: rgba(0,0,0,.2);
+		background: rgba(0,0,0,.1);
+		a img {
+			height:  2.2rem;
+			width: auto;
+			margin-top: 1rem;
+		}
+		a img.scan_icon {
+			height: 2.5rem;
+			margin-top: .7rem;
+		}
 	}
-}
-
-.site-footer, .page-wrap:after {
-  	// height: $footer-height; 
-
 }
 
 
