@@ -3,7 +3,6 @@
 <img src="{{asset('img/paperclip.png')}}" id="paperclip">
 
 
-<div class="page-wrap">
 
 <main>
 
@@ -31,7 +30,6 @@
     </div>
 
 	</main>
-</div> <!-- .page-wrap -->
 
 <div class="site-footer">
 	@yield('site-footer')	

@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="row page-heading">
-	<div class="large-9 columns">
+	<div class="small-9 columns">
 		<div class="row">
-			<div class="large-12 ">
+			<div class="small-12 ">
 				<h1>Implementatiescan</h1>
 				<h2>Focus op werk voor en talent van kwetsbare jongeren</h2>
 				<fieldset class="fieldset">
@@ -19,25 +19,25 @@
 			</div>
 		</div>
 	</div>
-	<div class="large-3 columns"></div>
+	<div class="small-3 columns">
 	</div>
 </div>
 <div class="row triblock--container">	
-	<div class="large-9 columns">
+	<div class="small-9 columns">
 		<div class="row">
-			<div class="large-4 columns triblock">
+			<div class="small-4 columns triblock">
 				<a href="{{ URL::to('inlog_voorzitter') }}" role="button" class="title_button">
 		    		<img src="{{asset('img/gearicon.png')}}">
 					<span class="">Scan Inrichten </span>
 				</a>
 			</div>
-			<div class="large-4 columns triblock">
+			<div class="small-4 columns triblock">
 				<a href="{{ URL::route('scans.intro', [2]) }}" role="button" class="title_button">
 		    		<img src="{{asset('img/scan.png')}}"><br>
 					<span class="">Scan Starten </span>
 				</a>
 			</div>
-			<div class="large-4 columns end triblock">
+			<div class="small-4 columns end triblock">
 				<a href="{{ URL::to('databank') }}" role="button" class="title_button">
 		    		<img src="{{asset('img/books.png')}}"><br>
 					<span class="">Databank </span>
