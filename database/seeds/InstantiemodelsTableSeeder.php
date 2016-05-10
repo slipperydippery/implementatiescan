@@ -25,7 +25,7 @@ class InstantiemodelsTableSeeder extends Seeder
                 'scanmodel_id' => '1'
             ],
             [
-                'title' => 'Leerplicht/SMW',
+                'title' => 'Leerplicht / SMW',
                 'blurb' => '',
                 'scanmodel_id' => '1'
             ],

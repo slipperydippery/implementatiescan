@@ -5,7 +5,6 @@
 	<div class="large-12 ">
 		<h1>email verstuurd</h1>
 		<fieldset class="fieldset">
-  			<legend></legend>
   			<p class="subheading subheading__time">
   				Uw email is verstuurd naar alle deelnemers!
 

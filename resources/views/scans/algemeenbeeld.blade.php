@@ -21,23 +21,20 @@
 			<!-- bal Form Input -->
 
 
-			<div class="small-12 columns">
-			  <div class="slider" data-slider data-initial-start="0">
+			  <div class="slider input_slider" data-slider data-initial-start="0">
 			    <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
 			    <span class="slider-fill" data-slider-fill></span>
 			  </div>
-			</div>
+				<span class="slider__label__left">
+					0
+				</span>
+				<span class="slider__label__right">
+					100
+				</span>
 
-			<span class="slider__label__left">
-				0
-			</span>
-			<span class="slider__label__right">
-				100
-			</span>
 
 			<div class="small-2 columns">
 			  <input type="hidden" name="value" id="sliderOutput2">
-
 			</div>
 
 			<br><br>

@@ -30,17 +30,21 @@ Op de volgende pagina staat een email klaar die u eventueel kunt aanpassen en aa
 				@foreach($scan->instanties as $instantie)
 					@foreach($instantie->users as $participant)
 						<div class="large-2 column submitted-user">
-							<img src="{{asset('img/user.png')}}"> <br><br>
-							<span class="name"> {{ $participant->name_first ? $participant->name_first : "---" }} {{ $participant->name_last ? $participant->name_last : "" }} </span> 
-							<span class="functie"> {{ $instantie->title }} </span>
-							<span class="close_submitted_user">x</span>
+							<a href=" {{ URL::route('scans.removeuser', [$scan, $participant]) }} " class="close-button" aria-label="Close alert" type="button">
+							    <span aria-hidden="true">&times;</span>
+							</a>
+							<img src="{{asset('img/user.png')}}"> 
+							<div class="participant_info">
+								<span class="name"> {{ $participant->name_first ? $participant->name_first : "---" }} {{ $participant->name_last ? $participant->name_last : "" }} </span> 
+								<span class="functie"> {{ $instantie->title }} </span>
+							</div>
 						</div>
 					@endforeach
 				@endforeach
 
 				@if(count($scan->participants) < 12)
 					<div class="large-2 column end submitted-user">
-						<span class="add_submitted_user">+</span>
+						<a href=" {{ URL::route('scans.invoerendeelnemers', $scan) }} " class="add_submitted_user">+</a>
 					</div>
 				@endif
 			</div>

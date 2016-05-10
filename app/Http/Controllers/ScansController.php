@@ -157,13 +157,15 @@ class ScansController extends Controller
 
     public function store_algemeenbeeld(Scan $scan, Request $request)
     {
-        // return $request->all();
         $user = Auth::user();
-        $answer = new Answer();
-        // $answer->save();
+        if(count($user->answers->intersect($scan->answers)) > 0) 
+        {
+            $answer = $user->answers->intersect($scan->answers)->first();
+        } else {
+            $answer = new Answer();
+        }
         $answer->user_id = $user->id;
         $answer->value = $request->value;
-        // $answer->answerable()->save($scan);
         $scan->answers()->save($answer);
         return Redirect::route('scans.algemeenbeeldresultaat', compact('scan'));
     }
