@@ -3658,22 +3658,6 @@ main {
 .navbarleft:hover {
   left: 0; }
 
-.navbarleft > ul > li {
-  font-size: 1.5rem; }
-
-.navbarleft > ul > li > ul {
-  display: none;
-  transtion: all .5s;
-  background: none !important; }
-  .navbarleft > ul > li > ul a {
-    padding-left: 3rem; }
-
-.navbarleft > ul > li > ul > li {
-  padding: .5rem 0; }
-
-.navbarleft > ul > li:hover ul {
-  display: block; }
-
 /**
  *  AUTH
  */
