@@ -35,6 +35,7 @@ class PagesController extends Controller
 
     public function databank()
     {
-    	return view('pages.databank');
+        $scan = Scan::findOrFail(2);
+    	return view('pages.databank', compact('scan'));
     }
 }
