@@ -6,7 +6,6 @@
 		<h1>Gezamenlijke verbeteracties</h1>
 		<h2>{{ $scan->title }}</h2>
 		<fieldset class="fieldset">
-  			<legend></legend>
   			<p class="subheading subheading__time">
   				Hieronder ziet u de 6 actiepunten die u in de voorgaande thema's hebt gekozen. Is er nog eentje die absoluut niet mag ontbreken? Eventueel kunt u eentje toevoegen of vervangen. 
   			</p>

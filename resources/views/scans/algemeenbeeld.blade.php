@@ -33,17 +33,18 @@
 				</span>
 
 
-			<div class="small-2 columns">
-			  <input type="hidden" name="value" id="sliderOutput2">
-			</div>
-
-			<br><br>
-			<br><br>
 			<br><br>
 
-			<!-- Add Submit Field -->
-			<div class="form-group">
-			    {!! Form::submit('Verstuur antwoord', ['class' => 'button float-right']) !!}
+			<div class="row">
+				<div class="small-8 columns">.</div>
+				<div class="small-2 columns">
+				  <input type="number" name="value" id="sliderOutput2">
+				</div>
+
+				<!-- Add Submit Field -->
+				<div class="columns small-2 form-group">
+				    {!! Form::submit('Verstuur antwoord', ['class' => 'button']) !!}
+				</div>
 			</div>
 		{!! Form::close() !!}
 

@@ -35,43 +35,43 @@ class QuestionThemasTableSeeder extends Seeder
                 'thema_id' => '1',
             ],
             [
-                'question_id' => '1',
+                'question_id' => '6',
                 'thema_id' => '2',
             ],
             [
-                'question_id' => '2',
+                'question_id' => '7',
                 'thema_id' => '2',
             ],
             [
-                'question_id' => '3',
+                'question_id' => '8',
                 'thema_id' => '2',
             ],
             [
-                'question_id' => '4',
+                'question_id' => '9',
                 'thema_id' => '2',
             ],
             [
-                'question_id' => '5',
+                'question_id' => '10',
                 'thema_id' => '2',
             ],
             [
-                'question_id' => '1',
+                'question_id' => '11',
                 'thema_id' => '3',
             ],
             [
-                'question_id' => '2',
+                'question_id' => '12',
                 'thema_id' => '3',
             ],
             [
-                'question_id' => '3',
+                'question_id' => '13',
                 'thema_id' => '3',
             ],
             [
-                'question_id' => '4',
+                'question_id' => '14',
                 'thema_id' => '3',
             ],
             [
-                'question_id' => '5',
+                'question_id' => '15',
                 'thema_id' => '3',
             ],
         ];

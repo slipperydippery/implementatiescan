@@ -6,7 +6,6 @@
 	<div class="large-12 ">
 		<h1> {{ $thema->title }} </h1>
 		<fieldset class="fieldset">
-  			<legend></legend>
 			<p class=subheading>
 				Bekijk de korte film over  {{ $thema->title }} .
 			</p>
@@ -24,6 +23,7 @@
 
 		<a href="{{ URL::route('scans.director', [$scan, $thema_nr, 1]) }}" class="button button-next">Volgende Stap</a>
 	</div>
+
 </div>
 
 @stop
