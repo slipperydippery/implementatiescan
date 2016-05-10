@@ -3885,6 +3885,13 @@ main {
   border-width: 0 6px;
   background: rgba(37, 174, 228, 0.5); }
 
+.slider-verbeterpunten {
+  border: 6px solid #3FDED1;
+  border-width: 0 6px;
+  background: #3fded1; }
+  .slider-verbeterpunten .checkinput {
+    text-align: center; }
+
 /**
   *  THEMA VRAGEN
   */
@@ -3912,12 +3919,6 @@ main {
 
 .subheading__time {
   width: 90%; }
-
-.slider-verbeterpunten {
-  border: 6px solid #3FDED1;
-  border-width: 0 6px;
-  background: #3fded1;
-  text-align: center; }
 
 .verbetercheck {
   display: inline-block; }
@@ -4045,7 +4046,7 @@ p.subheading {
 h2 {
   font-size: 1.67rem;
   text-transform: uppercase;
-  font-weight: 100;
+  font-weight: 400;
   margin-top: -1rem; }
 
 .btn {

@@ -92,6 +92,14 @@
 				</div>
 			</div>
 		@endforeach
+		<div class="row sliders-sub slider-verbeterpunten">
+			<div class="large-2 small-2 columns">Verbeterpunten</div>
+			@foreach($thema->questions as $question)
+				<div class="large-2 small-2 columns checkinput">
+					<input type="checkbox" class="verbetercheck">
+				</div>
+			@endforeach
+		</div>
 	</div>
 
 	

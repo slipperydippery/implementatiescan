@@ -537,6 +537,9 @@ main {
 .slider-empty {
 	color: #A6CE39;
 }
+
+
+
  .slider-1 {
  	border: 6px solid $instantie1;
  	border-width: 0 6px;
@@ -572,6 +575,15 @@ main {
  	border: 6px solid $instantie6;
  	border-width: 0 6px;
  	background: rgba($instantie6, .5);
+ }
+
+  .slider-verbeterpunten {
+ 	border: 6px solid #3FDED1;
+ 	border-width: 0 6px;
+ 	background: rgba(#3FDED1, 1);
+ 	.checkinput {
+ 		text-align: center;
+ 	}
  }
 
  /**
@@ -612,12 +624,7 @@ main {
  	width: 90%;
  }
 
- .slider-verbeterpunten {
- 	border: 6px solid #3FDED1;
- 	border-width: 0 6px;
- 	background: rgba(#3FDED1, 1);
- 	text-align: center;
- }
+
 
  .verbetercheck {
  	display: inline-block;
