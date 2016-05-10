@@ -27,7 +27,7 @@
 		<!-- wachtwoord Form Input -->
 		<div class="form-group">
 			{!! Form::label('wachtwoord', 'wachtwoord:') !!}
-			{!! Form::text('wachtwoord', null, ['class' => 'form-control']) !!}
+			{!! Form::password('wachtwoord', null, ['class' => 'form-control']) !!}
 		</div>
 
 		<a href="{{ URL::route('scans.invoerendeelnemers', 2) }}" class="button">Log in</a>
