@@ -16,6 +16,7 @@ class CreateScansTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('blurb');
+            $table->string('regio');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('scanmodel_id')->unsigned();

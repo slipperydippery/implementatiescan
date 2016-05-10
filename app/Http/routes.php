@@ -33,8 +33,9 @@ Route::group(['middleware' => 'web'], function () {
      * Scan Deelnemen
      */
 
-	Route::get('/scans/{scans}/intro', ['as' => 'scans.intro', 'uses' => 'ScansController@intro']);
+    Route::get('/scans/{scans}/intro', ['as' => 'scans.intro', 'uses' => 'ScansController@intro']);
     Route::get('/scans/{scans}/kennismaken', ['as' => 'scans.kennismaken', 'uses' => 'ScansController@kennismaken']);
+    Route::get('/scans/{scan}/removeuser/{user}', ['as' => 'scans.removeuser', 'uses' => 'ScansController@removeuser']);
     Route::get('/scans/{scans}/algemeenbeeld', ['as' => 'scans.algemeenbeeld', 'uses' => 'ScansController@algemeenbeeld']);
     Route::post('/scans/{scans}/algemeenbeeld', ['as' => 'scans.store_algemeenbeeld', 'uses' => 'ScansController@store_algemeenbeeld']);
     Route::get('/scans/{scans}/algemeenbeeldresultaat', ['as' => 'scans.algemeenbeeldresultaat', 'uses' => 'ScansController@algemeenbeeldresultaat']);
@@ -53,6 +54,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/scans/{scan}/inrichten/uitnodigendeelnemers', ['as'=> 'scans.post_uitnodigendeelnemers', 'uses' => 'ScansController@post_uitnodigendeelnemers']);
 
 
+    /**
+     * Databank
+     */
+    Route::get('/databank', ['as' => 'databank', 'uses' => 'PagesController@databank']);
 
 Route::get('/testpage', ['as' => 'testpage', 'uses' => 'PagesController@testpage']);
 Route::get('/foundation', ['as' => 'foundation', 'uses' => 'PagesController@foundation']);
@@ -68,7 +73,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/databank', ['as' => 'databank', 'uses' => 'PagesController@databank']);
 
 
 

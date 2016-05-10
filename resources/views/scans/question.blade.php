@@ -10,7 +10,14 @@
   			<legend>Neem één minuut de tijd om de volgende vraag op uw eigen scherm te beantwoorden:</legend>
 
 			<p class=subheading>
-				{{ $question->norm }}
+				{{ $question->norm }} 
+		
+		<br><br>
+
+				Bij {{ $question->title }} zijn de volgende onderwerpen van belang:
+				
+				{!! $question->weergave_succesfactor !!}
+
 			</p>
 		</fieldset>
 	</div>
@@ -18,14 +25,24 @@
 <div class="row page-content">
 	<div class="large-12 columns algemeenbeeldslider--participant">
 
-		<input type="range" class="algemeenbeeldslider slider__breed" value="50">
-		<span class="slider__label__left">
-			0
-			
-		</span>
-		<span class="slider__label__right">
-			100
-		</span>
+
+			<div class="small-12 columns">
+			  <div class="slider" data-slider data-initial-start="0">
+			    <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
+			    <span class="slider-fill" data-slider-fill></span>
+			  </div>
+			</div>
+
+			<span class="slider__label__left">
+				0
+			</span>
+			<span class="slider__label__right">
+				100
+			</span>
+
+			<div class="small-2 columns">
+			  <input type="hidden" name="value" id="sliderOutput2">
+			</div>
 	</div>
 	<div class="large-12 columns thema-submit-container">
 

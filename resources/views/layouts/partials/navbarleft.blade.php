@@ -1,3 +1,4 @@
+
 <div class="navbarleft">
 	<ul class="accordion" data-accordion>
 		<li class="accordion-navigation">

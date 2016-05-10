@@ -10,11 +10,17 @@
 	{!! Form::text('beheerder_email', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Intro video Form Input -->
-<!-- <div class="form-group">
-    {!! Form::label('video_id', 'Intro video:') !!}
-    {!! Form::select('video_id', $videolist, null, ['class' => 'form-control']) !!}
-</div> -->
+<!-- Regio Form Input -->
+<div class="form-group">
+	{!! Form::label('regio', 'Regio:') !!}
+	{!! Form::text('regio', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Instantie Form Input -->
+<div class="form-group">
+    {!! Form::label('instantie', 'Instantie:') !!}
+    {!! Form::select('instantie', $scanmodels, 'none', ['class' => 'form-control']) !!}
+</div>
 
 <!-- Hidden video_id Type Form Input -->
 {!! Form::hidden('video_id', '1', null) !!}

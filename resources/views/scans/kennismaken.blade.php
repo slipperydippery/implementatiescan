@@ -7,8 +7,8 @@
 		<fieldset class="fieldset">
   			<legend>Even voorstellen</legend>
 			<p class=subheading>
-				Vaak zal niet iedereen elkaar kennen. Daarom een voorstelrondje, waarbij iedereen aangeeft: wie ben je? namens welke organisatie, je rol/functie en wat je hoopt dat uit deze sessie komt (wens of droom).<br><br>
-				Hieronder kunt u zien wie is aangemeld. Klopt dit 
+				Vaak zal niet iedereen elkaar kennen. Daarom een voorstelrondje, waarbij iedereen aangeeft: wie ben je, namens welke organisatie doe je mee, je rol/functie en wat je hoopt dat uit deze sessie komt (wens of droom).<br><br>
+				Hieronder kunt u zien wie is aangemeld. Klopt dit?
 			</p>
 		</fieldset>
 	</div>
@@ -17,24 +17,27 @@
 <div class="row page-content">
 	
 	<div class="large-12 columns submitted-users">
-		<h4>Aangemeldde Deelnemers: </h4>
+		<h4>Aan deze scan doen mee: </h4>
 
 		@foreach($scan->instanties as $instantie)
 			@foreach($instantie->users as $participant)
 				@if($participant->id == Auth::user()->id)
-					<div class="large-2 column submitted-user callout success">
+					<a data-open="userModal"> 
+            		<div class="large-2 column submitted-user callout success">
 				@else
 					<div class="large-2 column submitted-user callout">
+					<a href=" {{ URL::route('scans.removeuser', [$scan, $participant]) }} " class="close-button" aria-label="Close alert" type="button">
+					    <span aria-hidden="true">&times;</span>
+					</a>
 				@endif
 
-					<button class="close-button" aria-label="Close alert" type="button">
-					    <span aria-hidden="true">&times;</span>
-					</button>
-					<img src="{{asset('img/user_dark.png')}}"> <br><br>
-					<span class="first">{{ $participant->name_first ? $participant->name_first : "---" }}</span> 
-					<span class="last">{{ $participant->name_last ? $participant->name_last : "---" }}</span> 
+					<img src="{{asset('img/user.png')}}"> <br><br>
+					<span class="name">{{ $participant->name_first ? $participant->name_first : "---" }} {{ $participant->name_last ? $participant->name_last : "" }}</span> 
 					<span class="functie"> {{ $instantie->title }} </span>
 				</div>
+				@if($participant->id == Auth::user()->id)
+					</a>
+				@endif
 			@endforeach
 		@endforeach
 
@@ -66,7 +69,7 @@
 					<!-- Instantie Form Input -->
 					<div class="form-group">
 					    {!! Form::label('instantie', 'Instantie:') !!}
-					    {!! Form::select('instantie', $scan->instanties->lists('title', 'id'), 'none', ['class' => 'form-control']) !!}
+					    {!! Form::select('instantie', $instantieoptions, 'none', ['class' => 'form-control']) !!}
 					</div>
 
 					<!-- Add Submit Field -->

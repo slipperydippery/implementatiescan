@@ -20,7 +20,7 @@ class InstantiemodelsTableSeeder extends Seeder
                 'scanmodel_id' => '1'
             ],
             [
-                'title' => 'Sociale Diensten/Werkbedrijf',
+                'title' => 'Sociale Diensten / Werkbedrijf',
                 'blurb' => '',
                 'scanmodel_id' => '1'
             ],

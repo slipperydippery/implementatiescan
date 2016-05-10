@@ -6,9 +6,8 @@
 	<div class="large-12 ">
 		<h1>Introductiefilm</h1>
 		<fieldset class="fieldset">
-  			<legend></legend>
 			<p class=subheading>
-				Hier een film ter introductie van de implementatiescan
+				Bekijk de introductiefilm over het maken van de implementatiescan.
 			</p>
 		</fieldset>
 	</div>

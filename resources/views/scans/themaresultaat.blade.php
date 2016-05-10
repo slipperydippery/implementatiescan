@@ -8,7 +8,7 @@
 		<fieldset class="fieldset">
   			<legend></legend>
   			<p class="subheading subheading__time">
-  				Hieronder kunt u zien wat iedereen zojuist heeft ingevuld. Wat valt u op? Bespreek de resultaten de komende 15 minuten, en selecteer dan de in uw ogen belangrijkste 2 verbeterpunten.
+  				Hieronder kunt u zien wat iedereen zojuist heeft ingevuld. Wat valt u op? Bespreek de resultaten de komende 15 minuten, <br> en selecteer dan de in uw ogen belangrijkste 2 verbeterpunten.
 				
   			</p>
 

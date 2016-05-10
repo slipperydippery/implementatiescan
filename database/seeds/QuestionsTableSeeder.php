@@ -19,10 +19,12 @@ class QuestionsTableSeeder extends Seeder
                 'blurbtitle' 				=> '',
                 'blurb' 					=> '',
                 'succesfactor' 				=> 'Werkend leren centraal, ook op school: jongeren met LVB leren het meest en best via learning by doing. Niet schools en simulatie, maar – ‘zo reëel en realistisch mogelijk’ – praktijk centraal: oefenen, (liefst gecertificeerde) werkervaring en vaardigheden opdoen, ontdekken, groeien door iets kunnen en steeds meer (blijken te) kunnen.',
-                'weergave_succesfactor' 	=> '•	Learning by doing
-•	De praktijk centraal
-•	Zo reëel en realistisch mogelijk
-•	(Gecertificeerde) vaardigheden en werkervaring opdoen
+                'weergave_succesfactor' 	=> '<ul>
+    <li>Learning by doing</li>
+    <li>De praktijk centraal</li>
+    <li>Zo reëel en realistisch mogelijk</li>
+    <li>(Gecertificeerde) vaardigheden en werkervaring opdoen</li>
+</ul>
 ',
                 'norm' 						=> 'School werkt volgens het principe: Learning by doing. Het, zo reëel en realistisch mogelijk, werkend  leren staat centraal. ',
                 'range' 					=> '100',

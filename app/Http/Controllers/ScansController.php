@@ -9,6 +9,7 @@ use App\Thema;
 use App\Video;
 use App\Answer;
 use App\Instantie;
+use App\Scanmodel;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -35,7 +36,9 @@ class ScansController extends Controller
     public function create()
     {
         $videolist = Video::lists('title', 'id');
-        return view ('scans.create', compact('videolist'));
+        $scanmodels = Scanmodel::findOrFail(1)->instantiemodels->lists('title', 'id');
+        // return ($scanmodels);
+        return view ('scans.create', compact('scanmodels'));
     }
 
     /**
@@ -55,6 +58,7 @@ class ScansController extends Controller
         }
         $user = User::where('email', '=', $request->beheerder_email)->first();
         $user->beheert()->save($scan);
+        $user->scans()->save($scan);
         // $scan->beheerder()->save($user);
         $scan->save();
         foreach($scan->scanmodel->instantiemodels as $instantiemodel)
@@ -64,8 +68,12 @@ class ScansController extends Controller
             $instantie->blurb = $instantiemodel->blurb;
             $instantie->scan_id = $scan->id;
             $instantiemodel->instanties()->save($instantie);
-            // $instantie->instantiemodel()->save($instantiemodel);
             $instantie->save();
+
+            if($instantiemodel->id == $request->instantie)
+            {
+                $user->instanties()->save($instantie);
+            }
         }
         return Redirect::route('scans.index');
     }
@@ -114,13 +122,32 @@ class ScansController extends Controller
 
     public function intro(Scan $scan)
     {
+        Auth::loginUsingId(1);
         $video = $scan->scanmodel->video;
         return view ('scans.intro', compact('video', 'scan'));
     }
 
     public function kennismaken(Scan $scan)
     {
-        return view ('scans.kennismaken', compact('scan'));
+        $instantieoptions = [];
+        foreach($scan->instanties as $instantie)
+        {
+            if(count($instantie->users) < 2)
+            {
+                $instantieoptions[$instantie->id] = $instantie->title ;
+            }
+        }        
+        return view ('scans.kennismaken', compact('scan', 'instantieoptions'));
+    }
+
+    public function removeuser(Scan $scan, User $user)
+    {
+        // return $user->id;
+        $scan->participants()->detach($user->id);
+        $instantie = $user->instanties->intersect($scan->instanties)->first();
+        // return $instantie->first()->id;
+        $user->instanties()->detach($instantie->id);
+        return redirect()->back();
     }
 
     public function algemeenbeeld(Scan $scan)
@@ -160,6 +187,7 @@ class ScansController extends Controller
 
     public function invoerendeelnemers(Scan $scan)
     {
+        Auth::loginUsingId(1);
         $instantieoptions = [];
         foreach($scan->instanties as $instantie)
         {
@@ -201,8 +229,23 @@ class ScansController extends Controller
 
     public function addparticipant(Request $request, Scan $scan)
     {
-        $scan->participants()->save(User::findOrFail($request->user_id));
-        return Redirect::back();
+        if (! User::where('email', '=', $request->email)->get()->count())
+        {
+            $user = new User($request->all());
+            $user->initial_pwd = str_random(8);
+            $user->password = Hash::make($user->initial_pwd);
+            $user->save();
+        }        
+        $user = User::where('email', '=', $request->email)->first();
+        $user->scans()->save($scan);
+        $instantie = Instantie::findOrFail($request->instantie);
+        $instantie->users()->save($user);
+
+        /**
+         * Send email
+         */
+
+        return Redirect::back(); 
 
     }
 

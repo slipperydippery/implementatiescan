@@ -15,35 +15,40 @@
 </div>
 <div class="row page-content">
 	<div class="large-12 gebruikers_aanmelden">
+		<div class="row gebruikers_aanmelden--row">
+			<div class="large-1 columns">
+			.
+			</div>
+			<div class="large-2 columns">
+				<span class="tablehead">Voornaam</span>
+			</div>
+			<div class="large-2 columns">
+				<span class="tablehead">Achternaam</span>
+			</div>
+			<div class="large-3 columns">
+				<span class="tablehead">Email</span>
+			</div>
+			<div class="large-2 columns">
+				<span class="tablehead">Instantie</span>
+			</div>
+			<div class="large-2 columns">
+				
+			</div>
+		</div>
+		<?php $participant = $scan->beheerder;		?>
+		@include('scans.inrichten.partials.participantrow', [$participant, $beheerder=true])
 		@foreach($scan->instanties as $instantie)
 			@foreach($instantie->users as $participant)
-				<div class="row">
-					<div class="large-1 columns">
-						<img src="{{asset('img/user_dark.png')}}">
-					</div>
-					<div class="large-2 columns">
-						{{ $participant->name_first ? $participant->name_first : '---' }}
-					</div>
-					<div class="large-2 columns">
-						{{ $participant->name_last ? $participant->name_last : '---' }}
-					</div>
-					<div class="large-3 columns">
-						{{ $participant->email }}
-					</div>
-					<div class="large-2 columns">
-						{{ $participant->instanties->intersect($scan->instanties)->first()->title }}
-					</div>
-					<div class="large-2 columns">
-						<a href="#" class="button"> bewerk</a>
-					</div>
-				</div>
+				@if($participant->id != $scan->beheerder->id)
+					@include('scans.inrichten.partials.participantrow', [$participant, $beheerder=false])
+				@endif
 			@endforeach
 		@endforeach
 
 		@if(count($instantieoptions) > 0)
-			<div class="row">
+			<div class="row gebruikers_aanmelden--row">
 				{!! Form::open(['route' => ['scans.storedeelnemer', $scan]]) !!}
-					<div class="large-1 columns ">
+					<div class="large-1 columns" data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' tabindex=1 title="Voeg een deelnemer toe">
 						<img src="{{asset('img/user_dark.png')}}">
 						<span class="plus">+</span>
 					</div>
@@ -67,16 +72,16 @@
 						</div>
 
 					</div>
-					<div class="large-2 columns">
+					<div class="large-3 columns">
 						<!-- Instantie Form Input -->
 						<div class="form-group">
 						    {!! Form::select('instantie', $instantieoptions, null, ['class' => 'form-control']) !!}
 						</div>
 					</div>
-					<div class="large-2 columns">
+					<div class="large-1 columns">
 						<!-- Add Submit Field -->
 						<div class="form-group">
-						    {!! Form::submit("voeg toe", ['class' => 'button form-control']) !!}
+							<button onClick="this.form.submit()" class = "plussubmit" data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' tabindex=1 title="Voeg gebruiker toe">+</button>
 						</div>
 					</div>
 				{!! Form::close() !!}

@@ -3,8 +3,8 @@
 @section('content')
 <div class="row page-heading">
 	<div class="large-12 ">
-	{{ $scan->title }}
 		<h1>Gezamenlijke verbeteracties</h1>
+		<h2>{{ $scan->title }}</h2>
 		<fieldset class="fieldset">
   			<legend></legend>
   			<p class="subheading subheading__time">

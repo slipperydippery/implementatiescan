@@ -3,7 +3,8 @@
 @section('content')
 <div class="row page-heading">
 	<div class="large-12 ">
-		<h1>ALGEMEEN BEELD HUIDIGE AANPAK EN SAMENWERKING</h1>
+		<h1>ALGEMEEN BEELD </h1>
+		<h2>HUIDIGE AANPAK EN SAMENWERKING</h2>
 		<fieldset class="fieldset">
   			<legend>Algemeen beeld van de huidige aanpak en samenwerking beoordelen </legend>
 			<p class=subheading>
@@ -21,7 +22,7 @@
 
 
 			<div class="small-12 columns">
-			  <div class="slider" data-slider data-initial-start="50">
+			  <div class="slider" data-slider data-initial-start="0">
 			    <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
 			    <span class="slider-fill" data-slider-fill></span>
 			  </div>
@@ -45,7 +46,7 @@
 
 			<!-- Add Submit Field -->
 			<div class="form-group">
-			    {!! Form::submit('Verstuur Antwoord', ['class' => 'button']) !!}
+			    {!! Form::submit('Verstuur antwoord', ['class' => 'button float-right']) !!}
 			</div>
 		{!! Form::close() !!}
 

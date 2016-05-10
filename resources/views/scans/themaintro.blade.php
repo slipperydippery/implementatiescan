@@ -8,7 +8,7 @@
 		<fieldset class="fieldset">
   			<legend></legend>
 			<p class=subheading>
-				Korte film
+				Bekijk de korte film over  {{ $thema->title }} .
 			</p>
 		</fieldset>
 	</div>

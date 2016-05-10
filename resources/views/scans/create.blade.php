@@ -18,7 +18,7 @@
 
 <div class="row page-content">
 	
-	<div class="large-12 columns submitted-users">
+	<div class="large-8 columns submitted-users">
 	
 		{!! Form::open(['route' => 'scans.store']) !!}
 			@include('scans.partials.form', ['submittext' => 'Maak scan aan'])
