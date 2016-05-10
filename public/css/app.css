@@ -3541,17 +3541,32 @@ main {
   width: 30%;
   z-index: -10; }
 
-.backgroundtextleft {
+.sidetext {
+  z-index: -10;
+  margin: 0;
+  width: 100vh;
   position: absolute;
-  left: -3em;
-  top: 3em;
+  left: -50vh;
+  top: 50vh;
+  margin-top: -9rem;
   -webkit-transform: rotate(-90deg);
-  transform: rotate(-90deg);
-  color: rgba(255, 255, 255, 0.2);
-  font-size: 6rem;
-  font-weight: 500;
-  text-decoration: underline;
-  z-index: -10; }
+  transform: rotate(-90deg); }
+  .sidetext .sidetext__inner {
+    padding-top: 9rem;
+    height: 18rem;
+    text-align: center; }
+  .sidetext span {
+    display: block;
+    color: rgba(255, 255, 255, 0.3);
+    font-weight: 500; }
+  .sidetext span.sidetext__title {
+    font-size: 8vh;
+    line-height: 10vh;
+    text-decoration: underline;
+    letter-spacing: .3vh; }
+  .sidetext span.sidetext__sub {
+    font-size: 2rem;
+    line-height: 1.5rem; }
 
 /**
  *  PAGES LAYOUT

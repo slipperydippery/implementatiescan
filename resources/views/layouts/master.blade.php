@@ -1,25 +1,32 @@
 @include('layouts.partials.header')
 
-       <img src="{{asset('img/paperclip.png')}}" id="paperclip">
+<img src="{{asset('img/paperclip.png')}}" id="paperclip">
+
 <div class="page-wrap">
 
-    <main>
+<main>
 
-@include('layouts.partials.edituser')
+  @include('layouts.partials.edituser')
     
 
-    <span class="backgroundtextleft">succesfactoren</span>
-         @include('layouts.partials.navbarleft')
+    <div class="sidetext">
+      <div class="sidetext__inner">
+        <span class="sidetext__title">Implementatiescan</span>
+        <span class="sidetext__sub">{{ $scan->title }}, {{ $scan->regio }}</span>
+      </div>
+    </div>
+        
+     @include('layouts.partials.navbarleft')
 
 
-        <div id="content">
+    <div id="content">
 
-            @if(Session::has('global'))
-                {{ Session::get('global') }}
-            @endif
+        @if(Session::has('global'))
+            {{ Session::get('global') }}
+        @endif
 
-            @yield('content')
-        </div>
+        @yield('content')
+    </div>
 
 	</main>
 </div> <!-- .page-wrap -->

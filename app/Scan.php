@@ -10,6 +10,7 @@ class Scan extends Model
     	'title',
     	'blurb',
     	'user_id',
+        'regio',
     	'scanmodel_id',
         'value'
     ];

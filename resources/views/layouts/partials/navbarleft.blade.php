@@ -19,6 +19,7 @@
 				<li >
 					<a href="#">Scan starten</a>
 					<ul class="menu vertical nested ">
+						<li><a href="#">Inloggen</a></li>
 						<li><a href="{{ URL::route('scans.intro', $scan) }}">Introductiefilm</a></li>
 						<li><a href="{{ URL::route('scans.kennismaken', $scan) }}">Kennismaken</a></li>
 						<li><a href="{{ URL::route('scans.algemeenbeeld', $scan) }}">Algemeen beeld</a></li>
