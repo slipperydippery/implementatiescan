@@ -24,8 +24,9 @@ class ScansController extends Controller
      */
     public function index()
     {
+        $scan = Scan::findOrFail(2);
         $scans = Scan::get();
-        return view ('scans.index', compact ('scans'));
+        return view ('scans.index', compact ('scans', 'scan'));
     }
 
     /**
@@ -35,10 +36,11 @@ class ScansController extends Controller
      */
     public function create()
     {
+        $scan = Scan::findOrFail(1);
         $videolist = Video::lists('title', 'id');
         $scanmodels = Scanmodel::findOrFail(1)->instantiemodels->lists('title', 'id');
         // return ($scanmodels);
-        return view ('scans.create', compact('scanmodels'));
+        return view ('scans.create', compact('scanmodels', 'scan'));
     }
 
     /**
@@ -183,9 +185,20 @@ class ScansController extends Controller
 
     public function actiesmailen(Scan $scan)
     {
-        return view ('scans.actiesmailen', $scan);
+        return view ('scans.actiesmailen', compact('scan'));
     }
 
+    public function verbeteracties_bedankt(Scan $scan)
+    {
+        return view('pages.voorzitter.verbeteracties_bedankt', compact('scan'));
+
+    }
+
+    public function inlog_voorzitter(Scan $scan)
+    {
+        $scan = Scan::findOrFail(2);
+        return view ('pages.voorzitter.inlog_voorzitter', compact('scan'));
+    }
 
     public function invoerendeelnemers(Scan $scan)
     {

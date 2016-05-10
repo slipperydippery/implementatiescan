@@ -4,7 +4,7 @@
 
 <div class="row page-heading">
 	<div class="large-12 ">
-		<h1> {{ $thema->title }} </h1>
+		<h1> Thema {{ $thema_nr }}: {{ $thema->title }} </h1>
 		<h2>Kernvraag {{$question_nr}}: {{ $question->title }}</h2>
 		<fieldset class="fieldset">
   			<legend>Neem één minuut de tijd om de volgende vraag op uw eigen scherm te beantwoorden:</legend>

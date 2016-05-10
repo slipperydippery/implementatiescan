@@ -2,18 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Gate;
+use App\Scan;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class PagesController extends Controller
 {
 
-	public function __construct()
-	{
-	    $this->middleware('auth');
-	}
+    public function home()
+    {
+        $scan = Scan::findOrFail(2);
+        return view ('welcome', compact('scan')) ;
+    }
+
+    public function bedankt(    )
+    {
+        $scan = Scan::findOrFail(2);
+        return view('pages.voorzitter.bedankt', compact('scan'));
+    }
     
     public function testpage ()
     {

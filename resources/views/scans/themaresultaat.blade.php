@@ -99,7 +99,7 @@
 
 	<div class="large-12 columns thema-submit-container">
 		
-		<a class="button thema-submit" href="{{ URL::route('scans.director', [$scan, $thema_nr, ($question_nr + 1)]) }}">Bevestig verbeterpunten</a><br>
+		<a class="button thema-submit" href="{{ URL::route('scans.director', [$scan, $thema_nr, ($question_nr + 1)]) }}">Bewaar verbeterpunten</a><br>
 				
   		<div id="time">01:00</div>
 	</div>	

@@ -16,7 +16,7 @@
 	</div>
 	<div class="large-12 columns thema-submit-container">
 
-	<a class="button thema-submit" href="{{ URL::to('welcome') }}">Scan afsluiten</a><br>
+	<a class="button thema-submit" href="{{ URL::to('/') }}">Scan afsluiten</a><br>
 				
 	</div>	
 </div>

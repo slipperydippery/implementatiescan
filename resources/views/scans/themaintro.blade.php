@@ -4,7 +4,7 @@
 
 <div class="row page-heading">
 	<div class="large-12 ">
-		<h1> {{ $thema->title }} </h1>
+		<h1> Thema {{ $thema_nr }}: {{ $thema->title }} </h1>
 		<fieldset class="fieldset">
 			<p class=subheading>
 				Bekijk de korte film over  {{ $thema->title }} .

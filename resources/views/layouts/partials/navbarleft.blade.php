@@ -7,65 +7,43 @@
 		<li >
 			<a href="#">Scan inrichten</a>
 			<ul class="menu vertical nested ">
-				<li>Inlog beheerder</li>
-				<li>Invoeren deelnemersgegevens</li>
-				<li>Controleren deelnemersgegevens</li>
-				<li>Mailen van uitnodiging aan deelnemers</li>
+				<li><a href="{{ URL::to('inlog_voorzitter') }}">Inlog beheerder</a></li>
+				<li><a href="{{ URL::route('scans.invoerendeelnemers', $scan) }}">Invoeren deelnemersgegevens</a></li>
+				<li><a href="{{ URL::route('scans.controlerendeelnemers', $scan) }}">Controleren deelnemersgegevens</a></li>
+				<li><a href="{{ URL::route('scans.uitnodigendeelnemers', $scan) }}">Mailen van uitnodiging</a></li>
 			</ul>
 		</li>
 		<li >
-			<a href="#scanactiveren">Scan starten</a>
+			<a href="#">Scan starten</a>
 			<ul class="menu vertical nested ">
-				<li>Introductiefilm</li>
-				<li>Beoordeel de samenwerking</li>
-				<li>Resultaat beoordeling samenwerking</li>
+				<li><a href="{{ URL::route('scans.intro', $scan) }}">Introductiefilm</a></li>
+				<li><a href="{{ URL::route('scans.kennismaken', $scan) }}">Kennismaken</a></li>
+				<li><a href="{{ URL::route('scans.algemeenbeeld', $scan) }}">Algemeen beeld</a></li>
+				<li><a href=" {{ URL::route('scans.algemeenbeeldresultaat',$scan) }} ">Resultaat algemeen beeld</a></li>
 			</ul>
 		</li>
-		<li >
-			<a href="#">Scan Thema 1: Focus op Werk</a>
-			<ul class="menu vertical nested">
-				<li>Film</li>
-				<li>Kernvraag 1: Werkend leren</li>
-				<li>Kernvraag 2: Samenwerking werkgevers</li>
-				<li>Kernvraag 3: Samenwerking andere organisaties</li>
-				<li>Kernvraag 4: Ontzorgen werkgevers</li>
-				<li>Kernvraag 5: Beschikbaarheid werkgevers</li>
-				<li>Overzicht van resultaat thema 1</li>
-				<li>Invoeren verbeteracties voor thema 1</li>
-			</ul>
-		</li>
-		<li >
-			<a href="#">Scan Thema 2: Begeleiding op weg naar werk</a>
-			<ul class="menu vertical nested">
-				<li>Film</li>
-				<li>Kernvraag 1: </li>
-				<li>Kernvraag 2: </li>
-				<li>Kernvraag 3: </li>
-				<li>Kernvraag 4: </li>
-				<li>Kernvraag 5: </li>
-				<li>Overzicht van resultaat thema 2</li>
-				<li>Invoeren verbeteracties voor thema 2</li>
-			</ul>
-		</li>
-		<li >
-			<a href="">Scan Thema 3: Kwaliteit van de samenwerking</a>
-			<ul class="menu vertical nested">
-				<li>Film</li>
-				<li>Kernvraag 1: </li>
-				<li>Kernvraag 2: </li>
-				<li>Kernvraag 3: </li>
-				<li>Kernvraag 4: </li>
-				<li>Kernvraag 5: </li>
-				<li>Overzicht van resultaat thema 3</li>
-				<li>Invoeren verbeteracties voor thema 3</li>
-			</ul>
-		</li>
+		<?php $thema_counter = 1 ?>
+		@foreach($scan->scanmodel->themas as $thema)
+			<li>
+				<a href="#">Scan Thema {{ $thema_counter }}: {{ $thema->title }}</a>
+				<ul class="menu vertical nested">
+					<li><a href=" {{ URL::route('scans.director', [$scan, $thema_counter, 0]) }} ">Film</a></li>
+					<?php $question_counter = 1 ?>
+					@foreach($thema->questions as $question)
+						<li><a href=" {{ URL::route('scans.director', [$scan, $thema_counter, $question_counter]) }} ">Kernvraag {{ $question_counter }}: {{$question->title}}</a></li>
+						<?php $question_counter++ ?>
+					@endforeach
+					<li><a href=" {{ URL::route('scans.director', [$scan, $thema_counter, $question_counter]) }} ">Thema {{ $thema_counter }}: resultaat</a></li>
+				</ul>
+			</li>
+			<?php $thema_counter++ ?>
+		@endforeach
+
 		<li >
 			<a href="#">Verbeteracties formuleren</a>
 			<ul class="menu vertical nested">
-				<li>Invoeren verbeteracties </li>
-				<li>Plannen vervolgafspraak </li>
-				<li>Mailen verbeteracties</li>
+				<li><a href=" {{ URL::route('scans.actieoverzicht', $scan) }} ">Invoeren verbeteracties</a></li>
+				<li><a href=" {{ URL::route('scans.actiesmailen', $scan) }} ">Mailen verbeteracties</a></li>
 			</ul>
 		</li>
 		<li >
