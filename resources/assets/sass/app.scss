@@ -5,6 +5,7 @@
 // Include all foundation
 @import "foundation";
 @include foundation-everything;
+@import 'util/mixins';
 
 @import "partials/layout";
 @import "partials/typography";

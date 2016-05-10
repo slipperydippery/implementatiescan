@@ -101,6 +101,9 @@ main {
 $sidetext_thickness : 18rem;
 
 .sidetext {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	z-index:-10;
 	margin: 0;
 	width: 100vh;
@@ -117,18 +120,19 @@ $sidetext_thickness : 18rem;
 	}
 	span {
 		display: block;
-		color: rgba(#fff, 0.3);
 		font-weight: 500;
+		letter-spacing: .1vh;
 	}  
 	span.sidetext__title {
+		color: rgba(#fff, 0.4);
 		font-size: 8vh;
 		line-height: 10vh;
-		text-decoration: underline;
-		letter-spacing: .3vh;
 	}
 	span.sidetext__sub {
+		color: rgba(#fff, 0.9);
 		font-size: 2rem;
 		line-height: 1.5rem;
+        text-align: left;
 	}
   }
 
@@ -263,7 +267,7 @@ $sidetext_thickness : 18rem;
 	padding-top: 2rem;
 	height: 100%;
 	width: 30rem;
-	background: rgba(#fff, 0.8);
+	background: rgba(#f9f9f9, 1);
 	z-index: 100;
 	transition: all .5s;
 
@@ -276,6 +280,17 @@ $sidetext_thickness : 18rem;
 	left: 0;
 }
 
+
+.navbarleft__hamburger {
+	position: fixed;
+	top: -.5rem;
+	left: 2rem;
+	@include hamburger(#fff, $body-background, 25px, 20px);
+}
+
+.navbarleft__hamburger:hover + .navbarleft {
+	left: 0;
+}
 
 /**
  *  AUTH

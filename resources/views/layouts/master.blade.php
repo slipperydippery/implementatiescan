@@ -2,6 +2,7 @@
 
 <img src="{{asset('img/paperclip.png')}}" id="paperclip">
 
+
 <div class="page-wrap">
 
 <main>
@@ -12,10 +13,11 @@
     <div class="sidetext">
       <div class="sidetext__inner">
         <span class="sidetext__title">Implementatiescan</span>
-        <span class="sidetext__sub">{{ $scan->title }}, {{ $scan->regio }}</span>
+        <span class="sidetext__sub">{{ $scan->title }}, Regio {{ $scan->regio }}</span>
       </div>
     </div>
         
+    <div class="navbarleft__hamburger"></div>
      @include('layouts.partials.navbarleft')
 
 
