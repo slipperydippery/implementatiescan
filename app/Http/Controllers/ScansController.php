@@ -194,6 +194,16 @@ class ScansController extends Controller
 
     }
 
+    public function werkagenda(Scan $scan)
+    {
+        return view('pages.voorzitter.werkagenda', compact('scan'));
+    }
+
+    public function werkagendamailen(Scan $scan)
+    {
+        return view('scans.werkagendamailen', compact('scan'));
+    }
+
     public function inlog_voorzitter(Scan $scan)
     {
         $scan = Scan::findOrFail(2);

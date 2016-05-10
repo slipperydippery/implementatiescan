@@ -47,6 +47,11 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/scans/{scan}/actiesmailen', ['as' => 'scans.actiesmailen', 'uses' => 'ScansController@actiesmailen']);
     Route::get('scans/{scan}/verbeteracties_bedankt', ['as' => 'scans.verbeteracties_bedankt', 'uses' => 'ScansController@verbeteracties_bedankt']);
 
+    Route::get('scans/{scan}/werkagenda', ['as' => 'scans.werkagenda', 'uses' => 'ScansController@werkagenda']);
+    Route::get('scans/{scan}/werkagendamailen', ['as' => 'scans.werkagendamailen', 'uses' => 'ScansController@werkagendamailen']);
+
+
+
     /**
      * Scan inrichten
      */
@@ -172,9 +177,7 @@ Route::get('/actieoverzicht', function (){
 	return view('pages.voorzitter.actieoverzicht');
 });
 
-Route::get('/werkagenda', function (){
-	return view('pages.voorzitter.werkagenda');
-});
+
 
 
 
