@@ -79,11 +79,10 @@
 <div class="row">
 
 	<div class="small-4 date__container">
-		<!-- Datum volgende afspraakscan deel 2 Form Input -->
-		<div class="form-group">
-			{!! Form::label('date', 'Datum scan deel 2:') !!}
-			{!! Form::date('date', null, ['class' => 'form-control',  'data-date-inline-picker' =>  'true']) !!}
-		</div>
+	<label for="datepicker"><h4>Datum scan deel 2:</h4></label>
+    <input type="text" id="datepicker">
+
+
 
 	</div>
 
@@ -97,8 +96,21 @@
 </div>
 @stop
 
-@section('site-footer')
+@section('additional-scripts')
+    <script src="{{ URL::asset('js/pikaday.js') }}"></script>
+    <script>
 
+    var picker = new Pikaday(
+    {
+        field: document.getElementById('datepicker'),
+        firstDay: 1,
+        format: 'D MMM YY',
+        minDate: new Date(2000, 0, 1),
+        maxDate: new Date(2020, 12, 31),
+        yearRange: [2000,2020]
+    });
+
+    </script>
 
 @stop
 

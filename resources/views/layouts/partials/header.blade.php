@@ -9,6 +9,8 @@
     <meta name="keywords" content="LastBreath, funeral, ritual">
     <meta name="csrf-token" value="{{ csrf_token() }}">
     <link href="{{ URL::asset('/css/app.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('/css/pikaday.css') }}" rel="stylesheet">
+
 
     <script src="{{ URL::asset('js/modernizr.js') }}"></script>
 
