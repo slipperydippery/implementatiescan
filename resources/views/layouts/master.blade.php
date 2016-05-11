@@ -50,6 +50,6 @@
   </div>
 </div>
 
-@yield('additional-scripts')
+
 
 @include('layouts.partials.footer')

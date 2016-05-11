@@ -13,6 +13,7 @@
 		</fieldset>
 	</div>
 </div>
+
 <div class="row page-content">
 	<div class="large-12 gebruikers_aanmelden">
 		<div class="row gebruikers_aanmelden--row">
@@ -35,7 +36,7 @@
 				
 			</div>
 		</div>
-		<?php $participant = $scan->beheerder;		?>
+		<?php $participant = $scan->beheerder;?>
 		@include('scans.inrichten.partials.participantrow', [$participant, $beheerder=true])
 		@foreach($scan->instanties as $instantie)
 			@foreach($instantie->users as $participant)
@@ -45,7 +46,7 @@
 			@endforeach
 		@endforeach
 
-		@if(count($instantieoptions) > 0)
+		@if(count($instantieoptions) > 0 && ! isset($user))
 			<div class="row gebruikers_aanmelden--row">
 				{!! Form::open(['route' => ['scans.storedeelnemer', $scan]]) !!}
 					<div class="large-1 columns" data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' tabindex=1 title="Voeg een deelnemer toe">

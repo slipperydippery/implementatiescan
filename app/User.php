@@ -76,4 +76,14 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Answer');
     }  
+
+    public function betrektVerbeteracties()
+    {
+        return $this->belongsToMany('App\Verbeteractie');
+    }
+
+    public function trektVerbeteracties()
+    {
+        return $this->hasMany('App\Verbeteractie');
+    }
 }

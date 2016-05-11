@@ -14,6 +14,11 @@
 </div>
 
 <div class="row page-content">
+	
+	{!! Form::open(['route' => 'scans.storeverbeteracties']) !!}
+		@include('scans.storeverbeteractiesals.form', ['submittext' => ''])
+	{!! Form::close() !!}
+
 	<div class="large-12 columns algemeenbeeldslider--group">
 		<div class="row sliders-sub slider-gemiddeld__thema">
 			<div class="large-2 small-2 columns slider-empty">.

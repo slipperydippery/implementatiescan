@@ -40,4 +40,9 @@ class Scan extends Model
         return $this->hasMany('App\Instantie');
     }  
 
+    public function verbeteracties()
+    {
+        return $this->hasMany('App\Verbeteractie');
+    }
+
 }

@@ -220,11 +220,26 @@ class ScansController extends Controller
         {
             if(count($instantie->users) < 2)
             {
-                $instantieoptions[$instantie->id] = $instantie->title ;
+                $instantieoptions[$instantie->id] = $instantie->title;
             }
         }
         // return $instantieoptions;
         return view ('scans.inrichten.invoerendeelnemers', compact('scan', 'instantieoptions'));
+    }
+
+    public function editinvoerdeelnemer(Scan $scan, User $user)
+    {
+        $instantieoptions = [];
+        foreach($scan->instanties as $instantie)
+        {
+            $hasinstantie = ($user->instanties->intersect($scan->instanties) == $instantie);
+            if(count($instantie->users) < 2 || $hasinstantie )
+            {
+                $instantieoptions[$instantie->id] = $instantie->title;
+            }
+        }
+
+        return view('scans.inrichten.invoerendeelnemers', compact('scan', 'instantieoptions', 'user'));
     }
 
     public function storedeelnemer(Scan $scan, Request $request)

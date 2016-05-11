@@ -15,6 +15,6 @@
 		{{ count($participant->instanties->intersect($scan->instanties)) ? $participant->instanties->intersect($scan->instanties)->first()->title : '.' }}
 	</div>
 	<div class="large-1 columns">
-		<a href="#" data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' tabindex=1 title="Bewerk gegevens"> <img src="{{asset('img/editicon.png')}}" class="editicon"></a>
+		<a href=" {{ URL::route('scans.editinvoerdeelnemer', [$scan, $participant]) }} " data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' tabindex=1 title="Bewerk gegevens"> <img src="{{asset('img/editicon.png')}}" class="editicon"></a>
 	</div>
 </div>

@@ -26,4 +26,9 @@ class Thema extends Model
     {
         return $this->belongsToMany('App\Question');
     }
+
+    public function verbeteracties()
+    {
+        return $this->hasMany('App\Verbeteractie');
+    }
 }
