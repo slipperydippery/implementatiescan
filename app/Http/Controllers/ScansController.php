@@ -180,7 +180,9 @@ class ScansController extends Controller
 
     public function actieoverzicht(Scan $scan)
     {
-        return view ('scans.actieoverzicht', compact('scan'));
+        $participantlist["0"] = ' ';
+        $participantlist = array_merge($participantlist, $scan->participants->lists('name_first', 'id')->all());
+        return view ('scans.actieoverzicht', compact('scan', 'participantlist'));
     }
 
     public function actiesmailen(Scan $scan)

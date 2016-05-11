@@ -38,7 +38,7 @@
 						<div class="large-3 columns">
 							<!-- 	Trekker Form Input -->
 							<div class="form-group">
-							    {!! Form::select('trekker', ['', 'piet', 'gerard'], 'selected', ['class' => 'form-control']) !!}
+							    {!! Form::select('trekker', $participantlist, 'selected', ['class' => 'form-control']) !!}
 							</div>
 						</div>
 						<div class="large-3 columns">
@@ -57,7 +57,7 @@
 						<div class="large-3 columns">
 							<!-- 	Trekker Form Input -->
 							<div class="form-group">
-							    {!! Form::select('trekker', ['', 'piet', 'gerard'], 'selected', ['class' => 'form-control']) !!}
+							    {!! Form::select('trekker', $participantlist, 'selected', ['class' => 'form-control']) !!}
 							</div>
 						</div>
 						<div class="large-3 columns">
@@ -74,6 +74,16 @@
 				</div>
 			</div>
 		@endforeach
+	</div>
+</div>
+<div class="row">
+
+	<div class="small-4 date__container">
+		<!-- Datum volgende afspraakscan deel 2 Form Input -->
+		<div class="form-group">
+			{!! Form::label('date', 'Datum scan deel 2:') !!}
+			{!! Form::date('date', null, ['class' => 'form-control',  'data-date-inline-picker' =>  'true']) !!}
+		</div>
 
 	</div>
 
