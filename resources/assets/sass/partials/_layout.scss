@@ -58,17 +58,19 @@ body {
 		flex-direction: row;
 		flex-flow: space-between;
 		justify-content: space-around;
-		width: 106%;
-		margin-left: -3%;
+		width: 104%;
+		margin-left: -2%;
 		height: 4rem;
 		background: rgba(0,0,0,.1);
-		clip-path: polygon(3% 0%, 97% 0%, 100% 100%, 0% 100%);;
+		clip-path: polygon(2% 0%, 98% 0%, 100% 100%, 0% 100%);
+		// background: rgba(0,0,0,.1) url("../img/line.png") repeat-x right 55%;
 		a img {
 			height:  2.2rem;
 			width: auto;
 			margin-top: 1rem;
 		}
 		a img.scan_icon {
+			
 			height: 2.5rem;
 			margin-top: .7rem;
 		}

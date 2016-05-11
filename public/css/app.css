@@ -3531,12 +3531,12 @@ body {
     -webkit-justify-content: space-around;
     -ms-flex-pack: distribute;
     justify-content: space-around;
-    width: 106%;
-    margin-left: -3%;
+    width: 104%;
+    margin-left: -2%;
     height: 4rem;
     background: rgba(0, 0, 0, 0.1);
-    -webkit-clip-path: polygon(3% 0%, 97% 0%, 100% 100%, 0% 100%);
-    clip-path: polygon(3% 0%, 97% 0%, 100% 100%, 0% 100%); }
+    -webkit-clip-path: polygon(2% 0%, 98% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(2% 0%, 98% 0%, 100% 100%, 0% 100%); }
     .site-footer .footer-nav a img {
       height: 2.2rem;
       width: auto;
