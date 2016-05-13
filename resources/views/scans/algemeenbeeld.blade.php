@@ -4,11 +4,11 @@
 <div class="row page-heading">
 	<div class="large-12 ">
 		<h1>ALGEMEEN BEELD </h1>
-		<h2>HUIDIGE AANPAK EN SAMENWERKING</h2>
+		<h2>HUIDIGE gezamenlijke AANPAK</h2>
 		<fieldset class="fieldset">
-  			<legend>Algemeen beeld van de huidige aanpak en samenwerking beoordelen </legend>
+  			<legend>Algemeen beeld van de huidige gezamenlijke aanpak beoordelen</legend>
 			<p class=subheading>
-				Hieronder ziet u een schuif van 0 tot 100. Kunt u in algemene zin aangeven op uw eigen scherm hoe goed onze regio het volgens u doet voor wat betreft de huidige aanpak en samenwerking om kwetsbare jongeren, zoals jongeren met LVB, tijdens en na hun schooloopbaanl goed te begeleiden naar werk?  Nul is ‘we doen dat als regio slecht’ en honderd is ‘we doen dat als regio perfect’.
+				Hieronder ziet u een schuif van 0 tot 100. Kunt u in algemene zin aangeven op uw eigen scherm hoe goed onze regio het volgens u doet voor wat betreft de huidige aanpak en samenwerking om jongeren met LVB, zoals jongeren met LVB, tijdens en na hun schooloopbaanl goed te begeleiden naar werk?  Nul is ‘we doen dat als regio slecht’ en honderd is ‘we doen dat als regio perfect’.
 			</p>
 		</fieldset>
 	</div>

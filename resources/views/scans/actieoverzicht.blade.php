@@ -6,7 +6,7 @@
 		<h1>Gezamenlijke verbeteracties</h1>
 		<fieldset class="fieldset">
   			<p class="subheading subheading__time">
-  				Hieronder ziet u de 6 actiepunten die u in de voorgaande thema's hebt gekozen. Is er nog eentje die absoluut niet mag ontbreken? Eventueel kunt u eentje toevoegen of vervangen. 
+  				Tijdens de Implementatiescan-sessie zijn de volgende verbeteracties geformuleerd. Tijdens de tweede Werkagenda bijeenkomst wordt, met voorbereidend werk door de trekkers e.a., een definitieve keuze gemaakt voor de (formulering van) de verbeteracties die op de Werkagenda komen. Deze acties (met ruimte voor sub acties) kunt u hier invullen.
   			</p>
 
 		</fieldset>

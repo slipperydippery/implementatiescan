@@ -15,8 +15,7 @@
 
 <div class="row page-content">
 	
-	{!! Form::open(['route' => 'scans.storeverbeteracties']) !!}
-		@include('scans.storeverbeteractiesals.form', ['submittext' => ''])
+	{!! Form::open(['route' => ['scans.post_verbeteracties', $scan]]) !!}
 	{!! Form::close() !!}
 
 	<div class="large-12 columns algemeenbeeldslider--group">

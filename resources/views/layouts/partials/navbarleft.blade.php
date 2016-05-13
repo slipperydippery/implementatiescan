@@ -34,7 +34,7 @@
 							<li><a href=" {{ URL::route('scans.director', [$scan, $thema_counter, 0]) }} ">Film</a></li>
 							<?php $question_counter = 1 ?>
 							@foreach($thema->questions as $question)
-								<li><a href=" {{ URL::route('scans.director', [$scan, $thema_counter, $question_counter]) }} ">Kernvraag {{ $question_counter }}: {{$question->title}}</a></li>
+								<li><a href=" {{ URL::route('scans.director', [$scan, $thema_counter, $question_counter]) }} ">Succesfactor {{ $question_counter }}: {{$question->title}}</a></li>
 								<?php $question_counter++ ?>
 							@endforeach
 							<li><a href=" {{ URL::route('scans.director', [$scan, $thema_counter, $question_counter]) }} ">Thema {{ $thema_counter }}: resultaat</a></li>

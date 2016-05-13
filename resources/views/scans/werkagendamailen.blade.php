@@ -5,9 +5,9 @@
 	<div class="large-12 ">
 		<h1>Werkagenda Mailen</h1>
 		<fieldset class="fieldset">
-  			<legend>Verstuur de verbeteracties naar de deelnemers </legend>
+  			<legend>Verstuur de verbeteracties, die tezamen de gezamenlijke Werkagenda vormen, naar de deelnemers</legend>
 			<p class=subheading>
-				Mea debet consul option ea, eu malis graece repudiandae eam, est virtute iuvaret similique eu. Per labitur omnesque efficiantur ut, sed utamur urbanitas eu. Ea expetendis intellegebat duo, eum verterem repudiare aliquando eu, pro ut malorum alienum appetere. Te quo fabulas impedit laboramus. Est sententiae reprimique ne.
+				Nadat u de vastgestelde Werkagenda ter versterking van de arbeidsmarktkansen van jongeren met LVB heeft vastgesteld, worden deze met een druk op de knop automatisch verzonden naar de deelnemers.
 			</p>
 		</fieldset>
 	</div>
@@ -47,9 +47,9 @@
 		<?php 
 			$emailtext = "Beste <voornaam>, 
 
-Per labitur omnesque efficiantur ut, sed utamur urbanitas eu. Ea expetendis intellegebat duo, eum verterem repudiare aliquando eu, pro ut malorum alienum appetere. Te quo fabulas impedit laboramus. Est sententiae reprimique ne.
+Beste <voornaam>,
 
-Overzicht Verbeteracties:
+Bedankt en gefeliciteerd! Tijdens de Werkagenda sessie Implementatiescan Jongeren met LVB hebben we de volgende verbeterpunten vastgesteld. Deze vormen de Werkagenda, waar we gezamenlijk en ieder voor zich mee aan de slag gaan in het komende jaar. Dat doen we als volgt:
 
 Focus op werk en talent
 1. Werkend leren 
@@ -70,7 +70,7 @@ VSO School
 		{!! Form::textarea('mail_intro', $emailtext, ['class' => 'form-control email_naar_participant', 'rows' => '18']) !!}
 	</div>
 
-	<a href="{{ URL::route('scans.verbeteracties_bedankt', $scan) }}" class="button float-right">Verzend verbeteracties</a>
+	<a href="{{ URL::route('scans.verbeteracties_bedankt', $scan) }}" class="button float-right">Verzend Werkagenda</a>
 </div>
 @stop
 

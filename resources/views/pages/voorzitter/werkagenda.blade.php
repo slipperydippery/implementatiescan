@@ -5,9 +5,8 @@
 	<div class="large-12 ">
 		<h1>Werkagenda Samenstellen</h1>
 		<fieldset class="fieldset">
-  			<legend></legend>
   			<p class="subheading subheading__time">
-  				Commune iudicabit neglegentur mel et, vim hinc consetetur eu. Ei commune delicata per, est causae ancillae ut. No timeam praesent qui. An dicam hendrerit vis, cu cum diam corrumpit. Id his idque ullum nostro, mei minim postea debitis ea
+  				Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastgesteld. Deze vormden het huiswerk voor de door ons benoemde trekkers in samenwerking met anderen, ter voorbereiding op de, tweede en afrondende Werkagenda sessie. Vandaag bespreken we het huiswerk en stellen we definitieve verbeteracties vast, die tezamen onze gezamenlijke Werkagenda vormen. Vooringevuld zijn de voorlopige verbeteracties uit de eerste, Implementatiescan sessie. Vandaag maken we deze ‘SMART’. Ook kunnen eventueel sub acties worden geformuleerd (bijvoorbeeld als er twee verbeteracties ter realisatie van één Succesfactor nodig zijn).
   			</p>
 
 		</fieldset>

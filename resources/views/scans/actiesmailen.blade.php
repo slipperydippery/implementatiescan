@@ -7,7 +7,7 @@
 		<fieldset class="fieldset">
   			<legend>Verstuur de verbeteracties naar de deelnemers </legend>
 			<p class=subheading>
-				Mea debet consul option ea, eu malis graece repudiandae eam, est virtute iuvaret similique eu. Per labitur omnesque efficiantur ut, sed utamur urbanitas eu. Ea expetendis intellegebat duo, eum verterem repudiare aliquando eu, pro ut malorum alienum appetere. Te quo fabulas impedit laboramus. Est sententiae reprimique ne.
+				Nadat u de voorlopige verbeteracties heeft vastgesteld, worden deze met een druk op de knop automatisch verzonden naar de deelnemers.
 			</p>
 		</fieldset>
 	</div>
@@ -45,11 +45,9 @@
 	<div class="form-group">
 		{!! Form::label('mail_intro', 'Email tekst:') !!}
 		<?php 
-			$emailtext = "Beste <voornaam>, 
+			$emailtext = "Beste <voornaam>,
 
-Per labitur omnesque efficiantur ut, sed utamur urbanitas eu. Ea expetendis intellegebat duo, eum verterem repudiare aliquando eu, pro ut malorum alienum appetere. Te quo fabulas impedit laboramus. Est sententiae reprimique ne.
-
-Overzicht Verbeteracties:
+Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastgesteld. Deze vormen het huiswerk voor de door ons benoemde trekkers in samenwerking met anderen, ter voorbereiding op de, tweede en afrondende Werkagenda sessie. Daar zal het huiswerk worden besproken en worden definitieve verbeteracties afgesproken en op de gezamenlijke Werkagenda geplaatst. De trekkers gaan aan de slag met:
 
 Focus op werk en talent
 1. Werkend leren 

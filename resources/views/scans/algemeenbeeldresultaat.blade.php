@@ -8,7 +8,7 @@
 		<fieldset class="fieldset">
   			<legend>Doel</legend>
 			<p class=subheading>
-				In algemene zin: hoe goed is onze huidige aanpak en samenwerking om jongeren met LVB aan het werk te helpen? 
+				In algemene zin: hoe goed is onze huidige gezamenlijk aanpak om jongeren met LVB aan het werk te helpen?
 			</p>
 		</fieldset>
 	</div>
