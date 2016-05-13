@@ -96,14 +96,17 @@ class ScansController extends Controller
     {
         
         $thema = $scan->scanmodel->themas->get($thema_nr - 1);
+        //Goto Intro
         if ($question_nr == 0)
         {
             return view ('scans.themaintro', compact('scan', 'thema', 'thema_nr', 'question_nr'));
         }
+        //Goto Resultaat
         else if ($question_nr == (count($thema->questions) + 1))
         {
             return view ('scans.themaresultaat', compact('scan', 'thema', 'thema_nr', 'question_nr'));
         }
+        //Goto next thema or verbeteracties
         else if ($question_nr > (count($thema->questions) + 1))
         {
             if($thema_nr == count($scan->scanmodel->themas))
@@ -115,6 +118,7 @@ class ScansController extends Controller
             $thema_nr++;
             return redirect('scans/' . $scan->id . '/thema/' . $thema_nr . '/vraag/0' );
         }
+        //Goto thema question page
         else
         {
             $question = $thema->questions->get($question_nr - 1);
@@ -178,11 +182,48 @@ class ScansController extends Controller
         return view ('scans.algemeenbeeldresultaat', compact('scan'));
     }
 
+    public function store_prebeteracties(Request $request, Scan $scan, $thema_nr)
+    {
+        $thema = $scan->scanmodel->themas->get($thema_nr - 1);
+        // return $request->all();
+        // return $scan;
+        // return $thema;
+        // return $thema->questions()->get();
+        foreach($thema->questions as $question)
+        {
+            // return 'hi';
+            // return ($question->id . ' ' . count(collect($request->verbeteractie)->intersect([$question->id])) );
+            (count(collect($request->verbeteractie)->intersect([$question->id]) ) > 0) ? $question->verbeteractie = 1 : $question->verbeteractie = 0;
+            $question->save();
+        }
+        // return $request->all();
+        return Redirect::route('scans.director', [$scan, $thema_nr, 10000]) ;
+    }
+
     public function actieoverzicht(Scan $scan)
     {
         $participantlist["0"] = ' ';
         $participantlist = array_merge($participantlist, $scan->participants->lists('name_first', 'id')->all());
         return view ('scans.actieoverzicht', compact('scan', 'participantlist'));
+    }
+
+    public function post_verbeteracties(Request $request, Scan $scan)
+    {
+        
+
+        /**
+         * dit is voor de verbeteractie agenda
+         */
+        // $verbeteractie = new Verbeteractie();
+        // $verbeteractie->omschrijving
+        // $verbeteractie->thema()->save($thema);
+        // $verbetaractie->scan()->save($scan);
+        // $verbeteractie->trekker()->save($trekker);
+        // foreach($betrokkennen as $betrokkenne)
+        // {
+            // $betrokkenne->verbeteracties()->save($verbeteractie);
+        // }
+        // 
     }
 
     public function actiesmailen(Scan $scan)

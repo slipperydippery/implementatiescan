@@ -9,6 +9,10 @@
 	margin-bottom: .7rem !important;
 }
 
+input {
+	z-index: 100;
+}
+
 
 $instantie1: #882d50;
 $instantie2: #2f5256;
@@ -641,12 +645,13 @@ $sidetext_thickness : 18rem;
  
  #time {
  	display: block;
- 	width: 100%;
  	text-align: center;
- 	margin-top: -4rem;
+ 	margin: -4rem auto 4rem;
     line-height: 14rem;
  	font-size: 11rem;
  	color: rgba(#fff, .3);
+ 	z-index: -10;
+
  	// background: rgba(#fff, .3);
  	// border: 2px solid #22373e;
  }

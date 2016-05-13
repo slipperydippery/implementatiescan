@@ -27,44 +27,29 @@
 						<div class="large-3 actie-thema actiepunt-es columns">Betrokkenen</div>
 
 					</div>
-					<div class="row actie-rij">	
-						<div class="large-3 columns actie-omschrijving"> {{ $thema->questions->first()->title }} </div>
-						<div class="large-3 columns">
-							<!-- 	actiepunt Form Input -->
-							<div class="form-group">
-								{!! Form::textarea('actiepunt', null, ['class' => 'form-control','placeholder' => 'actie omschrijving', 'rows' => '1']) !!}
-							</div>	
-						</div>
-						<div class="large-3 columns">
-							<!-- 	Trekker Form Input -->
-							<div class="form-group">
-							    {!! Form::select('trekker', $participantlist, 'selected', ['class' => 'form-control']) !!}
+					@foreach($thema->questions as $question)
+						@if($question->verbeteractie == true)
+							<div class="row actie-rij">	
+								<div class="large-3 columns actie-omschrijving"> {{ $question->title }} </div>
+								<div class="large-3 columns">
+									<!-- 	actiepunt Form Input -->
+									<div class="form-group">
+										{!! Form::textarea('actiepunt', null, ['class' => 'form-control','placeholder' => 'actie omschrijving', 'rows' => '1']) !!}
+									</div>	
+								</div>
+								<div class="large-3 columns">
+									<!-- 	Trekker Form Input -->
+									<div class="form-group">
+									    {!! Form::select('trekker', $participantlist, 'selected', ['class' => 'form-control']) !!}
+									</div>
+								</div>
+								<div class="large-3 columns">
+									<!-- 	Trekker Form Input -->
+									<span class="actiehelper">+</span>						
+								</div>
 							</div>
-						</div>
-						<div class="large-3 columns">
-							<!-- 	Trekker Form Input -->
-							<span class="actiehelper">+</span>						
-						</div>
-					</div>
-					<div class="row actie-rij">	
-						<div class="large-3 columns actie-omschrijving"> {{ $thema->questions->last()->title }} </div>
-						<div class="large-3 columns">
-							<!-- 	actiepunt Form Input -->
-							<div class="form-group">
-								{!! Form::textarea('actiepunt', null, ['class' => 'form-control','placeholder' => 'actie omschrijving', 'rows' => '1']) !!}
-							</div>	
-						</div>
-						<div class="large-3 columns">
-							<!-- 	Trekker Form Input -->
-							<div class="form-group">
-							    {!! Form::select('trekker', $participantlist, 'selected', ['class' => 'form-control']) !!}
-							</div>
-						</div>
-						<div class="large-3 columns">
-							<!-- 	Trekker Form Input -->
-							<span class="actiehelper">+</span>
-						</div>
-					</div>
+						@endif
+					@endforeach
 					<div class="row actie-rij">	
 						<div class="large-3 columns actie-omschrijving">+</div>
 						<div class="large-9 columns">

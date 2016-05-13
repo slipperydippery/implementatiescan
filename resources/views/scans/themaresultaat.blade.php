@@ -15,106 +15,105 @@
 
 <div class="row page-content">
 	
-	{!! Form::open(['route' => ['scans.post_verbeteracties', $scan]]) !!}
-	{!! Form::close() !!}
 
-	<div class="large-12 columns algemeenbeeldslider--group">
-		<div class="row sliders-sub slider-gemiddeld__thema">
-			<div class="large-2 small-2 columns slider-empty">.
-			 </div>
-			 @foreach($thema->questions as $question)	
-			 	<div class="large-2 small-2 columns center slider-columnhead">
-			 		<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title=" {{ $question->norm }} "> {{ $question->title }} </span>
-			 	</div>	
-			 @endforeach
-		</div>
-		<div class="row sliders-sub sliders-sub__thema ">
-			<div class="large-2 small-2 columns">Gemiddeld</div>
-			<div class="large-2 small-2 columns center">
-				<div class="slider" data-slider data-initial-start="50">
-					<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
-					<span class="slider-fill" data-slider-fill></span>
-				</div>
+	{!! Form::open(['route' => ['scans.store_prebeteracties', $scan, $thema]]) !!}
+		<div class="large-12 columns algemeenbeeldslider--group">
+			<div class="row sliders-sub slider-gemiddeld__thema">
+				<div class="large-2 small-2 columns slider-empty">.
+				 </div>
+				 @foreach($thema->questions as $question)	
+				 	<div class="large-2 small-2 columns center slider-columnhead">
+				 		<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title=" {{ $question->norm }} "> {{ $question->title }} </span>
+				 	</div>	
+				 @endforeach
 			</div>
-			<div class="large-2 small-2 columns center">
-				<div class="slider" data-slider data-initial-start="50">
-					<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
-					<span class="slider-fill" data-slider-fill></span>
-				</div>
-			</div>
-			<div class="large-2 small-2 columns center">
-				<div class="slider" data-slider data-initial-start="50">
-					<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
-					<span class="slider-fill" data-slider-fill></span>
-				</div>
-			</div>
-			<div class="large-2 small-2 columns center">
-				<div class="slider" data-slider data-initial-start="50">
-					<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
-					<span class="slider-fill" data-slider-fill></span>
-				</div>
-			</div>
-			<div class="large-2 small-2 columns center">
-				<div class="slider" data-slider data-initial-start="50">
-					<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
-					<span class="slider-fill" data-slider-fill></span>
-				</div>
-			</div>
-		</div>
-		@foreach($scan->instanties as $instantie)
-			<div class="row sliders-sub slider-{{$instantie->instantiemodel->id}} ">
-				<div class="large-2 small-2 columns"> {{ $instantie->title }} </div>
+			<div class="row sliders-sub sliders-sub__thema ">
+				<div class="large-2 small-2 columns">Gemiddeld</div>
 				<div class="large-2 small-2 columns center">
-				<div class="slider" data-slider data-initial-start="50">
-					<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
-					<span class="slider-fill" data-slider-fill></span>
-				</div>
+					<div class="slider" data-slider data-initial-start="50">
+						<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
+						<span class="slider-fill" data-slider-fill></span>
+					</div>
 				</div>
 				<div class="large-2 small-2 columns center">
-				<div class="slider" data-slider data-initial-start="50">
-					<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
-					<span class="slider-fill" data-slider-fill></span>
-				</div>
-				</div>
-				<div class="large-2 small-2 columns center">
-				<div class="slider" data-slider data-initial-start="50">
-					<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
-					<span class="slider-fill" data-slider-fill></span>
-				</div>
+					<div class="slider" data-slider data-initial-start="50">
+						<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
+						<span class="slider-fill" data-slider-fill></span>
+					</div>
 				</div>
 				<div class="large-2 small-2 columns center">
-				<div class="slider" data-slider data-initial-start="50">
-					<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
-					<span class="slider-fill" data-slider-fill></span>
-				</div>
+					<div class="slider" data-slider data-initial-start="50">
+						<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
+						<span class="slider-fill" data-slider-fill></span>
+					</div>
 				</div>
 				<div class="large-2 small-2 columns center">
-				<div class="slider" data-slider data-initial-start="50">
-					<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
-					<span class="slider-fill" data-slider-fill></span>
+					<div class="slider" data-slider data-initial-start="50">
+						<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
+						<span class="slider-fill" data-slider-fill></span>
+					</div>
 				</div>
+				<div class="large-2 small-2 columns center">
+					<div class="slider" data-slider data-initial-start="50">
+						<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
+						<span class="slider-fill" data-slider-fill></span>
+					</div>
 				</div>
 			</div>
-		@endforeach
-		<div class="row sliders-sub slider-verbeterpunten">
-			<div class="large-2 small-2 columns">Verbeterpunten</div>
-			@foreach($thema->questions as $question)
-				<div class="large-2 small-2 columns checkinput">
-					<input type="checkbox" class="verbetercheck">
+			@foreach($scan->instanties as $instantie)
+				<div class="row sliders-sub slider-{{$instantie->instantiemodel->id}} ">
+					<div class="large-2 small-2 columns"> {{ $instantie->title }} </div>
+					<div class="large-2 small-2 columns center">
+					<div class="slider" data-slider data-initial-start="50">
+						<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
+						<span class="slider-fill" data-slider-fill></span>
+					</div>
+					</div>
+					<div class="large-2 small-2 columns center">
+					<div class="slider" data-slider data-initial-start="50">
+						<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
+						<span class="slider-fill" data-slider-fill></span>
+					</div>
+					</div>
+					<div class="large-2 small-2 columns center">
+					<div class="slider" data-slider data-initial-start="50">
+						<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
+						<span class="slider-fill" data-slider-fill></span>
+					</div>
+					</div>
+					<div class="large-2 small-2 columns center">
+					<div class="slider" data-slider data-initial-start="50">
+						<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
+						<span class="slider-fill" data-slider-fill></span>
+					</div>
+					</div>
+					<div class="large-2 small-2 columns center">
+					<div class="slider" data-slider data-initial-start="50">
+						<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
+						<span class="slider-fill" data-slider-fill></span>
+					</div>
+					</div>
 				</div>
 			@endforeach
+			<div class="row sliders-sub slider-verbeterpunten">
+				<div class="large-2 small-2 columns">Verbeterpunten</div>
+				@foreach($thema->questions as $question)
+					<div class="large-2 small-2 columns checkinput">
+						{!! Form::checkbox('verbeteractie[]', $question->id, $question->verbeteractie) !!}
+					</div>
+				@endforeach
+			</div>
 		</div>
-	</div>
 
 	
 
-
-	<div class="large-12 columns thema-submit-container">
-		
-		<a class="button thema-submit" href="{{ URL::route('scans.director', [$scan, $thema_nr, ($question_nr + 1)]) }}">Bewaar verbeterpunten</a><br>
-				
-  		<div id="time">01:00</div>
-	</div>	
+		<div class="large-12 columns thema-submit-container">
+			<div class="form-group">
+			    {!! Form::submit('bla', ['class' => 'button form-control']) !!}
+			</div>
+	  		<div id="time">01:00</div>
+		</div>	
+	{!! Form::close() !!}
 
 </div>
 @stop

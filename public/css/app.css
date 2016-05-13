@@ -3489,6 +3489,9 @@ table.hover tr:nth-of-type(even):hover {
   margin-top: 0.7rem !important;
   margin-bottom: .7rem !important; }
 
+input {
+  z-index: 100; }
+
 .red {
   border: 1px solid red; }
 
@@ -3977,12 +3980,12 @@ main {
   */
 #time {
   display: block;
-  width: 100%;
   text-align: center;
-  margin-top: -4rem;
+  margin: -4rem auto 4rem;
   line-height: 14rem;
   font-size: 11rem;
-  color: rgba(255, 255, 255, 0.3); }
+  color: rgba(255, 255, 255, 0.3);
+  z-index: -10; }
 
 .center {
   text-align: center; }
