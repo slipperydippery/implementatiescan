@@ -53,6 +53,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('scans/{scan}/werkagenda', ['as' => 'scans.werkagenda', 'uses' => 'ScansController@werkagenda']);
     Route::get('scans/{scan}/werkagendamailen', ['as' => 'scans.werkagendamailen', 'uses' => 'ScansController@werkagendamailen']);
 
+    Route::post('scans/{scan}/actieoverzicht', ['as' => 'werkagendas.store_omschrijving', 'uses' => 'WerkagendasController@store_omschrijving']);
+
 
 
     /**
