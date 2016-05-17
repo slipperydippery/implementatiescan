@@ -14,7 +14,6 @@
 </div>
 
 <div class="row page-content">
-	
 
 	{!! Form::open(['route' => ['scans.store_prebeteracties', $scan, $thema]]) !!}
 		<div class="large-12 columns algemeenbeeldslider--group">
@@ -99,7 +98,7 @@
 				<div class="large-2 small-2 columns">Verbeterpunten</div>
 				@foreach($thema->questions as $question)
 					<div class="large-2 small-2 columns checkinput">
-						{!! Form::checkbox('verbeteractie[]', $question->id, $question->verbeteractie) !!}
+						{!! Form::checkbox('verbeteractie[]', $question->id, $question->verbeteractie->active) !!}
 					</div>
 				@endforeach
 			</div>

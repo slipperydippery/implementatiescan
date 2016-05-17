@@ -10965,14 +10965,24 @@ module.exports = Vue;
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.default = {};
+exports.default = {
+	props: [],
+
+	data: function data() {
+		return {};
+	},
+
+
+	computed: {}
+
+};
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<h1>testerino</h1>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<li v-repeat=\"actie in acties\">\n\t\t\n\t</li>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Tasks.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Acties.vue"
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {
@@ -10982,9 +10992,9 @@ if (module.hot) {(function () {  module.hot.accept()
 },{"vue":11,"vue-hot-reload-api":2}],13:[function(require,module,exports){
 'use strict';
 
-var _Tasks = require('./components/Tasks.vue');
+var _Acties = require('./components/Acties.vue');
 
-var _Tasks2 = _interopRequireDefault(_Tasks);
+var _Acties2 = _interopRequireDefault(_Acties);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10993,16 +11003,19 @@ var Vue = require('vue');
 Vue.use(require('vue-resource'));
 
 new Vue({
-	el: 'form',
+	el: 'body',
 
 	data: {
 		slider_input: '50'
 	},
 
-	components: { Tasks: _Tasks2.default }
+	components: { Acties: _Acties2.default },
 
+	ready: function ready() {
+		alert('Ready to go!');
+	}
 });
 
-},{"./components/Tasks.vue":12,"vue":11,"vue-resource":4}]},{},[13]);
+},{"./components/Acties.vue":12,"vue":11,"vue-resource":4}]},{},[13]);
 
 //# sourceMappingURL=scripts.js.map

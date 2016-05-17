@@ -26,9 +26,13 @@
 						<div class="large-3 actie-thema actiepunt-es columns">Trekker</div>
 						<div class="large-3 actie-thema actiepunt-es columns">Betrokkenen</div>
 
+					
 					</div>
+					<?php $verbeteracties = $thema->verbeteracties ?>
+					@include('scans.partials.acties', [$verbeteracties, $participantlist])
+
 					@foreach($thema->questions as $question)
-						@if($question->verbeteractie == true)
+						@if($question->verbeteractie->active == true)
 							@include('scans.partials.verbeteractieinvoeren', [$question, $participantlist])
 
 						@endif

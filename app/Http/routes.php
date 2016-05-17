@@ -1,4 +1,6 @@
 <?php
+
+use App\Thema;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -18,7 +20,7 @@ Route::group(['middleware' => 'web'], function () {
     /**
      *  Beheerder
      */
-    
+    Route::get('api/verbeteracties/{id}', ['as' => 'temper', 'uses' => 'WerkagendasController@verbeteracties']);
 
     Route::resource('scans', 'ScansController');
     Route::resource('themas', 'ThemasController');
@@ -53,7 +55,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('scans/{scan}/werkagenda', ['as' => 'scans.werkagenda', 'uses' => 'ScansController@werkagenda']);
     Route::get('scans/{scan}/werkagendamailen', ['as' => 'scans.werkagendamailen', 'uses' => 'ScansController@werkagendamailen']);
 
-    Route::post('scans/{scan}/actieoverzicht', ['as' => 'werkagendas.store_omschrijving', 'uses' => 'WerkagendasController@store_omschrijving']);
+    Route::post('scans/{scan}/actieoverzicht', ['as' => 'werkagendas.store_changes', 'uses' => 'WerkagendasController@store_changes']);
+    Route::post('myAjaxCallURI', 'MyController@method');
 
 
 

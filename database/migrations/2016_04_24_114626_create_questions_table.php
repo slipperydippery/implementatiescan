@@ -21,7 +21,6 @@ class CreateQuestionsTable extends Migration
             $table->text('weergave_succesfactor');
             $table->text('norm');            
             $table->integer('range');
-            $table->boolean('verbeteractie')->default(false);
             $table->boolean('locked');
             $table->timestamps();
         });

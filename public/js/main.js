@@ -10960,19 +10960,44 @@ if (devtools) {
 module.exports = Vue;
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"_process":1}],12:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.default = {};
+exports.default = {
+	props: [],
+
+	data: function data() {
+		return {
+			list: []
+		};
+	},
+	created: function created() {
+		this.fetchVerbeteracties();
+	},
+
+
+	methods: {
+		fetchVerbeteracties: function fetchVerbeteracties() {
+			var resource = this.$resource('../../api/verbeteracties/:id');
+
+			resource.get({ id: 1 }, function (verbeteracties) {
+				this.list = verbeteracties;
+			}.bind(this));
+		}
+	},
+
+	computed: {}
+
+};
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<h1>testerino</h1>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row actie-rij\" v-for=\"verbeteractie in list\">\t\n\t\t<div class=\"large-3 columns actie-omschrijving\"> \n\t\t\tbloop\n\t\t\t{{ verbeteractie.title }} \n\t\t</div>\n\n\t\t<div class=\"large-3 columns\">\n\t\t\t@{{ verbeteractie.omschrijving }}\n\t\t</div>\n\n\t</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Tasks.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Acties.vue"
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {
@@ -10982,9 +11007,9 @@ if (module.hot) {(function () {  module.hot.accept()
 },{"vue":11,"vue-hot-reload-api":2}],13:[function(require,module,exports){
 'use strict';
 
-var _Tasks = require('./components/Tasks.vue');
+var _Acties = require('./components/Acties.vue');
 
-var _Tasks2 = _interopRequireDefault(_Tasks);
+var _Acties2 = _interopRequireDefault(_Acties);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10995,10 +11020,17 @@ Vue.use(require('vue-resource'));
 new Vue({
 	el: 'body',
 
-	components: { Tasks: _Tasks2.default }
+	data: {
+		slider_input: '50'
+	},
 
+	components: { Acties: _Acties2.default },
+
+	ready: function ready() {
+		// alert('Ready to go!');
+	}
 });
 
-},{"./components/Tasks.vue":12,"vue":11,"vue-resource":4}]},{},[13]);
+},{"./components/Acties.vue":12,"vue":11,"vue-resource":4}]},{},[13]);
 
 //# sourceMappingURL=main.js.map

@@ -11,6 +11,7 @@ use App\Answer;
 use App\Instantie;
 use App\Scanmodel;
 use App\Http\Requests;
+use App\Verbeteractie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
@@ -52,6 +53,7 @@ class ScansController extends Controller
     public function store(Request $request)
     {
         $scan = new Scan($request->all());
+        // ADD BEHEERDER, CREATE USER IF DOESN'T EXIST
         if (! User::where('email', '=', $request->beheerder_email)->get()->count())
         {
             $user = new User();
@@ -61,8 +63,8 @@ class ScansController extends Controller
         $user = User::where('email', '=', $request->beheerder_email)->first();
         $user->beheert()->save($scan);
         $user->scans()->save($scan);
-        // $scan->beheerder()->save($user);
         $scan->save();
+        // CREATE INSTANTIES, CARBON COPY FROM INSTANTIEMODEL
         foreach($scan->scanmodel->instantiemodels as $instantiemodel)
         {
             $instantie = new Instantie();
@@ -75,6 +77,19 @@ class ScansController extends Controller
             if($instantiemodel->id == $request->instantie)
             {
                 $user->instanties()->save($instantie);
+            }
+        }
+        // CREATE VERBETERACTIES
+        foreach($scan->scanmodel->themas as $thema)
+        {
+            foreach($thema->questions as $question)
+            {
+                $verbeteractie = new Verbeteractie();
+                $verbeteractie->user_id = null;
+                $verbeteractie->scan_id = $scan->id;
+                $verbeteractie->question_id = $question->id;
+                $verbeteractie->thema_id = $thema->id;
+                $verbeteractie->save();
             }
         }
         return Redirect::route('scans.index');
@@ -185,18 +200,16 @@ class ScansController extends Controller
     public function store_prebeteracties(Request $request, Scan $scan, $thema_nr)
     {
         $thema = $scan->scanmodel->themas->get($thema_nr - 1);
-        // return $request->all();
-        // return $scan;
-        // return $thema;
-        // return $thema->questions()->get();
+
         foreach($thema->questions as $question)
         {
-            // return 'hi';
-            // return ($question->id . ' ' . count(collect($request->verbeteractie)->intersect([$question->id])) );
-            (count(collect($request->verbeteractie)->intersect([$question->id]) ) > 0) ? $question->verbeteractie = 1 : $question->verbeteractie = 0;
-            $question->save();
+            $question->verbeteractie->active = false;
+            if (count(collect($request->verbeteractie)->intersect([$question->id])) > 0) 
+            {
+                $question->verbeteractie->active = true;
+            } 
+            $question->verbeteractie->save();
         }
-        // return $request->all();
         return Redirect::route('scans.director', [$scan, $thema_nr, 10000]) ;
     }
 
@@ -204,6 +217,7 @@ class ScansController extends Controller
     {
         $participantlist["0"] = ' ';
         $participantlist = array_merge($participantlist, $scan->participants->lists('name_first', 'id')->all());
+        // return $participantlist;
         return view ('scans.actieoverzicht', compact('scan', 'participantlist'));
     }
 
