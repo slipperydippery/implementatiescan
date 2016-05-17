@@ -13,6 +13,11 @@
 	</div>
 </div>
 <div class="row page-content">
+{{ $scan->scanmodel->video->adress }}
+	<div class="videocontainer">
+		<img src="{{ asset('img/' . $scan->scanmodel->video->adress) }}" class="videostill">
+		<img src="{{ asset('img/youtubeplay.png')}}" class="youtubeplay">
+	</div>
 	<iframe width="853" height="480" src="https://www.youtube.com/embed/{{ $video->adress }}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
 </div>
 
