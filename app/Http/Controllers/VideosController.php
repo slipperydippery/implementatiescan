@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Scan;
 use App\Video;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -16,8 +17,9 @@ class VideosController extends Controller
      */
     public function index()
     {
+        $scan = Scan::findOrFail(2);
         $videos = Video::get();
-        return view ('videos.index', compact('videos'));
+        return view ('videos.index', compact('videos', 'scan'));
     }
 
     /**
@@ -27,7 +29,8 @@ class VideosController extends Controller
      */
     public function create()
     {
-        return view ('videos.create');
+        $scan = Scan::findOrFail(2);
+        return view ('videos.create', compact('scan'));
     }
 
     /**

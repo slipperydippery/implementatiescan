@@ -16,10 +16,18 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
 
     /**
+     * Themas
+     */
+    Route::get('/themas/{thema}/video', ['as' => 'themas.video', 'uses' => 'ThemasController@video']);
+    Route::post('/themas/{thema}/video', ['as' => 'themas.updatevideo', 'uses' => 'ThemasController@updatevideo']);
+
+    /**
      *  Beheerder
      */
     
-
+    Route::post('/scans/{scan}', ['as' => 'scans.addparticipant', 'uses' => 'ScansController@addparticipant']);
+    Route::get('/scans/{scan}/video', ['as' => 'scans.video', 'uses' => 'ScansController@video' ]);
+    Route::post('scans/{scan}/video', ['as' => 'scans.updatevideo', 'uses' => 'ScansController@updatevideo']);
     Route::resource('scans', 'ScansController');
     Route::resource('themas', 'ThemasController');
     Route::resource('videos', 'VideosController');
@@ -27,7 +35,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('users', 'UsersController');
     // Route::get('/users/{user}/scan/{scan}/edituserinfo', ['as' => 'users.edituserinfo', 'uses' => 'UsersController@edituserinfo ']);
     Route::post('/users/{user}/scan/{scan}/edituserinfo', ['as' => 'users.saveuserinfo', 'uses' => 'UsersController@saveuserinfo']);
-    Route::post('/scans/{scan}', ['as' => 'scans.addparticipant', 'uses' => 'ScansController@addparticipant']);
 
     // Route::post('/scans/addthema', ['as' => 'scans.addthemas', 'uses' => 'ScansController@addthema']);
     Route::post('/scanmodels/addthema', ['as' => 'scanmodels.addthemas', 'uses' => 'ScanmodelsController@addthema']);
@@ -72,6 +79,8 @@ Route::group(['middleware' => 'web'], function () {
      * Databank
      */
     Route::get('/databank', ['as' => 'databank', 'uses' => 'PagesController@databank']);
+
+
 
 Route::get('/testpage', ['as' => 'testpage', 'uses' => 'PagesController@testpage']);
 Route::get('/foundation', ['as' => 'foundation', 'uses' => 'PagesController@foundation']);

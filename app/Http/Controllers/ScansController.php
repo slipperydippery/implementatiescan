@@ -297,7 +297,7 @@ class ScansController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Scan $scan)
     {
         //
     }
@@ -309,11 +309,25 @@ class ScansController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Scan $scan)
     {
-        //
+        // return 'fuck this';
+        // return $request->all();
     }
 
+    public function video(Scan $scan)
+    {
+        $videolist = Video::lists('title', 'id');
+        return view('scans.video', compact('scan', 'videolist'));
+        
+    }
+
+    public function updatevideo(Request $request, Scan $scan)
+    {
+        $scan->scanmodel->video_id = $request->video_id;
+        $scan->scanmodel->save(); 
+        return redirect()->back();
+    }
     /**
      * Remove the specified resource from storage.
      *

@@ -13,6 +13,10 @@
 	</div>
 </div>
 <div class="row page-content">
+	<div class="videocontainer">
+		<img src="{{ asset('img/' . $thema->video->adress) }}" class="videostill">
+		<img src="{{ asset('img/youtubeplay.png')}}" class="youtubeplay">
+	</div>
 	<iframe width="853" height="480" src="https://www.youtube.com/embed/{{ $thema->video->adress }}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
 </div>
 @stop

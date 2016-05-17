@@ -9,6 +9,32 @@
 	margin-bottom: .7rem !important;
 }
 
+iframe {
+	display: none;
+}
+
+.flex {
+	// display: flex;
+}
+.videocontainer {
+	position: relative;
+	width: 100%;
+	cursor: pointer;
+}
+
+.videostill {
+	width: 100%;
+	height: auto;
+}
+.youtubeplay {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 6rem;
+	height: auto;
+	margin: -2rem 0 0 -3rem;
+
+}
 
 $instantie1: #882d50;
 $instantie2: #2f5256;

@@ -10993,7 +10993,11 @@ var Vue = require('vue');
 Vue.use(require('vue-resource'));
 
 new Vue({
-	el: 'body',
+	el: 'form',
+
+	data: {
+		slider_input: '50'
+	},
 
 	components: { Tasks: _Tasks2.default }
 

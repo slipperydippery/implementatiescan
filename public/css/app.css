@@ -3489,6 +3489,26 @@ table.hover tr:nth-of-type(even):hover {
   margin-top: 0.7rem !important;
   margin-bottom: .7rem !important; }
 
+iframe {
+  display: none; }
+
+.videocontainer {
+  position: relative;
+  width: 100%;
+  cursor: pointer; }
+
+.videostill {
+  width: 100%;
+  height: auto; }
+
+.youtubeplay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6rem;
+  height: auto;
+  margin: -2rem 0 0 -3rem; }
+
 .red {
   border: 1px solid red; }
 
