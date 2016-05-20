@@ -25,7 +25,8 @@ class PagesController extends Controller
     
     public function testpage ()
     {
-        return view ('pages.testpage');
+        $scan = Scan::findOrFail(2);
+        return view ('pages.testpage', compact('scan'));
     }
     
     public function foundation ()

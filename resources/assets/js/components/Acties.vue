@@ -1,35 +1,36 @@
 <template>
-	<div class="row actie-rij" v-for="verbeteractie in list">	
-		<div class="large-3 columns actie-omschrijving"> 
-			bloop
-			{{ verbeteractie.title }} 
-		</div>
 
-		<div class="large-3 columns">
-			@{{ verbeteractie.omschrijving }}
-		</div>
-
+	<div class="row" v-for="thema in themas">
+		{{ thema.title }}
+		{{ thema.id }}
+		<actie></actie>
 	</div>
+
 </template>
 
 <script>
 	export default {
-		props: [],
+		props: {
+			model: Object
+		},
 
 		data() {
 			return {
-				list: []
+				list: [],
+				themas: themas
 			};
 		},
 		created() {
-			this.fetchVerbeteracties();
+			console.log(themas);
+			// var x = themas.1.id;
+			this.fetchVerbeteracties(1);
 		},
 
 		methods: {
-			fetchVerbeteracties: function() {
+			fetchVerbeteracties: function(nummer) {
 				var resource = this.$resource('../../api/verbeteracties/:id');
 
-				resource.get({ id : 1 }, function(verbeteracties) {
+				resource.get({ id : nummer }, function(verbeteracties) {
 					this.list = verbeteracties;
 				}.bind(this));
 			},

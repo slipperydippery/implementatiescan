@@ -81,6 +81,14 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/databank', ['as' => 'databank', 'uses' => 'PagesController@databank']);
 
 Route::get('/testpage', ['as' => 'testpage', 'uses' => 'PagesController@testpage']);
+Route::get('/getRequest', function()
+{
+    if(Request::ajax())
+    {
+        return 'getRequest has loaded completely.';
+    }
+});
+
 Route::get('/foundation', ['as' => 'foundation', 'uses' => 'PagesController@foundation']);
 
 });

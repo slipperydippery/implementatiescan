@@ -15,7 +15,8 @@
 
 <div class="row page-content">
 	<div class="large-12 columns actiepunten">
-
+	<actie></actie>
+		<acties></acties>
 		@foreach($scan->scanmodel->themas as $thema)
 
 			<div class="row">
@@ -29,7 +30,7 @@
 					
 					</div>
 					<?php $verbeteracties = $thema->verbeteracties ?>
-					@include('scans.partials.acties', [$verbeteracties, $participantlist])
+					<?php $thema_id = $thema->id ?>
 
 					@foreach($thema->questions as $question)
 						@if($question->verbeteractie->active == true)
@@ -83,6 +84,17 @@
     });
 
     </script>
+
+    <template id="acties-template">
+    	<div class="row" v-for="thema in themas">
+    		@{{ thema.title }}
+    		@{{ thema.id }}
+    		<actie></actie>
+    	</div>
+    </template>
+    <template id="actie-template">
+    	
+    </template>
 
 @stop
 

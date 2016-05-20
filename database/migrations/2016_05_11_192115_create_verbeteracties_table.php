@@ -15,6 +15,7 @@ class CreateVerbeteractiesTable extends Migration
         Schema::create('verbeteracties', function (Blueprint $table) {
             $table->increments('id');
             $table->boolean('active')->default(0);
+            $table->string('title');
             $table->text('omschrijving');
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

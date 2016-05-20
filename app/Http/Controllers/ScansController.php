@@ -13,6 +13,7 @@ use App\Scanmodel;
 use App\Http\Requests;
 use App\Verbeteractie;
 use Illuminate\Http\Request;
+use JavaScript;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
@@ -88,6 +89,7 @@ class ScansController extends Controller
                 $verbeteractie->user_id = null;
                 $verbeteractie->scan_id = $scan->id;
                 $verbeteractie->question_id = $question->id;
+                $verbeteractie->title = $question->title;
                 $verbeteractie->thema_id = $thema->id;
                 $verbeteractie->save();
             }
@@ -215,6 +217,15 @@ class ScansController extends Controller
 
     public function actieoverzicht(Scan $scan)
     {
+        $themalist = [];
+        foreach($scan->scanmodel->themas as $thema)
+        {
+            $themalist[$thema->id] = $thema;
+        }
+        // JavaScript::put($themalist);
+        JavaScript::put([
+            'themas' => $themalist
+        ]);
         $participantlist["0"] = ' ';
         $participantlist = array_merge($participantlist, $scan->participants->lists('name_first', 'id')->all());
         // return $participantlist;
