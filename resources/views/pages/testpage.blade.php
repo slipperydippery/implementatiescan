@@ -14,6 +14,7 @@
 
 	<div class="row page-content">
 		<div class="large-12 columns">
+
 			<h1>Get Request</h1>
 			<button type="button" class="button" id="getRequest">getRequest</button>
 		</div>
@@ -24,6 +25,8 @@
 @stop
 
 @section('additional-scripts')
+
+
 	<script type="text/javascript">
 		$(document).ready(function() 
 		{
@@ -36,7 +39,6 @@
 				});
 			});
 		});
-	  
 	</script>
 @stop
 

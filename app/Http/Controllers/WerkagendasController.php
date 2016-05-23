@@ -37,12 +37,22 @@ class WerkagendasController extends Controller
 
     public function store_changes(Request $request, Scan $scan)
     {
+    	// return $request->all();
     	$verbeteractie = Verbeteractie::findOrFail($request->verbeteractie_id);
     	$verbeteractie->omschrijving = ($request->actiepunt);
-    	$trekker = User::findOrFail($request->trekker_id);
-    	// return ($trekker->name_first);
-    	$trekker->trektVerbeteracties()->save($verbeteractie);
+    	if($request->trekker_id != 0){
+    		$trekker = User::findOrFail($request->trekker_id);
+	    	// return ($trekker->name_first);
+	    	$trekker->trektVerbeteracties()->save($verbeteractie);
+    	}
+
     	$verbeteractie->save();
     	return redirect()->back();
+    }
+
+    public function updateActie()
+    {
+        return 'yeah';
+        
     }
 }

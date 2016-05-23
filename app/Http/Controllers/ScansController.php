@@ -224,7 +224,8 @@ class ScansController extends Controller
         }
         // JavaScript::put($themalist);
         JavaScript::put([
-            'themas' => $themalist
+            'themas' => $themalist,
+            'scan' => $scan
         ]);
         $participantlist["0"] = ' ';
         $participantlist = array_merge($participantlist, $scan->participants->lists('name_first', 'id')->all());

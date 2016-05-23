@@ -21,6 +21,7 @@ Route::group(['middleware' => 'web'], function () {
      *  Beheerder
      */
     Route::get('api/verbeteracties/{id}', ['as' => 'temper', 'uses' => 'WerkagendasController@verbeteracties']);
+    Route::get('api/updateActie/', ['as' => 'temp2', 'uses' => 'WerkagendasController@updateActie']);
 
     Route::resource('scans', 'ScansController');
     Route::resource('themas', 'ThemasController');
@@ -56,7 +57,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('scans/{scan}/werkagendamailen', ['as' => 'scans.werkagendamailen', 'uses' => 'ScansController@werkagendamailen']);
 
     Route::post('scans/{scan}/actieoverzicht', ['as' => 'werkagendas.store_changes', 'uses' => 'WerkagendasController@store_changes']);
-    Route::post('myAjaxCallURI', 'MyController@method');
 
 
 

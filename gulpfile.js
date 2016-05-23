@@ -13,7 +13,10 @@ elixir(function(mix) {
     );
 
     // Compile JavaScript
-    mix.browserify('main.js');
+    // mix.browserify('main.js');
+    mix.browserify("main.js", "public/js");
+
+    mix.scripts("quest.js", "public/js", "resources/assets/js");
 
     mix.scripts(
         ['modernizr/modernizr.js', 'jquery/dist/jquery.js', 'foundation-sites/dist/foundation.js'], // Source files. You can also selective choose only some components

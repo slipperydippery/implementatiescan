@@ -2,27 +2,8 @@ var Vue = require('vue');
 
 Vue.use(require('vue-resource'));
 
-// import Actie from './components/Actie.vue';
-// import Acties from './components/Acties.vue';
-
-Vue.component('acties', {
-	template: '#acties-template',
-	data() {
-		return {
-			list: [],
-			themas: themas
-		};
-	},
-
-	created() {
-
-	}
-});
-
-Vue.component('actie', {
-	template: '#actie-template',
-})
-
+import Actie from './components/Actie.vue';
+import Acties from './components/Acties.vue';
 
 
 new Vue({
@@ -32,7 +13,7 @@ new Vue({
 		// themas: themas
 	},
 
-	// components: { Acties, Actie },
+	components: { Acties, Actie },
 
 	ready() {
 		// alert('Ready to go!');

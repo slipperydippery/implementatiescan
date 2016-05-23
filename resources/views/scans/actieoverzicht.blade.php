@@ -15,38 +15,8 @@
 
 <div class="row page-content">
 	<div class="large-12 columns actiepunten">
-	<actie></actie>
 		<acties></acties>
-		@foreach($scan->scanmodel->themas as $thema)
 
-			<div class="row">
-				<div class="large-12">
-					<div class="row">	
-						<div class="large-3 actie-thema actie-thema-kop actiepunt-es columns"> {{ $thema->title }} </div>
-						<div class="large-3 actie-thema actiepunt-es columns">Omschrijving</div>
-						<div class="large-3 actie-thema actiepunt-es columns">Trekker</div>
-						<div class="large-3 actie-thema actiepunt-es columns">Betrokkenen</div>
-
-					
-					</div>
-					<?php $verbeteracties = $thema->verbeteracties ?>
-					<?php $thema_id = $thema->id ?>
-
-					@foreach($thema->questions as $question)
-						@if($question->verbeteractie->active == true)
-							@include('scans.partials.verbeteractieinvoeren', [$question, $participantlist])
-
-						@endif
-					@endforeach
-					<div class="row actie-rij">	
-						<div class="large-3 columns actie-omschrijving">+</div>
-						<div class="large-9 columns">
-
-						</div>
-					</div>
-				</div>
-			</div>
-		@endforeach
 	</div>
 </div>
 <div class="row">
