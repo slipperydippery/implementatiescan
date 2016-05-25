@@ -121,6 +121,10 @@ class ScansController extends Controller
         //Goto Resultaat
         else if ($question_nr == (count($thema->questions) + 1))
         {
+            JavaScript::put([
+                'scan' => $scan,
+                'thema' => $thema->id
+            ]);
             return view ('scans.themaresultaat', compact('scan', 'thema', 'thema_nr', 'question_nr'));
         }
         //Goto next thema or verbeteracties
@@ -195,7 +199,16 @@ class ScansController extends Controller
 
     public function algemeenbeeldresultaat(Scan $scan)
     {
-
+        $instanties = [];
+        foreach($scan->instanties as $instantie)
+        {
+            $instanties[] = $instantie->with('participants')->get();
+        }
+        JavaScript::put([
+            'scan' => $scan,
+            'thema_id' => 0,
+            'instanties' => $instanties,
+        ]);
         return view ('scans.algemeenbeeldresultaat', compact('scan'));
     }
 
@@ -222,10 +235,16 @@ class ScansController extends Controller
         {
             $themalist[$thema->id] = $thema;
         }
+        $participantlist = [];
+        foreach($scan->participants as $participant)
+        {
+            $participantlist[] = $participant;
+        }
         // JavaScript::put($themalist);
         JavaScript::put([
             'themas' => $themalist,
-            'scan' => $scan
+            'scan' => $scan,
+            'participants' => $participantlist,
         ]);
         $participantlist["0"] = ' ';
         $participantlist = array_merge($participantlist, $scan->participants->lists('name_first', 'id')->all());

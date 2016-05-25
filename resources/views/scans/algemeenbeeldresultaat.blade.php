@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.scan')
 
 @section('content')
 <div class="row page-heading">
@@ -15,37 +15,12 @@
 </div>
 
 <div class="row page-content">
-	<div class="large-12 columns algemeenbeeldslider--group">
-		<div class="row sliders-sub slider-gemiddeld">
-			<div class="large-2 small-2 small-2 columns">Gemiddeld</div>
-			<div class="large-10 small-10 small-10 columns">
-				<!-- Slider -->
-				<div class="small-12 columns">
-					<div class="slider" data-slider data-initial-start="50">
-						<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
-						<span class="slider-fill" data-slider-fill></span>
-					</div>
-				</div>
-			</div>
-		</div>
-		@foreach($scan->instanties as $instantie)
-			@if(count($instantie->users) > 0)
-				<div class="row sliders-sub slider-{{$instantie->instantiemodel->id}}">
-					<div class="large-2 small-2 columns">{{ $instantie->title }}</div>
-					<div class="large-10 small-10 columns">
-						@foreach($instantie->users as $participant)
-							<!-- Slider -->
-							<div class="small-12 columns">
-							  <div class="slider" data-slider data-initial-start="{{ (count($participant->answers->intersect($scan->answers)) > 0) ? $participant->answers->intersect($scan->answers)->last()->value : '50' }}">
-							    <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
-							    <span class="slider-fill" data-slider-fill></span>
-							  </div>
-							</div>
-						@endforeach
-					</div>
-				</div>
-			@endif
-		@endforeach
+	<button class="button" @click="allAnswered">@{{ unanswered }} vragen zijn nog onbeantwoord</button>
+	<div class="large-12 columns algemeenbeeldslider--group" v-show="showMe">
+
+
+		<scan-slider></scan-slider>
+
 
 	</div>
 </div>

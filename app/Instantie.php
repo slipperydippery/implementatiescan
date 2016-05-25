@@ -17,7 +17,7 @@ class Instantie extends Model
     	return $this->belongsTo('App\Scan');
     }
 
-    public function users()
+    public function participants()
     {
     	return $this->belongsToMany('App\User');
     }

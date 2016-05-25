@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.scan')
 
 @section('content')
 <div class="row page-heading">
@@ -20,7 +20,7 @@
 		<h4>Aan deze scan doen mee: </h4>
 
 		@foreach($scan->instanties as $instantie)
-			@foreach($instantie->users as $participant)
+			@foreach($instantie->participants as $participant)
 				@if($participant->id == Auth::user()->id)
 					<a data-open="userModal"> 
             		<div class="large-2 column submitted-user callout success">

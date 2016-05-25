@@ -1,5 +1,7 @@
 <?php
 
+use App\Scan;
+use App\User;
 use App\Thema;
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +20,20 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
 
     /**
+     * API Calls
+     */
+    Route::get('/api/scan/{scan}/participants', function(Scan $scan) { return Scan::where('id', '=', '2')->with('participants')->with('instanties')->get(); } );
+    Route::get('/api/scan/{scan}/participantsininstantie', 'ApiController@participantsininstantie');
+    Route::get('/api/scan/{scan}/thema/{thema_id}/themaanswered', 'ApiController@themaanswered');
+    Route::get('/api/scan/{scan}/thema/{thema_id}/user/{user}/slidervalue', 'ApiController@slidervalue');
+    Route::get('/api/verbeteracties/{id}', ['as' => 'temper', 'uses' => 'WerkagendasController@verbeteracties']);
+    Route::patch('/api/scan/{scan}/thema/{thema_id}/user/{user}/setslidervalue', 'ApiController@setslidervalue');
+    Route::get('/api/scan/{scan}/thema/{thema}/getParticipantABValues', 'ApiController@getParticipantABValues');
+
+    /**
      *  Beheerder
      */
-    Route::get('api/verbeteracties/{id}', ['as' => 'temper', 'uses' => 'WerkagendasController@verbeteracties']);
-    Route::get('api/updateActie/', ['as' => 'temp2', 'uses' => 'WerkagendasController@updateActie']);
+    Route::put('api/updateActie/', 'WerkagendasController@updateActie');
 
     Route::resource('scans', 'ScansController');
     Route::resource('themas', 'ThemasController');

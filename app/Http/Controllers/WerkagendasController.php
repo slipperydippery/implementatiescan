@@ -50,7 +50,7 @@ class WerkagendasController extends Controller
     	return redirect()->back();
     }
 
-    public function updateActie()
+    public function updateActie(Request $request)
     {
         return 'yeah';
         

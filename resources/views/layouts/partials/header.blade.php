@@ -10,6 +10,9 @@
     <meta name="csrf-token" value="{{ csrf_token() }}">
     <link href="{{ URL::asset('/css/app.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('/css/pikaday.css') }}" rel="stylesheet">
+    
+    {{-- This is the token Laravel requires for non-GET requests --}}
+    <meta name="token" id="token" value="{{ csrf_token() }}">
 
 
     <script src="{{ URL::asset('js/modernizr.js') }}"></script>

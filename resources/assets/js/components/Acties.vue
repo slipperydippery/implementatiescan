@@ -1,6 +1,9 @@
 <template>
 
 	<div class="row" v-for="thema in themas">
+	{{ thema.pivot.scanmodel_id }}
+	pliep
+
 			<div class="large-12">
 				<div class="row">	
 					<div class="large-3 actie-thema actie-thema-kop actiepunt-es columns"> {{ thema.title }} </div>

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.scan')
 
 @section('content')
 <div class="row page-heading">
@@ -14,9 +14,10 @@
 </div>
 
 <div class="row page-content">
+	<button class="button" @click="allAnswered">@{{ unanswered }} vragen zijn nog onbeantwoord</button>
 
 	{!! Form::open(['route' => ['scans.store_prebeteracties', $scan, $thema]]) !!}
-		<div class="large-12 columns algemeenbeeldslider--group">
+		<div class="large-12 columns algemeenbeeldslider--group" v-show="showMe">
 			<div class="row sliders-sub slider-gemiddeld__thema">
 				<div class="large-2 small-2 columns slider-empty">.
 				 </div>
