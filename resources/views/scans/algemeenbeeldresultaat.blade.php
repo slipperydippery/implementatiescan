@@ -16,13 +16,9 @@
 
 <div class="row page-content">
 	<button class="button" @click="allAnswered">@{{ unanswered }} vragen zijn nog onbeantwoord</button>
-	<div class="large-12 columns algemeenbeeldslider--group" v-show="showMe">
-
-
+	
 		<scan-slider></scan-slider>
 
-
-	</div>
 </div>
 @stop
 

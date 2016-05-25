@@ -1,32 +1,36 @@
 <template>
-	<div class="row sliders-sub slider-gemiddeld">
-		<div class="large-2 small-2 columns">Gemiddeld</div>
-		<div class="large-10 small-10 columns">
-			<div class="rangeresult">
-				<div class="rangeresult__value" 
-					:style="{ width: cssPercent(averageValue) }"
-				>
+	{{ allComplete }}
+	<div class="large-12 columns algemeenbeeldslider--group" v-show="allComplete">
+		<div class="row sliders-sub slider-gemiddeld">
+			<div class="large-2 small-2 columns">Gemiddeld</div>
+			<div class="large-10 small-10 columns">
+				<div class="rangeresult">
+					<div class="rangeresult__value" 
+						:style="{ width: cssPercent(averageValue) }"
+					>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="row sliders-sub" 
-		v-for="instantie in instantiePartValues" 
-		:class="'slider-'+instantie.id" 
-		v-show="instantie.participants.length"
-	>
-		<div class="large-2 small-2 columns">
-			{{ instantie.title }}
-		</div>
-		<div class="large-10 small-10 columns">
-			<div class="rangeresult" 
-				v-for="participant in instantie.participants" 
-				:participant="participant"
-			>
-				<div class="rangeresult__value" 
-					:style="{ width: cssPercent(participant.abvalue.value) }"
+		<div class="row sliders-sub" 
+			v-for="instantie in instantiePartValues" 
+			:class="'slider-'+instantie.id" 
+			v-show="instantie.participants.length"
+		>
+			<div class="large-2 small-2 columns">
+				{{ instantie.title }}
+			</div>
+			<div class="large-10 small-10 columns">
+				<div class="rangeresult" 
+					v-for="participant in instantie.participants" 
+					:participant="participant"
 				>
+					<div class="rangeresult__value" 
+						v-if="participant.abvalue != null"
+						:style="{ width: cssPercent(participant.abvalue.value) }"
+					>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -45,6 +49,7 @@
 		data() {
 			return {
 				instantiePartValues: [],
+				allComplete: false,
 				instanties: instanties,
 				scan: scan,
 				thema_id: thema_id,
@@ -82,10 +87,15 @@
 					for (var parts in this.instantiePartValues[insts].participants)
 					{
 						participantcount++;
-						totalValue += this.instantiePartValues[insts].participants[parts].abvalue.value;
+						if (this.instantiePartValues[insts].participants[parts].abvalue != null) {
+							totalValue += this.instantiePartValues[insts].participants[parts].abvalue.value;
+						} else {
+							this.allComplete = false;
+							return 50;
+						}
 					}
-					// console.log(this.instantiePartValues[insts]);
 				}
+				this.allComplete = true;
 				return (totalValue / participantcount);
 			}
 		},

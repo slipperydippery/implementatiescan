@@ -11111,6 +11111,7 @@ exports.default = {
 	data: function data() {
 		return {
 			instantiePartValues: [],
+			allComplete: false,
 			instanties: instanties,
 			scan: scan,
 			thema_id: thema_id
@@ -11145,17 +11146,22 @@ exports.default = {
 			for (var insts in this.instantiePartValues) {
 				for (var parts in this.instantiePartValues[insts].participants) {
 					participantcount++;
-					totalValue += this.instantiePartValues[insts].participants[parts].abvalue.value;
+					if (this.instantiePartValues[insts].participants[parts].abvalue != null) {
+						totalValue += this.instantiePartValues[insts].participants[parts].abvalue.value;
+					} else {
+						this.allComplete = false;
+						return 50;
+					}
 				}
-				// console.log(this.instantiePartValues[insts]);
 			}
+			this.allComplete = true;
 			return totalValue / participantcount;
 		}
 	}
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row sliders-sub slider-gemiddeld\">\n\t\t<div class=\"large-2 small-2 columns\">Gemiddeld</div>\n\t\t<div class=\"large-10 small-10 columns\">\n\t\t\t<div class=\"rangeresult\">\n\t\t\t\t<div class=\"rangeresult__value\" :style=\"{ width: cssPercent(averageValue) }\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n\t<div class=\"row sliders-sub\" v-for=\"instantie in instantiePartValues\" :class=\"'slider-'+instantie.id\" v-show=\"instantie.participants.length\">\n\t\t<div class=\"large-2 small-2 columns\">\n\t\t\t{{ instantie.title }}\n\t\t</div>\n\t\t<div class=\"large-10 small-10 columns\">\n\t\t\t<div class=\"rangeresult\" v-for=\"participant in instantie.participants\" :participant=\"participant\">\n\t\t\t\t<div class=\"rangeresult__value\" :style=\"{ width: cssPercent(participant.abvalue.value) }\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t{{ allComplete }}\n\t<div class=\"large-12 columns algemeenbeeldslider--group\" v-show=\"allComplete\">\n\t\t<div class=\"row sliders-sub slider-gemiddeld\">\n\t\t\t<div class=\"large-2 small-2 columns\">Gemiddeld</div>\n\t\t\t<div class=\"large-10 small-10 columns\">\n\t\t\t\t<div class=\"rangeresult\">\n\t\t\t\t\t<div class=\"rangeresult__value\" :style=\"{ width: cssPercent(averageValue) }\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"row sliders-sub\" v-for=\"instantie in instantiePartValues\" :class=\"'slider-'+instantie.id\" v-show=\"instantie.participants.length\">\n\t\t\t<div class=\"large-2 small-2 columns\">\n\t\t\t\t{{ instantie.title }}\n\t\t\t</div>\n\t\t\t<div class=\"large-10 small-10 columns\">\n\t\t\t\t<div class=\"rangeresult\" v-for=\"participant in instantie.participants\" :participant=\"participant\">\n\t\t\t\t\t<div class=\"rangeresult__value\" v-if=\"participant.abvalue != null\" :style=\"{ width: cssPercent(participant.abvalue.value) }\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
