@@ -3735,7 +3735,7 @@ main {
  *  AUTH
  */
 .loginform {
-  margin-top: 15em; }
+  margin-top: 2rem; }
 
 /**
  *  INVOEREN DEELNEMERS
@@ -3896,6 +3896,13 @@ main {
 /**
   *  ALGEMEENBEELDRESULTAAT
   */
+.unanswered {
+  display: block;
+  text-align: center;
+  font-size: 2rem;
+  padding: 4rem 0;
+  color: #22373e; }
+
 .sliders-sub {
   padding: .5rem 0;
   height: 5rem;

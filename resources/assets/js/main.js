@@ -9,10 +9,10 @@ var Vue = require('vue');
 Vue.use(require('vue-resource'));
 
 
-
 import Actie from './components/Actie.vue';
 import Acties from './components/Acties.vue';
 import ScanSlider from './components/ScanSlider.vue';
+import InvoerenDeelnemers from './components/InvoerenDeelnemers.vue';
 // import Algemeenbeeld from './components/Algemeenbeeld.vue';
 
 // Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('value');
@@ -29,40 +29,19 @@ new Vue({
 	// },
 
 	el: 'body', 
-	props: ['unanswered'],
+	props: [],
 	data: {
 	},
 
-	components: { Acties, Acties, ScanSlider },
+	components: { Acties, Acties, ScanSlider, InvoerenDeelnemers },
 
 	methods: {
-		checkThemaAnswered: function (scan, thema) {
-			$.get(window.location.protocol + "//" + window.location.host + '/api/scan/' + scan + '/thema/' + thema + '/themaanswered', function (response) {
-				window.unanswered = response;
-			});
-			return window.unanswered;
-		},	
-
-		setThemaAnswered: function (answered)
-		{
-			this.unanswered = answered;
-		},
-
-		allAnswered: function () {
-		}
 	},
 
 	computed: {
-		showMe: function () {
-			return this.unanswered == 0 ? true : false;
-		}
 	},
 
 	ready() {
-        var self = this;
-		setInterval(function () {
-			self.unanswered = this.checkThemaAnswered(scan.id, thema_id);
-		}.bind(self), 1000);
 	}
 
 });

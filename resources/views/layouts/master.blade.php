@@ -12,9 +12,15 @@
     <div class="sidetext">
       <div class="sidetext__inner">
         <span class="sidetext__title">Implementatiescan</span>
+        @if(isset($scan))
+          <span class="sidetext__sub">Regio {{ $scan->regio }}</span>
+        @endif
       </div>
     </div>
         
+    <div class="navbarleft__hamburger"></div>
+     @include('layouts.partials.navbarleft')
+
 
     <div id="content">
 
@@ -25,10 +31,10 @@
         @yield('content')
     </div>
 
-	</main>
+  </main>
 
 <div class="site-footer">
-	@yield('site-footer')	
+  @yield('site-footer') 
 </div>
 
 

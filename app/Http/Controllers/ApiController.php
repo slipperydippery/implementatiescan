@@ -101,4 +101,30 @@ class ApiController extends Controller
     	}
     	return $instantiePartValues;
     }
+
+    public function participants(Scan $scan)
+    {
+    	$instanties = [];
+    	foreach($scan->instanties as $instantie)
+    	{
+    		$thisinstantie['participants'] = [];
+    		$thisinstantie['id'] = $instantie->id;
+    		$thisinstantie['title'] = $instantie->title;
+    		$participants = [];
+	    	foreach($instantie->participants as $participant)
+    		{
+    			$thisparticipant = [];
+    			$thisparticipant['id'] = $participant->id;
+    			$thisparticipant['name_first'] = $participant->name_first;
+    			$thisparticipant['name_last'] = $participant->name_last;
+    			$thisparticipant['email'] = $participant->email;
+    			$thisparticipant['instantie_id'] = $participant->instanties->intersect($scan->instanties)->first()->id;
+    			(count($participant->beheert->intersect([$scan])) > 0) ? $thisparticipant['beheerder'] = true : $thisparticipant['beheerder'] = false;
+    			$participants[] = $thisparticipant;
+    		}
+    		$thisinstantie['participants'] = $participants;
+    		$instanties[$instantie->title] = $thisinstantie;
+    	}
+    	return $instanties;
+    }
 }

@@ -26,13 +26,13 @@
 	<div class="small-9 columns">
 		<div class="row">
 			<div class="small-4 columns triblock">
-				<a href="{{ URL::to('inlog_voorzitter') }}" role="button" class="title_button">
+				<a href="{{ URL::route('voorzitter.scans') }}" role="button" class="title_button">
 		    		<img src="{{asset('img/gearicon.png')}}">
 					<span class="">Scan Inrichten </span>
 				</a>
 			</div>
 			<div class="small-4 columns triblock">
-				<a href="{{ URL::route('scans.intro', [2]) }}" role="button" class="title_button">
+				<a href="{{ URL::route('scans.start') }}" role="button" class="title_button">
 		    		<img src="{{asset('img/scan.png')}}"><br>
 					<span class="">Scan Starten </span>
 				</a>

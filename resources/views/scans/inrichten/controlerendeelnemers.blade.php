@@ -28,7 +28,7 @@ Op de volgende pagina staat een email klaar die u eventueel kunt aanpassen en aa
 			<div class="large-12 columns">
 				
 				@foreach($scan->instanties as $instantie)
-					@foreach($instantie->users as $participant)
+					@foreach($instantie->participants as $participant)
 						<div class="large-2 column submitted-user">
 							<a href=" {{ URL::route('scans.removeuser', [$scan, $participant]) }} " class="close-button" aria-label="Close alert" type="button">
 							    <span aria-hidden="true">&times;</span>

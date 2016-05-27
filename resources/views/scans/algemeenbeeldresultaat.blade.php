@@ -15,7 +15,6 @@
 </div>
 
 <div class="row page-content">
-	<button class="button" @click="allAnswered">@{{ unanswered }} vragen zijn nog onbeantwoord</button>
 	
 		<scan-slider></scan-slider>
 

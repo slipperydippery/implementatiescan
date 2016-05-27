@@ -26,9 +26,8 @@ class ScansController extends Controller
      */
     public function index()
     {
-        $scan = Scan::findOrFail(2);
         $scans = Scan::get();
-        return view ('scans.index', compact ('scans', 'scan'));
+        return view ('scans.index', compact ('scans'));
     }
 
     /**
@@ -38,11 +37,10 @@ class ScansController extends Controller
      */
     public function create()
     {
-        $scan = Scan::findOrFail(1);
         $videolist = Video::lists('title', 'id');
         $scanmodels = Scanmodel::findOrFail(1)->instantiemodels->lists('title', 'id');
         // return ($scanmodels);
-        return view ('scans.create', compact('scanmodels', 'scan'));
+        return view ('scans.create', compact('scanmodels'));
     }
 
     /**
@@ -147,9 +145,28 @@ class ScansController extends Controller
         }
     }
 
+    public function start()
+    {
+        $scans = Auth::user()->scans;
+        if(count($scans) > 1)
+        {
+            return Redirect::route('scans.userscans');
+        } elseif (count($scans) < 1) {
+            return Redirect::route('home');
+        }
+        $scan = $scans->first();
+        return Redirect::route('scans.intro', compact('scan'));
+
+    }
+
+    public function userscans()
+    {
+        $scans = Auth::user()->scans;
+        return view('scans.userscans', compact('scans'));
+    }
+
     public function intro(Scan $scan)
     {
-        Auth::loginUsingId(1);
         $video = $scan->scanmodel->video;
         return view ('scans.intro', compact('video', 'scan'));
     }
@@ -159,7 +176,7 @@ class ScansController extends Controller
         $instantieoptions = [];
         foreach($scan->instanties as $instantie)
         {
-            if(count($instantie->users) < 2)
+            if(count($instantie->participants) < 2)
             {
                 $instantieoptions[$instantie->id] = $instantie->title ;
             }
@@ -199,15 +216,15 @@ class ScansController extends Controller
 
     public function algemeenbeeldresultaat(Scan $scan)
     {
-        $instanties = [];
-        foreach($scan->instanties as $instantie)
-        {
-            $instanties[] = $instantie->with('participants')->get();
-        }
+        // $instanties = [];
+        // foreach($scan->instanties as $instantie)
+        // {
+        //     $instanties[] = $instantie->with('participants')->get();
+        // }
         JavaScript::put([
             'scan' => $scan,
             'thema_id' => 0,
-            'instanties' => $instanties,
+            // 'instanties' => $instanties,
         ]);
         return view ('scans.algemeenbeeldresultaat', compact('scan'));
     }
@@ -292,24 +309,33 @@ class ScansController extends Controller
         return view('scans.werkagendamailen', compact('scan'));
     }
 
-    public function inlog_voorzitter(Scan $scan)
+    public function voorzitterscans(Scan $scan)
     {
-        $scan = Scan::findOrFail(2);
-        return view ('pages.voorzitter.inlog_voorzitter', compact('scan'));
+        $user = Auth::user();
+        $scans = $user->beheert->all();
+        if(count($scans) > 1)
+        {
+            return view ('scans.voorzitterscans', compact('scans'));
+        } elseif (count($scans) < 1){
+            return Redirect::route('home');
+        }
+        return Redirect::route('scans.invoerendeelnemers', $user->beheert->first());
+
     }
 
     public function invoerendeelnemers(Scan $scan)
     {
-        Auth::loginUsingId(1);
         $instantieoptions = [];
         foreach($scan->instanties as $instantie)
         {
-            if(count($instantie->users) < 2)
+            if(count($instantie->participants) < 2)
             {
                 $instantieoptions[$instantie->id] = $instantie->title;
             }
         }
-        // return $instantieoptions;
+        JavaScript::put([
+            'scan' => $scan,
+        ]);
         return view ('scans.inrichten.invoerendeelnemers', compact('scan', 'instantieoptions'));
     }
 
@@ -319,7 +345,7 @@ class ScansController extends Controller
         foreach($scan->instanties as $instantie)
         {
             $hasinstantie = ($user->instanties->intersect($scan->instanties) == $instantie);
-            if(count($instantie->users) < 2 || $hasinstantie )
+            if(count($instantie->participants) < 2 || $hasinstantie )
             {
                 $instantieoptions[$instantie->id] = $instantie->title;
             }
@@ -340,7 +366,7 @@ class ScansController extends Controller
         $user = User::where('email', '=', $request->email)->first();
         $user->scans()->save($scan);
         $instantie = Instantie::findOrFail($request->instantie);
-        $instantie->users()->save($user);
+        $instantie->participants()->save($user);
 
         return Redirect::back();    
     }
@@ -367,7 +393,7 @@ class ScansController extends Controller
         $user = User::where('email', '=', $request->email)->first();
         $user->scans()->save($scan);
         $instantie = Instantie::findOrFail($request->instantie);
-        $instantie->users()->save($user);
+        $instantie->participants()->save($user);
 
         /**
          * Send email

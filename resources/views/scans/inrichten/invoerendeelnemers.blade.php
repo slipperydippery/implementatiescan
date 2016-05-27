@@ -36,10 +36,11 @@
 				
 			</div>
 		</div>
+		<invoeren-deelnemers></invoeren-deelnemers>
 		<?php $participant = $scan->beheerder;?>
 		@include('scans.inrichten.partials.participantrow', [$participant, $beheerder=true])
 		@foreach($scan->instanties as $instantie)
-			@foreach($instantie->users as $participant)
+			@foreach($instantie->participants as $participant)
 				@if($participant->id != $scan->beheerder->id)
 					@include('scans.inrichten.partials.participantrow', [$participant, $beheerder=false])
 				@endif

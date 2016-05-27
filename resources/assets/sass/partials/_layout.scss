@@ -298,7 +298,7 @@ $sidetext_thickness : 18rem;
  */
 
 .loginform {
-	margin-top: 15em;
+	margin-top: 2rem;
 }
 
 /**
@@ -525,6 +525,15 @@ $sidetext_thickness : 18rem;
  /**
   *  ALGEMEENBEELDRESULTAAT
   */
+ 
+ .unanswered {
+	display: block;
+	text-align: center;
+	font-size: 2rem;
+	padding: 4rem 0;
+	color: #22373e;
+ }
+
  .algemeenbeeldslider--group {
  	// margin-top: 1rem;
  	// border: 1px solid red;

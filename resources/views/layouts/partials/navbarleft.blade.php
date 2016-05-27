@@ -4,6 +4,30 @@
 		<li >
 			<a href="{{ URL::to('/') }}">Home</a>
 		</li>
+@if(!isset($scan))
+	@if(Auth::check() && count(Auth::user()->beheert))
+		<li>
+			<a href="#">Beheer Scans</a>
+			<ul class="menu vertical nested">
+				@foreach(Auth::user()->beheert as $beheerscan)
+					<li><a href=" {{ URL::route('scans.invoerendeelnemers', $beheerscan) }} "> {{ $beheerscan->title }}</a></li>
+				@endforeach
+			</ul>
+		</li>
+	@endif
+	@if(Auth::check() && count(Auth::user()->scans))
+		<li>
+			<a href="#">Participeer in Scans</a>
+			<ul class="menu vertical nested">
+				@foreach(Auth::user()->scans as $participeerscan)
+					<li><a href=" {{ URL::route('scans.intro', $participeerscan) }} "> {{ $participeerscan->title }} </a></li>
+				@endforeach
+			</ul>
+		</li>
+	@endif
+@endif
+@if(isset($scan))
+	@if(count(Auth::user()->beheert->intersect([$scan])))
 		<li >
 			<a href="#">Scan inrichten</a>
 			<ul class="menu vertical nested ">
@@ -13,6 +37,7 @@
 				<li><a href="{{ URL::route('scans.uitnodigendeelnemers', $scan) }}">Mailen van uitnodiging</a></li>
 			</ul>
 		</li>
+	@endif
 		<li>
 			<a href="#">Scan deel 1</a>
 			<ul class="menu vertical nested">	
@@ -59,5 +84,14 @@
 				<li><a href=" {{ URL::route('scans.werkagendamailen', $scan) }} ">Mailen van werkagenda</a></li>
 			</ul>
 		</li>
+@endif
+		<li><a href=" {{ URL::route('databank') }} ">Databank</a></li>
+@if(Auth::check())
+		<li><a href=" {{ URL::to('logout') }} ">Log uit</a></li>
+@endif
+@if(!Auth::check())
+		<li><a href=" {{ URL::to('login') }} ">Log in</a></li>
+@endif
+<!-- Do some Auth Routes? -->
 	</ul>
 </div>

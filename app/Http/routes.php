@@ -16,9 +16,12 @@ use App\Thema;
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
-
     Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
+    Route::get('/databank', ['as' => 'databank', 'uses' => 'PagesController@databank']);
 
+});
+
+Route::group(['middleware' => ['web', 'auth']], function () {
     /**
      * API Calls
      */
@@ -29,6 +32,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/api/verbeteracties/{id}', ['as' => 'temper', 'uses' => 'WerkagendasController@verbeteracties']);
     Route::patch('/api/scan/{scan}/thema/{thema_id}/user/{user}/setslidervalue', 'ApiController@setslidervalue');
     Route::get('/api/scan/{scan}/thema/{thema}/getParticipantABValues', 'ApiController@getParticipantABValues');
+    Route::get('/api/scan/{scan}/participants', 'ApiController@participants');
 
     /**
      *  Beheerder
@@ -50,7 +54,8 @@ Route::group(['middleware' => 'web'], function () {
     /**
      * Scan Deelnemen
      */
-
+    Route::get('/scans/start/router', ['as' => 'scans.start', 'uses' => 'ScansController@start']);
+    Route::get('/scans/start/userscans', ['as' => 'scans.userscans', 'uses' => 'ScansController@userscans']);
     Route::get('/scans/{scans}/intro', ['as' => 'scans.intro', 'uses' => 'ScansController@intro']);
     Route::get('/scans/{scans}/kennismaken', ['as' => 'scans.kennismaken', 'uses' => 'ScansController@kennismaken']);
     Route::get('/scans/{scan}/removeuser/{user}', ['as' => 'scans.removeuser', 'uses' => 'ScansController@removeuser']);
@@ -75,8 +80,8 @@ Route::group(['middleware' => 'web'], function () {
     /**
      * Scan inrichten
      */
+    Route::get('/voorzitter/scans', ['as' => 'voorzitter.scans', 'uses' => 'ScansController@voorzitterscans']);
     
-    Route::get('/inlog_voorzitter', ['as' => '/scans{scan}/inlog_voorzitter', 'uses' => 'ScansController@inlog_voorzitter']);
     Route::get('/scans/{scan}/inrichten/invoerendeelnemers', ['as' => 'scans.invoerendeelnemers', 'uses' => 'ScansController@invoerendeelnemers']);
     Route::get('/scans/{scan}/inrichten/editinvoerdeelnemer/{user}', ['as' => 'scans.editinvoerdeelnemer', 'uses' => 'ScansController@editinvoerdeelnemer']);
     Route::post('/scans/{scan}/inrichten/invoerendeelnemers', ['as' => 'scans.storedeelnemer', 'uses' => 'ScansController@storedeelnemer']);
@@ -85,12 +90,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/scans/{scan}/inrichten/uitnodigendeelnemers', ['as' => 'scans.post_uitnodigendeelnemers', 'uses' => 'ScansController@post_uitnodigendeelnemers']);
     Route::get('/bedankt', ['as' => 'bedankt', 'uses' => 'PagesController@bedankt']);
 
-
-
-    /**
-     * Databank
-     */
-    Route::get('/databank', ['as' => 'databank', 'uses' => 'PagesController@databank']);
+});
 
 Route::get('/testpage', ['as' => 'testpage', 'uses' => 'PagesController@testpage']);
 Route::get('/getRequest', function()
@@ -103,123 +103,3 @@ Route::get('/getRequest', function()
 
 Route::get('/foundation', ['as' => 'foundation', 'uses' => 'PagesController@foundation']);
 
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-Route::get('/regio_gemeente', function () {
-    return view('pages.voorzitter.regio_gemeente');
-});
-
-Route::get('/deelnemers_overzicht', function () {
-    return view('pages.voorzitter.deelnemers_overzicht');
-});
-
-Route::get('/deelnemers_uitnodigen', function () {
-    return view('pages.voorzitter.deelnemers_uitnodigen');
-});
-
-Route::get('/evenement_beheren', function () {
-    return view('pages.voorzitter.evenement_beheren');
-});
-
-
-
-
-Route::get('regio', function () {
-    return view('pages.regio');
-});
-
-Route::get('/metwie', function (){
-	return view('pages.metwie');
-});
-
-Route::get('/wacht_pre_algemeen', function (){
-	return view('pages.wacht_pre_algemeen');
-});
-
-Route::get('/algemeenbeeld_participant', function (){
-	return view('pages.algemeenbeeld_participant');
-});
-
-
-
-
-
-
-
-Route::get('/intro', function (){
-	return view('pages.voorzitter.intro');
-});
-
-Route::get('/wie', function (){
-	return view('pages.voorzitter.wie');
-});
-
-Route::get('/algemeenbeeld', function (){
-	return view('pages.voorzitter.algemeenbeeld');
-});
-
-Route::get('/algemeenbeeldresultaat', function (){
-	return view('pages.voorzitter.algemeenbeeldresultaat');
-});
-
-Route::get('/thema1', function (){
-	return view('pages.voorzitter.thema1');
-});
-
-Route::get('/thema1vraag1', function (){
-	return view('pages.voorzitter.thema1vraag1');
-});
-
-Route::get('/thema1vraag2', function (){
-	return view('pages.voorzitter.thema1vraag2');
-});
-
-Route::get('/thema1vraag3', function (){
-	return view('pages.voorzitter.thema1vraag3');
-});
-
-Route::get('/thema1vraag4', function (){
-	return view('pages.voorzitter.thema1vraag4');
-});
-
-Route::get('/thema1vraag5', function (){
-	return view('pages.voorzitter.thema1vraag5');
-});
-
-Route::get('/thema1resultaat', function (){
-	return view('pages.voorzitter.thema1resultaat');
-});
-
-Route::get('/actieoverzicht', function (){
-	return view('pages.voorzitter.actieoverzicht');
-});
-
-
-
-
-
-Route::get('/verbeteracties_mailen', function (){
-	return view('pages.voorzitter.verbeteracties_mailen');
-});
-
-
-
-
-
-
-
-Route::get('/waar', function (){
-	return view('pages.waar');
-});

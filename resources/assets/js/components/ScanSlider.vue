@@ -1,7 +1,10 @@
 <template>
-	{{ allComplete }}
-	<div class="large-12 columns algemeenbeeldslider--group" v-show="allComplete">
-		<div class="row sliders-sub slider-gemiddeld">
+	<div class="large-12 columns algemeenbeeldslider--group">
+		<span class="unanswered" v-if=" ! allComplete ">
+			Nog {{ unanswered }} deelnemers te gaan
+		</span>
+		<span style="display:none"> {{ averageValue }} </span>
+		<div class="row sliders-sub slider-gemiddeld" v-if="allComplete">
 			<div class="large-2 small-2 columns">Gemiddeld</div>
 			<div class="large-10 small-10 columns">
 				<div class="rangeresult">
@@ -17,6 +20,7 @@
 			v-for="instantie in instantiePartValues" 
 			:class="'slider-'+instantie.id" 
 			v-show="instantie.participants.length"
+			v-if="allComplete"
 		>
 			<div class="large-2 small-2 columns">
 				{{ instantie.title }}
@@ -50,6 +54,7 @@
 			return {
 				instantiePartValues: [],
 				allComplete: false,
+				unanswered: 12,
 				instanties: instanties,
 				scan: scan,
 				thema_id: thema_id,
@@ -82,6 +87,7 @@
 			averageValue: function () {
 				var participantcount = 0;
 				var totalValue = 0;
+				var unanswered = 0;
 				for (var insts in this.instantiePartValues)
 				{
 					for (var parts in this.instantiePartValues[insts].participants)
@@ -90,10 +96,15 @@
 						if (this.instantiePartValues[insts].participants[parts].abvalue != null) {
 							totalValue += this.instantiePartValues[insts].participants[parts].abvalue.value;
 						} else {
-							this.allComplete = false;
-							return 50;
+							unanswered++;
 						}
 					}
+				}
+				if(unanswered > 0)
+				{
+					this.unanswered = unanswered;
+					this.allComplete = false;
+					return 50;
 				}
 				this.allComplete = true;
 				return (totalValue / participantcount);
