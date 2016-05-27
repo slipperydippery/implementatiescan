@@ -55,7 +55,7 @@
 				instantiePartValues: [],
 				allComplete: false,
 				unanswered: 12,
-				instanties: instanties,
+				// instanties: instanties,
 				scan: scan,
 				thema_id: thema_id,
 			};

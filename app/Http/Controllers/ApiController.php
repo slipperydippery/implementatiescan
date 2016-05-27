@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Scan;
 use App\User;
 use App\Thema;
+use App\Instantie;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -120,11 +121,25 @@ class ApiController extends Controller
     			$thisparticipant['email'] = $participant->email;
     			$thisparticipant['instantie_id'] = $participant->instanties->intersect($scan->instanties)->first()->id;
     			(count($participant->beheert->intersect([$scan])) > 0) ? $thisparticipant['beheerder'] = true : $thisparticipant['beheerder'] = false;
+                // $thisparticipant['edit'] = false;
     			$participants[] = $thisparticipant;
     		}
     		$thisinstantie['participants'] = $participants;
     		$instanties[$instantie->title] = $thisinstantie;
     	}
     	return $instanties;
+    }
+
+    public function updateparticipant(Request $request, Scan $scan, User $user)
+    {
+        $user->name_first = $request->participant['name_first'];
+        $user->name_last = $request->participant['name_last'];
+        $user->email = $request->participant['email'];
+        $currentinstantie = $user->instanties->intersect($scan->instanties)->first();
+        $newinstantie = Instantie::findOrFail($request->instantie);
+        $user->instanties()->detach($currentinstantie);
+        $user->instanties()->attach($newinstantie);
+        $user->save();
+        return $request;
     }
 }

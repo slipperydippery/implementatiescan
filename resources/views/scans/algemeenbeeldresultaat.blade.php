@@ -15,9 +15,9 @@
 </div>
 
 <div class="row page-content">
-	
-		<scan-slider></scan-slider>
 
+		<scan-slider></scan-slider>
+		
 </div>
 @stop
 

@@ -25,6 +25,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     /**
      * API Calls
      */
+    Route::put('/api/scan/{scan}/updateparticipant/{user}', 'ApiController@updateparticipant');
     Route::get('/api/scan/{scan}/participants', function(Scan $scan) { return Scan::where('id', '=', '2')->with('participants')->with('instanties')->get(); } );
     Route::get('/api/scan/{scan}/participantsininstantie', 'ApiController@participantsininstantie');
     Route::get('/api/scan/{scan}/thema/{thema_id}/themaanswered', 'ApiController@themaanswered');
@@ -33,6 +34,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::patch('/api/scan/{scan}/thema/{thema_id}/user/{user}/setslidervalue', 'ApiController@setslidervalue');
     Route::get('/api/scan/{scan}/thema/{thema}/getParticipantABValues', 'ApiController@getParticipantABValues');
     Route::get('/api/scan/{scan}/participants', 'ApiController@participants');
+
 
     /**
      *  Beheerder

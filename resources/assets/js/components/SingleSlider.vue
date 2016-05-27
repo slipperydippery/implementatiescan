@@ -1,5 +1,6 @@
 <template>
 	<div class="rangeresult">
+	shut
 		<div class="rangeresult__value" :style="{ width: slidervaluecss }"></div>
 	</div>
 </template>

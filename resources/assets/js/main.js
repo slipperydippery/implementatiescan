@@ -19,11 +19,11 @@ import InvoerenDeelnemers from './components/InvoerenDeelnemers.vue';
 
 new Vue({
 	http: {
-      root: '/root',
-      headers: {
-        'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
-      }
-    },
+		root: '/root',
+		headers: {
+			'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
+		}
+	},
 	// headers: {
 	//   'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
 	// },
