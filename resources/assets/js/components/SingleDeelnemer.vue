@@ -7,8 +7,8 @@
 			<div class="small-3 columns"> {{ participant.email ? participant.email : " --- " }} </div>
 			<div class="small-3 columns"> {{ instantie.title }} </div>
 			<div class="small-1 columns">
-				<img :src="returnRoot +'/img/editicon.png'" class="editicon" @click="setThisEditable" data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' tabindex=1 title="Bewerk gegevens">
-				<span @click="removeParticipant">x</span>
+				<img :src="returnRoot +'/img/editicon.png'" class="editicon vuelink" @click="setThisEditable" data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' tabindex=1 title="Bewerk gegevens">
+				<a href="#" class="close-button closeicon" aria-label="Close alert" type="button" @click="removeParticipant">&times;</a>
 			</div>
 		</div>
 
@@ -25,7 +25,7 @@
 				</select>
 			</div>
 			<div class="small-1 columns">
-				<img :src="returnRoot +'/img/checkmark.png'" class="editicon"  data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' tabindex=1 title="Sla Bewerkingen op" @click="saveChanges">
+				<img :src="returnRoot +'/img/checkmark.png'" class="editicon vuelink"  data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' tabindex=1 title="Sla Bewerkingen op" @click="saveChanges">
 			</div>	
 		</div>		
 	</div>

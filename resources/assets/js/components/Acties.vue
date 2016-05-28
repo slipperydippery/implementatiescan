@@ -18,7 +18,8 @@
 </template>
 
 <script>
-import Actie from '../components/Actie.vue';
+	import Actie from '../components/Actie.vue';
+	
 	export default {
 
 		components: { Actie },

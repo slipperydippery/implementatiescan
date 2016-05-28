@@ -1,10 +1,9 @@
 <template>
 	<div class="row gebruikers_aanmelden--row" v-if=" ! isEditable ">
-		<div class="small-1 columns" @click="setThisEditable()"> 
+		<div class="small-12 columns vuelink" @click="setThisEditable()"> 
 			<img :src="returnRoot + '/img/user_dark.png'"> 
 			<span class="plus">+</span>
 		</div>
-		<div class="small-11 columns"></div>
 	</div>
 
 	<div class="row gebruikers_aanmelden--row" v-if=" isEditable ">
@@ -23,7 +22,7 @@
 			</select>
 		</div>
 		<div class="small-1 columns">
-			<img :src="returnRoot +'/img/checkmark.png'" class="editicon"  data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' tabindex=1 title="Sla Bewerkingen op" @click="saveNewParticipant">
+			<img :src="returnRoot +'/img/checkmark.png'" class="editicon vuelink"  data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' tabindex=1 title="Sla Bewerkingen op" @click="saveNewParticipant">
 		</div>	
 	</div>
 

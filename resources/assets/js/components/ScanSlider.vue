@@ -43,10 +43,9 @@
 </template>
 
 <script>
-	// import SingleSlider from '../components/SingleSlider.vue';
 	export default {
 
-		components: { /*SingleSlider*/ },
+		components: { },
 
 		props: [],
 

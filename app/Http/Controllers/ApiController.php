@@ -94,7 +94,14 @@ class ApiController extends Controller
 	    		$newpart['name_first'] = $participant->name_first;
 	    		$newpart['name_last'] = $participant->name_last;
 	    		$newpart['instantie_id'] = $participant->instanties->intersect($scan->instanties)->first();
-	    		$newpart['abvalue'] = $participant->answers->intersect($scan->answers)->first();
+                if($thema_id == 0)
+                {
+                    $newpart['abvalue'] = $participant->answers->intersect($scan->answers)->first();
+                    return ('this');
+                } else {
+                    $thema = Thema::findOrFail($thema_id);
+    	    		$newpart['abvalue'] = $participant->answers->intersect($thema->answers)->first();
+                }
 	    		$participants[] =  $newpart;
 	    	}
     		$partvalues['participants'] = $participants;

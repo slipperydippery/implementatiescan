@@ -13,6 +13,10 @@ input {
 	z-index: 100;
 }
 
+.vuelink:hover {
+	cursor: pointer;
+}
+
 
 $instantie1: #882d50;
 $instantie2: #2f5256;
@@ -306,6 +310,7 @@ $sidetext_thickness : 18rem;
  */
 
 .gebruikers_aanmelden--row {
+	position: relative;
 	height: 4rem;
 	padding-top: 1rem;
 }
@@ -313,6 +318,13 @@ $sidetext_thickness : 18rem;
 .editicon {
 	// height: 2rem !important;
 	width: auto !important;
+}
+
+.closeicon {
+	position: absolute;
+	top: .2rem;
+    right: .5rem;
+    font-size: 1.5rem;
 }
 
 .plussubmit {

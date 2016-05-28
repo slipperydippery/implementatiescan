@@ -3492,6 +3492,9 @@ table.hover tr:nth-of-type(even):hover {
 input {
   z-index: 100; }
 
+.vuelink:hover {
+  cursor: pointer; }
+
 .red {
   border: 1px solid red; }
 
@@ -3741,11 +3744,18 @@ main {
  *  INVOEREN DEELNEMERS
  */
 .gebruikers_aanmelden--row {
+  position: relative;
   height: 4rem;
   padding-top: 1rem; }
 
 .editicon {
   width: auto !important; }
+
+.closeicon {
+  position: absolute;
+  top: .2rem;
+  right: .5rem;
+  font-size: 1.5rem; }
 
 .plussubmit {
   color: #fff;
