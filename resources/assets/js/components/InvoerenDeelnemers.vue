@@ -25,21 +25,22 @@
 		</single-deelnemer>
 
 	</div>	
-	<div class="row gebruikers_aanmelden--row">
-		<div class="small-1 columns"> 
-			<img :src="returnRoot + '/img/user_dark.png'"> 
-			<span class="plus">+</span>
-		</div>
-		<div class="small-11 columns"></div>
-	</div>
+
+	<add-single-deelnemer
+		:editable.sync="editable" 
+		:availableinstanties="availableinstanties"
+	>
+	</add-single-deelnemer>
+
 </template>
 
 <script>
 	import SingleDeelnemer from '../components/SingleDeelnemer.vue';
+	import AddSingleDeelnemer from '../components/AddSingleDeelnemer.vue';
 
 	export default {
 		
-		components: { SingleDeelnemer },
+		components: { SingleDeelnemer, AddSingleDeelnemer },
 		props: [],
 
 		data() {
@@ -60,10 +61,10 @@
 			returnRoot: function () {
 				return (window.location.protocol + "//" + window.location.host);
 			},
-		
 		},
 
 		methods: {
+
 			getParticipants: function () {
 			    this.$http.get('/api/scan/' + this.scan.id + '/participants')
 			        .then(response => {

@@ -142,4 +142,36 @@ class ApiController extends Controller
         $user->save();
         return $request;
     }
+
+    public function savenewparticipant(Request $request, Scan $scan)
+    {
+        if (! User::where('email', '=', $request->participant['email'])->get()->count())
+        {
+	    	$user = new User();
+	        $user->name_first = $request->participant['name_first'];
+	        $user->name_last = $request->participant['name_last'];
+	        $user->email = $request->participant['email'];
+	        $user->save();
+        }
+        $user = User::where('email', '=', $request->participant['email'])->first();
+        if($user->scans->intersect([$scan])->count()) { return 'hello'; };
+        $instantie = Instantie::findOrFail($request->participant['instantie_id']);
+        $user->instanties()->attach($instantie);
+    	return $request->all();
+    }
+
+    public function removeparticipant(Scan $scan, User $user)
+    {
+    	if($user->instanties->intersect($scan->instanties)->count())
+    	{
+	    	$instantie = $user->instanties->intersect($scan->instanties)->first();
+	    	$user->instanties()->detach($instantie);
+    	}
+    	$user->scans()->detach($scan);
+    	return;
+    }
+
+
 }
+
+

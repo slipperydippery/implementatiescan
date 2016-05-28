@@ -2,12 +2,13 @@
 	<div class="row gebruikers_aanmelden--row" :class="{'row_beheerder' : participant.beheerder}">
 		<div v-show="! isEditable">
 			<div class="small-1 columns"> <img :src="returnRoot + '/img/user_dark.png'"> </div>
-			<div class="small-2 columns"> {{ participant.name_first }} </div>
-			<div class="small-2 columns"> {{ participant.name_last }} </div>
-			<div class="small-3 columns"> {{ participant.email }} </div>
+			<div class="small-2 columns"> {{ participant.name_first ? participant.name_first : " ---" }} </div>
+			<div class="small-2 columns"> {{ participant.name_last ? participant.name_last : " --- " }} </div>
+			<div class="small-3 columns"> {{ participant.email ? participant.email : " --- " }} </div>
 			<div class="small-3 columns"> {{ instantie.title }} </div>
 			<div class="small-1 columns">
 				<img :src="returnRoot +'/img/editicon.png'" class="editicon" @click="setThisEditable" data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' tabindex=1 title="Bewerk gegevens">
+				<span @click="removeParticipant">x</span>
 			</div>
 		</div>
 
@@ -78,9 +79,14 @@
 				this.editable = {};
 			},
 
-			removeFromInstantie: function (participant) {
-				// this.instantie.participants.$remove(participant);
-				this.$dispatch('reloadParticipants');
+			removeParticipant: function () {
+				var resource = this.$resource('/api/scan/:scan/removeparticipant/:participant');
+				var home = this;
+				resource.delete({scan: this.scan.id, participant: this.participant.id}, {})
+					.then(function (response) {
+						home.$dispatch('reloadParticipants');
+					}, function(response) {}
+				);
 			},
 
 			saveChanges: function () {
@@ -92,7 +98,7 @@
 								{participant: this.participant, instantie: this.instantie.id })
 					.then(function (response) {
 				        // success callback
-				        home.removeFromInstantie(home.participant);
+						home.$dispatch('reloadParticipants');
 						
 				    }, function (response) {
 				        // error callback
