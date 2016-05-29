@@ -121,7 +121,7 @@ class ScansController extends Controller
         {
             JavaScript::put([
                 'scan' => $scan,
-                'thema' => $thema->id
+                'thema_id' => $thema->id
             ]);
             return view ('scans.themaresultaat', compact('scan', 'thema', 'thema_nr', 'question_nr'));
         }

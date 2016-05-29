@@ -178,6 +178,33 @@ class ApiController extends Controller
     	return;
     }
 
+    public function getThemaOverzichtValues(Scan $scan, Thema $thema)
+    {
+        $themaOverzicht = [];
+        foreach($scan->instanties as $instantie)
+        {
+            $thisinstantie = [];
+            $participants = [];
+            foreach($instantie->participants as $participant)
+            {
+                $thisparticipant = [];
+                $questions =[];
+                foreach($thema->questions as $question)
+                {
+                    $thisquestion = [];
+                    $thisquestion['value'] = $question->answers->intersect($participant->answers)->first();
+                    $thisquestion['question'] = $question;
+                    $questions[$question->id] = $thisquestion;
+                }
+                $thisparticipant['questions'] = $questions;
+                $participants[$participant->id] = $thisparticipant;
+            }
+            $thisinstantie['participants'] = $participants;
+            $themaOverzicht[$instantie->title] = $thisinstantie;
+        }
+        return $themaOverzicht;
+    }
+
 
 }
 

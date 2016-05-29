@@ -28,8 +28,9 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::put('/api/scan/{scan}/updateparticipant/{user}', 'ApiController@updateparticipant');
     Route::put('/api/scan/{scan}/savenewparticipant', 'ApiController@savenewparticipant');
     Route::delete('/api/scan/{scan}/removeparticipant/{user}', 'ApiController@removeparticipant');
-    Route::get('/api/scan/{scan}/participants', function(Scan $scan) { return Scan::where('id', '=', '2')->with('participants')->with('instanties')->get(); } );
     Route::get('/api/scan/{scan}/participantsininstantie', 'ApiController@participantsininstantie');
+    Route::get('/api/scan/{scan}/thema/{thema}/getThemaOverzichtValues', 'ApiController@getThemaOverzichtValues');
+
     Route::get('/api/scan/{scan}/thema/{thema_id}/themaanswered', 'ApiController@themaanswered');
     Route::get('/api/scan/{scan}/thema/{thema_id}/user/{user}/slidervalue', 'ApiController@slidervalue');
     Route::get('/api/verbeteracties/{id}', ['as' => 'temper', 'uses' => 'WerkagendasController@verbeteracties']);
