@@ -7,14 +7,26 @@
 
 		<div class="large-3 columns">
 			<div class="form-group">
-			<textarea  class="form-control" placeholder="Actie Omschrijving" v-model="actie.omschrijving" @blur="saveActie()"></textarea>
+				<textarea  
+					class="form-control" 
+					placeholder="Actie Omschrijving" 
+					v-model="actie.omschrijving" 
+					@blur="saveActie()"
+				>
+				</textarea>
 			</div>
 		</div>
 
 		<div class="large-3 columns">
 			<div class="form-group">
-				<select v-model="actie.user_id">
-					<option v-for="participant in participants" :value="participant.id"> 
+				<select 
+					v-model="actie.user_id"
+					@blur="saveActie()"
+				>
+					<option 
+						v-for="participant in participants" 
+						:value="participant.id"
+					> 
 						{{ participant.name_first }} 
 					</option>
 				</select>
@@ -23,8 +35,8 @@
 
 		<div class="large-3 columns">
 
-			<!-- show list of betrokkenen -->
 			<div class="betrokkenen__group row">
+
 				<div class="betrokkenen__bet ">
 					<div class="actie-betrokkene"
 						v-if="!betrokkenen.length"
@@ -39,7 +51,8 @@
 						<span class="indication">-</span>
 					</div>				
 				</div>
-				<div class="betrokkenen__unbet ">
+
+				<div class="betrokkenen__unbet">
 					<div class="actie-betrokkene" 
 						v-for="betrokkene in unBetrokkenen"
 						@click="addBetrokkene(betrokkene)"
@@ -48,6 +61,7 @@
 						<span class="indication">+</span>
 					</div>
 				</div>
+
 			</div>
 
 		</div>

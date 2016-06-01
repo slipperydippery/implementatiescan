@@ -11071,7 +11071,7 @@ exports.default = {
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row actie-rij\" v-if=\"actie.active\">\t\n\n\t\t<div class=\"large-3 columns actie-omschrijving\"> \n\t\t\t{{ actie.title }} \n\t\t</div>\n\n\t\t<div class=\"large-3 columns\">\n\t\t\t<div class=\"form-group\">\n\t\t\t<textarea class=\"form-control\" placeholder=\"Actie Omschrijving\" v-model=\"actie.omschrijving\" @blur=\"saveActie()\"></textarea>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"large-3 columns\">\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<select v-model=\"actie.user_id\">\n\t\t\t\t\t<option v-for=\"participant in participants\" :value=\"participant.id\"> \n\t\t\t\t\t\t{{ participant.name_first }} \n\t\t\t\t\t</option>\n\t\t\t\t</select>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"large-3 columns\">\n\n\t\t\t<!-- show list of betrokkenen -->\n\t\t\t<div class=\"betrokkenen__group row\">\n\t\t\t\t<div class=\"betrokkenen__bet \">\n\t\t\t\t\t<div class=\"actie-betrokkene\" v-if=\"!betrokkenen.length\">\n\t\t\t\t\t+\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in betrokkenen\" @click=\"removeBetrokkene(betrokkene)\">\n\t\t\t\t\t\t{{betrokkene.name_first}}\n\t\t\t\t\t\t<span class=\"indication\">-</span>\n\t\t\t\t\t</div>\t\t\t\t\n\t\t\t\t</div>\n\t\t\t\t<div class=\"betrokkenen__unbet \">\n\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in unBetrokkenen\" @click=\"addBetrokkene(betrokkene)\">\n\t\t\t\t\t\t{{ betrokkene.name_first }}\n\t\t\t\t\t\t<span class=\"indication\">+</span>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t</div>\n\n\t</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row actie-rij\" v-if=\"actie.active\">\t\n\n\t\t<div class=\"large-3 columns actie-omschrijving\"> \n\t\t\t{{ actie.title }} \n\t\t</div>\n\n\t\t<div class=\"large-3 columns\">\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<textarea class=\"form-control\" placeholder=\"Actie Omschrijving\" v-model=\"actie.omschrijving\" @blur=\"saveActie()\">\t\t\t\t</textarea>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"large-3 columns\">\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<select v-model=\"actie.user_id\" @blur=\"saveActie()\">\n\t\t\t\t\t<option v-for=\"participant in participants\" :value=\"participant.id\"> \n\t\t\t\t\t\t{{ participant.name_first }} \n\t\t\t\t\t</option>\n\t\t\t\t</select>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"large-3 columns\">\n\n\t\t\t<div class=\"betrokkenen__group row\">\n\n\t\t\t\t<div class=\"betrokkenen__bet \">\n\t\t\t\t\t<div class=\"actie-betrokkene\" v-if=\"!betrokkenen.length\">\n\t\t\t\t\t+\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in betrokkenen\" @click=\"removeBetrokkene(betrokkene)\">\n\t\t\t\t\t\t{{betrokkene.name_first}}\n\t\t\t\t\t\t<span class=\"indication\">-</span>\n\t\t\t\t\t</div>\t\t\t\t\n\t\t\t\t</div>\n\n\t\t\t\t<div class=\"betrokkenen__unbet\">\n\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in unBetrokkenen\" @click=\"addBetrokkene(betrokkene)\">\n\t\t\t\t\t\t{{ betrokkene.name_first }}\n\t\t\t\t\t\t<span class=\"indication\">+</span>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n\t\t\t</div>\n\n\t\t</div>\n\n\t</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -11174,6 +11174,12 @@ var _Actie2 = _interopRequireDefault(_Actie);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
+	http: {
+		root: '/root',
+		headers: {
+			'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
+		}
+	},
 
 	components: { Actie: _Actie2.default },
 
@@ -11183,7 +11189,8 @@ exports.default = {
 		return {
 			scan: scan,
 			questions: [],
-			verbeteracties: []
+			verbeteracties: [],
+			showInactief: false
 		};
 	},
 	created: function created() {},
@@ -11245,6 +11252,17 @@ exports.default = {
 					}
 				}
 			}
+		},
+
+		setActieActive: function setActieActive(actie) {
+			actie.active = true;
+			this.saveActie(actie);
+		},
+
+		saveActie: function saveActie(actie) {
+			var home = this;
+			var resource = this.$resource('/api/verbeteractie/:actie');
+			resource.update({ actie: actie.id }, { actie: actie }).then(function (response) {});
 		}
 
 	},
@@ -11253,7 +11271,7 @@ exports.default = {
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row\">\n\t\t\t<div class=\"large-12\">\n\t\t\t\t<div class=\"row\">\t\n\t\t\t\t\t<div class=\"large-3 actie-thema actie-thema-kop actiepunt-es columns\"> {{ thema.title }} </div>\n\t\t\t\t\t<div class=\"large-3 actie-thema actiepunt-es columns\">Omschrijving</div>\n\t\t\t\t\t<div class=\"large-3 actie-thema actiepunt-es columns\">Trekker</div>\n\t\t\t\t\t<div class=\"large-3 actie-thema actiepunt-es columns\">Betrokkenen</div>\n\t\t\t\t</div>\n\t\t\t\t<actie v-for=\"actie in verbeteracties\" :actie.sync=\"actie\" :participants=\"participants\">\n\t\t\t\t\t\n\t\t\t\t</actie> \n\t\t\t</div>\n\t</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row thema-group\">\n\t\t\t<div class=\"large-12\">\n\t\t\t\t<div class=\"row\">\t\n\t\t\t\t\t<div class=\"large-3 actie-thema actie-thema-kop actiepunt-es columns\"> {{ thema.title }} </div>\n\t\t\t\t\t<div class=\"large-3 actie-thema actiepunt-es columns\">Omschrijving</div>\n\t\t\t\t\t<div class=\"large-3 actie-thema actiepunt-es columns\">Trekker</div>\n\t\t\t\t\t<div class=\"large-3 actie-thema actiepunt-es columns\">Betrokkenen</div>\n\t\t\t\t</div>\n\t\t\t\t<actie v-for=\"actie in verbeteracties\" :actie.sync=\"actie\" :participants=\"participants\">\n\t\t\t\t\t\n\t\t\t\t</actie> \n\t\t\t\t<div class=\"row actie-rij \">\n\t\t\t\t\t<div class=\"large-12 columns actie-voegtoe\" @click=\"showInactief =  ! showInactief\"> \n\t\t\t\t\t\t<span v-show=\"! showInactief\">+</span>\n\t\t\t\t\t\t<span v-show=\"showInactief\">-</span> \n\t\t\t\t\t\tvoeg nog een verbeterpunt toe\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"large12 columns actie-inactief\" v-for=\"actie in verbeteracties\" :actie.sync=\"actie\" v-if=\" ! actie.active &amp;&amp; showInactief\" @click=\"setActieActive(actie)\">\n\t\t\t\t\t\t{{ actie.title }}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

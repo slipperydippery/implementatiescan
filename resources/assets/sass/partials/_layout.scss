@@ -721,6 +721,10 @@ $sidetext_thickness : 18rem;
   *  ACTIEPUNTEN
   */
  
+ .thema-group {
+ 	margin: 0 0 1rem 0;
+ }
+ 
  .actiepunt {
  	position: relative;
  	margin: 0 0 2rem 0;
@@ -748,22 +752,40 @@ $sidetext_thickness : 18rem;
 	}
 }
 
+.actie-voegtoe {
+	padding: .5rem;
+	font-weight: bold;
+    /* border-top: 2px solid rgba(0, 0, 0, 0.2); */
+    // box-shadow: inset 0px 0px 10px -4px #4E414D;
+}
 
- .actie-omschrijving {
+.actie-voegtoe:hover {
+	cursor: pointer;
+    background: rgba(191, 230, 221, 0.9);
+}
+
+.actie-inactief {
+	padding: .5rem 1rem;;
+}
+
+.actie-inactief:hover {
+	background: rgba(191, 230, 221, 0.9);	
+}
+
+.actie-omschrijving {
  	display: block;
  	padding: .5rem;
 	background: rgba(#fff, .3);
 	font-weight: 500;
 	margin-bottom: 1rem;
- }
+}
 
-  .actie-omschrijving__subactie {
+.actie-omschrijving__subactie {
   	padding-left: 2rem;
   	font-weight: 300;
-  }
+}
 
 .betrokkenen__group{
-	
 }
 .betrokkenen__group:hover {
 	cursor: pointer;
@@ -771,11 +793,12 @@ $sidetext_thickness : 18rem;
 
 .actie-betrokkene {
 	display: block;
-	padding: .5rem;
+	padding: .5rem 1rem;
 	margin: .2rem;
 	width: 100%;
 	font-weight: 400;
-	background: rgba(255,255,255,.0);
+	color: #333;
+	background: rgba(255,255,255,.3);
 	transition: all 1s;
 	span.indication {
 		display: none;
@@ -795,7 +818,7 @@ $sidetext_thickness : 18rem;
 	min-height: 100%;
 }
 .betrokkenen__group:hover .actie-betrokkene {
-	background: rgba(255,255,255,.6);
+	background: rgba(112, 189, 118, 0.42);
 }
 .betrokkenen__group:hover span.indication {
 	display: inline-block;
@@ -803,6 +826,7 @@ $sidetext_thickness : 18rem;
 
 .betrokkenen__unbet {
 	float: right;
+	text-align: right;
 	width: 50%;
 	margin: 0;
 	height: 0px;
@@ -810,7 +834,10 @@ $sidetext_thickness : 18rem;
 	transition: all 1s;
 	overflow: hidden;
 	.actie-betrokkene {
-		background: lighten($alert, 10%) !important;
+		background: rgba(255, 157, 141, 0.39) !important;	
+	}
+	span.indication {
+		float: left;
 	}
 }
 .betrokkenen__group:hover .betrokkenen__unbet {

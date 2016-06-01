@@ -44,6 +44,7 @@ class ApiController extends Controller
 
     public function updateverbeteractie(Request $request, Verbeteractie $verbeteractie)
     {
+        $verbeteractie->active = $request->actie['active'];
         $verbeteractie->omschrijving = $request->actie['omschrijving'];
         if ($verbeteractie->trekker != $request->actie['user_id'])
         {
@@ -54,15 +55,16 @@ class ApiController extends Controller
             $trekker = User::findOrFail($request->actie['user_id']);
             $trekker->trektVerbeteracties()->save($verbeteractie);
         }
-        // foreach($request->actie['betrokkenen'] as $betrokkene)
-        // {
-        //     if(! $verbeteractie->betrokkenen->intersect([$betrokkene]))
-        //     {
-        //         return 'hi';
-        //         // $betrokkene->betrektVerbeteracties()->save($verbeteractie);
-        //     }
-        // }
-         return $request->actie;
+
+        $verbeteractie->save();
+        return $verbeteractie;
+         // return $request->actie;
+    }
+
+    public function setactieactive(Verbeteractie $verbeteractie)
+    {
+        $verbeteractie->active = true;
+        return 'yes';
     }
 
 	public function participantsininstantie(Scan $scan)

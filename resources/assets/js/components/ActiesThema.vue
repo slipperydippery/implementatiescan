@@ -1,5 +1,5 @@
 <template>
-	<div class="row">
+	<div class="row thema-group">
 			<div class="large-12">
 				<div class="row">	
 					<div class="large-3 actie-thema actie-thema-kop actiepunt-es columns"> {{ thema.title }} </div>
@@ -14,6 +14,21 @@
 				>
 					
 				</actie> 
+				<div class="row actie-rij ">
+					<div class="large-12 columns actie-voegtoe" @click="showInactief =  ! showInactief"> 
+						<span v-show="! showInactief">+</span>
+						<span v-show="showInactief">-</span> 
+						voeg nog een verbeterpunt toe
+					</div>
+					<div class="large12 columns actie-inactief" 
+						v-for="actie in verbeteracties" 
+						:actie.sync="actie"
+						v-if=" ! actie.active && showInactief"
+						@click="setActieActive(actie)"
+					>
+						{{ actie.title }}
+					</div>
+				</div>
 			</div>
 	</div>
 </template>
@@ -22,6 +37,12 @@
 	import Actie from '../components/Actie.vue';
 	
 	export default {
+		http: {
+			root: '/root',
+			headers: {
+				'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
+			}
+	    },
 
 		components: { Actie },
 
@@ -35,6 +56,7 @@
 				scan:scan,
 				questions: [],
 				verbeteracties: [],
+				showInactief: false,
 			};
 		},
 
@@ -104,6 +126,19 @@
 						}
 					}
 				}
+			},
+
+			setActieActive: function (actie) {
+				actie.active = true;
+				this.saveActie(actie);
+			},
+
+			saveActie: function (actie) {
+				var home = this;
+				var resource = this.$resource('/api/verbeteractie/:actie');
+				resource.update({actie: actie.id}, {actie: actie})
+					.then(function(response){
+					});
 			},
 
 		},

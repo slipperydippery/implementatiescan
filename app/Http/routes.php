@@ -30,6 +30,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/api/thema/{thema}/question', 'ApiController@indexthemaquestion');
     Route::get('/api/scan/{scan}/thema/{thema}/verbeteractie', 'ApiController@indexscanthemaverbeteractie');
     Route::put('/api/verbeteractie/{verbeteractie}', 'ApiController@updateverbeteractie');
+    Route::post('/api/verbeteractie/{verbeteractie}/setactive', 'ApiController@setactieactive');
 
     Route::get('/api/verbeteractie/{verbeteractie}/betrokkene', 'ApiController@indexbetrokkene');
     Route::post('/api/verbeteractie/{verbeteractie}/betrokkene/{user}', 'ApiController@addbetrokkene');
