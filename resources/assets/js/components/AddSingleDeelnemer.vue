@@ -92,10 +92,10 @@
 
 			saveNewParticipant: function () {
 				// save changes and reload
-				var resource = this.$resource('/api/scan/:scan/savenewparticipant/');
+				var resource = this.$resource('/api/scan/:scan/participant/');
 
 				var home = this;
-				resource.update({scan: this.scan.id}, 
+				resource.save({scan: this.scan.id}, 
 								{participant: this.participant })
 					.then(function (response) {
 				        // success callback

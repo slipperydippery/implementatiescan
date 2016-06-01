@@ -112,33 +112,5 @@
 
 
 <style lang="stylus">
-	.rangeresult {
-		position: relative;
-		display: block;
-		width: 100%;
-		height: .5rem;
-		background: #ec5840;
-	    margin: .7rem 0 1.4rem;
-	}
-	.rangeresult__value {
-		position: absolute;
-		display: block;
-		top: 0;
-		left: 0;
-		height: 100%;
-	    background: #1CB32D;
-	    webkit-transition: width 1s;
-	    transition: width 1s;
-	}
 
-	input[type=range]::after {
-	    content:"";
-	    display: block;
-	    position: absolute;
-	    top: 0;
-	    left: 0;
-	    width: 90%;
-	    height: .6rem;
-	    background: #1CB32D;
-	}
 </style>

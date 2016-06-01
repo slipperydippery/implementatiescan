@@ -26,21 +26,7 @@ Op de volgende pagina staat een email klaar die u eventueel kunt aanpassen en aa
 		</div>
 		<div class="row">
 			<div class="large-12 columns">
-				
-				@foreach($scan->instanties as $instantie)
-					@foreach($instantie->participants as $participant)
-						<div class="large-2 column submitted-user">
-							<a href=" {{ URL::route('scans.removeuser', [$scan, $participant]) }} " class="close-button" aria-label="Close alert" type="button">
-							    <span aria-hidden="true">&times;</span>
-							</a>
-							<img src="{{asset('img/user.png')}}"> 
-							<div class="participant_info">
-								<span class="name"> {{ $participant->name_first ? $participant->name_first : "---" }} {{ $participant->name_last ? $participant->name_last : "" }} </span> 
-								<span class="functie"> {{ $instantie->title }} </span>
-							</div>
-						</div>
-					@endforeach
-				@endforeach
+				<controleren-deelnemers></controleren-deelnemers>
 
 				@if(count($scan->participants) < 12)
 					<div class="large-2 column end submitted-user">
@@ -49,9 +35,6 @@ Op de volgende pagina staat een email klaar die u eventueel kunt aanpassen en aa
 				@endif
 			</div>
 		</div>
-		
-
-
 		
 	</div>
 </div>

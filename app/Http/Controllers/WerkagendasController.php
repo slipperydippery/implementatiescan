@@ -12,12 +12,6 @@ use Illuminate\Http\Request;
 class WerkagendasController extends Controller
 {
 
-    public function verbeteracties( $thema)
-    {
-        $thema = Thema::findOrFail($thema);
-        return $thema->verbeteracties;
-    }
-
     public function store_omschrijving(Request $request, Scan $scan)
     {
     	$verbeteractie = Verbeteractie::findOrFail($request->verbeteractie_id);

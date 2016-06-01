@@ -8,12 +8,13 @@ use App\User;
 use App\Thema;
 use App\Video;
 use App\Answer;
+use JavaScript;
+use App\Question;
 use App\Instantie;
 use App\Scanmodel;
 use App\Http\Requests;
 use App\Verbeteractie;
 use Illuminate\Http\Request;
-use JavaScript;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
@@ -173,6 +174,10 @@ class ScansController extends Controller
 
     public function kennismaken(Scan $scan)
     {
+        JavaScript::put([
+            'scan' => $scan,
+        ]);
+        
         $instantieoptions = [];
         foreach($scan->instanties as $instantie)
         {
@@ -214,6 +219,22 @@ class ScansController extends Controller
         return Redirect::route('scans.algemeenbeeldresultaat', compact('scan'));
     }
 
+    public function storequestion(Request $request, Scan $scan, $thema_nr, $question_nr, Question $question)
+    {
+        $user = Auth::user();
+        if(count($user->answers->intersect($question->answers)))
+        {
+            $answer = $user->answers->intersect($question->answers)->first();
+        } else {
+            $answer = new Answer();
+        }
+        $answer->user_id = $user->id;
+        $answer->value = $request->value;
+        $question->answers()->save($answer);
+        $question_nr++;
+        return Redirect::route('scans.director', compact('scan', 'thema_nr', 'question_nr'));
+    }
+
     public function algemeenbeeldresultaat(Scan $scan)
     {
         // $instanties = [];
@@ -247,11 +268,6 @@ class ScansController extends Controller
 
     public function actieoverzicht(Scan $scan)
     {
-        $themalist = [];
-        foreach($scan->scanmodel->themas as $thema)
-        {
-            $themalist[$thema->id] = $thema;
-        }
         $participantlist = [];
         foreach($scan->participants as $participant)
         {
@@ -259,7 +275,6 @@ class ScansController extends Controller
         }
         // JavaScript::put($themalist);
         JavaScript::put([
-            'themas' => $themalist,
             'scan' => $scan,
             'participants' => $participantlist,
         ]);
@@ -373,6 +388,9 @@ class ScansController extends Controller
 
     public function controlerendeelnemers(Scan $scan)
     {
+        JavaScript::put([
+            'scan' => $scan,
+        ]);
         return view ('scans.inrichten.controlerendeelnemers', compact('scan'));
     }
 

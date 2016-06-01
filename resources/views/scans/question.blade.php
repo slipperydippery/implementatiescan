@@ -30,8 +30,6 @@
 			<span class="slider-fill" data-slider-fill></span>
 		</div>
 
-
-
 		<span class="slider__label__left">
 			0
 		</span>
@@ -41,17 +39,26 @@
 
 		<br><br>
 
-  			<div id="time">01:00</div>
-		<div class="row">
-			<div class="small-8 columns">.</div>
-			<div class="small-2 columns">
-			  <input type="number" name="value" id="sliderOutput2">
-			</div>		
-  			
-			<div class="columns small-2 form-group">
-				<a class="button " href="{{ URL::route('scans.director', [$scan, $thema_nr, ($question_nr + 1)]) }}">Verstuur antwoord</a><br>
-			</div>				
-		</div>	
+		<div id="time">01:00</div>
+
+		{!! Form::open(['route' => ['scans.storequestion', $scan, $thema_nr, $question_nr, $question]]) !!}
+			<div class="row">
+				<div class="small-8 columns">.</div>
+				<div class="small-2 columns">
+				  <input type="number" name="value" id="sliderOutput2">
+				</div>		
+	  			
+				<div class="columns small-2 form-group">
+					<!-- Add Submit Field -->
+					<div class="form-group">
+					    {!! Form::submit('Verstuur antwoord', ['class' => 'button']) !!}
+					</div>
+				</div>				
+			</div>	
+		{!! Form::close() !!}
+
+					<a class="button " href="{{ URL::route('scans.director', [$scan, $thema_nr, ($question_nr + 1)]) }}">Verstuur antwoord</a><br>
+
 	</div>
 
 </div>

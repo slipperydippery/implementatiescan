@@ -10,10 +10,10 @@ Vue.use(require('vue-resource'));
 
 
 import InvoerenDeelnemers from './components/InvoerenDeelnemers.vue';
+import ControlerenDeelnemers from './components/ControlerenDeelnemers.vue';
 import ScanSlider from './components/ScanSlider.vue';
 import SingleSlider from './components/SingleSlider.vue';
 import ThemaResultaat from './components/ThemaResultaat.vue';
-import Actie from './components/Actie.vue';
 import Acties from './components/Acties.vue';
 
 // import Algemeenbeeld from './components/Algemeenbeeld.vue';
@@ -36,7 +36,14 @@ new Vue({
 	data: {
 	},
 
-	components: { Acties, Acties, ScanSlider, SingleSlider, InvoerenDeelnemers, ThemaResultaat },
+	components: { 
+		Acties, 
+		ScanSlider, 
+		SingleSlider, 
+		InvoerenDeelnemers, 
+		ThemaResultaat, 
+		ControlerenDeelnemers 
+	},
 
 	methods: {
 	},

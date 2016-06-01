@@ -1,5 +1,5 @@
 <template>
-	<div class="row actie-rij" v-for="actie in list" v-if="actie.active">	
+	<div class="row actie-rij" v-if="actie.active">	
 
 		<div class="large-3 columns actie-omschrijving"> 
 			{{ actie.title }} 
@@ -7,7 +7,7 @@
 
 		<div class="large-3 columns">
 			<div class="form-group">
-			<textarea  class="form-control" placeholder="Actie Omschrijving" v-model="actie.omschrijving" @blur="saveOmschrijving(actie.id, actie.omschrijving)"></textarea>
+			<textarea  class="form-control" placeholder="Actie Omschrijving" v-model="actie.omschrijving" @blur="saveActie()"></textarea>
 			</div>
 		</div>
 
@@ -18,14 +18,38 @@
 						{{ participant.name_first }} 
 					</option>
 				</select>
-				{{ actie.user_id }}
 			</div>
 		</div>
 
 		<div class="large-3 columns">
-			<!-- 	Trekker Form Input -->
-				
-			<span class="actiehelper">+</span>						
+
+			<!-- show list of betrokkenen -->
+			<div class="betrokkenen__group row">
+				<div class="betrokkenen__bet ">
+					<div class="actie-betrokkene"
+						v-if="!betrokkenen.length"
+					>
+					+
+					</div>
+					<div class="actie-betrokkene" 
+						v-for="betrokkene in betrokkenen"
+						@click="removeBetrokkene(betrokkene)"
+					>
+						{{betrokkene.name_first}}
+						<span class="indication">-</span>
+					</div>				
+				</div>
+				<div class="betrokkenen__unbet ">
+					<div class="actie-betrokkene" 
+						v-for="betrokkene in unBetrokkenen"
+						@click="addBetrokkene(betrokkene)"
+					>
+						{{ betrokkene.name_first }}
+						<span class="indication">+</span>
+					</div>
+				</div>
+			</div>
+
 		</div>
 
 	</div>
@@ -33,51 +57,114 @@
 
 <script>
 	export default {
-		props: ['thema_id', 'resource'],
+		http: {
+			root: '/root',
+			headers: {
+				'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
+			}
+	    },
+		props: [
+			'resource', 
+			'thema',
+			'actie', 
+			'participants',
+		],
 
 		data() {
 			return {
-				list: [],
-				themas: themas,
 				scan: scan,
-				participants: participants,
+				showUnBetrokkene: false,
+				editBetrokkenen: false,
+				betrokkenen: [],
+				unBetrokkenen: [],
 			};
 		},
 
 		ready() {
-
-			},
+			this.betrokkenen = this.actie.betrokkenen;
+			this.unBetrokkenen = this.actie.unBetrokkenen;
+		},
 
 		created() {
-			this.fetchVerbeteracties(this.thema_id);
 		},
 
 		methods: {
-			fetchVerbeteracties: function(thema_id) {
-				var resource = this.$resource('../../api/verbeteracties/:id');
-				resource.get({ id : thema_id }, function(verbeteracties) {
-					this.list = verbeteracties;
-				}.bind(this));
-			},	
-			saveOmschrijving: function(id, omschrijving) {
-				this.$http.put('../../api/updateActie/')
 
-				// var resource = this.$resource('../../api/updateActie/');
-				// resource.update({body: 'updated body'}, function(verbeteracties) {
-				// 	this.list = verbeteracties;
-				// }.bind(this));
+			reloadData: function () {
+				this.$dispatch('reloadData');
+			},
+			reloadUnBetrokkenen: function () {
+				this.$dispatch('reloadUnBetrokkenen');
+			},
+
+			addBetrokkene: function (participant) {
+				this.betrokkenen.push(participant);
+				this.unBetrokkenen.$remove(participant);
+				// var tempArray = this.unBetrokkenen.splice(0);
+				// this.unBetrokkenen = [];
+				this.showUnBetrokkene = ! this.showUnBetrokkene;
+				var home = this;
+				var resource = this.$resource('/api/verbeteractie/:actie/betrokkene/:betrokkene');
+				resource.save({actie: this.actie.id, betrokkene: participant.id}, {})
+					.then(function(response){
+						// home.unBetrokkenen = tempArray;
+					});
+			},
+
+			removeBetrokkene: function (participant){
+				this.unBetrokkenen.push(participant);
+				this.betrokkenen.$remove(participant);
+				// var tempArray = this.betrokkenen.splice(0);
+				// this.betrokkenen = [];
+				this.showUnBetrokkene = ! this.showUnBetrokkene;				
+				var home = this;
+				var resource = this.$resource('/api/verbeteractie/:actie/betrokkene/:betrokkene');
+				resource.delete({actie: this.actie.id, betrokkene: participant.id}, {})
+					.then(function(response){
+						// home.betrokkenen = tempArray;
+					});
+			},
+
+			saveActie: function () {
+				var home = this;
+				var resource = this.$resource('/api/verbeteractie/:actie');
+				resource.update({actie: this.actie.id}, {actie: this.actie})
+					.then(function (response) {
+					});
+			},
+
+			// getBetrokkenen: function () {
+			// 	var home = this;
+			// 	var resource = this.$resource('/api/verbeteractie/:actie/betrokkene');
+			// 	resource.get({actie: this.actiee.id}, {})
+			// 		.then(function(response){
+			// 			home.$set('actie[betrokkenen]')
+			// 		});
+			// },
+
+		},		
+
+		computed: {
+			unblength: function () {
+				return this.unBetrokkenen.length
 			}
-
 		},
-
-		// computed: {
-
-		// }
 
 	}
 </script>
 
 
 <style lang="stylus">
-	
+	.actie_removebetrokkene {
+		font-size: 2rem;
+		line-height: 1.5rem;
+		font-weight: bold;
+		float: right; 
+		padding: 0 .5rem;
+		color: #999;
+	}
+	.actie_removebetrokkene:hover {
+		cursor:pointer;
+		color: #000;
+	}
 </style>

@@ -13,8 +13,10 @@
 	</div>
 </div>
 
+
 <div class="row page-content">
 	<div class="large-12 columns actiepunten">
+
 		<acties></acties>
 
 	</div>

@@ -25,15 +25,30 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     /**
      * API Calls
      */
-    Route::put('/api/scan/{scan}/updateparticipant/{user}', 'ApiController@updateparticipant');
-    Route::put('/api/scan/{scan}/savenewparticipant', 'ApiController@savenewparticipant');
-    Route::delete('/api/scan/{scan}/removeparticipant/{user}', 'ApiController@removeparticipant');
+    Route::get('/api/scan/{scan}/thema', 'ApiController@indexthema');
+
+    Route::get('/api/thema/{thema}/question', 'ApiController@indexthemaquestion');
+    Route::get('/api/scan/{scan}/thema/{thema}/verbeteractie', 'ApiController@indexscanthemaverbeteractie');
+    Route::put('/api/verbeteractie/{verbeteractie}', 'ApiController@updateverbeteractie');
+
+    Route::get('/api/verbeteractie/{verbeteractie}/betrokkene', 'ApiController@indexbetrokkene');
+    Route::post('/api/verbeteractie/{verbeteractie}/betrokkene/{user}', 'ApiController@addbetrokkene');
+    Route::delete('/api/verbeteractie/{verbeteractie}/betrokkene/{user}', 'ApiController@removebetrokkene');
+
+    Route::get('/api/scan/{scan}/participant', 'ApiController@indexparticipant');
+    Route::get('/api/scan/{scan}/participant/{user}', 'ApiController@getparticipant');
+    Route::post('/api/scan/{scan}/participant/', 'ApiController@savenewparticipant');
+    Route::put('/api/scan/{scan}/participant/{user}', 'ApiController@updateparticipant');
+    Route::delete('/api/scan/{scan}/participant/{user}', 'ApiController@removeparticipant');
+
+    Route::get('/api/scan/{scan}/instantie', 'ApiController@indexinstantie');
+
     Route::get('/api/scan/{scan}/participantsininstantie', 'ApiController@participantsininstantie');
     Route::get('/api/scan/{scan}/thema/{thema}/getThemaOverzichtValues', 'ApiController@getThemaOverzichtValues');
 
     Route::get('/api/scan/{scan}/thema/{thema_id}/themaanswered', 'ApiController@themaanswered');
     Route::get('/api/scan/{scan}/thema/{thema_id}/user/{user}/slidervalue', 'ApiController@slidervalue');
-    Route::get('/api/verbeteracties/{id}', ['as' => 'temper', 'uses' => 'WerkagendasController@verbeteracties']);
+    // Route::get('/api/verbeteracties/{id}', ['as' => 'temper', 'uses' => 'ApiController@verbeteracties']);
     Route::patch('/api/scan/{scan}/thema/{thema_id}/user/{user}/setslidervalue', 'ApiController@setslidervalue');
     Route::get('/api/scan/{scan}/thema/{thema}/getParticipantABValues', 'ApiController@getParticipantABValues');
     Route::get('/api/scan/{scan}/participants', 'ApiController@participants');
@@ -42,6 +57,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     /**
      *  Beheerder
      */
+    Route::get('admin/loginasuser/{user}', 'AdminController@loginasuser');
+
     Route::put('api/updateActie/', 'WerkagendasController@updateActie');
 
     Route::resource('scans', 'ScansController');
@@ -67,6 +84,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/scans/{scans}/algemeenbeeld', ['as' => 'scans.algemeenbeeld', 'uses' => 'ScansController@algemeenbeeld']);
     Route::post('/scans/{scans}/algemeenbeeld', ['as' => 'scans.store_algemeenbeeld', 'uses' => 'ScansController@store_algemeenbeeld']);
     Route::get('/scans/{scans}/algemeenbeeldresultaat', ['as' => 'scans.algemeenbeeldresultaat', 'uses' => 'ScansController@algemeenbeeldresultaat']);
+    Route::post('/scans/{scan}/thema/{thema_nr}/question/{question_nr}/{question}/', ['as' => 'scans.storequestion', 'uses' => 'ScansController@storequestion']);
     Route::get('/scans/{scans}/thema/{thema_nr}/vraag/{question_nr}', ['as' => 'scans.director', 'uses' => 'ScansController@director']);
     Route::post('/scans/{scans}/thema/{thema}/', ['as' => 'scans.store_prebeteracties', 'uses' => 'ScansController@store_prebeteracties']);
 

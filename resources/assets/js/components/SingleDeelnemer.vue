@@ -80,7 +80,7 @@
 			},
 
 			removeParticipant: function () {
-				var resource = this.$resource('/api/scan/:scan/removeparticipant/:participant');
+				var resource = this.$resource('/api/scan/:scan/participant/:participant');
 				var home = this;
 				resource.delete({scan: this.scan.id, participant: this.participant.id}, {})
 					.then(function (response) {
@@ -91,7 +91,7 @@
 
 			saveChanges: function () {
 				// save changes and reload
-				var resource = this.$resource('/api/scan/:scan/updateparticipant/:participant');
+				var resource = this.$resource('/api/scan/:scan/participant/:participant');
 
 				var home = this;
 				resource.update({scan: this.scan.id, participant: this.participant.id}, 

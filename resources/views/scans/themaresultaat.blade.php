@@ -15,8 +15,6 @@
 
 <div class="row page-content">
 
-	<thema-resultaat></thema-resultaat>
-
 	{!! Form::open(['route' => ['scans.store_prebeteracties', $scan, $thema]]) !!}
 		<div class="large-12 columns algemeenbeeldslider--group">
 			<div class="row sliders-sub slider-gemiddeld__thema">
@@ -68,27 +66,22 @@
 						@foreach($thema->questions as $question)
 							<div class="large-2 small-2 columns center">
 <?php 
-	$average = 0;
+	$answercount = 0;
+	$value = 0;
 	foreach($instantie->participants as $participant)
 	{	
-		echo $question->id;
-		echo $participant->id;
-		echo count($participant->answers->intersect($question->answers));
 		if(count($participant->answers->intersect($question->answers)))
 		{
-			echo 'here';
-			$value = $participant->answers->intersect($question->answers)->first()->value;
-			echo($participant->answers->intersect($question->answers));
-			echo $value;
-			$average == 0 ? $average = $value : $average = $value + $average / 2;
+			$value += $participant->answers->intersect($question->answers)->first()->value;
+			$answercount++;
 		}
-		echo $average;
 	}
+	($answercount > 0) ? $average = $value / $answercount : $average = 0;
 
 ?>
-								<div class="slider" data-slider data-initial-start="<=? $average ?>">
-									<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
-									<span class="slider-fill" data-slider-fill></span>
+								<div class="rangeresult" >
+									<div class="rangeresult__value" style="width: <?= $average ?>%">
+									</div>
 								</div>
 
 							</div>

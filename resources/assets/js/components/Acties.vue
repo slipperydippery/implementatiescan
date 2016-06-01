@@ -1,58 +1,67 @@
 <template>
-
-	<div class="row" v-for="thema in themas">
-	{{ thema.pivot.scanmodel_id }}
-	pliep
-
-			<div class="large-12">
-				<div class="row">	
-					<div class="large-3 actie-thema actie-thema-kop actiepunt-es columns"> {{ thema.title }} </div>
-					<div class="large-3 actie-thema actiepunt-es columns">Omschrijving</div>
-					<div class="large-3 actie-thema actiepunt-es columns">Trekker</div>
-					<div class="large-3 actie-thema actiepunt-es columns">Betrokkenen</div>
-				</div>
-				<actie :thema_id=thema.id></actie> 
-			</div>
-	</div>
-
+	<acties-thema 
+		 v-for="thema in themas"
+		 :thema.sync="thema"
+		 :participants="participants"
+	>
+		
+	</acties-thema>
+	
 </template>
 
 <script>
-	import Actie from '../components/Actie.vue';
+	import ActiesThema from '../components/ActiesThema.vue';
 	
 	export default {
 
-		components: { Actie },
+		components: { ActiesThema },
 
-		props: {
-			model: Object
-		},
+		props: [],
 
 		data() {
 			return {
-				list: [],
-				themas: themas
+				scan:scan,
+				themas: [],
+				participants: participants,
 			};
 		},
-		created() {
-			// console.log(themas);
-			// var x = themas.1.id;
-			// this.fetchVerbeteracties(1);
-		},
-/*
-		methods: {
-			fetchVerbeteracties: function(nummer) {
-				var resource = this.$resource('../../api/verbeteracties/:id');
 
-				resource.get({ id : nummer }, function(verbeteracties) {
-					this.list = verbeteracties;
-				}.bind(this));
-			},
+		created() {
 		},
-*/
+
+		ready() {
+			this.getThemas();
+		},
+
+		methods: {
+			getThemas: function () {
+				var home = this;
+				var resource = this.$resource('/api/scan/:scan/thema');
+				resource.get({scan: this.scan.id}).then(function (response) {
+				          home.$set('themas', response.data)
+				});
+			},
+
+
+			getparticipant: function (participant) {
+				var home = this;
+				var resource = this.$resource('/api/scan/:scan/participant/:participant');
+				resource.get({scan: this.scan.id, participant: participant}).then(function (response) {
+					//
+				});
+			},
+
+		},
+
 		computed: {
 
-		}
+		},
+
+		events: {
+		    reloadData: function () {
+		        this.getThemas();
+		    }
+		},
 
 	}
 </script>

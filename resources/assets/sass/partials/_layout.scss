@@ -738,18 +738,16 @@ $sidetext_thickness : 18rem;
  }
 
 .actie-rij {
-	padding: 0;
-	background: rgba(#fff, .3);
+	padding: .5rem 0;
+	background: rgba(255, 255, 255, 0.3);
+	// border: 1px solid #828282;
+	// border-width: 0px 0 1px 0;
 
 	.form-control {
 		margin: 0;
 	}
 }
 
-.actie-rij {
-	// padding-top: .5rem;
-
-}
 
  .actie-omschrijving {
  	display: block;
@@ -763,6 +761,78 @@ $sidetext_thickness : 18rem;
   	padding-left: 2rem;
   	font-weight: 300;
   }
+
+.betrokkenen__group{
+	
+}
+.betrokkenen__group:hover {
+	cursor: pointer;
+}
+
+.actie-betrokkene {
+	display: block;
+	padding: .5rem;
+	margin: .2rem;
+	width: 100%;
+	font-weight: 400;
+	background: rgba(255,255,255,.0);
+	transition: all 1s;
+	span.indication {
+		display: none;
+		float: right;
+		color: #fff;
+		font-size: 1.8rem;
+		line-height: 1.5rem;
+		font-weight: 300;
+		margin-right: .5rem;
+	}
+}
+
+.betrokkenen__bet {
+	float: left;
+	width: 50%;
+	margin: 0;
+	min-height: 100%;
+}
+.betrokkenen__group:hover .actie-betrokkene {
+	background: rgba(255,255,255,.6);
+}
+.betrokkenen__group:hover span.indication {
+	display: inline-block;
+}
+
+.betrokkenen__unbet {
+	float: right;
+	width: 50%;
+	margin: 0;
+	height: 0px;
+	opacity: 0;
+	transition: all 1s;
+	overflow: hidden;
+	.actie-betrokkene {
+		background: lighten($alert, 10%) !important;
+	}
+}
+.betrokkenen__group:hover .betrokkenen__unbet {
+	opacity: 1;
+	height: auto;
+}
+
+
+
+.actiehelper {
+	width: 100%;
+    text-align: center;
+    /* margin: 0 auto; */
+    font-size: 2rem;
+    color: #fff;
+    font-weight: 500;
+    display: block; 
+}
+
+.actiehelper:hover {
+	cursor: pointer;
+}
 
  .actie-thema {
  	display: block;
@@ -784,12 +854,6 @@ $sidetext_thickness : 18rem;
 
 .actiepunt-es {
 	background: $instantie6;
-}
-
-.actiehelper {
-	font-size: 2rem;
-	color: #fff;
-	font-weight: 500;
 }
 
 .date__container {
