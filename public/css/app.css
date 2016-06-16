@@ -4072,14 +4072,19 @@ main {
   padding: .5rem 1rem; }
 
 .actie-inactief:hover {
+  cursor: pointer;
   background: rgba(191, 230, 221, 0.9); }
 
 .actie-omschrijving {
+  position: relative;
   display: block;
   padding: .5rem;
   background: rgba(255, 255, 255, 0.3);
   font-weight: 500;
   margin-bottom: 1rem; }
+
+.actie-omschrijving span {
+  display: inline-block; }
 
 .actie-omschrijving__subactie {
   padding-left: 2rem;

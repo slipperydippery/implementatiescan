@@ -2,7 +2,12 @@
 	<div class="row actie-rij" v-if="actie.active">	
 
 		<div class="large-3 columns actie-omschrijving"> 
-			{{ actie.title }} 
+			<span class="remove_row"
+				@click="setActieInactive(actie)"
+			>
+				x
+			</span>
+			{{ actie.title }}
 		</div>
 
 		<div class="large-3 columns">
@@ -147,6 +152,11 @@
 					});
 			},
 
+			setActieInactive: function (actie) {
+				actie.active = 0;
+				this.saveActie();
+			},
+
 			// getBetrokkenen: function () {
 			// 	var home = this;
 			// 	var resource = this.$resource('/api/verbeteractie/:actie/betrokkene');
@@ -180,5 +190,28 @@
 	.actie_removebetrokkene:hover {
 		cursor:pointer;
 		color: #000;
+	}
+
+	span.remove_row {
+		display: none;
+		display: inline-block;
+		width: 0;
+		padding: 0;
+		margin: 0;
+		height: 100%;
+		background: #f00;
+		left: 0;
+		top: 0;
+		color: white;
+		transition: all .5s;
+		overflow: hidden;
+	}
+
+	.actie-omschrijving:hover span.remove_row{
+		display: inline-block;
+		padding: 0 0.5rem;
+		margin: 0 .5rem 0 0;
+		width: auto;
+		cursor: pointer;
 	}
 </style>
