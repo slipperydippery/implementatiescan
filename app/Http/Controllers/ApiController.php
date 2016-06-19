@@ -9,6 +9,7 @@ use App\Instantie;
 use App\Http\Requests;
 use App\Verbeteractie;
 use Illuminate\Http\Request;
+use Illuminate\Http\StoreParticipantRequest;
 use Illuminate\Support\Facades\Hash;
 
 class ApiController extends Controller
@@ -234,7 +235,7 @@ class ApiController extends Controller
         return $user;
     }
 
-    public function savenewparticipant(Request $request, Scan $scan)
+    public function savenewparticipant(StoreParticipantRequest $request, Scan $scan)
     {
         if (! User::where('email', '=', $request->participant['email'])->get()->count())
         {

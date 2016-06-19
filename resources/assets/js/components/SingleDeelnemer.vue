@@ -25,7 +25,7 @@
 				</select>
 			</div>
 			<div class="small-1 columns">
-				<img :src="returnRoot +'/img/checkmark.png'" class="editicon vuelink"  data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' tabindex=1 title="Sla Bewerkingen op" @click="saveChanges">
+				<img :src="returnRoot +'/img/checkmark.png'" class="editicon vuelink"  data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' tabindex=1 title="Sla Bewerkingen op" @click="saveChanges" v-if="isValid">
 			</div>	
 		</div>		
 	</div>
@@ -63,8 +63,44 @@
 			returnRoot: function () {
 				return (window.location.protocol + "//" + window.location.host);
 			},	
+
 			isEditable: function () {
 				return this.participant.id == this.editable.id;
+			},
+
+			isValid: function () {
+				if (this.validFirstName && this.validLastName && this.validInstantie && this.validEmail) {
+					return true;
+				}
+				return false;
+			},
+
+			validFirstName: function () {
+				if (this.participant.name_first.length > 0) {
+					return true;
+				}
+				return false;
+			},
+
+			validLastName: function () {
+				if (this.participant.name_last.length > 0) {
+					return true;
+				}
+				return false;
+			},
+
+			validInstantie: function () {
+				if (this.participant.instantie_id > 0) {
+					return true;
+				}
+				return false;
+			},
+
+			validEmail: function () {
+				if(this.participant.email.length > 8) {
+					return true;
+				}
+				return false;
 			},
 		},
 
