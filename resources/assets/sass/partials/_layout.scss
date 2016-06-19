@@ -28,8 +28,13 @@ $instantie6: #25AEE4;
 
 $body-background: #A6CE39;
 
-.red {
-	border: 1px solid red;
+
+.off-canvas-content, .off-canvas-wrapper-inner, .off-canvas-wrapper, .off-canvas.position-left {
+	min-height: 100vh;
+}
+
+.off-canvas.position-left {
+	z-index: 100;
 }
 
 
@@ -56,6 +61,11 @@ body {
 #content {
 	max-width: 80vw;
 	margin: 0 auto;
+}
+
+.off-canvas-content {
+	display: flex;
+	flex-direction: column;
 }
 
 .site-footer {
@@ -122,6 +132,7 @@ $sidetext_thickness : 18rem;
 		padding-top: $sidetext_thickness/2;
 		height: $sidetext_thickness;
 		text-align: center;
+		z-index: -10;
 	}
 	span {
 		display: block;
@@ -288,9 +299,10 @@ $sidetext_thickness : 18rem;
 
 .navbarleft__hamburger {
 	position: fixed;
-	top: -.5rem;
+	top: .5rem;
 	left: 2rem;
 	@include hamburger(#fff, $body-background, 25px, 20px);
+	z-index:100;
 }
 
 .navbarleft__hamburger:hover + .navbarleft {

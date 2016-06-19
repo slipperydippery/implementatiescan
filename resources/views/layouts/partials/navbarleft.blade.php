@@ -1,5 +1,4 @@
 
-<div class="navbarleft">
 	<ul class="vertical menu" data-accordion-menu>
 		<li >
 			<a href="{{ URL::to('/') }}">Home</a>
@@ -94,4 +93,3 @@
 @endif
 <!-- Do some Auth Routes? -->
 	</ul>
-</div>

@@ -9,6 +9,7 @@ use App\Instantie;
 use App\Http\Requests;
 use App\Verbeteractie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ApiController extends Controller
 {
@@ -238,6 +239,8 @@ class ApiController extends Controller
         if (! User::where('email', '=', $request->participant['email'])->get()->count())
         {
             $user = new User();
+            $user->initial_pwd = str_random(8);
+            $user->password = Hash::make($user->initial_pwd);
             $user->name_first = $request->participant['name_first'];
             $user->name_last = $request->participant['name_last'];
             $user->email = $request->participant['email'];

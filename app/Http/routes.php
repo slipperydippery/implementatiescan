@@ -14,6 +14,9 @@ use App\Thema;
 |
 */
 
+Route::post('/send', 'EmailController@send');
+Route::post('/send/senduitnodiging/scan/{scan}', ['as' => 'senduitnodiging', 'uses' => 'EmailController@senduitnodiging']);
+
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
