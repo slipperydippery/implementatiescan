@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.scan')
 
 @section('content')
 
@@ -24,13 +24,18 @@
 </div>
 <div class="row page-content">
 	<div class="large-12 columns algemeenbeeldslider--participant">
-
-		<div class="slider input_slider" data-slider data-initial-start="0">
+<?php
+	$slidervalue = 0;
+	$user = Auth::user();
+	if(count($user->answers->intersect($question->answers)))
+	{
+		$slidervalue = $user->answers->intersect($question->answers)->first()->value;
+	}
+?>
+		<div class="slider input_slider" data-slider data-initial-start="<?= $slidervalue ?>">
 			<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
 			<span class="slider-fill" data-slider-fill></span>
 		</div>
-
-
 
 		<span class="slider__label__left">
 			0
@@ -41,17 +46,24 @@
 
 		<br><br>
 
-  			<div id="time">01:00</div>
-		<div class="row">
-			<div class="small-8 columns">.</div>
-			<div class="small-2 columns">
-			  <input type="number" name="value" id="sliderOutput2">
-			</div>		
-  			
-			<div class="columns small-2 form-group">
-				<a class="button " href="{{ URL::route('scans.director', [$scan, $thema_nr, ($question_nr + 1)]) }}">Verstuur antwoord</a><br>
-			</div>				
-		</div>	
+		<div id="time">01:00</div>
+
+		{!! Form::open(['route' => ['scans.storequestion', $scan, $thema_nr, $question_nr, $question]]) !!}
+			<div class="row">
+				<div class="small-8 columns">.</div>
+				<div class="small-2 columns">
+				  <input type="number" name="value" id="sliderOutput2" value="<?= $slidervalue ?>">
+				</div>		
+	  			
+				<div class="columns small-2 form-group">
+					<!-- Add Submit Field -->
+					<div class="form-group">
+					    {!! Form::submit('Verstuur antwoord', ['class' => 'button']) !!}
+					</div>
+				</div>				
+			</div>	
+		{!! Form::close() !!}
+
 	</div>
 
 </div>
@@ -71,7 +83,7 @@
         display.textContent = minutes + ":" + seconds;
 
         if (--timer < 0) {
-            timer = duration;
+            timer = 0;
         }
     }, 1000);
 }

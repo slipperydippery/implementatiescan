@@ -19,6 +19,7 @@ class UserTableSeeder extends Seeder
                 'name_first' => 'Susanne',
                 'name_last' => 'Meeuwissen',
                 'email' => 'susanne@embav.nl',
+                'initial_pwd' => 'password',
                 'password' => Hash::make('password')
             ],
             [
@@ -26,6 +27,7 @@ class UserTableSeeder extends Seeder
                 'name_first' => 'Maarten',
                 'name_last' => 'de Jager',
                 'email' => 'maartendejager@gmail.com',
+                'initial_pwd' => 'password',
                 'password' => Hash::make('password')
             ],
             [
@@ -33,14 +35,16 @@ class UserTableSeeder extends Seeder
                 'name_first' => 'admin',
             	'name_last' => 'admin',
             	'email' => 'admin@temp.com',
-            	'password' => Hash::make('admin')
+                'initial_pwd' => 'password',
+            	'password' => Hash::make('password')
             ],
             [
             	'id' => '4',
                 'name_first' => 'participant',
             	'name_last' => 'participant',
             	'email' => 'participant@temp.com',
-            	'password' => Hash::make('participant')
+                'initial_pwd' => 'password',
+            	'password' => Hash::make('password')
             ]
         ];
 

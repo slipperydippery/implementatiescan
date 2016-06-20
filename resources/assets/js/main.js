@@ -1,17 +1,59 @@
-var Vue = require('vue');
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 
+var Vue = require('vue');
 
 Vue.use(require('vue-resource'));
 
-import Tasks from './components/Tasks.vue';
+
+import InvoerenDeelnemers from './components/InvoerenDeelnemers.vue';
+import ControlerenDeelnemers from './components/ControlerenDeelnemers.vue';
+import ScanSlider from './components/ScanSlider.vue';
+import SingleSlider from './components/SingleSlider.vue';
+import ThemaResultaat from './components/ThemaResultaat.vue';
+import PreThemaResultaat from './components/PreThemaResultaat.vue';
+import Acties from './components/Acties.vue';
+
+// import Algemeenbeeld from './components/Algemeenbeeld.vue';
+
+// Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('value');
 
 new Vue({
-	el: 'form', 
+	http: {
+		root: '/root',
+		headers: {
+			'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
+		}
+	},
+	// headers: {
+	//   'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
+	// },
 
+	el: 'body', 
+	props: [],
 	data: {
-		slider_input: '50'
 	},
 
-	components: { Tasks }
+	components: { 
+		Acties, 
+		ScanSlider, 
+		SingleSlider, 
+		InvoerenDeelnemers, 
+		ThemaResultaat, 
+		ControlerenDeelnemers ,
+		PreThemaResultaat,
+	},
+
+	methods: {
+	},
+
+	computed: {
+	},
+
+	ready() {
+	}
 
 });

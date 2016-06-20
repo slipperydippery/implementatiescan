@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Question | Welcome</title>
     <meta name="author" content="Maarten de Jager">
-    <meta name="description" content="LastBreath - leave treasures behind">
-    <meta name="keywords" content="LastBreath, funeral, ritual">
+    <meta name="description" content="ImplementatieScan">
+    <meta name="keywords" content="ImplementatieScan">
     <meta name="csrf-token" value="{{ csrf_token() }}">
     <link href="{{ URL::asset('/css/app.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('/css/pikaday.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{{ asset('img/favicon.png') }}}">
+    
+    {{-- This is the token Laravel requires for non-GET requests --}}
+    <meta name="token" id="token" value="{{ csrf_token() }}">
 
 
     <script src="{{ URL::asset('js/modernizr.js') }}"></script>

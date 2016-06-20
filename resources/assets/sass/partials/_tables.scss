@@ -1,0 +1,19 @@
+.table {
+	background: rgba(255, 255, 255, .2);
+	margin: 2rem 0;
+}
+
+.table-header {
+	background: #25AEE4 !important;
+	color: #fff;
+	font-size: 1.2rem;
+}
+
+.table-row {
+	padding: .5rem;
+	// padding: .5rem 0;
+}
+.table-row:nth-child(odd) {
+	background: rgba(255, 255, 255, .2);
+}
+

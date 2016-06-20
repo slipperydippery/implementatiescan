@@ -36,58 +36,8 @@
 				
 			</div>
 		</div>
-		<?php $participant = $scan->beheerder;?>
-		@include('scans.inrichten.partials.participantrow', [$participant, $beheerder=true])
-		@foreach($scan->instanties as $instantie)
-			@foreach($instantie->users as $participant)
-				@if($participant->id != $scan->beheerder->id)
-					@include('scans.inrichten.partials.participantrow', [$participant, $beheerder=false])
-				@endif
-			@endforeach
-		@endforeach
 
-		@if(count($instantieoptions) > 0 && ! isset($user))
-			<div class="row gebruikers_aanmelden--row">
-				{!! Form::open(['route' => ['scans.storedeelnemer', $scan]]) !!}
-					<div class="large-1 columns" data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' tabindex=1 title="Voeg een deelnemer toe">
-						<img src="{{asset('img/user_dark.png')}}">
-						<span class="plus">+</span>
-					</div>
-					<div class="large-2 columns">
-						<!-- Voornaam Form Input -->
-						<div class="form-group">
-							{!! Form::text('name_first', null, ['class' => 'form-control', 'placeholder' => 'voornaam']) !!}
-						</div>
-					</div>
-					<div class="large-2 columns">
-						<!-- Achternaam Form Input -->
-						<div class="form-group">
-							{!! Form::text('name_last', null, ['class' => 'form-control', 'placeholder' => 'achternaam']) !!}
-						</div>
-
-					</div>
-					<div class="large-3 columns">
-						<!-- Email Form Input -->
-						<div class="form-group">
-							{!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'email']) !!}
-						</div>
-
-					</div>
-					<div class="large-3 columns">
-						<!-- Instantie Form Input -->
-						<div class="form-group">
-						    {!! Form::select('instantie', $instantieoptions, null, ['class' => 'form-control']) !!}
-						</div>
-					</div>
-					<div class="large-1 columns">
-						<!-- Add Submit Field -->
-						<div class="form-group">
-							<button onClick="this.form.submit()" class = "plussubmit" data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' tabindex=1 title="Voeg gebruiker toe">+</button>
-						</div>
-					</div>
-				{!! Form::close() !!}
-			</div>
-		@endif
+		<invoeren-deelnemers></invoeren-deelnemers>
 	
 	</div>
 	

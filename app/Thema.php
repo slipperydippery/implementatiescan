@@ -22,6 +22,11 @@ class Thema extends Model
     	return $this->belongsTo('App\Video');
     }
 
+    public function scanmodel()
+    {
+        return $this->belongsTo('App\Scanmodel');
+    }
+
     public function questions()
     {
         return $this->belongsToMany('App\Question');
@@ -31,4 +36,5 @@ class Thema extends Model
     {
         return $this->hasMany('App\Verbeteractie');
     }
+
 }

@@ -10,4 +10,9 @@ class Question extends Model
     {
     	return $this->morphMany('App\Answer', 'answerable');
     }
+
+    public function verbeteractie()
+    {
+    	return $this->hasOne('App\Verbeteractie');
+    }
 }

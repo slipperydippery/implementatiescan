@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.scan')
 
 @section('content')
 <div class="row page-heading">
@@ -19,30 +19,8 @@
 	<div class="large-12 columns submitted-users">
 		<h4>Aan deze scan doen mee: </h4>
 
-		@foreach($scan->instanties as $instantie)
-			@foreach($instantie->users as $participant)
-				@if($participant->id == Auth::user()->id)
-					<a data-open="userModal"> 
-            		<div class="large-2 column submitted-user callout success">
-				@else
-					<div class="large-2 column submitted-user callout">
-					<a href=" {{ URL::route('scans.removeuser', [$scan, $participant]) }} " class="close-button" aria-label="Close alert" type="button">
-					    <span aria-hidden="true">&times;</span>
-					</a>
-				@endif
-
-					<img src="{{asset('img/user.png')}}"> 
-
-					<div class="participant_info">
-						<span class="name">{{ $participant->name_first ? $participant->name_first : "---" }} {{ $participant->name_last ? $participant->name_last : "" }}</span> 
-						<span class="functie"> {{ $instantie->title }} </span>
-					</div>
-				</div>
-				@if($participant->id == Auth::user()->id)
-					</a>
-				@endif
-			@endforeach
-		@endforeach
+				<controleren-deelnemers></controleren-deelnemers>
+				
 
 		@if(count($scan->participants) < 12)
 			<div class="large-2 column end submitted-user">

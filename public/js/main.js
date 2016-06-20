@@ -10960,49 +10960,1168 @@ if (devtools) {
 module.exports = Vue;
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"_process":1}],12:[function(require,module,exports){
-"use strict";
+var inserted = exports.cache = {}
+
+exports.insert = function (css) {
+  if (inserted[css]) return
+  inserted[css] = true
+
+  var elem = document.createElement('style')
+  elem.setAttribute('type', 'text/css')
+
+  if ('textContent' in elem) {
+    elem.textContent = css
+  } else {
+    elem.styleSheet.cssText = css
+  }
+
+  document.getElementsByTagName('head')[0].appendChild(elem)
+  return elem
+}
+
+},{}],13:[function(require,module,exports){
+var __vueify_style__ = require("vueify-insert-css").insert(".actie_removebetrokkene {\n  font-size: 2rem;\n  line-height: 1.5rem;\n  font-weight: bold;\n  float: right;\n  padding: 0 0.5rem;\n  color: #999;\n}\n.actie_removebetrokkene:hover {\n  cursor: pointer;\n  color: #000;\n}\nspan.remove_row {\n  display: none;\n  display: inline-block;\n  width: 0;\n  padding: 0;\n  margin: 0;\n  height: 100%;\n  background: #f00;\n  left: 0;\n  top: 0;\n  color: #fff;\n  -webkit-transition: all 0.5s;\n  transition: all 0.5s;\n  overflow: hidden;\n}\n.actie-omschrijving:hover span.remove_row {\n  display: inline-block;\n  padding: 0 0.5rem;\n  margin: 0 0.5rem 0 0;\n  width: auto;\n  cursor: pointer;\n}\n")
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.default = {};
+exports.default = {
+	http: {
+		root: '/root',
+		headers: {
+			'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
+		}
+	},
+	props: ['resource', 'thema', 'actie', 'participants'],
+
+	data: function data() {
+		return {
+			scan: scan,
+			showUnBetrokkene: false,
+			editBetrokkenen: false,
+			betrokkenen: [],
+			unBetrokkenen: []
+		};
+	},
+	ready: function ready() {
+		this.betrokkenen = this.actie.betrokkenen;
+		this.unBetrokkenen = this.actie.unBetrokkenen;
+	},
+	created: function created() {},
+
+
+	methods: {
+
+		reloadData: function reloadData() {
+			this.$dispatch('reloadData');
+		},
+		reloadUnBetrokkenen: function reloadUnBetrokkenen() {
+			this.$dispatch('reloadUnBetrokkenen');
+		},
+
+		addBetrokkene: function addBetrokkene(participant) {
+			this.betrokkenen.push(participant);
+			this.unBetrokkenen.$remove(participant);
+			// var tempArray = this.unBetrokkenen.splice(0);
+			// this.unBetrokkenen = [];
+			this.showUnBetrokkene = !this.showUnBetrokkene;
+			var home = this;
+			var resource = this.$resource('/api/verbeteractie/:actie/betrokkene/:betrokkene');
+			resource.save({ actie: this.actie.id, betrokkene: participant.id }, {}).then(function (response) {
+				// home.unBetrokkenen = tempArray;
+			});
+		},
+
+		removeBetrokkene: function removeBetrokkene(participant) {
+			this.unBetrokkenen.push(participant);
+			this.betrokkenen.$remove(participant);
+			// var tempArray = this.betrokkenen.splice(0);
+			// this.betrokkenen = [];
+			this.showUnBetrokkene = !this.showUnBetrokkene;
+			var home = this;
+			var resource = this.$resource('/api/verbeteractie/:actie/betrokkene/:betrokkene');
+			resource.delete({ actie: this.actie.id, betrokkene: participant.id }, {}).then(function (response) {
+				// home.betrokkenen = tempArray;
+			});
+		},
+
+		saveActie: function saveActie() {
+			var home = this;
+			var resource = this.$resource('/api/verbeteractie/:actie');
+			resource.update({ actie: this.actie.id }, { actie: this.actie }).then(function (response) {});
+		},
+
+		setActieInactive: function setActieInactive(actie) {
+			actie.active = 0;
+			this.saveActie();
+		}
+
+	},
+
+	// getBetrokkenen: function () {
+	// 	var home = this;
+	// 	var resource = this.$resource('/api/verbeteractie/:actie/betrokkene');
+	// 	resource.get({actie: this.actiee.id}, {})
+	// 		.then(function(response){
+	// 			home.$set('actie[betrokkenen]')
+	// 		});
+	// },
+
+	computed: {
+		unblength: function unblength() {
+			return this.unBetrokkenen.length;
+		}
+	}
+
+};
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<h1>testerino</h1>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row actie-rij\" v-if=\"actie.active\">\t\n\n\t\t<div class=\"large-3 columns actie-omschrijving\"> \n\t\t\t<span class=\"remove_row\" @click=\"setActieInactive(actie)\">\n\t\t\t\tx\n\t\t\t</span>\n\t\t\t{{ actie.title }}\n\t\t</div>\n\n\t\t<div class=\"large-3 columns\">\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<textarea class=\"form-control\" placeholder=\"Actie Omschrijving\" v-model=\"actie.omschrijving\" @blur=\"saveActie()\">\t\t\t\t</textarea>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"large-3 columns\">\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<select v-model=\"actie.user_id\" @blur=\"saveActie()\">\n\t\t\t\t\t<option v-for=\"participant in participants\" :value=\"participant.id\"> \n\t\t\t\t\t\t{{ participant.name_first }} \n\t\t\t\t\t</option>\n\t\t\t\t</select>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"large-3 columns\">\n\n\t\t\t<div class=\"betrokkenen__group row\">\n\n\t\t\t\t<div class=\"betrokkenen__bet \">\n\t\t\t\t\t<div class=\"actie-betrokkene\" v-if=\"!betrokkenen.length\">\n\t\t\t\t\t+\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in betrokkenen\" @click=\"removeBetrokkene(betrokkene)\">\n\t\t\t\t\t\t{{betrokkene.name_first}}\n\t\t\t\t\t\t<span class=\"indication\">-</span>\n\t\t\t\t\t</div>\t\t\t\t\n\t\t\t\t</div>\n\n\t\t\t\t<div class=\"betrokkenen__unbet\">\n\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in unBetrokkenen\" @click=\"addBetrokkene(betrokkene)\">\n\t\t\t\t\t\t{{ betrokkene.name_first }}\n\t\t\t\t\t\t<span class=\"indication\">+</span>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n\t\t\t</div>\n\n\t\t</div>\n\n\t</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Tasks.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Actie.vue"
+  module.hot.dispose(function () {
+    require("vueify-insert-css").cache[".actie_removebetrokkene {\n  font-size: 2rem;\n  line-height: 1.5rem;\n  font-weight: bold;\n  float: right;\n  padding: 0 0.5rem;\n  color: #999;\n}\n.actie_removebetrokkene:hover {\n  cursor: pointer;\n  color: #000;\n}\nspan.remove_row {\n  display: none;\n  display: inline-block;\n  width: 0;\n  padding: 0;\n  margin: 0;\n  height: 100%;\n  background: #f00;\n  left: 0;\n  top: 0;\n  color: #fff;\n  -webkit-transition: all 0.5s;\n  transition: all 0.5s;\n  overflow: hidden;\n}\n.actie-omschrijving:hover span.remove_row {\n  display: inline-block;\n  padding: 0 0.5rem;\n  margin: 0 0.5rem 0 0;\n  width: auto;\n  cursor: pointer;\n}\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2}],13:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],14:[function(require,module,exports){
 'use strict';
 
-var _Tasks = require('./components/Tasks.vue');
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
 
-var _Tasks2 = _interopRequireDefault(_Tasks);
+var _ActiesThema = require('../components/ActiesThema.vue');
+
+var _ActiesThema2 = _interopRequireDefault(_ActiesThema);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+
+	components: { ActiesThema: _ActiesThema2.default },
+
+	props: [],
+
+	data: function data() {
+		return {
+			scan: scan,
+			themas: [],
+			participants: participants
+		};
+	},
+	created: function created() {},
+	ready: function ready() {
+		this.getThemas();
+	},
+
+
+	methods: {
+		getThemas: function getThemas() {
+			var home = this;
+			var resource = this.$resource('/api/scan/:scan/thema');
+			resource.get({ scan: this.scan.id }).then(function (response) {
+				home.$set('themas', response.data);
+			});
+		},
+
+		getparticipant: function getparticipant(participant) {
+			var home = this;
+			var resource = this.$resource('/api/scan/:scan/participant/:participant');
+			resource.get({ scan: this.scan.id, participant: participant }).then(function (response) {
+				//
+			});
+		}
+
+	},
+
+	computed: {},
+
+	events: {
+		reloadData: function reloadData() {
+			this.getThemas();
+		}
+	}
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<acties-thema v-for=\"thema in themas\" :thema.sync=\"thema\" :participants=\"participants\">\n\t\t\n\t</acties-thema>\n\t\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Acties.vue"
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, module.exports.template)
+  }
+})()}
+},{"../components/ActiesThema.vue":15,"vue":11,"vue-hot-reload-api":2}],15:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _Actie = require('../components/Actie.vue');
+
+var _Actie2 = _interopRequireDefault(_Actie);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+	http: {
+		root: '/root',
+		headers: {
+			'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
+		}
+	},
+
+	components: { Actie: _Actie2.default },
+
+	props: ['thema', 'participants'],
+
+	data: function data() {
+		return {
+			scan: scan,
+			questions: [],
+			verbeteracties: [],
+			showInactief: false
+		};
+	},
+	created: function created() {},
+	ready: function ready() {
+		this.getQuestions();
+		this.getVerbeteracties();
+	},
+
+
+	methods: {
+		getThemas: function getThemas() {
+			var home = this;
+			var resource = this.$resource('/api/scan/:scan/thema');
+			resource.get({ scan: this.scan.id }).then(function (response) {
+				home.$set('themas', response.data);
+			});
+		},
+		getQuestions: function getQuestions() {
+			var home = this;
+			var resource = this.$resource('/api/thema/:thema/question');
+			resource.get({ thema: this.thema.id }).then(function (response) {
+				home.$set('questions', response.data);
+			});
+		},
+
+		getVerbeteracties: function getVerbeteracties() {
+			var home = this;
+			var resource = this.$resource('/api/scan/:scan/thema/:thema/verbeteractie');
+			resource.get({ scan: this.scan.id, thema: this.thema.id }).then(function (response) {
+				home.$set('verbeteracties', response.data);
+				home.addUnbetrokkenen();
+			});
+		},
+
+		getparticipant: function getparticipant(participant) {
+			var home = this;
+			var resource = this.$resource('/api/scan/:scan/participant/:participant');
+			resource.get({ scan: this.scan.id, participant: participant }).then(function (response) {
+				//
+			});
+		},
+
+		addUnbetrokkenen: function addUnbetrokkenen() {
+			for (var actie in this.verbeteracties) {
+				this.verbeteracties[actie].unBetrokkenen = [];
+				for (var participant in this.participants) {
+					var commonParts = 0;
+					if (this.verbeteracties[actie].betrokkenen.length) {
+						for (var betrokkene in this.verbeteracties[actie].betrokkenen) {
+							if (this.verbeteracties[actie].betrokkenen[betrokkene].id == this.participants[participant].id) {
+								commonParts++;
+							}
+						}
+						if (commonParts == 0) {
+							this.verbeteracties[actie].unBetrokkenen.push(this.participants[participant]);
+						}
+					} else {
+						this.verbeteracties[actie].unBetrokkenen.push(this.participants[participant]);
+					}
+				}
+			}
+		},
+
+		setActieActive: function setActieActive(actie) {
+			actie.active = true;
+			this.saveActie(actie);
+		},
+
+		saveActie: function saveActie(actie) {
+			var home = this;
+			var resource = this.$resource('/api/verbeteractie/:actie');
+			resource.update({ actie: actie.id }, { actie: actie }).then(function (response) {});
+		}
+
+	},
+
+	computed: {}
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row thema-group\">\n\t\t\t<div class=\"large-12\">\n\t\t\t\t<div class=\"row\">\t\n\t\t\t\t\t<div class=\"large-3 actie-thema actie-thema-kop actiepunt-es columns\"> {{ thema.title }} </div>\n\t\t\t\t\t<div class=\"large-3 actie-thema actiepunt-es columns\">Omschrijving</div>\n\t\t\t\t\t<div class=\"large-3 actie-thema actiepunt-es columns\">Trekker</div>\n\t\t\t\t\t<div class=\"large-3 actie-thema actiepunt-es columns\">Betrokkenen</div>\n\t\t\t\t</div>\n\t\t\t\t<actie v-for=\"actie in verbeteracties\" :actie.sync=\"actie\" :participants=\"participants\">\n\t\t\t\t\t\n\t\t\t\t</actie> \n\t\t\t\t<div class=\"row actie-rij \">\n\t\t\t\t\t<div class=\"large-12 columns actie-voegtoe\" @click=\"showInactief =  ! showInactief\"> \n\t\t\t\t\t\t<span v-show=\"! showInactief\">+</span>\n\t\t\t\t\t\t<span v-show=\"showInactief\">-</span> \n\t\t\t\t\t\tvoeg nog een verbeterpunt toe\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"large12 columns actie-inactief\" v-for=\"actie in verbeteracties\" :actie.sync=\"actie\" v-if=\" ! actie.active &amp;&amp; showInactief\" @click=\"setActieActive(actie)\">\n\t\t\t\t\t\t{{ actie.title }}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\ActiesThema.vue"
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, module.exports.template)
+  }
+})()}
+},{"../components/Actie.vue":13,"vue":11,"vue-hot-reload-api":2}],16:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	http: {
+		root: '/root',
+		headers: {
+			'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
+		}
+	},
+
+	props: ['editable', 'availableinstanties'],
+
+	data: function data() {
+		return {
+			scan: scan,
+			participant: {
+				id: 0,
+				name_first: '',
+				name_last: '',
+				email: '',
+				instantie_id: ''
+			},
+			instantie: { id: 0 }
+		};
+	},
+	ready: function ready() {},
+
+
+	computed: {
+		returnRoot: function returnRoot() {
+			return window.location.protocol + "//" + window.location.host;
+		},
+		isEditable: function isEditable() {
+			return this.participant.id == this.editable.id;
+		},
+
+		isValid: function isValid() {
+			if (this.validFirstName && this.validLastName && this.validInstantie && this.validEmail) {
+				return true;
+			}
+			return false;
+		},
+
+		validFirstName: function validFirstName() {
+			if (this.participant.name_first.length > 0) {
+				return true;
+			}
+			return false;
+		},
+
+		validLastName: function validLastName() {
+			if (this.participant.name_last.length > 0) {
+				return true;
+			}
+			return false;
+		},
+
+		validInstantie: function validInstantie() {
+			if (this.participant.instantie_id > 0) {
+				return true;
+			}
+			return false;
+		},
+
+		validEmail: function validEmail() {
+			if (this.participant.email.length > 8) {
+				return true;
+			}
+			return false;
+		}
+	},
+
+	methods: {
+		setThisEditable: function setThisEditable() {
+			// reload participants
+			this.$dispatch('reloadParticipants');
+			this.editable = this.participant;
+		},
+
+		setNoneEditable: function setNoneEditable() {
+			this.editable = {};
+		},
+
+		resetNewParticipant: function resetNewParticipant() {
+			this.participant = {
+				id: 0,
+				name_first: '',
+				name_last: '',
+				email: '',
+				instantie_id: ''
+			};
+			this.$dispatch('reloadParticipants');
+		},
+
+		saveNewParticipant: function saveNewParticipant() {
+			// save changes and reload
+			var resource = this.$resource('/api/scan/:scan/participant/');
+
+			var home = this;
+			resource.save({ scan: this.scan.id }, { participant: this.participant }).then(function (response) {
+				// success callback
+				home.resetNewParticipant();
+			}, function (response) {
+				// error callback
+			});
+			// this.removeFromInstantie(this.participant);
+			this.setNoneEditable();
+
+			// this.tasks = _.reject(this.instantie, participants => participant.id == this.participant.id);
+		}
+
+	}
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row gebruikers_aanmelden--row\" v-if=\" ! isEditable \">\n\t\t<div class=\"small-12 columns vuelink\" @click=\"setThisEditable()\"> \n\t\t\t<img :src=\"returnRoot + '/img/user_dark.png'\"> \n\t\t\t<span class=\"plus\">+</span>\n\t\t</div>\n\t</div>\n\n\t<div class=\"row gebruikers_aanmelden--row\" v-if=\" isEditable \">\n\t\t<div class=\"small-1 columns\" @click=\"setNoneEditable\"> \n\t\t\t<img :src=\"returnRoot + '/img/user_dark.png'\"> \n\t\t\t<span class=\"plus\">-</span>\n\t\t</div>\n\t\t<div class=\"small-2 columns\"> <input type=\"text\" v-model=\"participant.name_first\" placeholder=\"Voornaam\"></div>\n\t\t<div class=\"small-2 columns\"> <input type=\"text\" v-model=\"participant.name_last\" placeholder=\"Achternaam\"> </div>\n\t\t<div class=\"small-3 columns\"> <input type=\"text\" v-model=\"participant.email\" placeholder=\"Email\"> </div>\n\t\t<div class=\"small-3 columns\"> \n\t\t\t<select v-model=\"participant.instantie_id\">\n\t\t\t  <option v-for=\"instantie in availableinstanties\" v-bind:value=\"instantie.id\">\n\t\t\t    {{ instantie.title }}\n\t\t\t  </option>\n\t\t\t</select>\n\t\t</div>\n\t\t<div class=\"small-1 columns\">\n\t\t\t<img :src=\"returnRoot +'/img/checkmark.png'\" class=\"editicon vuelink\" data-tooltip=\"\" aria-haspopup=\"true\" data-disable-hover=\"false\" tabindex=\"1\" title=\"Sla Bewerkingen op\" @click=\"saveNewParticipant\" v-if=\"isValid\">\n\t\t</div>\t\n\t</div>\n\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\AddSingleDeelnemer.vue"
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, module.exports.template)
+  }
+})()}
+},{"vue":11,"vue-hot-reload-api":2}],17:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	http: {
+		root: '/root',
+		headers: {
+			'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
+		}
+	},
+
+	props: [],
+
+	data: function data() {
+		return {
+			participants: [],
+			scan: scan
+		};
+	},
+	ready: function ready() {
+		this.getParticipants();
+	},
+
+
+	computed: {
+		returnRoot: function returnRoot() {
+			return window.location.protocol + "//" + window.location.host;
+		}
+	},
+
+	methods: {
+
+		getParticipants: function getParticipants() {
+			var _this = this;
+
+			this.$http.get('/api/scan/' + this.scan.id + '/participant').then(function (response) {
+				console.log('here');
+				_this.participants = response.data;
+				// this.calcAvailableInstanties();
+			});
+		},
+
+		removeParticipant: function removeParticipant(participant_id) {
+			var resource = this.$resource('/api/scan/:scan/participant/:participant');
+			var home = this;
+			resource.delete({ scan: this.scan.id, participant: participant_id }, {}).then(function (response) {
+				home.getParticipants();
+			}, function (response) {});
+		},
+
+		calcAvailableInstanties: function calcAvailableInstanties() {
+			var tempavailable = [];
+			for (var thisparticipant in this.participants) {
+				// if(this.participants[insts].participants.length < 2)
+				// {
+				// 	tempavailable.push({
+				// 		'title' : this.participants[insts].title,
+				// 		'id' : this.participants[insts].id
+				// 	});
+				// }
+			}
+			this.availableinstanties = tempavailable;
+		}
+
+	},
+
+	events: {
+		reloadParticipants: function reloadParticipants() {
+			this.getParticipants();
+		}
+	}
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div v-for=\"participant in participants | orderBy 'instantie_id'\">\n\t\t<div class=\"large-2 column submitted-user\">\n\t\t\t<a href=\"#\" class=\"close-button\" aria-label=\"Close alert\" type=\"button\" @click=\"removeParticipant(participant.id)\">\n\t\t\t    <span aria-hidden=\"true\">×</span>\n\t\t\t</a>\n\t\t\t<img :src=\"returnRoot + '/img/user.png'\">\n\t\t\t<div class=\"participant_info\">\n\t\t\t\t<span class=\"name\"> {{ participant.name_first ? participant.name_first : \"---\" }} {{ participant.name_last ? participant.name_last : \"\" }} </span> \n\t\t\t\t<span class=\"functie\"> {{ participant.instantie_title }} </span>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\ControlerenDeelnemers.vue"
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, module.exports.template)
+  }
+})()}
+},{"vue":11,"vue-hot-reload-api":2}],18:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _SingleDeelnemer = require('../components/SingleDeelnemer.vue');
+
+var _SingleDeelnemer2 = _interopRequireDefault(_SingleDeelnemer);
+
+var _AddSingleDeelnemer = require('../components/AddSingleDeelnemer.vue');
+
+var _AddSingleDeelnemer2 = _interopRequireDefault(_AddSingleDeelnemer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+
+	components: { SingleDeelnemer: _SingleDeelnemer2.default, AddSingleDeelnemer: _AddSingleDeelnemer2.default },
+	props: [],
+
+	data: function data() {
+		return {
+			scan: scan,
+			participants: [],
+			editable: {},
+			availableinstanties: {}
+
+		};
+	},
+	ready: function ready() {
+		this.getParticipants(); //get participants and set availableinstances
+	},
+
+
+	computed: {
+		returnRoot: function returnRoot() {
+			return window.location.protocol + "//" + window.location.host;
+		}
+	},
+
+	methods: {
+
+		getParticipants: function getParticipants() {
+			var _this = this;
+
+			this.$http.get('/api/scan/' + this.scan.id + '/participants').then(function (response) {
+				_this.participants = response.data;
+				_this.calcAvailableInstanties();
+			});
+		},
+
+		calcAvailableInstanties: function calcAvailableInstanties() {
+			var tempavailable = [];
+			for (var insts in this.participants) {
+				if (this.participants[insts].participants.length < 2) {
+					tempavailable.push({
+						'title': this.participants[insts].title,
+						'id': this.participants[insts].id
+					});
+				}
+			}
+			this.availableinstanties = tempavailable;
+		}
+
+	},
+
+	events: {
+		reloadParticipants: function reloadParticipants() {
+			this.getParticipants();
+		}
+	}
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div v-for=\"instantie in participants\">\n\n\t\t<single-deelnemer v-for=\"participant in instantie.participants\" :participant=\"participant\" :editable.sync=\"editable\" :instantie=\"instantie\" :availableinstanties=\"availableinstanties\" v-if=\"participant.beheerder\">\n\t\t</single-deelnemer>\n\n\t</div>\n\t<div v-for=\"instantie in participants\">\n\n\t\t<single-deelnemer v-for=\"participant in instantie.participants\" :participant=\"participant\" :editable.sync=\"editable\" :instantie=\"instantie\" :availableinstanties=\"availableinstanties\" v-if=\"!participant.beheerder\">\n\t\t</single-deelnemer>\n\n\t</div>\t\n\n\t<add-single-deelnemer :editable.sync=\"editable\" :availableinstanties=\"availableinstanties\">\n\t</add-single-deelnemer>\n\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\InvoerenDeelnemers.vue"
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, module.exports.template)
+  }
+})()}
+},{"../components/AddSingleDeelnemer.vue":16,"../components/SingleDeelnemer.vue":21,"vue":11,"vue-hot-reload-api":2}],19:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _SingleSlider = require('../components/SingleSlider.vue');
+
+var _SingleSlider2 = _interopRequireDefault(_SingleSlider);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+
+	components: { SingleSlider: _SingleSlider2.default },
+
+	props: [],
+
+	data: function data() {
+		return {
+			themaResultaat: [],
+			allComplete: false,
+			unanswered: 12,
+			scan: scan,
+			thema_id: thema_id,
+			thema_nr: thema_nr,
+			allAnswered: false
+		};
+	},
+	ready: function ready() {
+		this.getNrUnanswered();
+		setInterval(function () {
+			this.getNrUnanswered();
+		}.bind(this), 1000);
+	},
+	created: function created() {},
+
+
+	methods: {
+		getNrUnanswered: function getNrUnanswered() {
+			var _this = this;
+
+			this.$http.get('/api/scan/' + this.scan.id + '/thema/' + this.thema_id + '/getNrUnanswered').then(function (response) {
+				_this.unanswered = response.data;
+			});
+		},
+
+		cssPercent: function cssPercent(value) {
+			return value + '%';
+		}
+	},
+
+	computed: {
+		themaURL: function themaURL() {
+			return '/scans/' + this.scan.id + '/thema/' + this.thema_id + '/' + this.thema_nr + '/themaresultaat';
+		}
+
+	}
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"small-12 center\">\n\t\t<a :href=\"themaURL\" class=\"button answered\" v-if=\"unanswered == 0\">\n\t\t\tLaat Resultaat Zien\n\t\t</a>\n\n\t\t<span class=\"unanswered\" v-else=\"\">\n\t\t\tNog {{ unanswered }} vragen te gaan\n\t\t</span>\n\t</div>\n\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\PreThemaResultaat.vue"
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, module.exports.template)
+  }
+})()}
+},{"../components/SingleSlider.vue":22,"vue":11,"vue-hot-reload-api":2}],20:[function(require,module,exports){
+var __vueify_style__ = require("vueify-insert-css").insert(".rangeresult {\n  position: relative;\n  display: block;\n  width: 100%;\n  height: 0.5rem;\n  background: #ec5840;\n  margin: 0.7rem 0 1.4rem;\n}\n.rangeresult__value {\n  position: absolute;\n  display: block;\n  top: 0;\n  left: 0;\n  height: 100%;\n  background: #1cb32d;\n  webkit-transition: width 1s;\n  -webkit-transition: width 1s;\n  transition: width 1s;\n}\ninput[type=range]::after {\n  content: \"\";\n  display: block;\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 90%;\n  height: 0.6rem;\n  background: #1cb32d;\n}\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+
+	components: {},
+
+	props: [],
+
+	data: function data() {
+		return {
+			instantiePartValues: [],
+			allComplete: false,
+			unanswered: 12,
+			// instanties: instanties,
+			scan: scan,
+			thema_id: thema_id
+		};
+	},
+	ready: function ready() {
+		this.getParticipants();
+		setInterval(function () {
+			this.getParticipants();
+		}.bind(this), 1000);
+	},
+	created: function created() {},
+
+
+	methods: {
+		getParticipants: function getParticipants() {
+			var _this = this;
+
+			this.$http.get('/api/scan/' + this.scan.id + '/thema/' + this.thema_id + '/getParticipantABValues').then(function (response) {
+				_this.instantiePartValues = response.data;
+			});
+		},
+		cssPercent: function cssPercent(value) {
+			return value + '%';
+		}
+	},
+
+	computed: {
+		averageValue: function averageValue() {
+			var participantcount = 0;
+			var totalValue = 0;
+			var unanswered = 0;
+			for (var insts in this.instantiePartValues) {
+				for (var parts in this.instantiePartValues[insts].participants) {
+					participantcount++;
+					if (this.instantiePartValues[insts].participants[parts].abvalue != null) {
+						totalValue += this.instantiePartValues[insts].participants[parts].abvalue.value;
+					} else {
+						unanswered++;
+					}
+				}
+			}
+			if (unanswered > 0) {
+				this.unanswered = unanswered;
+				this.allComplete = false;
+				return 50;
+			}
+			this.allComplete = true;
+			return totalValue / participantcount;
+		}
+	}
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"large-12 columns algemeenbeeldslider--group\">\n\t\t<span class=\"unanswered\" v-if=\" ! allComplete \">\n\t\t\tNog {{ unanswered }} deelnemers te gaan\n\t\t</span>\n\t\t<span style=\"display:none\"> {{ averageValue }} </span>\n\t\t<div class=\"row sliders-sub slider-gemiddeld\" v-if=\"allComplete\">\n\t\t\t<div class=\"large-2 small-2 columns\">Gemiddeld</div>\n\t\t\t<div class=\"large-10 small-10 columns\">\n\t\t\t\t<div class=\"rangeresult\">\n\t\t\t\t\t<div class=\"rangeresult__value\" :style=\"{ width: cssPercent(averageValue) }\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"row sliders-sub\" v-for=\"instantie in instantiePartValues\" :class=\"'slider-'+instantie.id\" v-show=\"instantie.participants.length\" v-if=\"allComplete\">\n\t\t\t<div class=\"large-2 small-2 columns\">\n\t\t\t\t{{ instantie.title }}\n\t\t\t</div>\n\t\t\t<div class=\"large-10 small-10 columns\">\n\t\t\t\t<div class=\"rangeresult\" v-for=\"participant in instantie.participants\" :participant=\"participant\">\n\t\t\t\t\t<div class=\"rangeresult__value\" v-if=\"participant.abvalue != null\" :style=\"{ width: cssPercent(participant.abvalue.value) }\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\ScanSlider.vue"
+  module.hot.dispose(function () {
+    require("vueify-insert-css").cache[".rangeresult {\n  position: relative;\n  display: block;\n  width: 100%;\n  height: 0.5rem;\n  background: #ec5840;\n  margin: 0.7rem 0 1.4rem;\n}\n.rangeresult__value {\n  position: absolute;\n  display: block;\n  top: 0;\n  left: 0;\n  height: 100%;\n  background: #1cb32d;\n  webkit-transition: width 1s;\n  -webkit-transition: width 1s;\n  transition: width 1s;\n}\ninput[type=range]::after {\n  content: \"\";\n  display: block;\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 90%;\n  height: 0.6rem;\n  background: #1cb32d;\n}\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, module.exports.template)
+  }
+})()}
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],21:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	http: {
+		root: '/root',
+		headers: {
+			'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
+		}
+	},
+
+	props: ['participant', 'instantie', 'editable', 'availableinstanties'],
+
+	data: function data() {
+		return {
+			myavailableinstanties: [],
+			scan: scan
+		};
+	},
+	ready: function ready() {
+		this.getMyAvailableInstanties();
+	},
+
+
+	computed: {
+		returnRoot: function returnRoot() {
+			return window.location.protocol + "//" + window.location.host;
+		},
+
+		isEditable: function isEditable() {
+			return this.participant.id == this.editable.id;
+		},
+
+		isValid: function isValid() {
+			if (this.validFirstName && this.validLastName && this.validInstantie && this.validEmail) {
+				return true;
+			}
+			return false;
+		},
+
+		validFirstName: function validFirstName() {
+			if (this.participant.name_first.length > 0) {
+				return true;
+			}
+			return false;
+		},
+
+		validLastName: function validLastName() {
+			if (this.participant.name_last.length > 0) {
+				return true;
+			}
+			return false;
+		},
+
+		validInstantie: function validInstantie() {
+			if (this.participant.instantie_id > 0) {
+				return true;
+			}
+			return false;
+		},
+
+		validEmail: function validEmail() {
+			if (this.participant.email.length > 8) {
+				return true;
+			}
+			return false;
+		}
+	},
+
+	methods: {
+		setThisEditable: function setThisEditable() {
+			// reload participants
+			this.$dispatch('reloadParticipants');
+			this.editable = this.participant;
+		},
+
+		setNoneEditable: function setNoneEditable() {
+			this.editable = {};
+		},
+
+		removeParticipant: function removeParticipant() {
+			var resource = this.$resource('/api/scan/:scan/participant/:participant');
+			var home = this;
+			resource.delete({ scan: this.scan.id, participant: this.participant.id }, {}).then(function (response) {
+				home.$dispatch('reloadParticipants');
+			}, function (response) {});
+		},
+
+		saveChanges: function saveChanges() {
+			// save changes and reload
+			var resource = this.$resource('/api/scan/:scan/participant/:participant');
+
+			var home = this;
+			resource.update({ scan: this.scan.id, participant: this.participant.id }, { participant: this.participant, instantie: this.instantie.id }).then(function (response) {
+				// success callback
+				home.$dispatch('reloadParticipants');
+			}, function (response) {
+				// error callback
+			});
+			// this.removeFromInstantie(this.participant);
+			this.setNoneEditable();
+
+			// this.tasks = _.reject(this.instantie, participants => participant.id == this.participant.id);
+		},
+
+		getMyAvailableInstanties: function getMyAvailableInstanties() {
+			this.myavailableinstanties = this.availableinstanties.slice(0);
+			for (var thisinstantie in this.myavailableinstanties) {
+				if (this.myavailableinstanties[thisinstantie].id == this.instantie.id) {
+					return;
+				}
+			}
+			this.myavailableinstanties.push({ 'title': this.instantie.title, 'id': this.instantie.id });
+		}
+
+	}
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row gebruikers_aanmelden--row\" :class=\"{'row_beheerder' : participant.beheerder}\">\n\t\t<div v-show=\"! isEditable\">\n\t\t\t<div class=\"small-1 columns\"> <img :src=\"returnRoot + '/img/user_dark.png'\"> </div>\n\t\t\t<div class=\"small-2 columns\"> {{ participant.name_first ? participant.name_first : \" ---\" }} </div>\n\t\t\t<div class=\"small-2 columns\"> {{ participant.name_last ? participant.name_last : \" --- \" }} </div>\n\t\t\t<div class=\"small-3 columns\"> {{ participant.email ? participant.email : \" --- \" }} </div>\n\t\t\t<div class=\"small-3 columns\"> {{ instantie.title }} </div>\n\t\t\t<div class=\"small-1 columns\">\n\t\t\t\t<img :src=\"returnRoot +'/img/editicon.png'\" class=\"editicon vuelink\" @click=\"setThisEditable\" data-tooltip=\"\" aria-haspopup=\"true\" data-disable-hover=\"false\" tabindex=\"1\" title=\"Bewerk gegevens\">\n\t\t\t\t<a href=\"#\" class=\"close-button closeicon\" aria-label=\"Close alert\" type=\"button\" @click=\"removeParticipant\">×</a>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div v-show=\"isEditable\">\n\t\t\t<div class=\"small-1 columns\"> <img :src=\"returnRoot + '/img/user_dark.png'\"> </div>\n\t\t\t<div class=\"small-2 columns\"> <input type=\"text\" v-model=\"participant.name_first\" placeholder=\"edit me\"></div>\n\t\t\t<div class=\"small-2 columns\"> <input type=\"text\" v-model=\"participant.name_last\" placeholder=\"edit me\"> </div>\n\t\t\t<div class=\"small-3 columns\"> <input type=\"text\" v-model=\"participant.email\" placeholder=\"edit me\"> </div>\n\t\t\t<div class=\"small-3 columns\"> \n\t\t\t\t<select v-model=\"instantie.id\">\n\t\t\t\t  <option v-for=\"instantie in myavailableinstanties\" v-bind:value=\"instantie.id\">\n\t\t\t\t    {{ instantie.title }}\n\t\t\t\t  </option>\n\t\t\t\t</select>\n\t\t\t</div>\n\t\t\t<div class=\"small-1 columns\">\n\t\t\t\t<img :src=\"returnRoot +'/img/checkmark.png'\" class=\"editicon vuelink\" data-tooltip=\"\" aria-haspopup=\"true\" data-disable-hover=\"false\" tabindex=\"1\" title=\"Sla Bewerkingen op\" @click=\"saveChanges\" v-if=\"isValid\">\n\t\t\t</div>\t\n\t\t</div>\t\t\n\t</div>\n\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\SingleDeelnemer.vue"
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, module.exports.template)
+  }
+})()}
+},{"vue":11,"vue-hot-reload-api":2}],22:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+
+	components: {},
+
+	props: ['thema_id'],
+
+	data: function data() {
+		return {
+			instantiePartValues: [],
+			allComplete: false,
+			unanswered: 12,
+			// instanties: instanties,
+			scan: scan
+		};
+	},
+	// thema_id: thema_id,
+	ready: function ready() {
+		this.getParticipants();
+		setInterval(function () {
+			this.getParticipants();
+		}.bind(this), 1000);
+	},
+	created: function created() {},
+
+
+	methods: {
+		getParticipants: function getParticipants() {
+			var _this = this;
+
+			this.$http.get('/api/scan/' + this.scan.id + '/thema/' + this.thema_id + '/getParticipantABValues').then(function (response) {
+				console.log('getting');
+				_this.instantiePartValues = response.data;
+			});
+		},
+		cssPercent: function cssPercent(value) {
+			return value + '%';
+		}
+	},
+
+	computed: {
+		averageValue: function averageValue() {
+			var participantcount = 0;
+			var totalValue = 0;
+			var unanswered = 0;
+			for (var insts in this.instantiePartValues) {
+				for (var parts in this.instantiePartValues[insts].participants) {
+					participantcount++;
+					if (this.instantiePartValues[insts].participants[parts].abvalue != null) {
+						totalValue += this.instantiePartValues[insts].participants[parts].abvalue.value;
+					} else {
+						unanswered++;
+					}
+				}
+			}
+			if (unanswered > 0) {
+				this.unanswered = unanswered;
+				this.allComplete = false;
+				return 50;
+			}
+			this.allComplete = true;
+			return totalValue / participantcount;
+		}
+	}
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n{{ thema_id }}\n\n\t<div class=\"large-12 columns algemeenbeeldslider--group\">\n\t\t<span style=\"display:none\"> {{ averageValue }} </span>\n\t\t<div class=\"row sliders-sub slider-gemiddeld\">\n\t\t\t<div class=\"small-12 columns\">\n\t\t\t\t<div class=\"rangeresult\">\n\t\t\t\t\t<div class=\"rangeresult__value\" :style=\"{ width: cssPercent(averageValue) }\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"row sliders-sub\" v-for=\"instantie in instantiePartValues\" :class=\"'slider-'+instantie.id\" v-show=\"instantie.participants.length\" v-if=\"allComplete\">\n\n\t\t\t<div class=\"small-12 columns\">\n\t\t\t\t<div class=\"rangeresult\" v-for=\"participant in instantie.participants\" :participant=\"participant\">\n\t\t\t\t\t<div class=\"rangeresult__value\" v-if=\"participant.abvalue != null\" :style=\"{ width: cssPercent(participant.abvalue.value) }\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\SingleSlider.vue"
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, module.exports.template)
+  }
+})()}
+},{"vue":11,"vue-hot-reload-api":2}],23:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _SingleSlider = require('../components/SingleSlider.vue');
+
+var _SingleSlider2 = _interopRequireDefault(_SingleSlider);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+
+	components: { SingleSlider: _SingleSlider2.default },
+
+	props: [],
+
+	data: function data() {
+		return {
+			themaResultaat: [],
+			// allComplete: false,
+			// unanswered: 12,
+			scan: scan,
+			thema_id: thema_id
+		};
+	},
+	ready: function ready() {
+		this.getThemaResultaat();
+		// setInterval(function () {
+		// 	this.getParticipants();
+		// }.bind(this), 1000);
+	},
+	created: function created() {},
+
+
+	methods: {
+		getThemaResultaat: function getThemaResultaat() {
+			var _this = this;
+
+			this.$http.get('/api/scan/' + this.scan.id + '/thema/' + this.thema_id + '/getThemaOverzichtValues').then(function (response) {
+				_this.themaResultaat = response.data;
+			});
+		},
+
+		cssPercent: function cssPercent(value) {
+			return value + '%';
+		}
+	},
+
+	computed: {}
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<single-slider :thema_id=\"1\"></single-slider>\n\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\ThemaResultaat.vue"
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, module.exports.template)
+  }
+})()}
+},{"../components/SingleSlider.vue":22,"vue":11,"vue-hot-reload-api":2}],24:[function(require,module,exports){
+'use strict';
+
+var _InvoerenDeelnemers = require('./components/InvoerenDeelnemers.vue');
+
+var _InvoerenDeelnemers2 = _interopRequireDefault(_InvoerenDeelnemers);
+
+var _ControlerenDeelnemers = require('./components/ControlerenDeelnemers.vue');
+
+var _ControlerenDeelnemers2 = _interopRequireDefault(_ControlerenDeelnemers);
+
+var _ScanSlider = require('./components/ScanSlider.vue');
+
+var _ScanSlider2 = _interopRequireDefault(_ScanSlider);
+
+var _SingleSlider = require('./components/SingleSlider.vue');
+
+var _SingleSlider2 = _interopRequireDefault(_SingleSlider);
+
+var _ThemaResultaat = require('./components/ThemaResultaat.vue');
+
+var _ThemaResultaat2 = _interopRequireDefault(_ThemaResultaat);
+
+var _PreThemaResultaat = require('./components/PreThemaResultaat.vue');
+
+var _PreThemaResultaat2 = _interopRequireDefault(_PreThemaResultaat);
+
+var _Acties = require('./components/Acties.vue');
+
+var _Acties2 = _interopRequireDefault(_Acties);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+$.ajaxSetup({
+	headers: {
+		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	}
+});
 
 var Vue = require('vue');
 
 Vue.use(require('vue-resource'));
 
-new Vue({
-	el: 'form',
+// import Algemeenbeeld from './components/Algemeenbeeld.vue';
 
-	data: {
-		slider_input: '50'
+// Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('value');
+
+new Vue({
+	http: {
+		root: '/root',
+		headers: {
+			'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
+		}
+	},
+	// headers: {
+	//   'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
+	// },
+
+	el: 'body',
+	props: [],
+	data: {},
+
+	components: {
+		Acties: _Acties2.default,
+		ScanSlider: _ScanSlider2.default,
+		SingleSlider: _SingleSlider2.default,
+		InvoerenDeelnemers: _InvoerenDeelnemers2.default,
+		ThemaResultaat: _ThemaResultaat2.default,
+		ControlerenDeelnemers: _ControlerenDeelnemers2.default,
+		PreThemaResultaat: _PreThemaResultaat2.default
 	},
 
-	components: { Tasks: _Tasks2.default }
+	methods: {},
 
+	computed: {},
+
+	ready: function ready() {}
 });
 
-},{"./components/Tasks.vue":12,"vue":11,"vue-resource":4}]},{},[13]);
+},{"./components/Acties.vue":14,"./components/ControlerenDeelnemers.vue":17,"./components/InvoerenDeelnemers.vue":18,"./components/PreThemaResultaat.vue":19,"./components/ScanSlider.vue":20,"./components/SingleSlider.vue":22,"./components/ThemaResultaat.vue":23,"vue":11,"vue-resource":4}]},{},[24]);
 
 //# sourceMappingURL=main.js.map
