@@ -117,23 +117,37 @@ class ScansController extends Controller
         {
             return view ('scans.themaintro', compact('scan', 'thema', 'thema_nr', 'question_nr'));
         }
-        //Goto Resultaat
+        //Goto Thema Resultaat
         else if ($question_nr == (count($thema->questions) + 1))
         {
             JavaScript::put([
                 'scan' => $scan,
-                'thema_id' => $thema->id
+                'thema_id' => $thema->id,
+                'thema_nr' => $thema_nr,
             ]);
-            return view ('scans.themaresultaat', compact('scan', 'thema', 'thema_nr', 'question_nr'));
+            // return view ('scans.themaresultaat', compact('scan', 'thema', 'thema_nr', 'question_nr'));
+            if(count(Auth::user()->beheert->intersect([$scan])))
+            {
+                return view('scans.prethemaresultaat', compact('scan', 'thema', 'thema_nr', 'question_nr'));
+            } else {
+                return view('scans.participantthemaresultaat', compact('scan', 'thema', 'thema_nr', 'question_nr'));
+            }
         }
         //Goto next thema or verbeteracties
         else if ($question_nr > (count($thema->questions) + 1))
         {
+            //Goto Actieoverzicht or Complete Thema
             if($thema_nr == count($scan->scanmodel->themas))
             {
-                return redirect('scans/' . $scan->id . '/actieoverzicht');
+                if(count(Auth::user()->beheert->intersect([$scan])))
+                {
+                    return redirect('scans/' . $scan->id . '/actieoverzicht');
+                } else {
+                    return view('scans.complete', compact('scan'));
+                }
             }
 
+            //Goto Next thema
             $thema = $scan->scanmodel->themas->get($thema_nr);
             $thema_nr++;
             return redirect('scans/' . $scan->id . '/thema/' . $thema_nr . '/vraag/0' );
@@ -144,6 +158,22 @@ class ScansController extends Controller
             $question = $thema->questions->get($question_nr - 1);
             return view ('scans.question', compact('scan', 'thema', 'question', 'thema_nr', 'question_nr'));
         }
+    }
+
+    public function themaresultaat(Scan $scan, Thema $thema, $thema_nr)
+    {
+        $themasaverage = [];
+        foreach($thema->questions as $question)
+        {
+            $thisaverage = 0;
+            foreach($scan->participants as $participant)
+            {
+                $thisaverage += $participant->answers->intersect($question->answers)->first()->value;
+            }
+            $thisaverage = $thisaverage / count($scan->participants);
+            $themasaverage[$question->id] = $thisaverage;
+        }
+        return view ('scans.themaresultaat', compact('scan', 'thema', 'thema_nr', 'themasaverage'));
     }
 
     public function start()

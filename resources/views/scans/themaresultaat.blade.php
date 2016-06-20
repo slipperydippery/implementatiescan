@@ -28,36 +28,14 @@
 			</div>
 			<div class="row sliders-sub sliders-sub__thema ">
 				<div class="large-2 small-2 columns">Gemiddeld</div>
-				<div class="large-2 small-2 columns center">
-					<div class="slider" data-slider data-initial-start="50">
-						<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
-						<span class="slider-fill" data-slider-fill></span>
+				@foreach($themasaverage as $themaaverage_id => $themaaverage)
+					<div class="large-2 small-2 columns center">
+						<div class="rangeresult" >
+							<div class="rangeresult__value" style="width: <?= $themaaverage ?>%">
+							</div>
+						</div>
 					</div>
-				</div>
-				<div class="large-2 small-2 columns center">
-					<div class="slider" data-slider data-initial-start="50">
-						<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
-						<span class="slider-fill" data-slider-fill></span>
-					</div>
-				</div>
-				<div class="large-2 small-2 columns center">
-					<div class="slider" data-slider data-initial-start="50">
-						<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
-						<span class="slider-fill" data-slider-fill></span>
-					</div>
-				</div>
-				<div class="large-2 small-2 columns center">
-					<div class="slider" data-slider data-initial-start="50">
-						<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
-						<span class="slider-fill" data-slider-fill></span>
-					</div>
-				</div>
-				<div class="large-2 small-2 columns center">
-					<div class="slider" data-slider data-initial-start="50">
-						<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
-						<span class="slider-fill" data-slider-fill></span>
-					</div>
-				</div>
+				@endforeach
 			</div>
 			@foreach($scan->instanties as $instantie)
 				@if(count($instantie->participants))
@@ -103,7 +81,7 @@
 
 		<div class="large-12 columns thema-submit-container">
 			<div class="form-group">
-			    {!! Form::submit('bla', ['class' => 'button form-control']) !!}
+			    {!! Form::submit('Sla verbeterpunten op', ['class' => 'button form-control']) !!}
 			</div>
 	  		<div id="time">01:00</div>
 		</div>	
@@ -128,7 +106,7 @@
         display.textContent = minutes + ":" + seconds;
 
         if (--timer < 0) {
-            timer = duration;
+            timer = 0;
         }
     }, 1000);
 }

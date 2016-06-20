@@ -11596,7 +11596,81 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"../components/AddSingleDeelnemer.vue":16,"../components/SingleDeelnemer.vue":20,"vue":11,"vue-hot-reload-api":2}],19:[function(require,module,exports){
+},{"../components/AddSingleDeelnemer.vue":16,"../components/SingleDeelnemer.vue":21,"vue":11,"vue-hot-reload-api":2}],19:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _SingleSlider = require('../components/SingleSlider.vue');
+
+var _SingleSlider2 = _interopRequireDefault(_SingleSlider);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+
+	components: { SingleSlider: _SingleSlider2.default },
+
+	props: [],
+
+	data: function data() {
+		return {
+			themaResultaat: [],
+			allComplete: false,
+			unanswered: 12,
+			scan: scan,
+			thema_id: thema_id,
+			thema_nr: thema_nr,
+			allAnswered: false
+		};
+	},
+	ready: function ready() {
+		this.getNrUnanswered();
+		setInterval(function () {
+			this.getNrUnanswered();
+		}.bind(this), 1000);
+	},
+	created: function created() {},
+
+
+	methods: {
+		getNrUnanswered: function getNrUnanswered() {
+			var _this = this;
+
+			this.$http.get('/api/scan/' + this.scan.id + '/thema/' + this.thema_id + '/getNrUnanswered').then(function (response) {
+				_this.unanswered = response.data;
+			});
+		},
+
+		cssPercent: function cssPercent(value) {
+			return value + '%';
+		}
+	},
+
+	computed: {
+		themaURL: function themaURL() {
+			return '/scans/' + this.scan.id + '/thema/' + this.thema_id + '/' + this.thema_nr + '/themaresultaat';
+		}
+
+	}
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"small-12 center\">\n\t\t<a :href=\"themaURL\" class=\"button answered\" v-if=\"unanswered == 0\">\n\t\t\tLaat Resultaat Zien\n\t\t</a>\n\n\t\t<span class=\"unanswered\" v-else=\"\">\n\t\t\tNog {{ unanswered }} vragen te gaan\n\t\t</span>\n\t</div>\n\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\PreThemaResultaat.vue"
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, module.exports.template)
+  }
+})()}
+},{"../components/SingleSlider.vue":22,"vue":11,"vue-hot-reload-api":2}],20:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert(".rangeresult {\n  position: relative;\n  display: block;\n  width: 100%;\n  height: 0.5rem;\n  background: #ec5840;\n  margin: 0.7rem 0 1.4rem;\n}\n.rangeresult__value {\n  position: absolute;\n  display: block;\n  top: 0;\n  left: 0;\n  height: 100%;\n  background: #1cb32d;\n  webkit-transition: width 1s;\n  -webkit-transition: width 1s;\n  transition: width 1s;\n}\ninput[type=range]::after {\n  content: \"\";\n  display: block;\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 90%;\n  height: 0.6rem;\n  background: #1cb32d;\n}\n")
 'use strict';
 
@@ -11684,7 +11758,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],20:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],21:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -11818,7 +11892,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2}],21:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2}],22:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -11902,7 +11976,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2}],22:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2}],23:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -11969,7 +12043,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"../components/SingleSlider.vue":21,"vue":11,"vue-hot-reload-api":2}],23:[function(require,module,exports){
+},{"../components/SingleSlider.vue":22,"vue":11,"vue-hot-reload-api":2}],24:[function(require,module,exports){
 'use strict';
 
 var _InvoerenDeelnemers = require('./components/InvoerenDeelnemers.vue');
@@ -11991,6 +12065,10 @@ var _SingleSlider2 = _interopRequireDefault(_SingleSlider);
 var _ThemaResultaat = require('./components/ThemaResultaat.vue');
 
 var _ThemaResultaat2 = _interopRequireDefault(_ThemaResultaat);
+
+var _PreThemaResultaat = require('./components/PreThemaResultaat.vue');
+
+var _PreThemaResultaat2 = _interopRequireDefault(_PreThemaResultaat);
 
 var _Acties = require('./components/Acties.vue');
 
@@ -12033,7 +12111,8 @@ new Vue({
 		SingleSlider: _SingleSlider2.default,
 		InvoerenDeelnemers: _InvoerenDeelnemers2.default,
 		ThemaResultaat: _ThemaResultaat2.default,
-		ControlerenDeelnemers: _ControlerenDeelnemers2.default
+		ControlerenDeelnemers: _ControlerenDeelnemers2.default,
+		PreThemaResultaat: _PreThemaResultaat2.default
 	},
 
 	methods: {},
@@ -12043,6 +12122,6 @@ new Vue({
 	ready: function ready() {}
 });
 
-},{"./components/Acties.vue":14,"./components/ControlerenDeelnemers.vue":17,"./components/InvoerenDeelnemers.vue":18,"./components/ScanSlider.vue":19,"./components/SingleSlider.vue":21,"./components/ThemaResultaat.vue":22,"vue":11,"vue-resource":4}]},{},[23]);
+},{"./components/Acties.vue":14,"./components/ControlerenDeelnemers.vue":17,"./components/InvoerenDeelnemers.vue":18,"./components/PreThemaResultaat.vue":19,"./components/ScanSlider.vue":20,"./components/SingleSlider.vue":22,"./components/ThemaResultaat.vue":23,"vue":11,"vue-resource":4}]},{},[24]);
 
 //# sourceMappingURL=main.js.map

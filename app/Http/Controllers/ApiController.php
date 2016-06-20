@@ -167,6 +167,22 @@ class ApiController extends Controller
     	return $instantiePartValues;
     }
 
+    public function getNrUnanswered(Scan $scan, Thema $thema)
+    {
+        $unanswered = 0;
+        foreach($scan->participants as $participant)
+        {
+            foreach($thema->questions as $question)
+            {
+                if(! count($participant->answers->intersect($question->answers)))
+                {
+                    $unanswered++;
+                }
+            }
+        }
+        return $unanswered;
+    }
+
     public function participants(Scan $scan)
     {
     	$instanties = [];

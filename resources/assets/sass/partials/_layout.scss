@@ -302,7 +302,7 @@ $sidetext_thickness : 18rem;
 	position: fixed;
 	top: .5rem;
 	left: 2rem;
-	@include hamburger(#fff, $body-background, 25px, 20px);
+	@include hamburger(#fff, #22373E, 25px, 20px);
 	z-index:100;
 }
 
@@ -557,6 +557,11 @@ $sidetext_thickness : 18rem;
 	font-size: 2rem;
 	padding: 4rem 0;
 	color: #22373e;
+ }
+
+ .answered {
+ 	margin: 4rem auto;
+
  }
 
  .algemeenbeeldslider--group {

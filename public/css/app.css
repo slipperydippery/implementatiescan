@@ -3742,8 +3742,8 @@ main {
     left: 0;
     box-shadow: 0 9px 0 #fff, 0 18px 0 #fff; }
   .navbarleft__hamburger:hover::after {
-    background: #A6CE39;
-    box-shadow: 0 9px 0 #A6CE39, 0 18px 0 #A6CE39; }
+    background: #22373E;
+    box-shadow: 0 9px 0 #22373E, 0 18px 0 #22373E; }
 
 .navbarleft__hamburger:hover + .navbarleft {
   left: 0; }
@@ -3926,6 +3926,9 @@ main {
   font-size: 2rem;
   padding: 4rem 0;
   color: #22373e; }
+
+.answered {
+  margin: 4rem auto; }
 
 .sliders-sub {
   padding: .5rem 0;

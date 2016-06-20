@@ -55,6 +55,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     // Route::get('/api/verbeteracties/{id}', ['as' => 'temper', 'uses' => 'ApiController@verbeteracties']);
     Route::patch('/api/scan/{scan}/thema/{thema_id}/user/{user}/setslidervalue', 'ApiController@setslidervalue');
     Route::get('/api/scan/{scan}/thema/{thema}/getParticipantABValues', 'ApiController@getParticipantABValues');
+    Route::get('/api/scan/{scan}/thema/{thema}/getNrUnanswered', 'ApiController@getNrUnanswered');
     Route::get('/api/scan/{scan}/participants', 'ApiController@participants');
 
 
@@ -93,8 +94,9 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/scans/{scans}/algemeenbeeld', ['as' => 'scans.algemeenbeeld', 'uses' => 'ScansController@algemeenbeeld']);
     Route::post('/scans/{scans}/algemeenbeeld', ['as' => 'scans.store_algemeenbeeld', 'uses' => 'ScansController@store_algemeenbeeld']);
     Route::get('/scans/{scans}/algemeenbeeldresultaat', ['as' => 'scans.algemeenbeeldresultaat', 'uses' => 'ScansController@algemeenbeeldresultaat']);
-    Route::post('/scans/{scan}/thema/{thema_nr}/question/{question_nr}/{question}/', ['as' => 'scans.storequestion', 'uses' => 'ScansController@storequestion']);
+    Route::post('/scans/{scans}/thema/{thema_nr}/question/{question_nr}/{question}/', ['as' => 'scans.storequestion', 'uses' => 'ScansController@storequestion']);
     Route::get('/scans/{scans}/thema/{thema_nr}/vraag/{question_nr}', ['as' => 'scans.director', 'uses' => 'ScansController@director']);
+    Route::get('/scans/{scans}/thema/{thema}/{thema_nr}/themaresultaat', ['as' => 'scans.themaresultaat', 'uses' => 'ScansController@themaresultaat']);
     Route::post('/scans/{scans}/thema/{thema}/', ['as' => 'scans.store_prebeteracties', 'uses' => 'ScansController@store_prebeteracties']);
 
     Route::get('/scans/{scan}/actieoverzicht', ['as' => 'scans.actieoverzicht', 'uses' => 'ScansController@actieoverzicht']);

@@ -14,6 +14,7 @@ import ControlerenDeelnemers from './components/ControlerenDeelnemers.vue';
 import ScanSlider from './components/ScanSlider.vue';
 import SingleSlider from './components/SingleSlider.vue';
 import ThemaResultaat from './components/ThemaResultaat.vue';
+import PreThemaResultaat from './components/PreThemaResultaat.vue';
 import Acties from './components/Acties.vue';
 
 // import Algemeenbeeld from './components/Algemeenbeeld.vue';
@@ -42,7 +43,8 @@ new Vue({
 		SingleSlider, 
 		InvoerenDeelnemers, 
 		ThemaResultaat, 
-		ControlerenDeelnemers 
+		ControlerenDeelnemers ,
+		PreThemaResultaat,
 	},
 
 	methods: {
