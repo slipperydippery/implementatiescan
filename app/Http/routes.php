@@ -70,6 +70,11 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('videos', 'VideosController');
     Route::resource('scanmodels', 'ScanmodelsController');
     Route::resource('users', 'UsersController');
+    Route::get('scans/{scan}/destroy', ['as' => 'scans.delete', 'uses' => 'ScansController@destroy']);
+    Route::post('scans/{scan}/updatetitle', ['as' => 'scans.updatetitle', 'uses' => 'ScansController@updatetitle']);
+    Route::post('scans/{scan}/updateregio', ['as' => 'scans.updateregio', 'uses' => 'ScansController@updateregio']);
+    Route::post('scans/{scan}/updatebeheerder', ['as' => 'scans.updatebeheerder', 'uses' => 'ScansController@updatebeheerder']);
+    Route::post('scans/{scan}/updateinstantie', ['as' => 'scans.updateinstantie', 'uses' => 'ScansController@updateinstantie']);
     // Route::get('/users/{user}/scan/{scan}/edituserinfo', ['as' => 'users.edituserinfo', 'uses' => 'UsersController@edituserinfo ']);
     Route::post('/users/{user}/scan/{scan}/edituserinfo', ['as' => 'users.saveuserinfo', 'uses' => 'UsersController@saveuserinfo']);
     Route::post('/scans/{scan}', ['as' => 'scans.addparticipant', 'uses' => 'ScansController@addparticipant']);

@@ -3557,7 +3557,8 @@ body {
     .site-footer .footer-nav a img {
       height: 2.2rem;
       width: auto;
-      margin-top: 1rem; }
+      margin-top: 1rem;
+      cursor: pointer; }
     .site-footer .footer-nav a img.scan_icon {
       height: 2.5rem;
       margin-top: .7rem; }
@@ -4198,6 +4199,21 @@ main {
 .smalldate {
   width: 8rem !important;
   float: right; }
+
+.table {
+  background: rgba(255, 255, 255, 0.2);
+  margin: 2rem 0; }
+
+.table-header {
+  background: #25AEE4 !important;
+  color: #fff;
+  font-size: 1.2rem; }
+
+.table-row {
+  padding: .5rem; }
+
+.table-row:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.2); }
 
 body, p, h1, h2, h3, h4, h5, h6 {
   color: #22373e; }

@@ -3,6 +3,23 @@
 		<li >
 			<a href="{{ URL::to('/') }}">Home</a>
 		</li>
+@if(Auth::user()->hasRole('admin'))
+	<li>
+		<a href="#">Admin</a>
+		<ul class="menu vertical nested">
+			<li>
+				<a href=" {{ URL::route('scans.index') }} ">
+					Overzicht Scans
+				</a>
+			</li>
+			<li>
+				<a href=" {{ URL::route('scans.create') }} ">
+					Maak Nieuwe Scan aan
+				</a>
+			</li>
+		</ul>
+	</li>
+@endif
 @if(!isset($scan))
 	@if(Auth::check() && count(Auth::user()->beheert))
 		<li>
@@ -26,11 +43,11 @@
 	@endif
 @endif
 @if(isset($scan))
+	<li><a href="#"><b> > {{ $scan->title }} </b></a></li>
 	@if(count(Auth::user()->beheert->intersect([$scan])))
 		<li >
 			<a href="#">Scan inrichten</a>
 			<ul class="menu vertical nested ">
-				<li><a href="{{ URL::to('inlog_voorzitter') }}">Inlog beheerder</a></li>
 				<li><a href="{{ URL::route('scans.invoerendeelnemers', $scan) }}">Invoeren deelnemersgegevens</a></li>
 				<li><a href="{{ URL::route('scans.controlerendeelnemers', $scan) }}">Controleren deelnemersgegevens</a></li>
 				<li><a href="{{ URL::route('scans.uitnodigendeelnemers', $scan) }}">Mailen van uitnodiging</a></li>
@@ -43,7 +60,6 @@
 				<li >
 					<a href="#">Scan starten</a>
 					<ul class="menu vertical nested ">
-						<li><a href="#">Inloggen</a></li>
 						<li><a href="{{ URL::route('scans.intro', $scan) }}">Introductiefilm</a></li>
 						<li><a href="{{ URL::route('scans.kennismaken', $scan) }}">Kennismaken</a></li>
 						<li><a href="{{ URL::route('scans.algemeenbeeld', $scan) }}">Algemeen beeld</a></li>

@@ -235,7 +235,7 @@ class ApiController extends Controller
         return $user;
     }
 
-    public function savenewparticipant(StoreParticipantRequest $request, Scan $scan)
+    public function savenewparticipant(Request $request, Scan $scan)
     {
         if (! User::where('email', '=', $request->participant['email'])->get()->count())
         {

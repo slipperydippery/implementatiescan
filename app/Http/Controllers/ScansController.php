@@ -38,9 +38,7 @@ class ScansController extends Controller
      */
     public function create()
     {
-        $videolist = Video::lists('title', 'id');
         $scanmodels = Scanmodel::findOrFail(1)->instantiemodels->lists('title', 'id');
-        // return ($scanmodels);
         return view ('scans.create', compact('scanmodels'));
     }
 
@@ -57,6 +55,8 @@ class ScansController extends Controller
         if (! User::where('email', '=', $request->beheerder_email)->get()->count())
         {
             $user = new User();
+            $user->initial_pwd = str_random(8);
+            $user->password = Hash::make($user->initial_pwd);
             $user->email = $request->beheerder_email;
             $user->save();
         }
@@ -427,9 +427,10 @@ class ScansController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Scan $scan)
     {
-        //
+        $scanmodels = Scanmodel::findOrFail(1)->instantiemodels->lists('title', 'id');
+        return view ('scans.edit', compact('scan', 'scanmodels'));
     }
 
     /**
@@ -450,8 +451,58 @@ class ScansController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Scan $scan)
     {
-        //
+
+        $scan->delete();  
+
+        return redirect()->back();      
+    }
+
+    public function updatetitle(Scan $scan, Request $request)
+    {
+        $scan->title = $request->title;
+        $scan->save();
+        return redirect()->back();
+    }
+
+    public function updateregio(Scan $scan, Request $request)
+    {
+        $scan->regio = $request->regio;
+        $scan->save();
+        return redirect()->back();
+    }
+
+    public function updatebeheerder(Scan $scan, Request $request)
+    {
+
+
+        if (! User::where('email', '=', $request->beheerder_email)->get()->count())
+        {
+            $user = new User();
+            $user->initial_pwd = str_random(8);
+            $user->password = Hash::make($user->initial_pwd);
+            $user->email = $request->beheerder_email;
+            $user->save();
+        }
+        $user = User::where('email', '=', $request->beheerder_email)->first();
+        $user->beheert()->save($scan);
+
+        $scan->save();
+        return redirect()->back();
+    }
+
+    public function updateinstantie(Scan $scan, Request $request)
+    {
+        $user = $scan->beheerder;
+        $instantie = Instantie::findOrFail($request->instantie);
+        // $instantie->users->save($user);
+        foreach($user->instanties->intersect($scan->instanties) as $this_instantie)
+        {
+            $user->instanties()->detach($this_instantie);
+        }
+        $user->instanties()->save($instantie);        
+
+        return redirect()->back();
     }
 }
