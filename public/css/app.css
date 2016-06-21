@@ -3489,30 +3489,9 @@ table.hover tr:nth-of-type(even):hover {
   margin-top: 0.7rem !important;
   margin-bottom: .7rem !important; }
 
-<<<<<<< HEAD
-iframe {
+.videocontainer {
   display: none; }
 
-.videocontainer {
-  position: relative;
-  width: 100%;
-  cursor: pointer; }
-
-.videostill {
-  width: 100%;
-  height: auto; }
-
-.youtubeplay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 6rem;
-  height: auto;
-  margin: -2rem 0 0 -3rem; }
-
-.red {
-  border: 1px solid red; }
-=======
 input {
   z-index: 100; }
 
@@ -3524,7 +3503,6 @@ input {
 
 .off-canvas.position-left {
   z-index: 100; }
->>>>>>> development
 
 * {
   margin: 0; }
@@ -3540,9 +3518,7 @@ body {
   -ms-flex-direction: column;
   flex-direction: column;
   min-height: 100vh;
-  background: #A6CE39;
-  color: #fff;
-  background: #A6CE39;
+  background: #FFFFFF;
   position: static;
   top: 0; }
 
@@ -3631,11 +3607,11 @@ main {
     font-weight: 500;
     letter-spacing: .1vh; }
   .sidetext span.sidetext__title {
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(166, 206, 57, 0.8);
     font-size: 8vh;
     line-height: 10vh; }
   .sidetext span.sidetext__sub {
-    color: rgba(255, 255, 255, 0.9);
+    color: #a6ce39;
     font-size: 2rem;
     line-height: 1.5rem;
     text-align: left; }
@@ -3650,7 +3626,9 @@ main {
   padding-top: 1rem; }
 
 .fieldset {
-  position: relative; }
+  background: #FFFFFF;
+  position: relative;
+  border: 1px solid #888888 !important; }
 
 .page-content {
   margin-top: 1rem; }
@@ -3691,34 +3669,34 @@ main {
   .triblock .title_button {
     display: block;
     position: relative;
-    border-radius: 6px;
-    border: 1px solid #fff;
+    border: 1px solid #888888;
+    box-shadow: 0 10px 10px -10px #888888;
     text-align: center;
-    padding: 1rem 0; }
+    padding: 1rem 0;
+    transition: all .2s; }
     .triblock .title_button img {
       display: inline-block;
       height: 4rem;
       width: auto; }
     .triblock .title_button span {
-      color: #fff;
       font-size: 1.3rem;
       line-height: 3rem;
       font-weight: 500;
       display: block; }
+  .triblock .title_button:hover {
+    box-shadow: 0 20px 20px -15px #22373e; }
 
 /**
  *  FIXED ELEMENTS
  */
 .edit_user_fixed {
   height: 0;
-  padding: .5rem 0;
-  color: #fff; }
+  padding: .5rem 0; }
   .edit_user_fixed img {
     height: 2rem;
     width: auto;
     vertical-align: text-bottom; }
   .edit_user_fixed span.edituser {
-    color: #fff;
     line-height: 2rem;
     padding: 0 .5rem;
     font-size: 1.5rem; }
@@ -3762,13 +3740,13 @@ main {
     display: block;
     width: 100%;
     height: 2px;
-    background: #fff;
+    background: #22373e;
     top: 0;
     left: 0;
-    box-shadow: 0 9px 0 #fff, 0 18px 0 #fff; }
+    box-shadow: 0 9px 0 #22373e, 0 18px 0 #22373e; }
   .navbarleft__hamburger:hover::after {
-    background: #22373E;
-    box-shadow: 0 9px 0 #22373E, 0 18px 0 #22373E; }
+    background: #22373e;
+    box-shadow: 0 9px 0 #22373e, 0 18px 0 #22373e; }
 
 .navbarleft__hamburger:hover + .navbarleft {
   left: 0; }
@@ -3797,7 +3775,6 @@ main {
   font-size: 1.5rem; }
 
 .plussubmit {
-  color: #fff;
   font-size: 2.5rem;
   font-weight: bold;
   line-height: 2rem; }
@@ -3833,7 +3810,6 @@ main {
   font-size: 1.4rem; }
 
 .has-tip {
-  color: #fff;
   font-weight: 500 !important; }
 
 .succesfactorrow {
@@ -3891,8 +3867,7 @@ main {
 .add_submitted_user {
   font-size: 5rem;
   font-weight: 300;
-  line-height: 7rem;
-  color: #fff; }
+  line-height: 7rem; }
 
 .close_submitted_user {
   display: block;
@@ -3900,8 +3875,7 @@ main {
   top: 1rem;
   right: 2rem;
   font-size: 1.5rem;
-  font-weight: 500;
-  color: #fff; }
+  font-weight: 500; }
 
 .tester {
   height: 3rem;
@@ -3955,10 +3929,12 @@ main {
 .answered {
   margin: 4rem auto; }
 
+.algemeenbeeldslider--group {
+  background: #fff; }
+
 .sliders-sub {
   padding: .5rem 0;
   height: 5rem;
-  color: #fff;
   font-weight: 500; }
   .sliders-sub span {
     font-weight: 300; }
@@ -3975,7 +3951,7 @@ main {
   margin: 0; }
 
 .slider-gemiddeld {
-  background: rgba(255, 255, 255, 0.1);
+  background: white;
   height: 3rem; }
 
 .slider-gemiddeld__thema {
@@ -4043,7 +4019,6 @@ main {
   margin: -4rem auto 4rem;
   line-height: 14rem;
   font-size: 11rem;
-  color: rgba(255, 255, 255, 0.3);
   z-index: -10; }
 
 .center {
@@ -4147,7 +4122,6 @@ main {
   .actie-betrokkene span.indication {
     display: none;
     float: right;
-    color: #fff;
     font-size: 1.8rem;
     line-height: 1.5rem;
     font-weight: 300;
@@ -4188,7 +4162,6 @@ main {
   text-align: center;
   /* margin: 0 auto; */
   font-size: 2rem;
-  color: #fff;
   font-weight: 500;
   display: block; }
 
@@ -4197,8 +4170,7 @@ main {
 
 .actie-thema {
   display: block;
-  padding: .5rem;
-  color: #fff; }
+  padding: .5rem; }
 
 .actie-thema-kop {
   font-weight: 500; }
@@ -4220,7 +4192,6 @@ main {
   margin: 2rem 0; }
 
 .datumlabel {
-  color: #fff;
   font-size: 1.2rem;
   font-weight: 500; }
 
@@ -4322,7 +4293,7 @@ input::placeholder {
   display: none; }
 
 .login-info {
-  color: #fff;
+  color: #22373e;
   font-weight: 300;
   font-style: italic;
   float: right; }

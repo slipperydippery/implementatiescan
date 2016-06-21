@@ -13,7 +13,6 @@
 	</div>
 </div>
 <div class="row page-content">
-{{ $scan->scanmodel->video->adress }}
 	<div class="videocontainer">
 		<img src="{{ asset('img/' . $scan->scanmodel->video->adress) }}" class="videostill">
 		<img src="{{ asset('img/youtubeplay.png')}}" class="youtubeplay">
