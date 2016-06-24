@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.beheer')
 
 @section('content')
 <div class="row page-heading">

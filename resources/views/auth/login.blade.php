@@ -26,7 +26,7 @@
                             <strong>{{ $errors->first('email') }}</strong>
                         </span>
                     @endif
-                    <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="gebruikersnaam">
+                    <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="email adres">
 
                 </div>
             </div>

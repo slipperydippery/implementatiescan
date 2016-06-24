@@ -3689,19 +3689,50 @@ main {
 /**
  *  FIXED ELEMENTS
  */
-.edit_user_fixed {
-  height: 0;
-  padding: .5rem 0; }
-  .edit_user_fixed img {
-    height: 2rem;
+.top_bar {
+  width: 100%;
+  margin-bottom: 1rem; }
+  .top_bar .top_bar--box {
+    display: inline-block;
+    padding: .5rem 2rem; }
+    .top_bar .top_bar--box.dark {
+      background: #22373e;
+      color: #fff; }
+  .top_bar img {
+    height: 25px;
     width: auto;
     vertical-align: text-bottom; }
-  .edit_user_fixed span.edituser {
-    line-height: 2rem;
+  .top_bar span.edituser {
+    color: #fff;
+    line-height: 1.5rem;
     padding: 0 .5rem;
-    font-size: 1.5rem; }
-  .edit_user_fixed .edit_user_reset {
+    font-size: 1.2rem; }
+  .top_bar .edit_user_reset {
     float: right; }
+  .top_bar .navbarleft__hamburger {
+    position: fixed;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    width: 25px;
+    height: 20px;
+    z-index: 100; }
+    .top_bar .navbarleft__hamburger::after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: #22373e;
+      top: 0;
+      left: 0;
+      box-shadow: 0 9px 0 #22373e, 0 18px 0 #22373e; }
+    .top_bar .navbarleft__hamburger:hover::after {
+      background: #22373e;
+      box-shadow: 0 9px 0 #22373e, 0 18px 0 #22373e; }
+  .top_bar .navbarleft__hamburger:hover + .navbarleft {
+    left: 0; }
 
 /**
  *  NAVBAR LEFT
@@ -3721,34 +3752,6 @@ main {
     padding: .5rem 1rem .5rem 1rem; }
 
 .navbarleft:hover {
-  left: 0; }
-
-.navbarleft__hamburger {
-  position: fixed;
-  top: .5rem;
-  left: 2rem;
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-  cursor: pointer;
-  width: 25px;
-  height: 20px;
-  z-index: 100; }
-  .navbarleft__hamburger::after {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 2px;
-    background: #22373e;
-    top: 0;
-    left: 0;
-    box-shadow: 0 9px 0 #22373e, 0 18px 0 #22373e; }
-  .navbarleft__hamburger:hover::after {
-    background: #22373e;
-    box-shadow: 0 9px 0 #22373e, 0 18px 0 #22373e; }
-
-.navbarleft__hamburger:hover + .navbarleft {
   left: 0; }
 
 /**

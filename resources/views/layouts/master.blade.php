@@ -13,13 +13,16 @@
 
     	</div>
     	<div class="off-canvas-content" data-off-canvas-content>
-    	  	<!-- Page content -->
-		    <img src="{{asset('img/paperclip.png')}}" id="paperclip">
-			<div class="navbarleft__hamburger" data-toggle="offCanvas"></div>
 
 		    <main>
+				<img src="{{asset('img/paperclip.png')}}" id="paperclip">
+				<div class="top_bar">
+					<div class="top_bar--box float-left">
+						<div class="navbarleft__hamburger" data-toggle="offCanvas"></div>
+					</div>
 
-				@include('layouts.partials.edituser')
+	  				@include('layouts.partials.edituser')
+				</div>
 
 				<div class="sidetext">
 					<div class="sidetext__inner">

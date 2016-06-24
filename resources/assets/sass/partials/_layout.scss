@@ -288,24 +288,43 @@ $sidetext_thickness : 18rem;
  *  FIXED ELEMENTS
  */
 
-.edit_user_fixed {
-	height: 0;
-	padding: .5rem 0;
+.top_bar {
+	width: 100%;
+	margin-bottom: 1rem;
+	.top_bar--box {
+		display: inline-block;
+		padding: .5rem 2rem;
+		&.dark {
+			background: $primary-color;
+			color: #fff;
+		}
+	}
 	img {
-		height: 2rem;
+		height: 25px;
 		width: auto;
 		vertical-align: text-bottom;
 	}
-	// color: #fff;
 	span.edituser {
-		// color: #fff;
-		line-height: 2rem;
+		color: #fff;
+		line-height: 1.5rem;
 		padding: 0 .5rem;
-		font-size: 1.5rem;
+		font-size: 1.2rem;
 		// vertical-align: text-top;
 	}
 	.edit_user_reset {
 		float: right; 
+	}
+
+	.navbarleft__hamburger {
+		position: fixed;
+		// top: .5rem;
+		// left: 2rem;
+		@include hamburger($primary-color, $primary-color, 25px, 20px);
+		z-index:100;
+	}
+
+	.navbarleft__hamburger:hover + .navbarleft {
+		left: 0;
 	}
 }
 
@@ -336,17 +355,6 @@ $sidetext_thickness : 18rem;
 }
 
 
-.navbarleft__hamburger {
-	position: fixed;
-	top: .5rem;
-	left: 2rem;
-	@include hamburger($primary-color, $primary-color, 25px, 20px);
-	z-index:100;
-}
-
-.navbarleft__hamburger:hover + .navbarleft {
-	left: 0;
-}
 
 /**
  *  AUTH
