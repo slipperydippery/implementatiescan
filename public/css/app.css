@@ -4266,13 +4266,16 @@ h2 {
   background-color: #22373e; }
 
 .button-next {
-  background: #fff url(/img/button_arrow_right.png) no-repeat right top;
+  background: #22373e url(/img/button_arrow_right.png) no-repeat right top;
   height: 37px;
-  color: #22373e;
+  color: #fff;
   padding-left: 2.5rem;
   padding-right: 3rem;
   margin-right: -1.5rem;
   border: 0; }
+
+.button-next:hover {
+  background: #A7CC39 url(/img/button_arrow_right.png) no-repeat right top !important; }
 
 input::-webkit-input-placeholder {
   color: #aaa; }

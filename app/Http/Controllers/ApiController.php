@@ -256,7 +256,7 @@ class ApiController extends Controller
         if (! User::where('email', '=', $request->participant['email'])->get()->count())
         {
             $user = new User();
-            $user->initial_pwd = str_random(8);
+            $user->initial_pwd = 'password'; //str_random(8);
             $user->password = Hash::make($user->initial_pwd);
             $user->name_first = $request->participant['name_first'];
             $user->name_last = $request->participant['name_last'];
