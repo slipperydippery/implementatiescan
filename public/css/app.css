@@ -3552,7 +3552,7 @@ body {
     width: 104%;
     margin-left: -2%;
     height: 4rem;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(167, 204, 57, 0.98);
     -webkit-clip-path: polygon(2% 0%, 98% 0%, 100% 100%, 0% 100%);
     clip-path: polygon(2% 0%, 98% 0%, 100% 100%, 0% 100%); }
     .site-footer .footer-nav a img {
