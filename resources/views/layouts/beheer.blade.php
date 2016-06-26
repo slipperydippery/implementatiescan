@@ -18,32 +18,36 @@
 	    	<div class="off-canvas-content" data-off-canvas-content>
 
 			    <main>
-					<img src="{{asset('img/paperclip.png')}}" id="paperclip">
-					<div class="top_bar">
+
+					<div class="top_bar clearfix">
 						<div class="top_bar--box float-left">
 							<div class="navbarleft__hamburger" data-toggle="offCanvas"></div>
 						</div>
 
 		  				@include('layouts.partials.edituser')
 					</div>
+	
+					<div class="content-group">
 
-					<div class="sidetext">
-						<div class="sidetext__inner">
-							<span class="sidetext__title">Implementatiescan</span>
-							@if(isset($scan))
-								<span class="sidetext__sub">Regio {{ $scan->regio }}</span>
-							@endif
+						<div class="sidetext">
+							<div class="sidetext__inner">
+								<span class="sidetext__title">Implementatiescan</span>
+								@if(isset($scan))
+									<span class="sidetext__sub">Regio {{ $scan->regio }}</span>
+								@endif
+							</div>
 						</div>
-					</div>
 
 
-					<div id="content">
+						<div id="content">
 
-						@if(Session::has('global'))
-							{{ Session::get('global') }}
-						@endif
+							@if(Session::has('global'))
+								{{ Session::get('global') }}
+							@endif
 
-						@yield('content')
+							@yield('content')
+						
+						</div>
 					
 					</div>
 				</main>

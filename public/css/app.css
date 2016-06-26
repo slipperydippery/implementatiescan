@@ -3523,8 +3523,10 @@ body {
   top: 0; }
 
 #content {
-  max-width: 80vw;
-  margin: 0 auto; }
+  margin: 0 auto;
+  background: url("../img/paperclip.png") no-repeat;
+  background-size: 20rem auto;
+  background-position: 90% top; }
 
 .off-canvas-content {
   display: -webkit-flex;
@@ -3575,7 +3577,7 @@ main {
   position: absolute;
   top: 0;
   right: 5%;
-  width: 30%;
+  width: 20rem;
   z-index: -10; }
 
 .sidetext {
@@ -3588,32 +3590,46 @@ main {
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  z-index: -10;
-  margin: 0;
-  width: 100vh;
   position: absolute;
-  left: -50vh;
-  top: 50vh;
-  margin-top: -9rem;
-  -webkit-transform: rotate(-90deg);
-  transform: rotate(-90deg); }
+  left: 0;
+  top: 44px;
+  width: 13vh;
+  height: 100vh;
+  background: #9FC236; }
   .sidetext .sidetext__inner {
-    padding-top: 9rem;
-    height: 18rem;
-    text-align: center;
-    z-index: -10; }
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100vh;
+    left: -50vh;
+    margin-top: -7.5rem;
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    text-align: center; }
   .sidetext span {
     display: block;
     font-weight: 500;
     letter-spacing: .1vh; }
   .sidetext span.sidetext__title {
-    color: rgba(166, 206, 57, 0.8);
-    font-size: 8vh;
-    line-height: 10vh; }
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 7vh;
+    line-height: 7vh; }
   .sidetext span.sidetext__sub {
-    color: #a6ce39;
-    font-size: 2rem;
-    line-height: 1.5rem;
+    -webkit-align-self: flex-start;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+    color: white;
+    font-size: 4vh;
+    line-height: 3vh;
     text-align: left; }
 
 /**
@@ -3621,6 +3637,10 @@ main {
  */
 .title-img {
   margin-top: 5rem; }
+
+.page-heading--container {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.05); }
 
 .page-heading {
   padding-top: 1rem; }
@@ -3691,7 +3711,7 @@ main {
  */
 .top_bar {
   width: 100%;
-  margin-bottom: 1rem; }
+  border-bottom: 1px solid #333; }
   .top_bar .top_bar--box {
     display: inline-block;
     padding: .5rem 2rem; }
