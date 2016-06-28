@@ -3524,9 +3524,13 @@ body {
 
 #content {
   margin: 0 auto;
+  width: 100%;
   background: url("../img/paperclip.png") no-repeat;
   background-size: 20rem auto;
   background-position: 90% top; }
+
+#content > div {
+  padding: 0 2rem; }
 
 .off-canvas-content {
   display: -webkit-flex;
@@ -3580,6 +3584,11 @@ main {
   width: 20rem;
   z-index: -10; }
 
+.content-group {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
+
 .sidetext {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3590,11 +3599,9 @@ main {
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  position: absolute;
-  left: 0;
-  top: 44px;
+  margin: 0;
   width: 13vh;
-  height: 100vh;
+  height: 100%s;
   background: #9FC236; }
   .sidetext .sidetext__inner {
     display: -webkit-flex;
