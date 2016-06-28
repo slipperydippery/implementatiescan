@@ -1,16 +1,18 @@
 @extends('layouts.scan')
 
 @section('content')
-<div class="row page-heading">
-	<div class="large-12 ">
-		<h1>RESULTAAT ALGEMEEN BEELD </h1>
-		<h2>BEOORDELING AANPAK EN SAMENWERKING</h2>
-		<fieldset class="fieldset">
-  			<legend>Doel</legend>
-			<p class=subheading>
-				In algemene zin: hoe goed is onze huidige gezamenlijk aanpak om jongeren met LVB aan het werk te helpen?
-			</p>
-		</fieldset>
+<div class="page-heading--container">
+	<div class="row page-heading">
+		<div class="large-12 ">
+			<h1>RESULTAAT ALGEMEEN BEELD </h1>
+			<h2>BEOORDELING AANPAK EN SAMENWERKING</h2>
+			<fieldset class="fieldset large-8">
+	  			<legend>Doel</legend>
+				<p class=subheading>
+					In algemene zin: hoe goed is onze huidige gezamenlijk aanpak om jongeren met LVB aan het werk te helpen?
+				</p>
+			</fieldset>
+		</div>
 	</div>
 </div>
 

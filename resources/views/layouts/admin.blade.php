@@ -52,7 +52,6 @@
 					
 					</div>
 				</main>
-
 				
 	    	</div>
 	    </div>

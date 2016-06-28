@@ -30,12 +30,16 @@
 		    		<img src="{{asset('img/gearicon.png')}}">
 					<span class="">Scan Inrichten </span>
 				</a>
+				<img src=" {{ asset('img/papertop.png') }} " class="paperclipper papertop ">
+				<img src=" {{ asset('img/paperbottom.png') }} " class="paperclipper paperbottom">
 			</div>
 			<div class="small-4 columns triblock">
 				<a href="{{ URL::route('scans.start') }}" role="button" class="title_button">
 		    		<img src="{{asset('img/scan.png')}}"><br>
 					<span class="">Scan Starten </span>
 				</a>
+				<img src=" {{ asset('img/papertop.png') }} " class="paperclipper papertop ">
+				<img src=" {{ asset('img/paperbottom.png') }} " class="paperclipper paperbottom">
 			</div>
 			<div class="small-4 columns end triblock">
 				<a href="{{ URL::to('databank') }}" role="button" class="title_button">

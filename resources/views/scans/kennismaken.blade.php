@@ -1,16 +1,18 @@
 @extends('layouts.scan')
 
 @section('content')
-<div class="row page-heading">
-	<div class="large-12 ">
-		<h1>Kennismaken</h1>
-		<fieldset class="fieldset">
-  			<legend>Even voorstellen</legend>
-			<p class=subheading>
-				Vaak zal niet iedereen elkaar kennen. Daarom een voorstelrondje, waarbij iedereen aangeeft: wie ben je, namens welke organisatie doe je mee, je rol/functie en wat je hoopt dat uit deze sessie komt (wens of droom).<br><br>
-				Hieronder kunt u zien wie is aangemeld. Klopt dit?
-			</p>
-		</fieldset>
+<div class="page-heading--container">
+	<div class="row page-heading">
+		<div class="large-12 ">
+			<h1>Kennismaken</h1>
+			<fieldset class="fieldset large-8">
+	  			<legend>Even voorstellen</legend>
+				<p class=subheading>
+					Vaak zal niet iedereen elkaar kennen. Daarom een voorstelrondje, waarbij iedereen aangeeft: wie ben je, namens welke organisatie doe je mee, je rol/functie en wat je hoopt dat uit deze sessie komt (wens of droom).<br><br>
+					Hieronder kunt u zien wie is aangemeld. Klopt dit?
+				</p>
+			</fieldset>
+		</div>
 	</div>
 </div>
 

@@ -1,17 +1,19 @@
 @extends('layouts.scan')
 
 @section('content')
-
-<div class="row page-heading">
-	<div class="large-12 ">
-		<h1> Thema {{ $thema_nr }}: {{ $thema->title }} </h1>
-		<fieldset class="fieldset">
-			<p class=subheading>
-				Bekijk de korte film over  {{ $thema->title }} .
-			</p>
-		</fieldset>
+<div class="page-heading--container">
+	<div class="row page-heading">
+		<div class="large-12 ">
+			<h1> Thema {{ $thema_nr }}: {{ $thema->title }} </h1>
+			<fieldset class="fieldset large-8">
+				<p class=subheading>
+					Bekijk de korte film over  {{ $thema->title }} .
+				</p>
+			</fieldset>
+		</div>
 	</div>
 </div>
+
 <div class="row page-content">
 	<div class="videocontainer">
 		<img src="{{ asset('img/' . $thema->video->adress) }}" class="videostill">

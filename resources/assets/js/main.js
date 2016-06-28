@@ -35,6 +35,7 @@ new Vue({
 	el: 'body', 
 	props: [],
 	data: {
+		number: 0,
 	},
 
 	components: { 

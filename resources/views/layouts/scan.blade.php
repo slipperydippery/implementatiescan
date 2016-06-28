@@ -17,7 +17,6 @@
 			</div>
 			<div class="off-canvas-content" data-off-canvas-content>
 				<main>
-					<img src="{{asset('img/paperclip.png')}}" id="paperclip">
 					<div class="top_bar">
 						<div class="top_bar--box float-left">
 							<div class="navbarleft__hamburger" data-toggle="offCanvas"></div>
@@ -42,6 +41,7 @@
 					        @endif
 
 					        @yield('content')
+
 							<div class="site-footer">
 								@yield('site-footer')	
 								<div class="row">

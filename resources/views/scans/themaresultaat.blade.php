@@ -1,15 +1,17 @@
 @extends('layouts.scan')
 
 @section('content')
-<div class="row page-heading">
-	<div class="large-12 ">
-		<h1>Thema {{ $thema_nr }} : resultaat</h1>
-		<h2> {{ $thema->title }} </h2>
-		<fieldset class="fieldset">
-  			<p class="subheading subheading__time">
-  				Hieronder kunt u zien wat iedereen zojuist heeft ingevuld. Wat valt u op? Bespreek de resultaten de komende 15 minuten, <br> en selecteer dan de in uw ogen belangrijkste 2 verbeterpunten.
-  			</p>
-		</fieldset>
+<div class="page-heading--container">
+	<div class="row page-heading">
+		<div class="large-12 ">
+			<h1>Thema {{ $thema_nr }} : resultaat</h1>
+			<h2> {{ $thema->title }} </h2>
+			<fieldset class="fieldset large-8">
+	  			<p class="subheading subheading__time">
+	  				Hieronder kunt u zien wat iedereen zojuist heeft ingevuld. Wat valt u op? Bespreek de resultaten de komende 15 minuten, en selecteer dan de in uw ogen belangrijkste 2 verbeterpunten.
+	  			</p>
+			</fieldset>
+		</div>
 	</div>
 </div>
 
@@ -21,7 +23,7 @@
 				<div class="large-2 small-2 columns slider-empty">.
 				 </div>
 				 @foreach($thema->questions as $question)	
-				 	<div class="large-2 small-2 columns center slider-columnhead">
+				 	<div class="large-2 small-2 columns slider-columnhead">
 				 		<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title=" {{ $question->norm }} "> {{ $question->title }} </span>
 				 	</div>	
 				 @endforeach

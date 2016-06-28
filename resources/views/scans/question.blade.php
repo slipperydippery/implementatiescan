@@ -1,27 +1,29 @@
 @extends('layouts.scan')
 
 @section('content')
+<div class="page-heading--container">
+	<div class="row page-heading">
+		<div class="large-12 ">
+			<h1> Thema {{ $thema_nr }}: {{ $thema->title }} </h1>
+			<h2>Succesfactor {{$question_nr}}: {{ $question->title }}</h2>
+			<fieldset class="fieldset large-8">
+	  			<legend>Neem één minuut de tijd om de volgende vraag op uw eigen scherm te beantwoorden:</legend>
+				<p class=subheading>
+	  			Neem één minuut de tijd om op uw eigen tablet of laptop aan te geven in hoeverre in uw regio wordt voldaan aan een uit onderzoek gebleken kritische succesfactor: <br>
+					{{ $question->norm }} 
+			
+			<br><br>
 
-<div class="row page-heading">
-	<div class="large-12 ">
-		<h1> Thema {{ $thema_nr }}: {{ $thema->title }} </h1>
-		<h2>Succesfactor {{$question_nr}}: {{ $question->title }}</h2>
-		<fieldset class="fieldset">
-  			<legend>Neem één minuut de tijd om de volgende vraag op uw eigen scherm te beantwoorden:</legend>
-			<p class=subheading>
-  			Neem één minuut de tijd om op uw eigen tablet of laptop aan te geven in hoeverre in uw regio wordt voldaan aan een uit onderzoek gebleken kritische succesfactor: <br>
-				{{ $question->norm }} 
-		
-		<br><br>
+					Bij {{ $question->title }} zijn de volgende onderwerpen van belang:
+					
+					{!! $question->weergave_succesfactor !!}
 
-				Bij {{ $question->title }} zijn de volgende onderwerpen van belang:
-				
-				{!! $question->weergave_succesfactor !!}
-
-			</p>
-		</fieldset>
+				</p>
+			</fieldset>
+		</div>
 	</div>
 </div>
+
 <div class="row page-content">
 	<div class="large-12 columns algemeenbeeldslider--participant">
 <?php
@@ -44,9 +46,7 @@
 			100
 		</span>
 
-		<br><br>
-
-		<div id="time">01:00</div>
+		<br>
 
 		{!! Form::open(['route' => ['scans.storequestion', $scan, $thema_nr, $question_nr, $question]]) !!}
 			<div class="row">
@@ -63,6 +63,8 @@
 				</div>				
 			</div>	
 		{!! Form::close() !!}
+
+		<div id="time">01:00</div>
 
 	</div>
 

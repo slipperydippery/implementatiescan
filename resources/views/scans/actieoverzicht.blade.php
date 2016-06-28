@@ -1,16 +1,18 @@
 @extends('layouts.scan')
 
 @section('content')
-<div class="row page-heading">
-	<div class="large-12 ">
-		<h1>Gezamenlijke verbeteracties</h1>
-		<fieldset class="fieldset">
-  			<p class="subheading subheading__time">
-  				Tijdens de Implementatiescan-sessie zijn de volgende verbeteracties geformuleerd. Tijdens de tweede Werkagenda bijeenkomst wordt, met voorbereidend werk door de trekkers e.a., een definitieve keuze gemaakt voor de (formulering van) de verbeteracties die op de Werkagenda komen. Deze acties (met ruimte voor sub acties) kunt u hier invullen.
-  			</p>
+<div class="page-heading--container">
+    <div class="row page-heading">
+    	<div class="large-12 ">
+    		<h1>Gezamenlijke verbeteracties</h1>
+    		<fieldset class="fieldset large-8">
+      			<p class="subheading subheading__time">
+      				Tijdens de Implementatiescan-sessie zijn de volgende verbeteracties geformuleerd. Tijdens de tweede Werkagenda bijeenkomst wordt, met voorbereidend werk door de trekkers e.a., een definitieve keuze gemaakt voor de (formulering van) de verbeteracties die op de Werkagenda komen. Deze acties (met ruimte voor sub acties) kunt u hier invullen.
+      			</p>
 
-		</fieldset>
-	</div>
+    		</fieldset>
+    	</div>
+    </div>
 </div>
 
 
