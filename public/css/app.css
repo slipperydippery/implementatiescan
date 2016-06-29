@@ -3657,6 +3657,7 @@ main {
 
 .page-heading {
   padding-top: 1rem;
+  padding-bottom: 1rem;
   background: url("../img/paperclip.png") no-repeat;
   background-size: 15rem auto;
   background-position: 100% top;
@@ -3809,46 +3810,6 @@ main {
  */
 .loginform {
   margin-top: 2rem; }
-
-/**
- *  INVOEREN DEELNEMERS
- */
-.gebruikers_aanmelden--row {
-  position: relative;
-  height: 4rem;
-  padding-top: 1rem; }
-
-.editicon {
-  width: auto !important; }
-
-.closeicon {
-  position: absolute;
-  top: .2rem;
-  right: .5rem;
-  font-size: 1.5rem; }
-
-.plussubmit {
-  font-size: 2.5rem;
-  font-weight: bold;
-  line-height: 2rem; }
-
-.tablehead {
-  font-weight: bold; }
-
-.gebruikers_aanmelden {
-  line-height: 2rem; }
-  .gebruikers_aanmelden img {
-    display: inline-block;
-    width: auto;
-    height: 1.5rem;
-    margin-top: -.5rem; }
-  .gebruikers_aanmelden .plus {
-    font-size: 1.5rem;
-    margin: -.5rem 0 0 0rem;
-    font-weight: 500; }
-
-.row_beheerder {
-  border: 1px solid #fff; }
 
 /**
   *  THEMA RESULTAAT
@@ -4275,6 +4236,56 @@ main {
 
 .table-row:nth-child(odd) {
   background: rgba(255, 255, 255, 0.2); }
+
+/**
+ *  INVOEREN DEELNEMERS
+ */
+.gebruikers_aanmelden--row {
+  position: relative;
+  height: 4rem;
+  padding-top: 1rem; }
+
+.editicon {
+  width: auto !important; }
+
+.closeicon {
+  position: absolute;
+  top: .2rem;
+  right: .5rem;
+  font-size: 1.5rem; }
+
+.plussubmit {
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 2rem; }
+
+.tablehead {
+  font-weight: bold; }
+
+.gebruikers_aanmelden .plus {
+  font-size: 1.5rem;
+  margin: -.5rem 0 0 0rem;
+  font-weight: 500; }
+
+.row_beheerder {
+  border: 1px solid #fff; }
+
+.textual_table {
+  margin: 2rem 0 0 0;
+  line-height: 2rem; }
+  .textual_table img {
+    display: inline-block;
+    height: 1.5rem;
+    width: auto;
+    margin-top: -.5rem; }
+
+.textual_table--row:nth-of-type(2) {
+  background: rgba(0, 0, 0, 0.2); }
+
+.textual_table--header {
+  border-bottom: 2px solid #666; }
+  .textual_table--header .columns {
+    font-weight: bold !important; }
 
 body, p, h1, h2, h3, h4, h5, h6 {
   color: #22373e; }

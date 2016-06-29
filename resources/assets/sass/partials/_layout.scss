@@ -215,6 +215,7 @@ $sidetext_thickness : 15rem;
 
 .page-heading {
 	padding-top: 1rem;
+	padding-bottom: 1rem;
 	background: url("../img/paperclip.png") no-repeat ;
 	background-size: 15rem auto;
 	background-position: 100% top;
@@ -403,57 +404,7 @@ $sidetext_thickness : 15rem;
 	margin-top: 2rem;
 }
 
-/**
- *  INVOEREN DEELNEMERS
- */
 
-.gebruikers_aanmelden--row {
-	position: relative;
-	height: 4rem;
-	padding-top: 1rem;
-}
-
-.editicon {
-	// height: 2rem !important;
-	width: auto !important;
-}
-
-.closeicon {
-	position: absolute;
-	top: .2rem;
-    right: .5rem;
-    font-size: 1.5rem;
-}
-
-.plussubmit {
-	// color: #fff;
-	font-size: 2.5rem;
-	font-weight: bold;
-	line-height: 2rem;
-}
-
-.tablehead {
-	font-weight: bold;
-}
-
-.gebruikers_aanmelden {
-	line-height: 2rem;
-	img {
-		display: inline-block;
-		width: auto;
-		height: 1.5rem;
-		margin-top: -.5rem;
-	}
-	.plus {
-		font-size: 1.5rem;
-		margin: -.5rem 0 0 0rem;
-		font-weight: 500;
-	}
-}
-
-.row_beheerder {
-	border: 1px solid #fff;
-}
 
 
 

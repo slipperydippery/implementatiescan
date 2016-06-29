@@ -13,7 +13,7 @@
         </fieldset>
     </div>
 </div>
-<div class="row loginform">
+<div class="row page-content loginform">
     <div class = "large-4">
         <h2>Log in</h2>
         <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">

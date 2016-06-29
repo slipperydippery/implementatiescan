@@ -22,7 +22,7 @@
 	<div class="small-3 columns">
 	</div>
 </div>
-<div class="row triblock--container">	
+<div class="row page-content triblock--container">	
 	<div class="small-9 columns">
 		<div class="row">
 			<div class="small-4 columns triblock">

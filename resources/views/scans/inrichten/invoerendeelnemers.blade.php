@@ -17,24 +17,21 @@
 </div>
 
 <div class="row page-content">
-	<div class="large-12 gebruikers_aanmelden">
-		<div class="row gebruikers_aanmelden--row">
-			<div class="large-1 columns">
-			.
+	<div class="small-12 textual_table gebruikers_aanmelden">
+		<div class="row textual_table--row textual_table--header gebruikers_aanmelden--row">
+			<div class="small-2 small-offset-1 columns">
+				Voornaam
 			</div>
-			<div class="large-2 columns">
-				<span class="tablehead">Voornaam</span>
+			<div class="small-2 columns">
+				Achternaam
 			</div>
-			<div class="large-2 columns">
-				<span class="tablehead">Achternaam</span>
+			<div class="small-3 columns">
+				Email
 			</div>
-			<div class="large-3 columns">
-				<span class="tablehead">Email</span>
+			<div class="small-2 columns">
+				Instantie
 			</div>
-			<div class="large-2 columns">
-				<span class="tablehead">Instantie</span>
-			</div>
-			<div class="large-2 columns">
+			<div class="small-2 columns">
 				
 			</div>
 		</div>
