@@ -11509,6 +11509,77 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"vue":11,"vue-hot-reload-api":2}],18:[function(require,module,exports){
+var __vueify_style__ = require("vueify-insert-css").insert(".searchfilter {\n  text-align: right;\n}\n.searchfilter label,\n.searchfilter input {\n  display: inline-block;\n}\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+
+	components: {},
+	props: [],
+
+	data: function data() {
+		return {
+			search: '',
+			instruments: [],
+			themas: [],
+			checkedThemas: []
+		};
+	},
+	ready: function ready() {
+		this.getInstruments(); //get participants and set availableinstances
+		this.getThemas();
+	},
+
+
+	computed: {
+		returnRoot: function returnRoot() {
+			return window.location.protocol + "//" + window.location.host;
+		}
+	},
+
+	methods: {
+
+		getInstruments: function getInstruments() {
+			var _this = this;
+
+			this.$http.get('/api/databank').then(function (response) {
+				_this.instruments = response.data;
+			});
+		},
+		getThemas: function getThemas() {
+			var _this2 = this;
+
+			this.$http.get('/api/scanmodel/thema').then(function (response) {
+				_this2.themas = response.data;
+			});
+		}
+
+	},
+
+	events: {}
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row searchitems\">\n\t\t<div class=\"large-4 small-6 float-right\">\n\t\t\t<input type=\"text\" v-model=\"search\" placeholder=\"Zoek in beschrijving\">\n\t\t\t<div v-for=\"thema in themas\" class=\"searchfilter\">\n\t\t\t\t<label :for=\"thema.id\">{{ thema.title }}</label>\n\t\t\t\t<input type=\"checkbox\" :id=\"thema.id\" :value=\"thema.title\" v-model=\"checkedThemas\">\n\t\t\t</div>\n\t\t</div>\n\t\t<br>\n\n\t</div>\n\n\t<div class=\"row table-row table-header\">\n\t\t<div class=\"small-2 columns\">\n\t\t\tNaam\n\t\t</div>\n\t\t<div class=\"small-4 columns\">\n\t\t\tBeschrijving\n\t\t</div>\n\t\t<div class=\"small-3 columns\">\n\t\t\tLink\n\t\t</div>\n\t\t<div class=\"small-3 columns\">\n\t\t\tThemas\n\t\t</div>\n\t</div>\n\n\n\t<div class=\"row table-row table-row--body\" v-for=\"instrument in instruments \n\t\t| filterBy search in 'description' \n\t\t| filterBy checkedThemas in 'themas'\">\n\t\t<div class=\"small-2 columns\">\n\t\t\t{{ instrument.title}}\n\t\t</div>\n\t\t<div class=\"small-4 columns\">\n\t\t\t{{ instrument.description }}\n\t\t</div>\n\t\t<div class=\"small-3 columns\">\n\t\t\t{{ instrument.adress }}\n\t\t</div>\n\t\t<div class=\"small-3 columns\">\n\t\t\t<span v-for=\"thema in instrument.themas\">\n\t\t\t\t{{ thema.title }} <br>\n\t\t\t</span>\n\t\t</div>\n\t</div>\n\t\n\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Databank.vue"
+  module.hot.dispose(function () {
+    require("vueify-insert-css").cache[".searchfilter {\n  text-align: right;\n}\n.searchfilter label,\n.searchfilter input {\n  display: inline-block;\n}\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, module.exports.template)
+  }
+})()}
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],19:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -11596,7 +11667,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"../components/AddSingleDeelnemer.vue":16,"../components/SingleDeelnemer.vue":21,"vue":11,"vue-hot-reload-api":2}],19:[function(require,module,exports){
+},{"../components/AddSingleDeelnemer.vue":16,"../components/SingleDeelnemer.vue":22,"vue":11,"vue-hot-reload-api":2}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -11670,7 +11741,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"../components/SingleSlider.vue":22,"vue":11,"vue-hot-reload-api":2}],20:[function(require,module,exports){
+},{"../components/SingleSlider.vue":23,"vue":11,"vue-hot-reload-api":2}],21:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert(".rangeresult {\n  position: relative;\n  display: block;\n  width: 100%;\n  height: 0.5rem;\n  background: #ec5840;\n  margin: 0.7rem 0 1.4rem;\n}\n.rangeresult__value {\n  position: absolute;\n  display: block;\n  top: 0;\n  left: 0;\n  height: 100%;\n  background: #1cb32d;\n  webkit-transition: width 1s;\n  -webkit-transition: width 1s;\n  transition: width 1s;\n}\ninput[type=range]::after {\n  content: \"\";\n  display: block;\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 90%;\n  height: 0.6rem;\n  background: #1cb32d;\n}\n")
 'use strict';
 
@@ -11758,7 +11829,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],21:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],22:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -11892,7 +11963,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2}],22:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2}],23:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -11976,7 +12047,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2}],23:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2}],24:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -12043,7 +12114,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"../components/SingleSlider.vue":22,"vue":11,"vue-hot-reload-api":2}],24:[function(require,module,exports){
+},{"../components/SingleSlider.vue":23,"vue":11,"vue-hot-reload-api":2}],25:[function(require,module,exports){
 'use strict';
 
 var _InvoerenDeelnemers = require('./components/InvoerenDeelnemers.vue');
@@ -12073,6 +12144,10 @@ var _PreThemaResultaat2 = _interopRequireDefault(_PreThemaResultaat);
 var _Acties = require('./components/Acties.vue');
 
 var _Acties2 = _interopRequireDefault(_Acties);
+
+var _Databank = require('./components/Databank.vue');
+
+var _Databank2 = _interopRequireDefault(_Databank);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12114,7 +12189,8 @@ new Vue({
 		InvoerenDeelnemers: _InvoerenDeelnemers2.default,
 		ThemaResultaat: _ThemaResultaat2.default,
 		ControlerenDeelnemers: _ControlerenDeelnemers2.default,
-		PreThemaResultaat: _PreThemaResultaat2.default
+		PreThemaResultaat: _PreThemaResultaat2.default,
+		Databank: _Databank2.default
 	},
 
 	methods: {},
@@ -12124,6 +12200,6 @@ new Vue({
 	ready: function ready() {}
 });
 
-},{"./components/Acties.vue":14,"./components/ControlerenDeelnemers.vue":17,"./components/InvoerenDeelnemers.vue":18,"./components/PreThemaResultaat.vue":19,"./components/ScanSlider.vue":20,"./components/SingleSlider.vue":22,"./components/ThemaResultaat.vue":23,"vue":11,"vue-resource":4}]},{},[24]);
+},{"./components/Acties.vue":14,"./components/ControlerenDeelnemers.vue":17,"./components/Databank.vue":18,"./components/InvoerenDeelnemers.vue":19,"./components/PreThemaResultaat.vue":20,"./components/ScanSlider.vue":21,"./components/SingleSlider.vue":23,"./components/ThemaResultaat.vue":24,"vue":11,"vue-resource":4}]},{},[25]);
 
 //# sourceMappingURL=main.js.map

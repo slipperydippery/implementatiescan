@@ -4224,7 +4224,8 @@ main {
 
 .table {
   background: rgba(255, 255, 255, 0.2);
-  margin: 2rem 0; }
+  margin: 2rem 0;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.24); }
 
 .table-header {
   background: #25AEE4 !important;
@@ -4234,8 +4235,8 @@ main {
 .table-row {
   padding: .5rem; }
 
-.table-row:nth-child(odd) {
-  background: rgba(255, 255, 255, 0.2); }
+.table-row--body:nth-child(even) {
+  background: rgba(0, 0, 0, 0.08); }
 
 /**
  *  INVOEREN DEELNEMERS

@@ -37,4 +37,9 @@ class Thema extends Model
         return $this->hasMany('App\Verbeteractie');
     }
 
+    public function instruments()
+    {
+        return $this->belongsToMany('App\Instrument');
+    }
+
 }

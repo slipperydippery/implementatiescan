@@ -16,6 +16,7 @@ import SingleSlider from './components/SingleSlider.vue';
 import ThemaResultaat from './components/ThemaResultaat.vue';
 import PreThemaResultaat from './components/PreThemaResultaat.vue';
 import Acties from './components/Acties.vue';
+import Databank from './components/Databank.vue';
 
 // import Algemeenbeeld from './components/Algemeenbeeld.vue';
 
@@ -46,6 +47,7 @@ new Vue({
 		ThemaResultaat, 
 		ControlerenDeelnemers ,
 		PreThemaResultaat,
+		Databank,
 	},
 
 	methods: {

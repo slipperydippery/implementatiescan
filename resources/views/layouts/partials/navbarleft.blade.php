@@ -9,13 +9,23 @@
 			<a href="#">Admin</a>
 			<ul class="menu vertical nested">
 				<li>
-					<a href=" {{ URL::route('scans.index') }} ">
+					<a href=" {{ URL::route('scans.create') }} ">
 						Overzicht Scans
 					</a>
 				</li>
 				<li>
 					<a href=" {{ URL::route('scans.create') }} ">
 						Maak Nieuwe Scan aan
+					</a>
+				</li>
+				<li>
+					<a href=" {{ URL::route('instruments.index') }} ">
+						Overzicht Databank			
+					</a>
+				</li>
+				<li>
+					<a href=" {{ URL::route('instruments.create') }} ">
+						Voeg een Instrument of Programma toe
 					</a>
 				</li>
 			</ul>

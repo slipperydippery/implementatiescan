@@ -1,6 +1,6 @@
 @include('layouts.partials.header')
 
-@if(count(Auth::user()->beheert->intersect([$scan])) || Auth::user()->hasRole('admin'))
+@if(Auth::user()->hasRole('admin'))
 
 	<div class="off-canvas-wrapper">
 	    <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
@@ -58,7 +58,7 @@
 	</div>
 
 @else
-	<h1>Whoops! Dit is niet uw scan</h1>
+	<h1>Whoops! U heeft geen administratieve bevoegdheden</h1>
 @endif
 
 @include('layouts.partials.footer')

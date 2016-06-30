@@ -6,11 +6,13 @@ use App\Scan;
 use App\User;
 use App\Thema;
 use App\Instantie;
+use App\Scanmodel;
+use App\Instrument;
 use App\Http\Requests;
 use App\Verbeteractie;
 use Illuminate\Http\Request;
-use Illuminate\Http\StoreParticipantRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\StoreParticipantRequest;
 
 class ApiController extends Controller
 {
@@ -216,6 +218,13 @@ class ApiController extends Controller
         return $themas;
     }
 
+    public function indexscanmodelthema()
+    {
+        $scanmodel = Scanmodel::findOrFail(1);
+        $themas = $scanmodel->themas;
+        return $themas;
+    }
+
     public function indexthemaquestion(Thema $thema)
     {
         $questions = $thema->questions;
@@ -327,7 +336,11 @@ class ApiController extends Controller
         return $themaOverzicht;
     }
 
+    public function getInstruments()
+    {
+        $instruments = Instrument::with('themas')->get();
+        return $instruments;
+    }
+
 
 }
-
-

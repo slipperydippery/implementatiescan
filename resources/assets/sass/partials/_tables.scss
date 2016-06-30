@@ -1,6 +1,7 @@
 .table {
 	background: rgba(255, 255, 255, .2);
 	margin: 2rem 0;
+	border-bottom: 2px solid rgba(0, 0, 0, 0.24);
 }
 
 .table-header {
@@ -13,8 +14,12 @@
 	padding: .5rem;
 	// padding: .5rem 0;
 }
-.table-row:nth-child(odd) {
-	background: rgba(255, 255, 255, .2);
+// .table-row:nth-child(odd) {
+// 	background: rgba(255, 255, 255, .2);
+// }
+
+.table-row--body:nth-child(even) {
+	background: rgba(0,0,0, .08);
 }
 
 

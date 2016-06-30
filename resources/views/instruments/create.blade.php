@@ -3,7 +3,7 @@
 @section('content')
 <div class="row page-heading">
 	<div class="large-12 ">
-		<h1>Maak een nieuwe scan aan</h1>
+		<h1>Voeg een instrument of programma toe</h1>
 		<fieldset class="fieldset">
   			<p class="subheading subheading__time">
   				
@@ -19,8 +19,8 @@
 	
 	<div class="large-8 columns submitted-users">
 	
-		{!! Form::open(['route' => 'scans.store']) !!}
-			@include('scans.partials.form', ['submittext' => 'Maak scan aan'])
+		{!! Form::open(['route' => 'instruments.store']) !!}
+			@include('instruments.partials.form', ['submittext' => 'Voeg Toe'])
 		{!! Form::close() !!}
 
 	</div>

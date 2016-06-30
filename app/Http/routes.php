@@ -20,7 +20,9 @@ Route::post('/send/senduitnodiging/scan/{scan}', ['as' => 'senduitnodiging', 'us
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
-    Route::get('/databank', ['as' => 'databank', 'uses' => 'PagesController@databank']);
+    Route::get('/databank', ['as' => 'databank', 'uses' => 'InstrumentsController@index']);
+    Route::get('/api/databank', 'ApiController@getInstruments');
+    Route::get('/api/scanmodel/thema', 'ApiController@indexscanmodelthema');
 
 });
 
@@ -64,6 +66,11 @@ Route::group(['middleware' => ['web', 'auth']], function () {
      */
     Route::get('/themas/{thema}/video', ['as' => 'themas.video', 'uses' => 'ThemasController@video']);
     Route::post('/themas/{thema}/video', ['as' => 'themas.updatevideo', 'uses' => 'ThemasController@updatevideo']);
+
+    /**
+     * Instruments
+     */
+    Route::resource('instruments', 'InstrumentsController');
 
     /**
      *  Beheerder
