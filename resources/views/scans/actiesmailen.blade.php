@@ -1,15 +1,17 @@
-@extends('layouts.master')
+@extends('layouts.scan')
 
 @section('content')
-<div class="row page-heading">
-	<div class="large-12 ">
-		<h1>Verbeteracties Mailen</h1>
-		<fieldset class="fieldset">
-  			<legend>Verstuur de verbeteracties naar de deelnemers </legend>
-			<p class=subheading>
-				Nadat u de voorlopige verbeteracties heeft vastgesteld, worden deze met een druk op de knop automatisch verzonden naar de deelnemers.
-			</p>
-		</fieldset>
+<div class="page-heading--container">
+	<div class="row page-heading">
+		<div class="large-12 ">
+			<h1>Verbeteracties Mailen</h1>
+			<fieldset class="fieldset large-8">
+	  			<legend>Verstuur de verbeteracties naar de deelnemers </legend>
+				<p class=subheading>
+					Nadat u de voorlopige verbeteracties heeft vastgesteld, worden deze met een druk op de knop automatisch verzonden naar de deelnemers.
+				</p>
+			</fieldset>
+		</div>
 	</div>
 </div>
 

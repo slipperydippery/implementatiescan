@@ -1,16 +1,18 @@
-@extends('layouts.master')
+@extends('layouts.scan')
 
 @section('content')
-<div class="row page-heading">
-	<div class="large-12 ">
-		<h1>ALGEMEEN BEELD </h1>
-		<h2>HUIDIGE gezamenlijke AANPAK</h2>
-		<fieldset class="fieldset">
-  			<legend>Algemeen beeld van de huidige gezamenlijke aanpak beoordelen</legend>
-			<p class=subheading>
-				Hieronder ziet u een schuif van 0 tot 100. Kunt u in algemene zin aangeven op uw eigen scherm hoe goed onze regio het volgens u doet voor wat betreft de huidige aanpak en samenwerking om jongeren met LVB, zoals jongeren met LVB, tijdens en na hun schooloopbaanl goed te begeleiden naar werk?  Nul is ‘we doen dat als regio slecht’ en honderd is ‘we doen dat als regio perfect’.
-			</p>
-		</fieldset>
+<div class="page-heading--container">
+	<div class="row page-heading">
+		<div class="large-12 ">
+			<h1>ALGEMEEN BEELD </h1>
+			<h2>HUIDIGE gezamenlijke AANPAK</h2>
+			<fieldset class="fieldset large-8">
+	  			<legend>Algemeen beeld van de huidige gezamenlijke aanpak beoordelen</legend>
+				<p class=subheading>
+					Hieronder ziet u een schuif van 0 tot 100. Kunt u in algemene zin aangeven op uw eigen scherm hoe goed onze regio het volgens u doet voor wat betreft de huidige gezamenlijke aanpak om jongeren met LVB, zoals jongeren met LVB, tijdens en na hun schoolloopbaan goed te begeleiden naar werk? Nul is ‘we doen dat als regio slecht’ en honderd is ‘we doen dat als regio perfect’.
+				</p>
+			</fieldset>
+		</div>
 	</div>
 </div>
 
@@ -38,7 +40,7 @@
 			<div class="row">
 				<div class="small-8 columns">.</div>
 				<div class="small-2 columns">
-				  <input type="number" name="value" id="sliderOutput2">
+				  <input type="number" name="value" id="sliderOutput2" v-model="number">
 				</div>
 
 				<!-- Add Submit Field -->

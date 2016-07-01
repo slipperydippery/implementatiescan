@@ -1,13 +1,12 @@
-@extends('layouts.master')
+@extends('layouts.admin')
 
 @section('content')
 <div class="row page-heading">
 	<div class="large-12 ">
-		<h1>Overzicht Scans</h1>
+		<h1>Maak een nieuwe scan aan</h1>
 		<fieldset class="fieldset">
-  			<legend></legend>
   			<p class="subheading subheading__time">
-  				Hier is een overzicht van all uw scans
+  				
 
   			</p>
 
@@ -32,11 +31,5 @@
 
 
 @section('site-footer')
-<div class="row ">
-	<div class="large-4 column end page-next">	
-
-		<a href="{{ URL::to('algemeenbeeld') }}" class="button button-next">Scan Starten</a>
-	</div>
-</div>
 
 @stop

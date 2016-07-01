@@ -18,13 +18,17 @@
 
 
 .button-next {
-  background: #fff url(/img/button_arrow_right.png) no-repeat right top;
+  background: $primary-color url(/img/button_arrow_right.png) no-repeat right top;
   height: 37px;
-  color: $primary-color;
+  color: #fff;
   padding-left: 2.5rem;
   padding-right: 3rem;
   margin-right: -1.5rem;
   border: 0;
+}
+
+.button-next:hover {
+  background: #A7CC39 url(/img/button_arrow_right.png) no-repeat right top !important;
 }
 
 

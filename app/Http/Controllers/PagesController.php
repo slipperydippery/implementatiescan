@@ -13,14 +13,12 @@ class PagesController extends Controller
 
     public function home()
     {
-        $scan = Scan::findOrFail(2);
-        return view ('welcome', compact('scan')) ;
+        return view ('welcome') ;
     }
 
     public function bedankt(    )
     {
-        $scan = Scan::findOrFail(2);
-        return view('pages.voorzitter.bedankt', compact('scan'));
+        return view('pages.voorzitter.bedankt');
     }
     
     public function testpage ()
@@ -35,7 +33,6 @@ class PagesController extends Controller
 
     public function databank()
     {
-        $scan = Scan::findOrFail(2);
-    	return view('pages.databank', compact('scan'));
+    	return view('pages.databank');
     }
 }

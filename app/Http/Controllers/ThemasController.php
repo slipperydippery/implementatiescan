@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Scan;
 use App\Thema;
 use App\Video;
 use App\Http\Requests;
@@ -17,9 +18,10 @@ class ThemasController extends Controller
      */
     public function index()
     {
+        $scan = Scan::findOrFail(2);
         $themas = Thema::get();
 
-        return view ('themas.index', compact('themas'));
+        return view ('themas.index', compact('themas', 'scan'));
     }
 
     /**
@@ -89,5 +91,19 @@ class ThemasController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function video(Thema $thema)
+    {
+        $scan = Scan::findOrFail(2);
+        $videolist = Video::lists('title', 'id');
+        return view('themas.video', compact('thema', 'videolist', 'scan'));
+    }
+
+    public function updatevideo(Request $request, Thema $thema)
+    {
+        $thema->video_id = $request->video_id;
+        $thema->save();
+        return redirect()->back();
     }
 }

@@ -21,7 +21,8 @@
 	<div class="large-12 columns submitted-users">
 	
 		@foreach($themas as $thema)
-			<a href=" {{ route('themas.show', $thema->id) }} "><h2>{{ $thema->title }}</h2></a>
+			<a href=" {{ route('themas.show', $thema->id) }} "><h2>{{ $thema->title }}</h2></a> 
+			<a href=" {{ URL::to('themas/' . $thema->id . '/video') }} ">edit video</a> <br><br><br>
 			    
 		@endforeach
 

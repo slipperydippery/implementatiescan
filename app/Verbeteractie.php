@@ -13,9 +13,9 @@ class Verbeteractie extends Model
     	'scan_id',
     ];
 
-    public function thema()
+    public function question()
     {
-    	return $this->belongsTo('App\Thema');
+        return $this->belongsTo('App\Question');
     }
 
     public function scan()
@@ -31,6 +31,11 @@ class Verbeteractie extends Model
     public function trekker()
     {
     	return $this->belongsTo('App\User');
+    }
+
+    public function thema()
+    {
+        return $this->belongsTo('App\Thema');
     }
 
 }
