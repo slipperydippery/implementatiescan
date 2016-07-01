@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInstrumentsTable extends Migration
+class CreateProgrammasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,11 @@ class CreateInstrumentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('instruments', function (Blueprint $table) {
+        Schema::create('programmas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->longText('description');
             $table->text('adress');
-            $table->boolean('one');
-            $table->boolean('two');
-            $table->boolean('three');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateInstrumentsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('instruments');
+        Schema::drop('programmas');
     }
 }

@@ -6,10 +6,12 @@ use App\Scan;
 use App\User;
 use App\Thema;
 use App\Instantie;
+use App\Programma;
 use App\Scanmodel;
 use App\Instrument;
 use App\Http\Requests;
 use App\Verbeteractie;
+use App\Praktijkvoorbeeld;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\StoreParticipantRequest;
@@ -340,6 +342,18 @@ class ApiController extends Controller
     {
         $instruments = Instrument::with('themas')->get();
         return $instruments;
+    }
+
+    public function getProgrammas()
+    {
+        $programmas = Programma::with('themas')->get();
+        return $programmas;
+    }
+
+    public function getPraktijkvoorbeelds()
+    {
+        $praktijkvoorbeelds = Praktijkvoorbeeld::with('themas')->get();
+        return $praktijkvoorbeelds;
     }
 
 

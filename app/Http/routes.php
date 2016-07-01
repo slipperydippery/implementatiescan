@@ -21,13 +21,15 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
     Route::get('/databank', ['as' => 'databank', 'uses' => 'InstrumentsController@index']);
-    Route::get('/api/databank', 'ApiController@getInstruments');
     Route::get('/api/scanmodel/thema', 'ApiController@indexscanmodelthema');
+    Route::get('/api/instruments', 'ApiController@getInstruments');
+    Route::get('/api/programma', 'ApiController@getProgrammas');
+    Route::get('/api/praktijkvoorbeeld', 'ApiController@getPraktijkvoorbeelds');
 
 });
 
 Route::group(['middleware' => ['web', 'auth']], function () {
-    /**
+/**
      * API Calls
      */
     Route::get('/api/scan/{scan}/thema', 'ApiController@indexthema');
@@ -71,6 +73,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
      * Instruments
      */
     Route::resource('instruments', 'InstrumentsController');
+    Route::resource('programmas', 'ProgrammasController');
+    Route::resource('praktijkvoorbeelds', 'PraktijkvoorbeeldsController');
 
     /**
      *  Beheerder

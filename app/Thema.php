@@ -42,4 +42,14 @@ class Thema extends Model
         return $this->belongsToMany('App\Instrument');
     }
 
+    public function programmas()
+    {
+        return $this->belongsToMany('App\Programma');
+    }
+
+    public function praktijkvoorbeeld()
+    {
+        return $this->belongsToMany('App\Praktijkvoorbeeld');
+    }
+
 }
