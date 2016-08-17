@@ -5,7 +5,6 @@
 	<div class="large-12 ">
 		<h1>Overzicht Gebruikers</h1>
 		<fieldset class="fieldset">
-  			<legend></legend>
   			<p class="subheading subheading__time">
   				Hier is een overzicht van all uw gebruikers
 
@@ -19,21 +18,72 @@
 <div class="row page-content">
 	
 	<div class="large-12 columns submitted-users">
-		@can('manage_scans')
-			hello bro
-		@endcan
 
+			<div class="row table-row table-header">
+				<div class="small-2 columns">
+					Voornaam
+				</div>
+				<div class="small-2 columns">
+					Achternaam
+				</div>
+				<div class="small-3 columns">
+					Email
+				</div>
+				<div class="small-2 columns">
+					Beheert
+				</div>
+				<div class="small-2 columns">
+					Participeert
+				</div>
+				<div class="small-1 columns">
+					
+				</div>
+				
+			</div>
 		@foreach($users as $user)
+			<div class="row table-row">
+				<div class="small-2 columns">
+					<a href=" {{ route('users.show', $user->id) }} ">{{ $user->name_first }}</a>
+				</div>
+				<div class="small-2 columns">
+					<a href=" {{ route('users.show', $user->id) }} ">{{ $user->name_last }}</a>
+				</div>
+				<div class="small-3 columns">
+					<a href=" {{ route('users.show', $user->id) }} ">{{ $user->email }}</a>
+				</div>
+				<div class="small-2 columns">
+					@if(!count($user->beheert))
+						-
+					@endif
+					@foreach($user->beheert as $beheerscan)
+						{{ $beheerscan->title }}
+					@endforeach
+				</div>
+				<div class="small-2 columns">
+					@if(!count($user->scans))
+						-
+					@endif
+					@foreach($user->scans as $participeerscan)
+						{{ $participeerscan->title }}
+					@endforeach
+				</div>
+				<div class="small-1 columns">
+					<a href=" {{ route('users.show', $user->id) }} ">
+						
+					</a>
+				</div>
 
-			<a href=" {{ route('users.show', $user->id) }} ">{{ $user->name_first }}</a>
-			@foreach($user->roles as $role)
-				- {{ $role->label }}
-			@endforeach
-			<br>
+			</div>
+
+
 			    
 		@endforeach
-		<a href=" {{ route('users.create') }} " class="button">Create new User</a>
+		<br>
 
+	</div>
+	<div class="large-12">
+
+		<a href=" {{ route('users.create') }} " class="button">Maak een gebruiker aan</a>
 	</div>
 </div>
 

@@ -7,6 +7,7 @@ use App\User;
 use App\Instantie;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
 class UsersController extends Controller
@@ -29,7 +30,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -40,7 +41,20 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (! User::where('email', '=', $request->email)->get()->count())
+        {
+            $user = new User();
+            $user->initial_pwd = 'password';
+            $user->password = Hash::make($user->initial_pwd);
+            $user->name_first = $request->name_first;
+            $user->name_last = $request->name_last;
+            $user->email = $request->email;
+            $user->save();
+        }
+        else {
+            return 'Gebruiker met deze email bestaat al';
+        }
+        return Redirect::route('users.index');
     }
 
     /**
