@@ -1,6 +1,6 @@
 <!-- Naam Form Input -->
 <div class="form-group">
-	{!! Form::label('title', 'Naam:') !!}
+	{!! Form::label('title', 'Naam school:') !!}
 	{!! Form::text('title', null, ['class' => 'form-control']) !!}
 </div>
 
@@ -12,13 +12,13 @@
 
 <!-- Email adress beheerder Form Input -->
 <div class="form-group">
-	{!! Form::label('beheerder_email', 'Email adress beheerder:') !!}
+	{!! Form::label('beheerder_email', 'Email adress voorzitter:') !!}
 	{!! Form::text('beheerder_email', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Instantie Form Input -->
 <div class="form-group">
-    {!! Form::label('instantie', 'Instantie van beheerder:') !!}
+    {!! Form::label('instantie', 'Instantie van voorzitter:') !!}
     {!! Form::select('instantie', $scanmodels, 'none', ['class' => 'form-control']) !!}
 </div>
 

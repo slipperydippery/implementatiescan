@@ -6,7 +6,7 @@
 		<div class="large-12 ">
 			<h1> Thema {{ $thema_nr }}: {{ $thema->title }} </h1>
 			<h2>Succesfactor {{$question_nr}}: {{ $question->title }}</h2>
-			<fieldset class="fieldset large-8">
+			<fieldset class="fieldset large-8 columns">
 	  			<legend>Neem één minuut de tijd om de volgende vraag op uw eigen scherm te beantwoorden:</legend>
 				<p class=subheading>
 	  			Neem één minuut de tijd om op uw eigen tablet of laptop aan te geven in hoeverre in uw regio wordt voldaan aan een uit onderzoek gebleken kritische succesfactor: <br>
@@ -20,6 +20,10 @@
 
 				</p>
 			</fieldset>
+			<div class="large-4 columns">
+				<div id="time">01:00</div>	
+			</div>
+			
 		</div>
 	</div>
 </div>
@@ -48,14 +52,17 @@
 
 		<br>
 
+		
 		{!! Form::open(['route' => ['scans.storequestion', $scan, $thema_nr, $question_nr, $question]]) !!}
 			<div class="row">
 				<div class="small-8 columns">.</div>
 				<div class="small-2 columns">
+				uw mening:
 				  <input type="number" name="value" id="sliderOutput2" value="<?= $slidervalue ?>">
 				</div>		
 	  			
 				<div class="columns small-2 form-group">
+				. <br>
 					<!-- Add Submit Field -->
 					<div class="form-group">
 					    {!! Form::submit('Verstuur antwoord', ['class' => 'button']) !!}
@@ -64,7 +71,7 @@
 			</div>	
 		{!! Form::close() !!}
 
-		<div id="time">01:00</div>
+		
 
 	</div>
 

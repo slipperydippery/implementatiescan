@@ -39,7 +39,7 @@
 	@if(!isset($scan))
 		@if(Auth::check() && count(Auth::user()->beheert))
 			<li>
-				<a href="#">Beheer Scans</a>
+				<a href="#">Scan inrichten</a>
 				<ul class="menu vertical nested">
 					@foreach(Auth::user()->beheert as $beheerscan)
 						<li><a href=" {{ URL::route('scans.invoerendeelnemers', $beheerscan) }} "> {{ $beheerscan->title }}</a></li>
@@ -49,7 +49,7 @@
 		@endif
 		@if(Auth::check() && count(Auth::user()->scans))
 			<li>
-				<a href="#">Participeer in Scans</a>
+				<a href="#">Scan starten</a>
 				<ul class="menu vertical nested">
 					@foreach(Auth::user()->scans as $participeerscan)
 						<li><a href=" {{ URL::route('scans.intro', $participeerscan) }} "> {{ $participeerscan->title }} </a></li>

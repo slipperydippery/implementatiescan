@@ -1,4 +1,11 @@
 @include('layouts.partials.header')
+
+
+@foreach(Auth::user->singlescans as $singlescans)
+	'hello'
+@endforeach
+
+
 <div class="off-canvas-wrapper">
     <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
     	<div class="off-canvas position-left" id="offCanvas" data-off-canvas>

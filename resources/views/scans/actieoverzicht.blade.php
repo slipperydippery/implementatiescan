@@ -25,8 +25,9 @@
 </div>
 <div class="row">
 
-	<div class="small-4 date__container">
-	<label for="datepicker"><h4>Datum scan deel 2:</h4></label>
+	<div class="small-8 date__container">
+	   <label for="datepicker"><h4>
+        Plan een vervolgdatum voor het maken van de werkagenda. </h4></label>
     <input type="text" id="datepicker">
 
 

@@ -26,7 +26,7 @@
 <div class="row ">
 	<div class="large-4 columns page-next">	
 		<a href="{{ URL::route('scans.director', [$scan, $thema_nr, ($question_nr + 1)]) }}" class="button button-next">
-			Ga door naar het volgende thema
+			Ga door naar het volgende scherm
 		</a>
 	</div>
 </div>

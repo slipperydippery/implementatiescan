@@ -656,6 +656,11 @@ $sidetext_thickness : 15rem;
 	font-weight: 500;
 }
 
+.slider-columnhead span {
+	width: 100%;
+}
+
+
 .slider-empty {
 	color: #A6CE39;
 }
@@ -728,9 +733,8 @@ $sidetext_thickness : 15rem;
  #time {
  	display: block;
  	text-align: center;
- 	margin: -4rem auto 4rem;
-    line-height: 14rem;
- 	font-size: 11rem;
+ 	margin: 12rem auto 0;
+ 	font-size: 8rem;
  	// color: rgba(#fff, .3);
  	z-index: -10;
 

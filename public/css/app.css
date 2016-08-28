@@ -3983,6 +3983,9 @@ main {
 .slider-columnhead {
   font-weight: 500; }
 
+.slider-columnhead span {
+  width: 100%; }
+
 .slider-empty {
   color: #A6CE39; }
 
@@ -4039,9 +4042,8 @@ main {
 #time {
   display: block;
   text-align: center;
-  margin: -4rem auto 4rem;
-  line-height: 14rem;
-  font-size: 11rem;
+  margin: 12rem auto 0;
+  font-size: 8rem;
   z-index: -10; }
 
 .center {

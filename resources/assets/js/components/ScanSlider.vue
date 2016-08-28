@@ -1,7 +1,10 @@
 <template>
+
+
 	<div class="large-12 columns algemeenbeeldslider--group">
 		<span class="unanswered" v-if=" ! allComplete ">
-			Nog {{ unanswered }} deelnemers te gaan
+			Dank u voor uw antwoord. <br>
+			We wachten nog op het antwoord van {{ unanswered }} overige deelnemer<span v-if="unanswerd > 1">s</span> voor het tonen van een algemeen beeld van de huidige gezamenlijke aanpak.
 		</span>
 		<span style="display:none"> {{ averageValue }} </span>
 		<div class="row sliders-sub slider-gemiddeld" v-if="allComplete">
