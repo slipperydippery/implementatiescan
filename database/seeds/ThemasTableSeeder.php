@@ -18,19 +18,19 @@ class ThemasTableSeeder extends Seeder
                 'title' => 'Focus op werk',
                 'blurbtitle' => '',
                 'blurb' => '',
-                'video_id' => '1'
+                'video_id' => '2'
             ],
             [
                 'title' => 'Kwaliteit begeleiding',
                 'blurbtitle' => '',
                 'blurb' => '',
-                'video_id' => '1'            
+                'video_id' => '3'            
             ],
             [
                 'title' => 'Effectieve samenwerking',
                 'blurbtitle' => '',
                 'blurb' => '',
-                'video_id' => '1'            
+                'video_id' => '4'            
             ]
         ];
 

@@ -10,6 +10,18 @@
 	{!! Form::text('regio', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Voornaam voorzitter Form Input -->
+<div class="form-group">
+	{!! Form::label('name_first', 'Voornaam voorzitter:') !!}
+	{!! Form::text('name_first', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Achternaam voorzitter Form Input -->
+<div class="form-group">
+	{!! Form::label('name_last', 'Achternaam voorzitter:') !!}
+	{!! Form::text('name_last', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Email adress beheerder Form Input -->
 <div class="form-group">
 	{!! Form::label('beheerder_email', 'Email adress voorzitter:') !!}
@@ -20,6 +32,11 @@
 <div class="form-group">
     {!! Form::label('instantie', 'Instantie van voorzitter:') !!}
     {!! Form::select('instantie', $scanmodels, 'none', ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group">
+	{!! Form::label('datepicker', 'Datum scan:') !!}
+	<input type="text" id="datepicker">
 </div>
 
 <!-- Hidden video_id Type Form Input -->

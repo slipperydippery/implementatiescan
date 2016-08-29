@@ -11438,7 +11438,8 @@ exports.default = {
 	data: function data() {
 		return {
 			participants: [],
-			scan: scan
+			scan: scan,
+			scanbeheerder: scanbeheerder
 		};
 	},
 	ready: function ready() {
@@ -11496,7 +11497,7 @@ exports.default = {
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div v-for=\"participant in participants | orderBy 'instantie_id'\">\n\t\t<div class=\"large-2 column submitted-user\">\n\t\t\t<a href=\"#\" class=\"close-button\" aria-label=\"Close alert\" type=\"button\" @click=\"removeParticipant(participant.id)\">\n\t\t\t    <span aria-hidden=\"true\">×</span>\n\t\t\t</a>\n\t\t\t<img :src=\"returnRoot + '/img/user.png'\">\n\t\t\t<div class=\"participant_info\">\n\t\t\t\t<span class=\"name\"> {{ participant.name_first ? participant.name_first : \"---\" }} {{ participant.name_last ? participant.name_last : \"\" }} </span> \n\t\t\t\t<span class=\"functie\"> {{ participant.instantie_title }} </span>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div v-for=\"participant in participants | orderBy 'instantie_id'\">\n\t\t<div class=\"large-2 column submitted-user\">\n\t\t\t<a href=\"#\" class=\"close-button\" aria-label=\"Close alert\" type=\"button\" v-if=\"scanbeheerder\" @click=\"removeParticipant(participant.id)\">\n\t\t\t    <span aria-hidden=\"true\">×</span>\n\t\t\t</a>\n\t\t\t<img :src=\"returnRoot + '/img/user.png'\">\n\t\t\t<div class=\"participant_info\">\n\t\t\t\t<span class=\"name\"> {{ participant.name_first ? participant.name_first : \"---\" }} {{ participant.name_last ? participant.name_last : \"\" }} </span> \n\t\t\t\t<span class=\"functie\"> {{ participant.instantie_title }} </span>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

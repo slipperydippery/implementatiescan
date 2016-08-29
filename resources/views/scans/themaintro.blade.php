@@ -14,13 +14,27 @@
 	</div>
 </div>
 
-<div class="row page-content">
-	<div class="videocontainer">
-		<img src="{{ asset('img/' . $thema->video->adress) }}" class="videostill">
-		<img src="{{ asset('img/youtubeplay.png')}}" class="youtubeplay">
+@if(count(Auth::user()->beheert->intersect([$scan])))
+	<div class="row page-content">
+		<div class="videocontainer">
+			<img src="{{ asset('img/' . $thema->video->adress) }}" class="videostill">
+			<img src="{{ asset('img/youtubeplay.png')}}" class="youtubeplay">
+		</div>
+		<div class="large-8">
+			<iframe width="853" height="480" src="https://www.youtube.com/embed/{{ $thema->video->adress }}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+		</div>
 	</div>
-	<iframe width="853" height="480" src="https://www.youtube.com/embed/{{ $thema->video->adress }}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-</div>
+@else
+	<div class="row page-content">
+		<div class="large-8">
+			<div class="flex-video widescreen ">
+				<img width="853" height="480" src="http://img.youtube.com/vi/{{ $thema->video->adress }}/maxresdefault.jpg" alt="">	
+			</div>
+				<p>Op het centrale scherm kunt u de introductie film bekijken</p>
+		</div>
+	</div
+@endif
+
 @stop
 
 @section('site-footer')

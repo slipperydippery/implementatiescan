@@ -1,7 +1,7 @@
 <template>
 	<div v-for="participant in participants | orderBy 'instantie_id'">
 		<div class="large-2 column submitted-user">
-			<a href="#" class="close-button" aria-label="Close alert" type="button" @click="removeParticipant(participant.id)">
+			<a href="#" class="close-button" aria-label="Close alert" type="button" v-if="scanbeheerder" @click="removeParticipant(participant.id)">
 			    <span aria-hidden="true">&times;</span>
 			</a>
 			<img :src="returnRoot + '/img/user.png'">
@@ -29,6 +29,7 @@
 			return {
 				participants: [],
 				scan: scan,
+				scanbeheerder: scanbeheerder,
 			}
 		},
 

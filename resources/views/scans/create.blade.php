@@ -28,7 +28,34 @@
 
 @stop
 
+@section('additional-scripts')
+    <script src="{{ URL::asset('js/pikaday.js') }}"></script>
+    <script>
 
+    var picker = new Pikaday(
+    {
+        field: document.getElementById('datepicker'),
+        firstDay: 1,
+        format: 'D MMM YY',
+        minDate: new Date(2000, 0, 1),
+        maxDate: new Date(2020, 12, 31),
+        yearRange: [2000,2020]
+    });
+
+    </script>
+
+    <template id="acties-template">
+    	<div class="row" v-for="thema in themas">
+    		@{{ thema.title }}
+    		@{{ thema.id }}
+    		<actie></actie>
+    	</div>
+    </template>
+    <template id="actie-template">
+    	
+    </template>
+
+@stop
 
 @section('site-footer')
 

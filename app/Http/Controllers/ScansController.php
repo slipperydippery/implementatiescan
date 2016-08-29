@@ -204,8 +204,13 @@ class ScansController extends Controller
 
     public function kennismaken(Scan $scan)
     {
+        $scanbeheerder = false;
+        if(count(Auth::user()->beheert->intersect([$scan]))) {
+            $scanbeheerder = true;
+        }
         JavaScript::put([
             'scan' => $scan,
+            'scanbeheerder' => $scanbeheerder,
         ]);
         
         $instantieoptions = [];
@@ -418,9 +423,15 @@ class ScansController extends Controller
 
     public function controlerendeelnemers(Scan $scan)
     {
+        $scanbeheerder = false;
+        if(count(Auth::user()->beheert->intersect([$scan]))) {
+            $scanbeheerder = true;
+        }
         JavaScript::put([
             'scan' => $scan,
+            'scanbeheerder' => $scanbeheerder,
         ]);
+
         return view ('scans.inrichten.controlerendeelnemers', compact('scan'));
     }
 

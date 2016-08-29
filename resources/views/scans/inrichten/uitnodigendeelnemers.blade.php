@@ -29,18 +29,13 @@
 				{!! Form::text('subject', 'Uitnodiging bijeenkomst Implementatiescan Werkagenda ', ['class' => 'form-control']) !!}
 			</div>
 
-			<!-- CC Form Input -->
-			<div class="form-group">
-				{!! Form::label('To', 'Aan:') !!}
-				{{$scan->beheerder->email}}
-				<br><br>
-			</div>
 
-			{!! Form::label('BCC', 'BCC:') !!}
+			{!! Form::label('Aan', 'Aan:') !!}
 				@foreach($scan->participants as $participant)
-				<{{ $participant->name_first }} {{ $participant->name_last }}> {{ $participant->email }},
+
+					<input type="checkbox" checked> {{ $participant->name_first }} {{ $participant->name_last }}/ {{ $participant->email }}, <br>
 				@endforeach
-				<br><br>
+				<br>
 			
 			<!-- Email tekst Form Input -->
 			<div class="form-group">
@@ -52,12 +47,12 @@
 					$username =  Auth::user()->name_first . ' ' . Auth::user()->name_last;
 					$emailtext = "Graag wil ik je uitnodigen voor een bijeenkomst om met elkaar in gesprek te gaan over het vergroten van kansen op de arbeidsmarkt voor jongeren met LVB. Namelijk aan de hand van de Implementatiescan, een landelijke kennis- en procestool die regionale organisaties helpt om gezamenlijk de sterktes en zwaktes in de huidige aanpak en noodzakelijke verbeteracties te bepalen.  Deze scan is ontwikkeld op basis van de state of the art kennis over wat werkt. In opdracht van LECSO en in samenwerking met onder andere Divosa, UWV, MEE Nederland en SBB, die toepassing van de scan van harte aanbevelen. 
 
-	In alle regio`s gaan VSO-scholen daartoe in gesprek met gemeenten en andere verantwoordelijke organisaties, zoals SBB, MEE, werkgevers en UWV. Graag zou ik namens de scholen ook met jou in gesprek willen om gezamenlijk de analyse van verbeterkansen in onze regio te maken. Tijdens een Implementatiescan-sessie. Ik stuur je hierbij alvast jouw eigen inloggegevens zodat je alvast kunt kijken hoe de scan werkt. En ik neem binnenkort contact met je op om een afspraak in te plannen.
+In alle regio`s gaan VSO-scholen daartoe in gesprek met gemeenten en andere verantwoordelijke organisaties, zoals SBB, MEE, werkgevers en UWV. Graag zou ik namens de scholen ook met jou in gesprek willen om gezamenlijk de analyse van verbeterkansen in onze regio te maken. Tijdens een Implementatiescan-sessie. Ik stuur je hierbij alvast jouw eigen inloggegevens zodat je alvast kunt kijken hoe de scan werkt. En ik neem binnenkort contact met je op om een afspraak in te plannen.
 
-		Met vriendelijke groeten,
+Met vriendelijke groeten,
 
-		" . $username . ",
-		VSO School";
+" . $username . ",
+VSO School";
 				?>
 				{!! Form::textarea('body', $emailtext, ['class' => 'form-control email_naar_participant', 'rows' => '14']) !!}
 			</div>

@@ -29,6 +29,7 @@
 				<a href="{{ URL::route('voorzitter.scans') }}" role="button" class="title_button">
 		    		<img src="{{asset('img/gearicon.png')}}">
 					<span class="">Scan Inrichten </span>
+					Voorzitter
 				</a>
 				<img src=" {{ asset('img/papertop.png') }} " class="paperclipper papertop ">
 				<img src=" {{ asset('img/paperbottom.png') }} " class="paperclipper paperbottom">
@@ -37,6 +38,7 @@
 				<a href="{{ URL::route('scans.start') }}" role="button" class="title_button">
 		    		<img src="{{asset('img/scan.png')}}"><br>
 					<span class="">Scan Starten </span>
+					Deelnemer
 				</a>
 				<img src=" {{ asset('img/papertop.png') }} " class="paperclipper papertop ">
 				<img src=" {{ asset('img/paperbottom.png') }} " class="paperclipper paperbottom">
@@ -45,6 +47,7 @@
 				<a href="{{ URL::to('databank') }}" role="button" class="title_button">
 		    		<img src="{{asset('img/books.png')}}"><br>
 					<span class="">Databank </span>
+					Iedereen
 				</a>
 			</div>
 		</div>
