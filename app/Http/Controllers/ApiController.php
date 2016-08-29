@@ -187,6 +187,27 @@ class ApiController extends Controller
         return $unanswered;
     }
 
+    public function getNrIncomplete(Scan $scan, Thema $thema)
+    {
+        $unanswered = 0;
+        foreach($scan->participants as $participant)
+        {
+            $themaComplete = true;
+            foreach($thema->questions as $question)
+            {
+                if(! count($participant->answers->intersect($question->answers)))
+                {
+                    $themaComplete = false;
+                }
+            }
+            if ($themaComplete == false)
+            {
+                $unanswered ++;
+            }
+        }
+        return $unanswered;
+    }
+
     public function participants(Scan $scan)
     {
     	$instanties = [];

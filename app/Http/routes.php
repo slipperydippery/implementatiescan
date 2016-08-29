@@ -60,6 +60,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::patch('/api/scan/{scan}/thema/{thema_id}/user/{user}/setslidervalue', 'ApiController@setslidervalue');
     Route::get('/api/scan/{scan}/thema/{thema}/getParticipantABValues', 'ApiController@getParticipantABValues');
     Route::get('/api/scan/{scan}/thema/{thema}/getNrUnanswered', 'ApiController@getNrUnanswered');
+    Route::get('/api/scan/{scan}/thema/{thema}/getNrIncomplete', 'ApiController@getNrIncomplete');
     Route::get('/api/scan/{scan}/participants', 'ApiController@participants');
 
 

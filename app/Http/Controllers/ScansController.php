@@ -50,6 +50,7 @@ class ScansController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $scan = new Scan($request->all());
         // ADD BEHEERDER, CREATE USER IF DOESN'T EXIST
         if (! User::where('email', '=', $request->beheerder_email)->get()->count())
@@ -58,6 +59,8 @@ class ScansController extends Controller
             $user->initial_pwd = 'password'; //str_random(8);
             $user->password = Hash::make($user->initial_pwd);
             $user->email = $request->beheerder_email;
+            $user->name_first = $request->name_first;
+            $user->name_last = $request->name_last;
             $user->save();
         }
         $user = User::where('email', '=', $request->beheerder_email)->first();

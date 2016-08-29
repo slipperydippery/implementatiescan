@@ -5,7 +5,9 @@
 		</a>
 
 		<span class="unanswered" v-else>
-			Nog {{ unanswered }} vragen te gaan
+			Dank u voor uw antwoorden. <br>
+			We wachten nog op {{ unanswered }} overige deelnemer<span v-if="allReady">s</span> voor het tonen van de resultaten.
+
 		</span>
 	</div>
 
@@ -34,9 +36,9 @@
 		},
 
 		ready() {
-			this.getNrUnanswered();
+			this.getNrIncomplete();
 			setInterval(function () {
-				this.getNrUnanswered();
+				this.getNrIncomplete();
 			}.bind(this), 1000);
 		},
 
@@ -46,6 +48,13 @@
 		methods: {
 			getNrUnanswered: function () {
 				this.$http.get('/api/scan/' + this.scan.id + '/thema/' + this.thema_id + '/getNrUnanswered')
+				.then(response => {
+					this.unanswered = response.data;
+				});
+			},
+
+			getNrIncomplete: function () {
+				this.$http.get('/api/scan/' + this.scan.id + '/thema/' + this.thema_id + '/getNrIncomplete')
 				.then(response => {
 					this.unanswered = response.data;
 				});

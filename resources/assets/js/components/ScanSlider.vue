@@ -4,13 +4,16 @@
 	<div class="large-12 columns algemeenbeeldslider--group">
 		<span class="unanswered" v-if=" ! allComplete ">
 			Dank u voor uw antwoord. <br>
-			We wachten nog op het antwoord van {{ unanswered }} overige deelnemer<span v-if="unanswerd > 1">s</span> voor het tonen van een algemeen beeld van de huidige gezamenlijke aanpak.
+			We wachten nog op het antwoord van {{ unanswered }} overige deelnemer<span v-if="allReady">s</span> voor het tonen van een algemeen beeld van de huidige gezamenlijke aanpak.
 		</span>
 		<span style="display:none"> {{ averageValue }} </span>
 		<div class="row sliders-sub slider-gemiddeld" v-if="allComplete">
-			<div class="large-2 small-2 columns">Gemiddeld</div>
+			<div class="large-2 small-2 columns">
+				Gemiddeld 
+			</div>
 			<div class="large-10 small-10 columns">
 				<div class="rangeresult">
+					<span style="position: absolute; top: -.65rem; left: -1.5rem">{{ averageValue }}</span>
 					<div class="rangeresult__value" 
 						:style="{ width: cssPercent(averageValue) }"
 					>
@@ -26,13 +29,14 @@
 			v-if="allComplete"
 		>
 			<div class="large-2 small-2 columns">
-				{{ instantie.title }}
+				{{ instantie.title }} 
 			</div>
 			<div class="large-10 small-10 columns">
 				<div class="rangeresult" 
 					v-for="participant in instantie.participants" 
 					:participant="participant"
 				>
+					<span style="position: absolute; top: -.65rem; left: -1.5rem">{{ participant.abvalue.value }}</span>
 					<div class="rangeresult__value" 
 						v-if="participant.abvalue != null"
 						:style="{ width: cssPercent(participant.abvalue.value) }"
@@ -86,6 +90,14 @@
 		},
 
 		computed: {
+			allReady: function () {
+				var unanswered = this.unanswered;
+				if(unanswered > 0) 
+				{
+					return false;
+				}
+				return true;
+			},
 			averageValue: function () {
 				var participantcount = 0;
 				var totalValue = 0;

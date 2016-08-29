@@ -11798,9 +11798,9 @@ exports.default = {
 		};
 	},
 	ready: function ready() {
-		this.getNrUnanswered();
+		this.getNrIncomplete();
 		setInterval(function () {
-			this.getNrUnanswered();
+			this.getNrIncomplete();
 		}.bind(this), 1000);
 	},
 	created: function created() {},
@@ -11812,6 +11812,14 @@ exports.default = {
 
 			this.$http.get('/api/scan/' + this.scan.id + '/thema/' + this.thema_id + '/getNrUnanswered').then(function (response) {
 				_this.unanswered = response.data;
+			});
+		},
+
+		getNrIncomplete: function getNrIncomplete() {
+			var _this2 = this;
+
+			this.$http.get('/api/scan/' + this.scan.id + '/thema/' + this.thema_id + '/getNrIncomplete').then(function (response) {
+				_this2.unanswered = response.data;
 			});
 		},
 
@@ -11829,7 +11837,7 @@ exports.default = {
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"small-12 center\">\n\t\t<a :href=\"themaURL\" class=\"button answered\" v-if=\"unanswered == 0\">\n\t\t\tLaat Resultaat Zien\n\t\t</a>\n\n\t\t<span class=\"unanswered\" v-else=\"\">\n\t\t\tNog {{ unanswered }} vragen te gaan\n\t\t</span>\n\t</div>\n\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"small-12 center\">\n\t\t<a :href=\"themaURL\" class=\"button answered\" v-if=\"unanswered == 0\">\n\t\t\tLaat Resultaat Zien\n\t\t</a>\n\n\t\t<span class=\"unanswered\" v-else=\"\">\n\t\t\tDank u voor uw antwoorden. <br>\n\t\t\tWe wachten nog op {{ unanswered }} overige deelnemer<span v-if=\"allReady\">s</span> voor het tonen van de resultaten.\n\n\t\t</span>\n\t</div>\n\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -11948,6 +11956,13 @@ exports.default = {
 	},
 
 	computed: {
+		allReady: function allReady() {
+			var unanswered = this.unanswered;
+			if (unanswered > 0) {
+				return false;
+			}
+			return true;
+		},
 		averageValue: function averageValue() {
 			var participantcount = 0;
 			var totalValue = 0;
@@ -11974,7 +11989,7 @@ exports.default = {
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\n\n\t<div class=\"large-12 columns algemeenbeeldslider--group\">\n\t\t<span class=\"unanswered\" v-if=\" ! allComplete \">\n\t\t\tDank u voor uw antwoord. <br>\n\t\t\tWe wachten nog op het antwoord van {{ unanswered }} overige deelnemer<span v-if=\"unanswerd > 1\">s</span> voor het tonen van een algemeen beeld van de huidige gezamenlijke aanpak.\n\t\t</span>\n\t\t<span style=\"display:none\"> {{ averageValue }} </span>\n\t\t<div class=\"row sliders-sub slider-gemiddeld\" v-if=\"allComplete\">\n\t\t\t<div class=\"large-2 small-2 columns\">Gemiddeld</div>\n\t\t\t<div class=\"large-10 small-10 columns\">\n\t\t\t\t<div class=\"rangeresult\">\n\t\t\t\t\t<div class=\"rangeresult__value\" :style=\"{ width: cssPercent(averageValue) }\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"row sliders-sub\" v-for=\"instantie in instantiePartValues\" :class=\"'slider-'+instantie.id\" v-show=\"instantie.participants.length\" v-if=\"allComplete\">\n\t\t\t<div class=\"large-2 small-2 columns\">\n\t\t\t\t{{ instantie.title }}\n\t\t\t</div>\n\t\t\t<div class=\"large-10 small-10 columns\">\n\t\t\t\t<div class=\"rangeresult\" v-for=\"participant in instantie.participants\" :participant=\"participant\">\n\t\t\t\t\t<div class=\"rangeresult__value\" v-if=\"participant.abvalue != null\" :style=\"{ width: cssPercent(participant.abvalue.value) }\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\n\n\t<div class=\"large-12 columns algemeenbeeldslider--group\">\n\t\t<span class=\"unanswered\" v-if=\" ! allComplete \">\n\t\t\tDank u voor uw antwoord. <br>\n\t\t\tWe wachten nog op het antwoord van {{ unanswered }} overige deelnemer<span v-if=\"allReady\">s</span> voor het tonen van een algemeen beeld van de huidige gezamenlijke aanpak.\n\t\t</span>\n\t\t<span style=\"display:none\"> {{ averageValue }} </span>\n\t\t<div class=\"row sliders-sub slider-gemiddeld\" v-if=\"allComplete\">\n\t\t\t<div class=\"large-2 small-2 columns\">\n\t\t\t\tGemiddeld \n\t\t\t</div>\n\t\t\t<div class=\"large-10 small-10 columns\">\n\t\t\t\t<div class=\"rangeresult\">\n\t\t\t\t\t<span style=\"position: absolute; top: -.65rem; left: -1.5rem\">{{ averageValue }}</span>\n\t\t\t\t\t<div class=\"rangeresult__value\" :style=\"{ width: cssPercent(averageValue) }\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"row sliders-sub\" v-for=\"instantie in instantiePartValues\" :class=\"'slider-'+instantie.id\" v-show=\"instantie.participants.length\" v-if=\"allComplete\">\n\t\t\t<div class=\"large-2 small-2 columns\">\n\t\t\t\t{{ instantie.title }} \n\t\t\t</div>\n\t\t\t<div class=\"large-10 small-10 columns\">\n\t\t\t\t<div class=\"rangeresult\" v-for=\"participant in instantie.participants\" :participant=\"participant\">\n\t\t\t\t\t<span style=\"position: absolute; top: -.65rem; left: -1.5rem\">{{ participant.abvalue.value }}</span>\n\t\t\t\t\t<div class=\"rangeresult__value\" v-if=\"participant.abvalue != null\" :style=\"{ width: cssPercent(participant.abvalue.value) }\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
