@@ -15,6 +15,8 @@
 	</div>
 </div>
 
+
+
 <div class="row page-content">
 
 	{!! Form::open(['route' => ['scans.store_prebeteracties', $scan, $thema]]) !!}
@@ -71,10 +73,12 @@
 			@endforeach
 			<div class="row sliders-sub slider-verbeterpunten">
 				<div class="large-2 small-2 columns">Verbeterpunten</div>
-				@foreach($thema->questions as $question)
-					<div class="large-2 small-2 columns checkinput">
-						{!! Form::checkbox('verbeteractie[]', $question->id, $question->verbeteractie->active) !!}
-					</div>
+				@foreach($scan->verbeteracties as $verbeteractie)
+					@if($verbeteractie->thema_id == $thema->id)
+						<div class="large-2 small-2 columns checkinput">
+							{!! Form::checkbox('verbeteractie[]', $verbeteractie->question_id, $verbeteractie->active) !!}
+						</div>
+					@endif
 				@endforeach
 			</div>
 		</div>

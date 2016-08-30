@@ -290,16 +290,19 @@ class ScansController extends Controller
 
     public function store_prebeteracties(Request $request, Scan $scan, $thema_nr)
     {
-        $thema = $scan->scanmodel->themas->get($thema_nr - 1);
+        // $thema = $scan->scanmodel->themas->get($thema_nr - 1);
 
-        foreach($thema->questions as $question)
+        foreach($scan->verbeteracties as $verbeteractie)
         {
-            $question->verbeteractie->active = false;
-            if (count(collect($request->verbeteractie)->intersect([$question->id])) > 0) 
+            if( $verbeteractie->thema_id == $thema_nr)
             {
-                $question->verbeteractie->active = true;
-            } 
-            $question->verbeteractie->save();
+                $verbeteractie->active = false;
+                if (count(collect($request->verbeteractie)->intersect([$verbeteractie->question_id])) > 0) 
+                {
+                    $verbeteractie->active = true;
+                } 
+                $verbeteractie->save();
+            }
         }
         return Redirect::route('scans.director', [$scan, $thema_nr, 10000]) ;
     }

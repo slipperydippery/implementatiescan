@@ -18,7 +18,11 @@
 
 <div class="row page-content">
 
+@if(count(Auth::user()->beheert->intersect([$scan])))
 		<scan-slider></scan-slider>
+@else
+	<span class="unanswered">Op het centrale scherm kunt u de gemeenschappelijke resultaten bekijken </span>
+@endif
 		
 </div>
 @stop
