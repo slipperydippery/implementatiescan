@@ -78,8 +78,7 @@
 				<div class="form-group">
 					<input type="text" 
 						class="form-control" 
-						placeholder="Subactie" 
-						v-model="actie.omschrijving" 
+						placeholder="Subactie"  
 						@blur="saveActie()"
 					>
 					</input>
@@ -91,7 +90,6 @@
 						class="form-control" 
 						rows="5"
 						placeholder="Actie Omschrijving" 
-						v-model="actie.omschrijving" 
 						@blur="saveActie()"
 					>
 					</textarea>
