@@ -27,7 +27,15 @@
 	<div class="small-8 date__container">
 	   <label for="datepicker"><h4>
         Plan een vervolgdatum voor het maken van de werkagenda. </h4></label>
-    <input type="text" id="datepicker">
+        <div class="small-6 columns">
+            <input type="text" id="datepicker">
+        </div>
+        <div class="small-6 columns">
+            <!-- Tijd Form Input -->
+            <div class="form-group">
+                {!! Form::text('tijd', null, ['class' => 'form-control', 'placeholder' => 'tijd']) !!}
+            </div>
+        </div>
 
 
 
