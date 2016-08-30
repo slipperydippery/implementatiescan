@@ -11001,7 +11001,8 @@ exports.default = {
 			showUnBetrokkene: false,
 			editBetrokkenen: false,
 			betrokkenen: [],
-			unBetrokkenen: []
+			unBetrokkenen: [],
+			agendaType: agendaType
 		};
 	},
 	ready: function ready() {
@@ -11071,12 +11072,19 @@ exports.default = {
 	computed: {
 		unblength: function unblength() {
 			return this.unBetrokkenen.length;
+		},
+
+		isWerkAgenda: function isWerkAgenda() {
+			if (agendaType == 'werkagenda') {
+				return true;
+			}
+			return false;
 		}
 	}
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row actie-rij\" v-if=\"actie.active\">\t\n\n\t\t<div class=\"large-3 columns actie-omschrijving\"> \n\t\t\t<span class=\"remove_row\" @click=\"setActieInactive(actie)\">\n\t\t\t\tx\n\t\t\t</span>\n\t\t\t{{ actie.title }}\n\t\t</div>\n\n\t\t<div class=\"large-3 columns\">\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<textarea class=\"form-control\" placeholder=\"Actie Omschrijving\" v-model=\"actie.omschrijving\" @blur=\"saveActie()\">\t\t\t\t</textarea>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"large-3 columns\">\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<select v-model=\"actie.user_id\" @blur=\"saveActie()\">\n\t\t\t\t\t<option v-for=\"participant in participants\" :value=\"participant.id\"> \n\t\t\t\t\t\t{{ participant.name_first }} \n\t\t\t\t\t</option>\n\t\t\t\t</select>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"large-3 columns\">\n\n\t\t\t<div class=\"betrokkenen__group row\">\n\n\t\t\t\t<div class=\"betrokkenen__bet \">\n\t\t\t\t\t<div class=\"actie-betrokkene\" v-if=\"!betrokkenen.length\">\n\t\t\t\t\t+\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in betrokkenen\" @click=\"removeBetrokkene(betrokkene)\">\n\t\t\t\t\t\t{{betrokkene.name_first}}\n\t\t\t\t\t\t<span class=\"indication\">-</span>\n\t\t\t\t\t</div>\t\t\t\t\n\t\t\t\t</div>\n\n\t\t\t\t<div class=\"betrokkenen__unbet\">\n\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in unBetrokkenen\" @click=\"addBetrokkene(betrokkene)\">\n\t\t\t\t\t\t{{ betrokkene.name_first }}\n\t\t\t\t\t\t<span class=\"indication\">+</span>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n\t\t\t</div>\n\n\t\t</div>\n\n\t</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row actie-rij\" v-if=\"actie.active\">\t\n\t\t<div class=\"row\">\n\n\t\t\t<div class=\"large-3 columns actie-omschrijving\"> \n\t\t\t\t<span class=\"remove_row\" @click=\"setActieInactive(actie)\">\n\t\t\t\t\tx\n\t\t\t\t</span>\n\t\t\t\t{{ actie.title }}\n\t\t\t</div>\n\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<textarea class=\"form-control\" placeholder=\"Actie Omschrijving\" v-model=\"actie.omschrijving\" @blur=\"saveActie()\">\t\t\t\t\t</textarea>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<select v-model=\"actie.user_id\" @blur=\"saveActie()\">\n\t\t\t\t\t\t<option v-for=\"participant in participants\" :value=\"participant.id\"> \n\t\t\t\t\t\t\t{{ participant.name_first }} \n\t\t\t\t\t\t</option>\n\t\t\t\t\t</select>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div class=\"large-3 columns\">\n\n\t\t\t\t<div class=\"betrokkenen__group row\">\n\n\t\t\t\t\t<div class=\"betrokkenen__bet \">\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-if=\"!betrokkenen.length\">\n\t\t\t\t\t\t+\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in betrokkenen\" @click=\"removeBetrokkene(betrokkene)\">\n\t\t\t\t\t\t\t{{betrokkene.name_first}}\n\t\t\t\t\t\t\t<span class=\"indication\">-</span>\n\t\t\t\t\t\t</div>\t\t\t\t\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div class=\"betrokkenen__unbet\">\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in unBetrokkenen\" @click=\"addBetrokkene(betrokkene)\">\n\t\t\t\t\t\t\t{{ betrokkene.name_first }}\n\t\t\t\t\t\t\t<span class=\"indication\">+</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n\t\t\t\t</div>\n\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"row subactie\" v-if=\"isWerkAgenda\">\n\t\t\t<div class=\"large-3 columns\"> \n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" placeholder=\"Subactie\" v-model=\"actie.omschrijving\" @blur=\"saveActie()\">\n\t\t\t\t\t\n\t\t\t\t</div>\t\t\t\t\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<textarea class=\"form-control\" rows=\"5\" placeholder=\"Actie Omschrijving\" v-model=\"actie.omschrijving\" @blur=\"saveActie()\">\t\t\t\t\t</textarea>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<select>\n\t\t\t\t\t\t<option value=\"\" disabled=\"\" selected=\"selected\"></option>\n\t\t\t\t\t\t<option v-for=\"participant in participants\" :value=\"participant.id\"> \n\t\t\t\t\t\t\t{{ participant.name_first }} \n\t\t\t\t\t\t</option>\n\t\t\t\t\t</select>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<input type=\"date\" class=\"date\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row subactie\" v-if=\"isWerkAgenda\">\t\t\n\t\t\t<div class=\"small-12\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<a href=\"#\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+\tVoeg nog een subactie toe</a>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t</div>\n\t</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

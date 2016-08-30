@@ -318,6 +318,7 @@ class ScansController extends Controller
         JavaScript::put([
             'scan' => $scan,
             'participants' => $participantlist,
+            'agendaType' => 'actieoverzicht',
         ]);
         $participantlist["0"] = ' ';
         $participantlist = array_merge($participantlist, $scan->participants->lists('name_first', 'id')->all());
@@ -357,6 +358,16 @@ class ScansController extends Controller
 
     public function werkagenda(Scan $scan)
     {
+        $participantlist = [];
+        foreach($scan->participants as $participant)
+        {
+            $participantlist[] = $participant;
+        }
+        JavaScript::put([
+            'scan' => $scan,
+            'participants' => $participantlist,
+            'agendaType' => 'werkagenda',
+        ]);        
         return view('pages.voorzitter.werkagenda', compact('scan'));
     }
 

@@ -4097,7 +4097,9 @@ main {
 
 .actie-rij {
   padding: .5rem 0;
-  background: rgba(255, 255, 255, 0.3); }
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid #828282;
+  border-width: 0px 0 1px 0; }
   .actie-rij .form-control {
     margin: 0; }
 

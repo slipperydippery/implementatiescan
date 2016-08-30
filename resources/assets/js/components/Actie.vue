@@ -1,76 +1,130 @@
 <template>
 	<div class="row actie-rij" v-if="actie.active">	
+		<div class="row">
 
-		<div class="large-3 columns actie-omschrijving"> 
-			<span class="remove_row"
-				@click="setActieInactive(actie)"
-			>
-				x
-			</span>
-			{{ actie.title }}
-		</div>
-
-		<div class="large-3 columns">
-			<div class="form-group">
-				<textarea  
-					class="form-control" 
-					placeholder="Actie Omschrijving" 
-					v-model="actie.omschrijving" 
-					@blur="saveActie()"
+			<div class="large-3 columns actie-omschrijving"> 
+				<span class="remove_row"
+					@click="setActieInactive(actie)"
 				>
-				</textarea>
+					x
+				</span>
+				{{ actie.title }}
 			</div>
-		</div>
 
-		<div class="large-3 columns">
-			<div class="form-group">
-				<select 
-					v-model="actie.user_id"
-					@blur="saveActie()"
-				>
-					<option 
-						v-for="participant in participants" 
-						:value="participant.id"
-					> 
-						{{ participant.name_first }} 
-					</option>
-				</select>
-			</div>
-		</div>
-
-		<div class="large-3 columns">
-
-			<div class="betrokkenen__group row">
-
-				<div class="betrokkenen__bet ">
-					<div class="actie-betrokkene"
-						v-if="!betrokkenen.length"
+			<div class="large-3 columns">
+				<div class="form-group">
+					<textarea  
+						class="form-control" 
+						placeholder="Actie Omschrijving" 
+						v-model="actie.omschrijving" 
+						@blur="saveActie()"
 					>
-					+
+					</textarea>
+				</div>
+			</div>
+
+			<div class="large-3 columns">
+				<div class="form-group">
+					<select 
+						v-model="actie.user_id"
+						@blur="saveActie()"
+					>
+						<option 
+							v-for="participant in participants" 
+							:value="participant.id"
+						> 
+							{{ participant.name_first }} 
+						</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="large-3 columns">
+
+				<div class="betrokkenen__group row">
+
+					<div class="betrokkenen__bet ">
+						<div class="actie-betrokkene"
+							v-if="!betrokkenen.length"
+						>
+						+
+						</div>
+						<div class="actie-betrokkene" 
+							v-for="betrokkene in betrokkenen"
+							@click="removeBetrokkene(betrokkene)"
+						>
+							{{betrokkene.name_first}}
+							<span class="indication">-</span>
+						</div>				
 					</div>
-					<div class="actie-betrokkene" 
-						v-for="betrokkene in betrokkenen"
-						@click="removeBetrokkene(betrokkene)"
-					>
-						{{betrokkene.name_first}}
-						<span class="indication">-</span>
-					</div>				
+
+					<div class="betrokkenen__unbet">
+						<div class="actie-betrokkene" 
+							v-for="betrokkene in unBetrokkenen"
+							@click="addBetrokkene(betrokkene)"
+						>
+							{{ betrokkene.name_first }}
+							<span class="indication">+</span>
+						</div>
+					</div>
+
 				</div>
 
-				<div class="betrokkenen__unbet">
-					<div class="actie-betrokkene" 
-						v-for="betrokkene in unBetrokkenen"
-						@click="addBetrokkene(betrokkene)"
-					>
-						{{ betrokkene.name_first }}
-						<span class="indication">+</span>
-					</div>
-				</div>
+			</div>
+		</div>
 
+		<div class="row subactie" v-if="isWerkAgenda">
+			<div class="large-3 columns"> 
+				<div class="form-group">
+					<input type="text" 
+						class="form-control" 
+						placeholder="Subactie" 
+						v-model="actie.omschrijving" 
+						@blur="saveActie()"
+					>
+					</input>
+				</div>				
+			</div>
+			<div class="large-3 columns">
+				<div class="form-group">
+					<textarea  
+						class="form-control" 
+						rows="5"
+						placeholder="Actie Omschrijving" 
+						v-model="actie.omschrijving" 
+						@blur="saveActie()"
+					>
+					</textarea>
+				</div>
+			</div>
+			<div class="large-3 columns">
+				<div class="form-group">
+					<select 
+					>
+						<option value="" disabled selected="selected"></option>
+						<option 
+							v-for="participant in participants" 
+							:value="participant.id"
+						> 
+							{{ participant.name_first }} 
+						</option>
+					</select>
+				</div>
+			</div>
+			<div class="large-3 columns">
+				<div class="form-group">
+					<input type="date" class="date">
+				</div>
+			</div>
+		</div>
+		<div class="row subactie" v-if="isWerkAgenda">		
+			<div class="small-12">
+				<div class="form-group">
+					<a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+	Voeg nog een subactie toe</a>
+				</div>
 			</div>
 
 		</div>
-
 	</div>
 </template>
 
@@ -96,6 +150,7 @@
 				editBetrokkenen: false,
 				betrokkenen: [],
 				unBetrokkenen: [],
+				agendaType: agendaType,
 			};
 		},
 
@@ -171,7 +226,15 @@
 		computed: {
 			unblength: function () {
 				return this.unBetrokkenen.length
-			}
+			},
+
+			isWerkAgenda: function () {
+				if (agendaType == 'werkagenda')
+				{
+					return true;
+				}
+				return false;
+			},
 		},
 
 	}
