@@ -15,7 +15,7 @@ class ThemasTableSeeder extends Seeder
 
         $themas = [
             [
-                'title' => 'Focus op werk',
+                'title' => 'Focus op werk en talent',
                 'blurbtitle' => '',
                 'blurb' => '',
                 'video_id' => '2'

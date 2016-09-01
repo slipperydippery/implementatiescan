@@ -39,6 +39,12 @@
 	<input type="text" id="datepicker">
 </div>
 
+<!-- Email Bericht Form Input -->
+<div class="form-group">
+	{!! Form::label('email_bericht', 'Email Bericht:') !!}
+	{!! Form::textarea('email_bericht', 'pim pam pet', ['class' => 'form-control']) !!}
+</div>
+
 <!-- Hidden video_id Type Form Input -->
 {!! Form::hidden('video_id', '1', null) !!}
 

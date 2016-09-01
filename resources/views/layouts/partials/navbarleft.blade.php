@@ -20,7 +20,7 @@
 				</li>
 				<li>
 					<a href=" {{ URL::route('instruments.index') }} ">
-						Overzicht Databank			
+						Overzicht Kennisbank			
 					</a>
 				</li>
 				<li>

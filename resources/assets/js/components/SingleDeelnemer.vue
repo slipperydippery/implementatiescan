@@ -72,10 +72,11 @@
 				if (this.validFirstName && this.validLastName && this.validInstantie && this.validEmail) {
 					return true;
 				}
-				return false;
+				return true;
 			},
 
 			validFirstName: function () {
+				return true;
 				if (this.participant.name_first.length > 0) {
 					return true;
 				}

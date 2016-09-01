@@ -12,12 +12,6 @@
 	  			Neem één minuut de tijd om op uw eigen tablet of laptop aan te geven in hoeverre in uw regio wordt voldaan aan een uit onderzoek gebleken kritische succesfactor: <br>
 					{{ $question->norm }} 
 			
-			<br><br>
-
-					Bij {{ $question->title }} zijn de volgende onderwerpen van belang:
-					
-					{!! $question->weergave_succesfactor !!}
-
 				</p>
 			</fieldset>
 			<div class="large-4 columns">
@@ -38,7 +32,7 @@
 		$slidervalue = $user->answers->intersect($question->answers)->first()->value;
 	}
 ?>
-		<div class="slider input_slider" data-slider data-initial-start="<?= $slidervalue ?>">
+		<div class="slider input_slider" data-slider data-initial-start="<?= $slidervalue ?>" data-options="start: 0; end: 10;">
 			<span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
 			<span class="slider-fill" data-slider-fill></span>
 		</div>
@@ -47,7 +41,7 @@
 			0
 		</span>
 		<span class="slider__label__right">
-			100
+			10
 		</span>
 
 		<br>
@@ -57,7 +51,7 @@
 			<div class="row">
 				<div class="small-8 columns">.</div>
 				<div class="small-2 columns">
-				uw mening:
+				uw inschatting:
 				  <input type="number" name="value" id="sliderOutput2" value="<?= $slidervalue ?>">
 				</div>		
 	  			

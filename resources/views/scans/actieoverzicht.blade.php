@@ -5,12 +5,14 @@
     <div class="row page-heading">
     	<div class="large-12 ">
     		<h1>Gezamenlijke verbeteracties</h1>
-    		<fieldset class="fieldset large-8">
+    		<fieldset class="fieldset large-8 columns">
       			<p class="subheading subheading__time">
       				Tijdens de Implementatiescan-sessie zijn de volgende verbeteracties geformuleerd. Tijdens de tweede Werkagenda bijeenkomst wordt, met voorbereidend werk door de trekkers e.a., een definitieve keuze gemaakt voor de (formulering van) de verbeteracties die op de Werkagenda komen. Deze acties (met ruimte voor sub acties) kunt u hier invullen.
       			</p>
-
     		</fieldset>
+            <div class="large-4 columns">
+                <div id="time">01:00</div>  
+            </div>
     	</div>
     </div>
 </div>
@@ -77,6 +79,31 @@
     <template id="actie-template">
     	
     </template>
+
+    <script>
+        function startTimer(duration, display) {
+        var timer = duration, minutes, seconds;
+        setInterval(function () {
+            minutes = parseInt(timer / 60, 10)
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                timer = 0;
+            }
+        }, 1000);
+    }
+
+    window.onload = function () {
+        var fifteenMinutes = 60 * 15,
+            display = document.querySelector('#time');
+        startTimer(fifteenMinutes, display);
+    };
+    </script>
 
 @stop
 

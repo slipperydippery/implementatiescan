@@ -4043,8 +4043,9 @@ main {
 #time {
   display: block;
   text-align: center;
-  margin: 12rem auto 0;
+  margin: 2rem auto 0;
   font-size: 8rem;
+  line-height: .8em;
   z-index: -10; }
 
 .center {

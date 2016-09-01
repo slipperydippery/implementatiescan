@@ -11284,7 +11284,7 @@ exports.default = {
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row thema-group\">\n\t\t\t<div class=\"large-12\">\n\t\t\t\t<div class=\"row\">\t\n\t\t\t\t\t<div class=\"large-3 actie-thema actie-thema-kop actiepunt-es columns\"> {{ thema.title }} </div>\n\t\t\t\t\t<div class=\"large-3 actie-thema actiepunt-es columns\">Omschrijving</div>\n\t\t\t\t\t<div class=\"large-3 actie-thema actiepunt-es columns\">Trekker</div>\n\t\t\t\t\t<div class=\"large-3 actie-thema actiepunt-es columns\">Betrokkenen</div>\n\t\t\t\t</div>\n\t\t\t\t<actie v-for=\"actie in verbeteracties\" :actie.sync=\"actie\" :participants=\"participants\">\n\t\t\t\t\t\n\t\t\t\t</actie> \n\t\t\t\t<div class=\"row actie-rij \">\n\t\t\t\t\t<div class=\"large-12 columns actie-voegtoe\" @click=\"showInactief =  ! showInactief\"> \n\t\t\t\t\t\t<span v-show=\"! showInactief\">+</span>\n\t\t\t\t\t\t<span v-show=\"showInactief\">-</span> \n\t\t\t\t\t\tvoeg nog een verbeterpunt toe\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"large12 columns actie-inactief\" v-for=\"actie in verbeteracties\" :actie.sync=\"actie\" v-if=\" ! actie.active &amp;&amp; showInactief\" @click=\"setActieActive(actie)\">\n\t\t\t\t\t\t{{ actie.title }}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row thema-group\">\n\t\t\t<div class=\"large-12\">\n\t\t\t\t<div class=\"row\">\t\n\t\t\t\t\t<div class=\"large-3 actie-thema actie-thema-kop actiepunt-es columns\"> {{ thema.title }} </div>\n\t\t\t\t\t<div class=\"large-3 actie-thema actiepunt-es columns\">Omschrijving</div>\n\t\t\t\t\t<div class=\"large-3 actie-thema actiepunt-es columns\">Initiatiefnemer</div>\n\t\t\t\t\t<div class=\"large-3 actie-thema actiepunt-es columns\">Betrokkenen</div>\n\t\t\t\t</div>\n\t\t\t\t<actie v-for=\"actie in verbeteracties\" :actie.sync=\"actie\" :participants=\"participants\">\n\t\t\t\t\t\n\t\t\t\t</actie> \n\t\t\t\t<div class=\"row actie-rij \">\n\t\t\t\t\t<div class=\"large-12 columns actie-voegtoe\" @click=\"showInactief =  ! showInactief\"> \n\t\t\t\t\t\t<span v-show=\"! showInactief\">+</span>\n\t\t\t\t\t\t<span v-show=\"showInactief\">-</span> \n\t\t\t\t\t\tvoeg nog een verbeterpunt toe\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"large12 columns actie-inactief\" v-for=\"actie in verbeteracties\" :actie.sync=\"actie\" v-if=\" ! actie.active &amp;&amp; showInactief\" @click=\"setActieActive(actie)\">\n\t\t\t\t\t\t{{ actie.title }}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -11337,6 +11337,7 @@ exports.default = {
 		},
 
 		isValid: function isValid() {
+			return true;
 			if (this.validFirstName && this.validLastName && this.validInstantie && this.validEmail) {
 				return true;
 			}
@@ -11959,7 +11960,7 @@ exports.default = {
 			});
 		},
 		cssPercent: function cssPercent(value) {
-			return value + '%';
+			return value * 10 + '%';
 		}
 	},
 
@@ -12053,10 +12054,11 @@ exports.default = {
 			if (this.validFirstName && this.validLastName && this.validInstantie && this.validEmail) {
 				return true;
 			}
-			return false;
+			return true;
 		},
 
 		validFirstName: function validFirstName() {
+			return true;
 			if (this.participant.name_first.length > 0) {
 				return true;
 			}

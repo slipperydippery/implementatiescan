@@ -6,12 +6,15 @@
 		<div class="large-12 ">
 			<h1>ALGEMEEN BEELD </h1>
 			<h2>HUIDIGE gezamenlijke AANPAK</h2>
-			<fieldset class="fieldset large-8">
+			<fieldset class="fieldset large-8 columns">
 	  			<legend>Algemeen beeld van de huidige gezamenlijke aanpak beoordelen</legend>
 				<p class=subheading>
 					Hieronder ziet u een schuif van 0 tot 100. Kunt u in algemene zin aangeven op uw eigen scherm hoe goed onze regio het volgens u doet voor wat betreft de huidige gezamenlijke aanpak om jongeren met LVB, zoals jongeren met LVB, tijdens en na hun schoolloopbaan goed te begeleiden naar werk? Nul is ‘we doen dat als regio slecht’ en honderd is ‘we doen dat als regio perfect’.
 				</p>
 			</fieldset>
+			<div class="large-4 columns">
+				<div id="time">01:00</div>	
+			</div>
 		</div>
 	</div>
 </div>
@@ -23,7 +26,7 @@
 			<!-- bal Form Input -->
 
 
-			  <div class="slider input_slider" data-slider data-initial-start="0">
+			  <div class="slider input_slider" data-slider data-initial-start="0" data-options="start: 0; end: 10;">
 			    <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
 			    <span class="slider-fill" data-slider-fill></span>
 			  </div>
@@ -31,7 +34,7 @@
 					0
 				</span>
 				<span class="slider__label__right">
-					100
+					10
 				</span>
 
 

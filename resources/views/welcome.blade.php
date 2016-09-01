@@ -46,7 +46,7 @@
 			<div class="small-4 columns end triblock">
 				<a href="{{ URL::to('databank') }}" role="button" class="title_button">
 		    		<img src="{{asset('img/books.png')}}"><br>
-					<span class="">Databank </span>
+					<span class="">Kennisbank </span>
 					Iedereen
 				</a>
 			</div>
