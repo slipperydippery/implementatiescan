@@ -48,12 +48,12 @@ input {
 }
 
 
-$instantie1: #882d50;
-$instantie2: #2f5256;
-$instantie3: #FA9426;
-$instantie4: #E75351;
-$instantie5: #A856AA;
-$instantie6: #25AEE4;
+$instantie1: lighten(#22373e, 70%);
+$instantie2: lighten(#22373e, 65%);
+$instantie3: lighten(#22373e, 60%);
+$instantie4: lighten(#22373e, 55%);
+$instantie5: lighten(#22373e, 50%);
+$instantie6: lighten(#22373e, 45%);
 
 $primary-color: #22373e;
 $secondary-color: #9FC236;
@@ -705,9 +705,10 @@ $sidetext_thickness : 15rem;
  }
 
   .slider-verbeterpunten {
- 	border: 6px solid #3FDED1;
+ 	border: 6px solid lighten(#22373e, 25%);
  	border-width: 0 6px;
- 	background: rgba(#3FDED1, 1);
+ 	background: rgba(lighten(#22373e, 25%), 1);
+ 	color: #fff;
  	.checkinput {
  		text-align: center;
  	}

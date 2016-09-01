@@ -3990,39 +3990,40 @@ main {
   color: #A6CE39; }
 
 .slider-1 {
-  border: 6px solid #882d50;
+  border: 6px solid #dae7eb;
   border-width: 0 6px;
-  background: rgba(136, 45, 80, 0.4); }
+  background: rgba(218, 231, 235, 0.4); }
 
 .slider-2 {
-  border: 6px solid #2f5256;
+  border: 6px solid #cadce2;
   border-width: 0 6px;
-  background: rgba(47, 82, 86, 0.4); }
+  background: rgba(202, 220, 226, 0.4); }
 
 .slider-3 {
-  border: 6px solid #FA9426;
+  border: 6px solid #b9d1d9;
   border-width: 0 6px;
-  background: rgba(250, 148, 38, 0.4); }
+  background: rgba(185, 209, 217, 0.4); }
 
 .slider-4 {
-  border: 6px solid #E75351;
+  border: 6px solid #a9c6d0;
   border-width: 0 6px;
-  background: rgba(231, 83, 81, 0.5); }
+  background: rgba(169, 198, 208, 0.5); }
 
 .slider-5 {
-  border: 6px solid #A856AA;
+  border: 6px solid #98bbc7;
   border-width: 0 6px;
-  background: rgba(168, 86, 170, 0.5); }
+  background: rgba(152, 187, 199, 0.5); }
 
 .slider-6 {
-  border: 6px solid #25AEE4;
+  border: 6px solid #88b0be;
   border-width: 0 6px;
-  background: rgba(37, 174, 228, 0.5); }
+  background: rgba(136, 176, 190, 0.5); }
 
 .slider-verbeterpunten {
-  border: 6px solid #3FDED1;
+  border: 6px solid #4f8090;
   border-width: 0 6px;
-  background: #3fded1; }
+  background: #4f8090;
+  color: #fff; }
   .slider-verbeterpunten .checkinput {
     text-align: center; }
 
@@ -4203,13 +4204,13 @@ main {
   font-weight: 500; }
 
 .actiepunt-wet {
-  background: #E75351; }
+  background: #a9c6d0; }
 
 .actiepunt-kb {
-  background: #A856AA; }
+  background: #98bbc7; }
 
 .actiepunt-es {
-  background: #25AEE4; }
+  background: #88b0be; }
 
 .date__container {
   margin-left: -15px !important;
