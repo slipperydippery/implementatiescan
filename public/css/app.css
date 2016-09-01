@@ -3978,7 +3978,7 @@ main {
   align-items: baseline;
   padding-bottom: 1rem;
   height: auto !important;
-  background: rgba(0, 0, 0, 0.05); }
+  background: #ebf2f4; }
 
 .slider-columnhead {
   font-weight: 500; }
