@@ -4,7 +4,7 @@
 <div class="page-heading--container">
 	<div class="row page-heading">
 		<div class="large-12 ">
-			<h1>Databank</h1>
+			<h1>Kennisbank</h1>
 			<fieldset class="fieldset large-8">
 			<legend>Een weelde aan informatie</legend>
 	  			<p class="subheading subheading__time">

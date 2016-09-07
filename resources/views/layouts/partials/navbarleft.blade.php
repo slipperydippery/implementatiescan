@@ -117,7 +117,7 @@
 			</li>
 	@endif
 @endif
-		<li><a href=" {{ URL::route('databank') }} ">Databank</a></li>
+		<li><a href=" {{ URL::route('databank') }} ">Kennisbank</a></li>
 @if(Auth::check())
 		<li><a href=" {{ URL::to('logout') }} ">Log uit</a></li>
 @endif
