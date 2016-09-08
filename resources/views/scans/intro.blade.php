@@ -23,7 +23,7 @@
 		</div>
 		<div class="large-8">
 			<div class="flex-video widescreen ">
-				<iframe width="853" height="480" src="https://www.youtube.com/embed/ov1hdy8PCwk?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+				<iframe width="853" height="480" src="https://www.youtube.com/embed/Ge0g_QiaCMo?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</div>
@@ -31,7 +31,7 @@
 	<div class="row page-content">
 		<div class="large-8">
 			<div class="flex-video widescreen ">
-				<img width="853" height="480" src="http://img.youtube.com/vi/ov1hdy8PCwk/maxresdefault.jpg" alt="">	
+				<img width="853" height="480" src="http://img.youtube.com/vi/Ge0g_QiaCMo/maxresdefault.jpg" alt="">	
 			</div>
 				<p>Op het centrale scherm kunt u de introductie film bekijken</p>
 		</div>

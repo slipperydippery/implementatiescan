@@ -17,9 +17,8 @@ class VideosController extends Controller
      */
     public function index()
     {
-        $scan = Scan::findOrFail(2);
         $videos = Video::get();
-        return view ('videos.index', compact('videos', 'scan'));
+        return view ('videos.index', compact('videos'));
     }
 
     /**
@@ -29,8 +28,7 @@ class VideosController extends Controller
      */
     public function create()
     {
-        $scan = Scan::findOrFail(2);
-        return view ('videos.create', compact('scan'));
+        return view ('videos.create');
     }
 
     /**
@@ -65,9 +63,9 @@ class VideosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($video)
     {
-        //
+        return view ('videos.edit', compact('video'));
     }
 
     /**
@@ -77,9 +75,11 @@ class VideosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $video)
     {
-        //
+        $video->title = $request->title;
+        $video->blurb = $request->blurb;
+        $video->adress = $request->adress;
     }
 
     /**

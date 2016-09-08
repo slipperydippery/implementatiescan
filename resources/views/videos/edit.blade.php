@@ -3,12 +3,11 @@
 @section('content')
 <div class="row page-heading">
 	<div class="large-12 ">
-		<h1>Overzicht Videos</h1>
+		<h1>Edit</h1>
 		<fieldset class="fieldset">
   			<legend></legend>
   			<p class="subheading subheading__time">
-  				Hier is een overzicht van all uw videos
-
+  				Maak een nieuwe video
   			</p>
 
 		</fieldset>
@@ -20,12 +19,9 @@
 	
 	<div class="large-12 columns submitted-users">
 	
-		@foreach($videos as $video)
-			<a href=" {{ route('videos.edit', $video->id) }} "><h2>{{ $video->title }}</h2></a>
-			    
-		@endforeach
-
-		<a href=" {{ route('videos.create') }} " class="button">Create new Video</a>
+		{!! Form::model($video, ['route' => ['videos.update', $video->id]]) !!}
+			@include('videos.partials.form', ['submittext' => 'Sla veranderingen op'])
+		{!! Form::close() !!}
 
 	</div>
 </div>
