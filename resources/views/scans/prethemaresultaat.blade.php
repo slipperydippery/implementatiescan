@@ -16,6 +16,14 @@
 </div>
 
 <div class="row page-content">
+	@foreach($scan->participants as $participant)
+		
+
+		{{ $participant->name_first}}
+		@foreach($participant->answers as $answer)
+			{{ $answer->answerable_id }}
+		@endforeach
+	@endforeach
 
 	<pre-thema-resultaat></pre-thema-resultaat>
 
