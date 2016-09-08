@@ -1,0 +1,3 @@
+LOAD DATA LOCAL INFILE 'F:/Projects/Code/quest/public/csv/databank.csv' INTO TABLE quest.instruments FIELDS TERMINATED BY ';' LINES TERMINATED BY '\r' (title, description, adress, one, two, three);
+LOAD DATA LOCAL INFILE 'F:/Projects/Code/quest/public/csv/programmas.csv' INTO TABLE quest.programmas FIELDS TERMINATED BY ';' LINES TERMINATED BY '\r' (title, description, adress);
+LOAD DATA LOCAL INFILE 'F:/Projects/Code/quest/public/csv/praktijkvoorbeelds.csv' INTO TABLE quest.praktijkvoorbeelds FIELDS TERMINATED BY ';' LINES TERMINATED BY '\r' (title, description, adress, bedrijven, scholen, gemeenten, overig);
