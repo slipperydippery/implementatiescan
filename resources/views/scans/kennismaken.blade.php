@@ -24,7 +24,6 @@
 				<controleren-deelnemers></controleren-deelnemers>
 				
 
-		@if(count($scan->participants) < 12)
 			@if(count(Auth::user()->beheert->intersect([$scan])))
 				<div class="large-2 column end submitted-user">
 					<a data-open="addParticipantModal"> <span class="add_submitted_user">+</span> </a>
@@ -68,7 +67,6 @@
 
 				</div>
 			@endif
-		@endif
 
 		
 	</div>

@@ -30,11 +30,10 @@
 			<div class="large-12 columns">
 				<controleren-deelnemers></controleren-deelnemers>
 
-				@if(count($scan->participants) < 12)
 					<div class="large-2 column end submitted-user">
 						<a href=" {{ URL::route('scans.invoerendeelnemers', $scan) }} " class="add_submitted_user">+</a>
 					</div>
-				@endif
+
 			</div>
 		</div>
 		

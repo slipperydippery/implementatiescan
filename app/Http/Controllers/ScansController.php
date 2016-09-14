@@ -219,10 +219,10 @@ class ScansController extends Controller
         $instantieoptions = [];
         foreach($scan->instanties as $instantie)
         {
-            if(count($instantie->participants) < 2)
-            {
+            // if(count($instantie->participants) < 2)
+            // {
                 $instantieoptions[$instantie->id] = $instantie->title ;
-            }
+            // }
         }        
         return view ('scans.kennismaken', compact('scan', 'instantieoptions'));
     }
@@ -395,10 +395,10 @@ class ScansController extends Controller
         $instantieoptions = [];
         foreach($scan->instanties as $instantie)
         {
-            if(count($instantie->participants) < 2)
-            {
+            // if(count($instantie->participants) < 2)
+            // {
                 $instantieoptions[$instantie->id] = $instantie->title;
-            }
+            // }
         }
         JavaScript::put([
             'scan' => $scan,
@@ -412,10 +412,10 @@ class ScansController extends Controller
         foreach($scan->instanties as $instantie)
         {
             $hasinstantie = ($user->instanties->intersect($scan->instanties) == $instantie);
-            if(count($instantie->participants) < 2 || $hasinstantie )
-            {
+            // if(count($instantie->participants) < 2 || $hasinstantie )
+            // {
                 $instantieoptions[$instantie->id] = $instantie->title;
-            }
+            // }
         }
 
         return view('scans.inrichten.invoerendeelnemers', compact('scan', 'instantieoptions', 'user'));
