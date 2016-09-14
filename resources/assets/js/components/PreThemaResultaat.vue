@@ -1,6 +1,6 @@
 <template>
 	<div class="small-12 center">
-		<a :href="themaURL" class="button answered" >
+		<a :href="themaURL" class="button answered" v-if="unanswered == 0">
 			Laat Resultaat Zien
 		</a>
 

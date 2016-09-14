@@ -3585,7 +3585,8 @@ main {
     margin-top: -7.5rem;
     -webkit-transform: rotate(-90deg);
     transform: rotate(-90deg);
-    text-align: center; }
+    text-align: center;
+    border: 1px solid blue; }
   .sidetext span {
     display: block;
     font-weight: 500;
@@ -3601,7 +3602,8 @@ main {
     color: white;
     font-size: 4vh;
     line-height: 3vh;
-    text-align: left; }
+    text-align: left;
+    border: 1px solid red; }
 
 #content {
   position: relative;
