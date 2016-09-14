@@ -4,7 +4,10 @@
 	<div class="large-12 columns algemeenbeeldslider--group">
 		<span class="unanswered" v-if=" ! allComplete ">
 			Dank u voor uw antwoord. <br>
-			We wachten nog op het antwoord van {{ unanswered }} overige deelnemer<span v-if="allReady">s</span> voor het tonen van een algemeen beeld van de huidige gezamenlijke aanpak.
+			We wachten nog op het antwoord van {{ unanswered }} overige deelnemer<span v-if="unanswered > 1">s</span> voor het tonen van een algemeen beeld van de huidige gezamenlijke aanpak: <br>
+			<span v-for="name in whoUnanswered">
+					{{name}} <br>
+			</span>
 		</span>
 		<span style="display:none"> {{ averageValue }} </span>
 		<div class="row sliders-sub slider-gemiddeld" v-if="allComplete">
@@ -61,6 +64,7 @@
 				instantiePartValues: [],
 				allComplete: false,
 				unanswered: 12,
+				whoUnanswered: [],
 				// instanties: instanties,
 				scan: scan,
 				thema_id: thema_id,
@@ -102,6 +106,7 @@
 				var participantcount = 0;
 				var totalValue = 0;
 				var unanswered = 0;
+				var whoUnanswered = [];
 				for (var insts in this.instantiePartValues)
 				{
 					for (var parts in this.instantiePartValues[insts].participants)
@@ -111,12 +116,19 @@
 							totalValue += this.instantiePartValues[insts].participants[parts].abvalue.value;
 						} else {
 							unanswered++;
+							var fullname = '';
+							fullname += this.instantiePartValues[insts].participants[parts].name_first;
+							fullname += ' ';
+							fullname += this.instantiePartValues[insts].participants[parts].name_last;
+
+							whoUnanswered.push(fullname);
 						}
 					}
 				}
 				if(unanswered > 0)
 				{
 					this.unanswered = unanswered;
+					this.whoUnanswered = whoUnanswered;
 					this.allComplete = false;
 					return 50;
 				}

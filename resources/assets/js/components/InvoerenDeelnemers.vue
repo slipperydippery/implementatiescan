@@ -29,7 +29,6 @@
 	<add-single-deelnemer
 		:editable.sync="editable" 
 		:availableinstanties="availableinstanties"
-		v-if="availableinstanties.length > 0"
 	>
 	</add-single-deelnemer>
 
@@ -81,13 +80,13 @@
 				var tempavailable = [];
 				for (var insts in this.participants) 
 				{
-					if(this.participants[insts].participants.length < 2)
-					{
+					// if(this.participants[insts].participants.length < 2)
+					// {
 						tempavailable.push({
 							'title' : this.participants[insts].title, 
 							'id' : this.participants[insts].id
 						});
-					} 
+					// } 
 				}
 				this.availableinstanties = tempavailable;
 			}	

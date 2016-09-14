@@ -11667,12 +11667,13 @@ exports.default = {
 		calcAvailableInstanties: function calcAvailableInstanties() {
 			var tempavailable = [];
 			for (var insts in this.participants) {
-				if (this.participants[insts].participants.length < 2) {
-					tempavailable.push({
-						'title': this.participants[insts].title,
-						'id': this.participants[insts].id
-					});
-				}
+				// if(this.participants[insts].participants.length < 2)
+				// {
+				tempavailable.push({
+					'title': this.participants[insts].title,
+					'id': this.participants[insts].id
+				});
+				// }
 			}
 			this.availableinstanties = tempavailable;
 		}
@@ -11687,7 +11688,7 @@ exports.default = {
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div v-for=\"instantie in participants\">\n\n\t\t<single-deelnemer v-for=\"participant in instantie.participants\" :participant=\"participant\" :editable.sync=\"editable\" :instantie=\"instantie\" :availableinstanties=\"availableinstanties\" v-if=\"participant.beheerder\">\n\t\t</single-deelnemer>\n\n\t</div>\n\t<div v-for=\"instantie in participants\">\n\n\t\t<single-deelnemer v-for=\"participant in instantie.participants\" :participant=\"participant\" :editable.sync=\"editable\" :instantie=\"instantie\" :availableinstanties=\"availableinstanties\" v-if=\"!participant.beheerder\">\n\t\t</single-deelnemer>\n\n\t</div>\t\n\n\t<add-single-deelnemer :editable.sync=\"editable\" :availableinstanties=\"availableinstanties\" v-if=\"availableinstanties.length > 0\">\n\t</add-single-deelnemer>\n\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div v-for=\"instantie in participants\">\n\n\t\t<single-deelnemer v-for=\"participant in instantie.participants\" :participant=\"participant\" :editable.sync=\"editable\" :instantie=\"instantie\" :availableinstanties=\"availableinstanties\" v-if=\"participant.beheerder\">\n\t\t</single-deelnemer>\n\n\t</div>\n\t<div v-for=\"instantie in participants\">\n\n\t\t<single-deelnemer v-for=\"participant in instantie.participants\" :participant=\"participant\" :editable.sync=\"editable\" :instantie=\"instantie\" :availableinstanties=\"availableinstanties\" v-if=\"!participant.beheerder\">\n\t\t</single-deelnemer>\n\n\t</div>\t\n\n\t<add-single-deelnemer :editable.sync=\"editable\" :availableinstanties=\"availableinstanties\">\n\t</add-single-deelnemer>\n\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -11849,7 +11850,7 @@ exports.default = {
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"small-12 center\">\n\t\t<a :href=\"themaURL\" class=\"button answered\" v-if=\"unanswered == 0\">\n\t\t\tLaat Resultaat Zien\n\t\t</a>\n\n\t\t<span class=\"unanswered\" v-else=\"\">\n\t\t\tDank u voor uw antwoorden. <br>\n\t\t\tWe wachten nog op {{ unanswered }} overige deelnemer<span v-if=\"allReady\">s</span> voor het tonen van de resultaten.\n\n\t\t</span>\n\t</div>\n\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"small-12 center\">\n\t\t<a :href=\"themaURL\" class=\"button answered\" v-if=\"unanswered == 0\">\n\t\t\tLaat Resultaat Zien\n\t\t</a>\n\n\t\t<span class=\"unanswered\" v-else=\"\">\n\t\t\tDank u voor uw antwoorden. <br>\n\t\t\tWe wachten nog op {{ unanswered }} overige deelnemer<span v-if=\"unanswered > 1\">s</span> voor het tonen van de resultaten.\n\n\t\t</span>\n\t</div>\n\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -11940,6 +11941,7 @@ exports.default = {
 			instantiePartValues: [],
 			allComplete: false,
 			unanswered: 12,
+			whoUnanswered: [],
 			// instanties: instanties,
 			scan: scan,
 			thema_id: thema_id
@@ -11979,6 +11981,7 @@ exports.default = {
 			var participantcount = 0;
 			var totalValue = 0;
 			var unanswered = 0;
+			var whoUnanswered = [];
 			for (var insts in this.instantiePartValues) {
 				for (var parts in this.instantiePartValues[insts].participants) {
 					participantcount++;
@@ -11986,11 +11989,18 @@ exports.default = {
 						totalValue += this.instantiePartValues[insts].participants[parts].abvalue.value;
 					} else {
 						unanswered++;
+						var fullname = '';
+						fullname += this.instantiePartValues[insts].participants[parts].name_first;
+						fullname += ' ';
+						fullname += this.instantiePartValues[insts].participants[parts].name_last;
+
+						whoUnanswered.push(fullname);
 					}
 				}
 			}
 			if (unanswered > 0) {
 				this.unanswered = unanswered;
+				this.whoUnanswered = whoUnanswered;
 				this.allComplete = false;
 				return 50;
 			}
@@ -12001,7 +12011,7 @@ exports.default = {
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\n\n\t<div class=\"large-12 columns algemeenbeeldslider--group\">\n\t\t<span class=\"unanswered\" v-if=\" ! allComplete \">\n\t\t\tDank u voor uw antwoord. <br>\n\t\t\tWe wachten nog op het antwoord van {{ unanswered }} overige deelnemer<span v-if=\"allReady\">s</span> voor het tonen van een algemeen beeld van de huidige gezamenlijke aanpak.\n\t\t</span>\n\t\t<span style=\"display:none\"> {{ averageValue }} </span>\n\t\t<div class=\"row sliders-sub slider-gemiddeld\" v-if=\"allComplete\">\n\t\t\t<div class=\"large-2 small-2 columns\">\n\t\t\t\tGemiddeld \n\t\t\t</div>\n\t\t\t<div class=\"large-10 small-10 columns\">\n\t\t\t\t<div class=\"rangeresult\">\n\t\t\t\t\t<span style=\"position: absolute; top: -.65rem; left: -1.5rem\">{{ averageValue }}</span>\n\t\t\t\t\t<div class=\"rangeresult__value\" :style=\"{ width: cssPercent(averageValue) }\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"row sliders-sub\" v-for=\"instantie in instantiePartValues\" :class=\"'slider-'+instantie.id\" v-show=\"instantie.participants.length\" v-if=\"allComplete\">\n\t\t\t<div class=\"large-2 small-2 columns\">\n\t\t\t\t{{ instantie.title }} \n\t\t\t</div>\n\t\t\t<div class=\"large-10 small-10 columns\">\n\t\t\t\t<div class=\"rangeresult\" v-for=\"participant in instantie.participants\" :participant=\"participant\">\n\t\t\t\t\t<span style=\"position: absolute; top: -.65rem; left: -1.5rem\">{{ participant.abvalue.value }}</span>\n\t\t\t\t\t<div class=\"rangeresult__value\" v-if=\"participant.abvalue != null\" :style=\"{ width: cssPercent(participant.abvalue.value) }\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\n\n\t<div class=\"large-12 columns algemeenbeeldslider--group\">\n\t\t<span class=\"unanswered\" v-if=\" ! allComplete \">\n\t\t\tDank u voor uw antwoord. <br>\n\t\t\tWe wachten nog op het antwoord van {{ unanswered }} overige deelnemer<span v-if=\"unanswered > 1\">s</span> voor het tonen van een algemeen beeld van de huidige gezamenlijke aanpak: <br>\n\t\t\t<span v-for=\"name in whoUnanswered\">\n\t\t\t\t\t{{name}} <br>\n\t\t\t</span>\n\t\t</span>\n\t\t<span style=\"display:none\"> {{ averageValue }} </span>\n\t\t<div class=\"row sliders-sub slider-gemiddeld\" v-if=\"allComplete\">\n\t\t\t<div class=\"large-2 small-2 columns\">\n\t\t\t\tGemiddeld \n\t\t\t</div>\n\t\t\t<div class=\"large-10 small-10 columns\">\n\t\t\t\t<div class=\"rangeresult\">\n\t\t\t\t\t<span style=\"position: absolute; top: -.65rem; left: -1.5rem\">{{ averageValue }}</span>\n\t\t\t\t\t<div class=\"rangeresult__value\" :style=\"{ width: cssPercent(averageValue) }\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"row sliders-sub\" v-for=\"instantie in instantiePartValues\" :class=\"'slider-'+instantie.id\" v-show=\"instantie.participants.length\" v-if=\"allComplete\">\n\t\t\t<div class=\"large-2 small-2 columns\">\n\t\t\t\t{{ instantie.title }} \n\t\t\t</div>\n\t\t\t<div class=\"large-10 small-10 columns\">\n\t\t\t\t<div class=\"rangeresult\" v-for=\"participant in instantie.participants\" :participant=\"participant\">\n\t\t\t\t\t<span style=\"position: absolute; top: -.65rem; left: -1.5rem\">{{ participant.abvalue.value }}</span>\n\t\t\t\t\t<div class=\"rangeresult__value\" v-if=\"participant.abvalue != null\" :style=\"{ width: cssPercent(participant.abvalue.value) }\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

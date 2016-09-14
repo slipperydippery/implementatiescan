@@ -6,7 +6,7 @@
 
 		<span class="unanswered" v-else>
 			Dank u voor uw antwoorden. <br>
-			We wachten nog op {{ unanswered }} overige deelnemer<span v-if="allReady">s</span> voor het tonen van de resultaten.
+			We wachten nog op {{ unanswered }} overige deelnemer<span v-if="unanswered > 1">s</span> voor het tonen van de resultaten.
 
 		</span>
 	</div>
