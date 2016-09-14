@@ -3600,7 +3600,8 @@ main {
     color: white;
     font-size: 4vh;
     line-height: 3vh;
-    text-align: left; }
+    text-align: left;
+    white-space: nowrap; }
 
 #content {
   position: relative;
