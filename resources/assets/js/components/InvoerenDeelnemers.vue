@@ -29,6 +29,7 @@
 	<add-single-deelnemer
 		:editable.sync="editable" 
 		:availableinstanties="availableinstanties"
+		v-if="availableinstanties.length > 0"
 	>
 	</add-single-deelnemer>
 
@@ -60,6 +61,9 @@
 		computed: {
 			returnRoot: function () {
 				return (window.location.protocol + "//" + window.location.host);
+			},
+			participantCount: function () {
+				return this.participants.length;
 			},
 		},
 

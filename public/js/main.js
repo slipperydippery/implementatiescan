@@ -11647,6 +11647,9 @@ exports.default = {
 	computed: {
 		returnRoot: function returnRoot() {
 			return window.location.protocol + "//" + window.location.host;
+		},
+		participantCount: function participantCount() {
+			return this.participants.length;
 		}
 	},
 
@@ -11684,7 +11687,7 @@ exports.default = {
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div v-for=\"instantie in participants\">\n\n\t\t<single-deelnemer v-for=\"participant in instantie.participants\" :participant=\"participant\" :editable.sync=\"editable\" :instantie=\"instantie\" :availableinstanties=\"availableinstanties\" v-if=\"participant.beheerder\">\n\t\t</single-deelnemer>\n\n\t</div>\n\t<div v-for=\"instantie in participants\">\n\n\t\t<single-deelnemer v-for=\"participant in instantie.participants\" :participant=\"participant\" :editable.sync=\"editable\" :instantie=\"instantie\" :availableinstanties=\"availableinstanties\" v-if=\"!participant.beheerder\">\n\t\t</single-deelnemer>\n\n\t</div>\t\n\n\t<add-single-deelnemer :editable.sync=\"editable\" :availableinstanties=\"availableinstanties\">\n\t</add-single-deelnemer>\n\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div v-for=\"instantie in participants\">\n\n\t\t<single-deelnemer v-for=\"participant in instantie.participants\" :participant=\"participant\" :editable.sync=\"editable\" :instantie=\"instantie\" :availableinstanties=\"availableinstanties\" v-if=\"participant.beheerder\">\n\t\t</single-deelnemer>\n\n\t</div>\n\t<div v-for=\"instantie in participants\">\n\n\t\t<single-deelnemer v-for=\"participant in instantie.participants\" :participant=\"participant\" :editable.sync=\"editable\" :instantie=\"instantie\" :availableinstanties=\"availableinstanties\" v-if=\"!participant.beheerder\">\n\t\t</single-deelnemer>\n\n\t</div>\t\n\n\t<add-single-deelnemer :editable.sync=\"editable\" :availableinstanties=\"availableinstanties\" v-if=\"availableinstanties.length > 0\">\n\t</add-single-deelnemer>\n\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
