@@ -3580,13 +3580,11 @@ main {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    width: 100vh;
     left: -50vh;
     margin-top: -7.5rem;
     -webkit-transform: rotate(-90deg);
     transform: rotate(-90deg);
-    text-align: center;
-    border: 1px solid blue; }
+    text-align: center; }
   .sidetext span {
     display: block;
     font-weight: 500;
@@ -3602,8 +3600,7 @@ main {
     color: white;
     font-size: 4vh;
     line-height: 3vh;
-    text-align: left;
-    border: 1px solid red; }
+    text-align: left; }
 
 #content {
   position: relative;
