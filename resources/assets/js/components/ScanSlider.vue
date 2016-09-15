@@ -133,7 +133,7 @@
 					return 50;
 				}
 				this.allComplete = true;
-				return (totalValue / participantcount);
+				return Math.round((totalValue * 10) / participantcount)/10;
 			}
 		},
 

@@ -72,7 +72,7 @@
 				if (this.validFirstName && this.validLastName && this.validInstantie && this.validEmail) {
 					return true;
 				}
-				return true;
+				return false;
 			},
 
 			validFirstName: function () {

@@ -11337,7 +11337,6 @@ exports.default = {
 		},
 
 		isValid: function isValid() {
-			return true;
 			if (this.validFirstName && this.validLastName && this.validInstantie && this.validEmail) {
 				return true;
 			}
@@ -12005,7 +12004,7 @@ exports.default = {
 				return 50;
 			}
 			this.allComplete = true;
-			return totalValue / participantcount;
+			return Math.round(totalValue * 10 / participantcount) / 10;
 		}
 	}
 
@@ -12067,7 +12066,7 @@ exports.default = {
 			if (this.validFirstName && this.validLastName && this.validInstantie && this.validEmail) {
 				return true;
 			}
-			return true;
+			return false;
 		},
 
 		validFirstName: function validFirstName() {

@@ -68,7 +68,6 @@
 			},
 
 			isValid: function () {
-				return true;
 				if (this.validFirstName && this.validLastName && this.validInstantie && this.validEmail) {
 					return true;
 				}

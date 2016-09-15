@@ -296,8 +296,15 @@ class ApiController extends Controller
             $user->save();
         }
         $user = User::where('email', '=', $request->participant['email'])->first();
-        if($user->scans->intersect([$scan])->count()) { return; };
-        $user->scans()->attach($scan);
+        if( ! $user->scans->intersect([$scan])->count() ) {
+            $user->scans()->attach($scan);
+        }
+        if( $user->instanties->intersect($scan->instanties)->count() ) {
+            $currentinstantie = $user->instanties->intersect($scan->instanties)->first();
+            $newinstantie = Instantie::findOrFail($request->participant['instantie_id']);
+            $user->instanties()->detach($currentinstantie);
+            $user->instanties()->attach($newinstantie);
+        }
         $instantie = Instantie::findOrFail($request->participant['instantie_id']);
         $user->instanties()->attach($instantie);
         return $request->all();
