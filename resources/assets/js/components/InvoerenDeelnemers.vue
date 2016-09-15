@@ -1,5 +1,7 @@
 <template>
-	<div v-for="instantie in participants">
+	<div 
+		v-for="instantie in participants"
+	>
 
 		<single-deelnemer 
 			v-for="participant in instantie.participants" 
@@ -7,12 +9,15 @@
 			:editable.sync="editable" 
 			:instantie="instantie"
 			:availableinstanties="availableinstanties"
+			:class="'instantie-' + instantie.modelid"
 			v-if="participant.beheerder"
 		>
 		</single-deelnemer>
 
 	</div>
-	<div v-for="instantie in participants">
+	<div 
+		v-for="instantie in participants"
+	>
 
 		<single-deelnemer 
 			v-for="participant in instantie.participants" 
@@ -20,6 +25,7 @@
 			:editable.sync="editable" 
 			:instantie="instantie"
 			:availableinstanties="availableinstanties"
+			:class="'instantie-' + instantie.modelid"
 			v-if="!participant.beheerder"
 		>
 		</single-deelnemer>

@@ -215,6 +215,7 @@ class ApiController extends Controller
     	{
     		$thisinstantie['participants'] = [];
     		$thisinstantie['id'] = $instantie->id;
+            $thisinstantie['modelid'] = $instantie->instantiemodel->id;
     		$thisinstantie['title'] = $instantie->title;
     		$participants = [];
 	    	foreach($instantie->participants as $participant)
