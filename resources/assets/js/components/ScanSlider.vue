@@ -5,6 +5,7 @@
 		<span class="unanswered" v-if=" ! allComplete ">
 			Dank u voor uw antwoord. <br>
 			We wachten nog op het antwoord van {{ unanswered }} overige deelnemer<span v-if="unanswered > 1">s</span> voor het tonen van een algemeen beeld van de huidige gezamenlijke aanpak: <br>
+			{{ participantcount }}
 			<span v-for="name in whoUnanswered">
 					{{name}} <br>
 			</span>
@@ -68,6 +69,7 @@
 				// instanties: instanties,
 				scan: scan,
 				thema_id: thema_id,
+				participantcount: 12,
 			};
 		},
 
@@ -133,6 +135,7 @@
 					return 50;
 				}
 				this.allComplete = true;
+				this.participantcount = participantcount;
 				return Math.round((totalValue * 10) / participantcount)/10;
 			}
 		},
