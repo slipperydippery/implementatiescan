@@ -109,21 +109,25 @@
 				var totalValue = 0;
 				var unanswered = 0;
 				var whoUnanswered = [];
+				var userIDs = [];
 				for (var insts in this.instantiePartValues)
 				{
 					for (var parts in this.instantiePartValues[insts].participants)
 					{
-						participantcount++;
-						if (this.instantiePartValues[insts].participants[parts].abvalue != null) {
-							totalValue += this.instantiePartValues[insts].participants[parts].abvalue.value;
-						} else {
-							unanswered++;
-							var fullname = '';
-							fullname += this.instantiePartValues[insts].participants[parts].name_first;
-							fullname += ' ';
-							fullname += this.instantiePartValues[insts].participants[parts].name_last;
-
-							whoUnanswered.push(fullname);
+						if(!userIDs.includes(this.instantiePartValues[insts].participants[parts].id)){
+							participantcount++;
+							userIDs.push(this.instantiePartValues[insts].participants[parts].id);
+							if (this.instantiePartValues[insts].participants[parts].abvalue != null) {
+								totalValue += this.instantiePartValues[insts].participants[parts].abvalue.value;
+							} else {
+								unanswered++;
+								var fullname = '';
+								fullname += this.instantiePartValues[insts].participants[parts].name_first;
+								fullname += ' ';
+								fullname += this.instantiePartValues[insts].participants[parts].name_last;
+	
+								whoUnanswered.push(fullname);
+							}
 						}
 					}
 				}
