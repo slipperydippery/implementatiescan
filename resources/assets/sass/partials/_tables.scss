@@ -1,0 +1,120 @@
+.table {
+	background: rgba(255, 255, 255, .2);
+	margin: 2rem 0;
+	border-bottom: 2px solid rgba(0, 0, 0, 0.24);
+}
+
+.table-header {
+	background: #25AEE4 !important;
+	color: #fff;
+	font-size: 1.2rem;
+}
+
+.table-row {
+	padding: .5rem;
+	// padding: .5rem 0;
+}
+// .table-row:nth-child(odd) {
+// 	background: rgba(255, 255, 255, .2);
+// }
+
+.table-row--body:nth-child(even) {
+	background: rgba(0,0,0, .08);
+}
+
+
+/**
+ *  INVOEREN DEELNEMERS
+ */
+
+.gebruikers_aanmelden--row {
+	position: relative;
+	height: 4rem;
+	padding-top: 1rem;
+}
+
+.editicon {
+	// height: 2rem !important;
+	width: auto !important;
+}
+
+.closeicon {
+	position: absolute;
+	top: .2rem;
+    right: .5rem;
+    font-size: 1.5rem;
+}
+
+.plussubmit {
+	// color: #fff;
+	font-size: 2.5rem;
+	font-weight: bold;
+	line-height: 2rem;
+}
+
+.tablehead {
+	font-weight: bold;
+}
+
+.gebruikers_aanmelden {
+	.plus {
+		font-size: 1.5rem;
+		margin: -.5rem 0 0 0rem;
+		font-weight: 500;
+	}
+}
+
+.row_beheerder {
+	border: 1px solid #000;
+	border-width: 0 1px 1px 1px;
+}
+
+.textual_table {
+	margin: 2rem 0 0 0;
+	line-height: 2rem;
+	img {
+		display: inline-block;
+		height: 1.5rem;
+		width: auto;
+		margin-top: -.5rem;
+	}
+}
+
+.textual_table--row {
+}
+
+.textual_table--row:nth-of-type(2) {
+	background: rgba(0, 0, 0, .2);
+}
+
+.textual_table--header {
+	border-bottom: 2px solid #666;
+	.columns {
+		font-weight: bold !important;
+	}
+}
+
+ .instantie-1 {
+ 	background: rgba($instantie1, .4);
+ 	// background: #882d50;
+ }
+
+ .instantie-2 {
+ 	background: rgba($instantie2, .4);
+ }
+
+  .instantie-3 {
+ 	background: rgba($instantie3, .4);
+ }
+
+  .instantie-4 {
+ 	background: rgba($instantie4, .5);
+ }
+
+  .instantie-5 {
+ 	background: rgba($instantie5, .5);
+ }
+
+  .instantie-6 {
+ 	background: rgba($instantie6, .5);
+ }

@@ -1,0 +1,8 @@
+{
+  "name": "laravel-and-foundation",
+  "private": "true",
+  "dependencies": {
+    "foundation": "latest",
+    "foundation-sites": "^6.2.1"
+  }
+}
