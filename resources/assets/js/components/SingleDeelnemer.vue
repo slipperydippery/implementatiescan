@@ -1,5 +1,5 @@
 <template>
-	<div class="row textual_table--row gebruikers_aanmelden--row" :class="{'row_beheerder' : participant.beheerder}">
+	<div class="row gebruikers_aanmelden--row" :class="{'row_beheerder' : participant.beheerder}">
 		<div v-show="! isEditable">
 			<div class="small-1 columns"> <img :src="returnRoot + '/img/user_dark.png'"> </div>
 			<div class="small-2 columns"> {{ participant.name_first ? participant.name_first : " ---" }} </div>
