@@ -12234,10 +12234,10 @@ exports.default = {
 				this.unanswered = unanswered;
 				this.whoUnanswered = whoUnanswered;
 				this.allComplete = false;
+				this.participantcount = participantcount;
 				return 50;
 			}
 			this.allComplete = true;
-			this.participantcount = participantcount;
 			return Math.round(totalValue * 10 / participantcount) / 10;
 		}
 	}
