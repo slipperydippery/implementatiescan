@@ -50,6 +50,20 @@ class ScansController extends Controller
      */
     public function store(Request $request)
     {
+        $title = 'Uitnodiging Implementatiescan';
+        $content = $request->input('email_bericht');
+
+        Mail::send('emails.send', ['title' => $title, 'content' => $content], function ($message)
+        {
+
+            $message->from('me@gmail.com', 'Christian Nwamba');
+
+            $message->to('maartendejager@gmail.com');
+
+        });
+
+        return response()->json(['message' => 'Request completed']);
+
         // return $request;
         $scan = new Scan($request->all());
         // ADD BEHEERDER, CREATE USER IF DOESN'T EXIST
