@@ -53,6 +53,7 @@ class ScansController extends Controller
     {
         // return $request;
         $scan = new Scan($request->all());
+        $scan->datedeeleen = $request->datedeeleen;
         // ADD BEHEERDER, CREATE USER IF DOESN'T EXIST
         if (! User::where('email', '=', $request->beheerder_email)->get()->count())
         {
