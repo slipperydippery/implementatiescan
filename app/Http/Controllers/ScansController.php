@@ -51,7 +51,7 @@ class ScansController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        // return $request;
         $scan = new Scan($request->all());
         // ADD BEHEERDER, CREATE USER IF DOESN'T EXIST
         if (! User::where('email', '=', $request->beheerder_email)->get()->count())
