@@ -51,30 +51,13 @@ class ScansController extends Controller
      */
     public function store(Request $request)
     {
-        $title = 'Uitnodiging Implementatiescan';
-        $content = $request->input('email_bericht');
-
-        $data = ['title' => $title, 'content' => nl2br($content)];
-
-        Mail::send('emails.send', $data , function ($message) use ($request)
-        {
-            $message->from('no-replay@implementatiescan.nl', 'Implementatiescan');
-
-            $message->to($request->input('beheerder_email'));
-
-            $message->subject('Uitnodiging Implementatiescan');
-
-        });
-
-        return response()->json(['message' => 'Request completed']);
-
         // return $request;
         $scan = new Scan($request->all());
         // ADD BEHEERDER, CREATE USER IF DOESN'T EXIST
         if (! User::where('email', '=', $request->beheerder_email)->get()->count())
         {
             $user = new User();
-            $user->initial_pwd = 'password'; //str_random(8);
+            $user->initial_pwd = str_random(8);
             $user->password = Hash::make($user->initial_pwd);
             $user->email = $request->beheerder_email;
             $user->name_first = $request->name_first;
@@ -114,6 +97,25 @@ class ScansController extends Controller
                 $verbeteractie->save();
             }
         }
+        
+        // SEND MAIL        
+        $title = 'Uitnodiging Implementatiescan';
+        $content = $request->input('email_bericht') . '
+
+Uw gebruikersnaam is: ' . $user->email . '
+Uw wachtwoord is: ' . $user->initial_pwd;
+        $data = ['content' => nl2br($content)];
+        Mail::send('emails.send', $data , function ($message) use ($request)
+        {
+            $message->from('no-replay@implementatiescan.nl', 'Implementatiescan');
+
+            $message->to($request->input('beheerder_email'));
+
+            $message->subject('Uitnodiging Implementatiescan');
+
+        });
+
+        return response()->json(['message' => 'Request completed']);
         return Redirect::route('scans.index');
     }
 
