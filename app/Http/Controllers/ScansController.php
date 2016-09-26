@@ -53,7 +53,7 @@ class ScansController extends Controller
     {
         $title = 'Uitnodiging Implementatiescan';
         $content = $request->input('email_bericht');
-        $to = $request->input('beheerder_email');
+        $toMail = $request->input('beheerder_email');
         $toName = $request->input('name_first') . ' ' . $request->input('name_last');
 
 
