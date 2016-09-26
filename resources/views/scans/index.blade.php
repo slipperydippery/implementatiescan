@@ -55,7 +55,7 @@
 					{{ count($scan->participants) }}
 				</div>
 				<div class="small-2 columns">
-					--
+					{{ $scan->datedeeleen }}
 				</div>
 				<div class="small-1 columns">
 					<a href=" {{ URL::route('scans.edit', $scan) }} ">
