@@ -58,7 +58,7 @@ class ScansController extends Controller
 
         $data = ['title' => $title, 'content' => $content, 'request' => $request];
 
-        Mail::send('emails.send', $data , function ($message)
+        Mail::send('emails.send', $data , function ($message) use ($request)
         {
             $message->from('no-replay@implementatiescan.nl', 'Implementatiescan');
             $tostring = $request->input('beheerder_email');
