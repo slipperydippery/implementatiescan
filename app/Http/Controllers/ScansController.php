@@ -104,7 +104,7 @@ class ScansController extends Controller
 
 Uw gebruikersnaam is: ' . $user->email . '
 Uw wachtwoord is: ' . $user->initial_pwd;
-        $data = ['content' => nl2br($content)];
+        $data = ['title' => '', 'content' => nl2br($content)];
         Mail::send('emails.send', $data , function ($message) use ($request)
         {
             $message->from('no-replay@implementatiescan.nl', 'Implementatiescan');
