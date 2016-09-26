@@ -51,7 +51,7 @@ class ScansController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
+        return $request->datedeeleen;
         $scan = new Scan($request->all());
         $scan->datedeeleen = $request->datedeeleen;
         // ADD BEHEERDER, CREATE USER IF DOESN'T EXIST
