@@ -55,6 +55,8 @@ class ScansController extends Controller
         $content = $request->input('email_bericht');
         $to = $request->input('beheerder_email');
 
+        return($to);
+
         Mail::send('emails.send', ['title' => $title, 'content' => $content, 'to' => $to], function ($message)
         {
 
