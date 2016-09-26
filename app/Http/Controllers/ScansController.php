@@ -53,14 +53,14 @@ class ScansController extends Controller
     {
         $title = 'Uitnodiging Implementatiescan';
         $content = $request->input('email_bericht');
-        $toMail = $request->input('beheerder_email');
+        $to = $request->input('beheerder_email');
 
-        Mail::send('emails.send', ['title' => $title, 'content' => $content], function ($message)
+        Mail::send('emails.send', ['title' => $title, 'content' => $content, 'to' => $to], function ($message)
         {
 
             $message->from('no-replay@implementatiescan.nl', 'Implementatiescan');
 
-            $message->to($toMail);
+            // $message->to($toMail);
 
         });
 
