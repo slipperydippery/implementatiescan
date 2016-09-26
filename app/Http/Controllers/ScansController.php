@@ -56,13 +56,13 @@ class ScansController extends Controller
         $tomail = $request->input('beheerder_email');
         $toname = $request->input('name_first') . ' ' . $request->input('name_last');
 
-        $data = ['title' => $title, 'content' => $content, 'tomail' => $tomail, 'toname' => $tomail];
+        $data = ['title' => $title, 'content' => $content, 'request' => $request];
 
         Mail::send('emails.send', $data , function ($message)
         {
             $message->from('no-replay@implementatiescan.nl', 'Implementatiescan');
 
-            $message->to($tomail);
+            $message->to($request->input('beheerder_email'));
 
         });
 
