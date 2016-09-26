@@ -56,7 +56,6 @@ class ScansController extends Controller
         $toMail = $request->input('beheerder_email');
         $toName = $request->input('name_first') . ' ' . $request->input('name_last');
 
-        Mail::send('emails.reminder', ['user' => $user], function ($m) use ($user) {
         Mail::send('emails.send', ['title' => $title, 'content' => $content, 'toMail' => $toMail, 'toName' => $toMail], function ($message)
         {
 
