@@ -21,9 +21,11 @@ class InstrumentsController extends Controller
     public function index()
     {
         $admintest = false;
-        if(Auth::user()->hasRole('admin'))
-        {
-            $admintest = true;
+        if(Auth::check()){
+            if(Auth::user()->hasRole('admin'))
+            {
+                $admintest = true;
+            }
         }
         JavaScript::put([
             'admin' => $admintest,

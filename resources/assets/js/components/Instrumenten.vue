@@ -1,6 +1,4 @@
 <template>
-	<div class="admin-test" v-if="admin">Admin!
-	</div>
 	<div class="row searchitems">
 		<div class="small-6 columns">
 			<input type="text" v-model="search" placeholder="Zoek in beschrijving">
