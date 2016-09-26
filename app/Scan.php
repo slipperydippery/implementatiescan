@@ -12,7 +12,8 @@ class Scan extends Model
     	'user_id',
         'regio',
     	'scanmodel_id',
-        'value'
+        'value',
+        'datedeeleen',
     ];
 
     public function scanmodel()

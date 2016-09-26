@@ -36,7 +36,7 @@
 
 <div class="form-group">
 	{!! Form::label('datepicker', 'Datum scan:') !!}
-	<input type="text" id="datepicker">
+	<input type="date" name="datedeeleen" id="datedeeleen">
 </div>
 
 <!-- Email Bericht Form Input -->
@@ -58,7 +58,7 @@ Ga naar www.implementatiescan.nl en klik op de knop:
 scan inrichten - voorzitter - het proces wijst zich vanzelf.
 
 Heeft u vragen? Neem dan contact op met:
-xxxxx xxxxxx (nader in te vullen', ['class' => 'form-control']) !!}
+xxxxx xxxxxx (nader in te vullen)', ['class' => 'form-control']) !!}
 </div>
 
 <!-- Hidden video_id Type Form Input -->

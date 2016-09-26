@@ -29,6 +29,7 @@
 @stop
 
 @section('additional-scripts')
+
     <script src="{{ URL::asset('js/pikaday.js') }}"></script>
     <script>
 
