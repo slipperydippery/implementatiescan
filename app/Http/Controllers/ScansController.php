@@ -16,6 +16,7 @@ use App\Http\Requests;
 use App\Verbeteractie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 
 class ScansController extends Controller
