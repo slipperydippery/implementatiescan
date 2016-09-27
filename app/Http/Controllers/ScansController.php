@@ -469,7 +469,16 @@ Uw wachtwoord is: ' . $user->initial_pwd;
             'scanbeheerder' => $scanbeheerder,
         ]);
 
-        return view ('scans.inrichten.controlerendeelnemers', compact('scan'));
+        $instantieoptions = [];
+        foreach($scan->instanties as $instantie)
+        {
+            // if(count($instantie->participants) < 2)
+            // {
+                $instantieoptions[$instantie->id] = $instantie->title ;
+            // }
+        }  
+
+        return view ('scans.inrichten.controlerendeelnemers', compact('scan', 'instantieoptions'));
     }
 
     public function uitnodigendeelnemers(Scan $scan)

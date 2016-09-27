@@ -33,7 +33,7 @@
 			{!! Form::label('Aan', 'Aan:') !!}
 				@foreach($scan->participants as $participant)
 
-					<input type="checkbox" checked> {{ $participant->name_first }} {{ $participant->name_last }}/ {{ $participant->email }}, <br>
+					<input type="checkbox" checked> {{ $participant->name_first }} {{ $participant->name_last }} - {{ $participant->email }}, <br>
 				@endforeach
 				<br>
 			
