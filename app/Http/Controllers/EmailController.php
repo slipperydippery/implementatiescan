@@ -33,19 +33,25 @@ class EmailController extends Controller
 
     public function senduitnodiging(Request $request, Scan $scan)
     {
+        // return $request->all();
     	$user = $scan->beheerder;
     	$title = $request->subject;
+        $content = $request->body;
+
+        $data = ['title' => $title, 'content' => nl2br($content)];
     	foreach($scan->participants as $participant)
     	{
     		$content = nl2br($request->body);
-    		Mail::send('emails.uitnodigingsmail', ['title' => $title, 'content' => $content, 'user' => $user, 'participant' =>$participant], function ($message) use ($user, $participant, $request)
+    		Mail::send('emails.send', $data, function ($message) use ($user, $participant, $request)
     		{
-    			$message->from($user->email, $user->name_first . ' ' . $user->name_last);
-    			$message->to($user->email, $user->name_first . ' ' . $user->name_last);
-    			$message->bcc($participant->email, $participant->name_first . ' ' . $participant->name_last);
-    			$message->subject($request->subject);
+    			$message->from('no-reply@implementatiescan.nl', 'Team Implementatiescan');
+    			$message->to($participant->email, $participant->name_first . ' ' . $participant->name_last);
+    			// $message->bcc($participant->email, $participant->name_first . ' ' . $participant->name_last);
+    			$message->subject('Uitnodiging Implementatiescan');
+                $message->replyTo($user->email, $user->name_first . ' ' . $user->name_last);
     		});
     	}
     	return $request->all();
     }
 }
+
