@@ -36,12 +36,14 @@ class EmailController extends Controller
         // return $request->all();
     	$user = $scan->beheerder;
     	$title = $request->subject;
-        $content = $request->body;
 
-        $data = ['title' => $title, 'content' => nl2br($content)];
-    	foreach($scan->participants as $participant)
-    	{
-    		$content = nl2br($request->body);
+        foreach($scan->participants as $participant)
+        {
+            $content = $request->body . '
+
+Uw gebruikersnaam is: ' . $user->email . '
+Uw wachtwoord is: ' . $user->initial_pwd;
+            $data = ['title' => $title, 'content' => nl2br($content)];
     		Mail::send('emails.send', $data, function ($message) use ($user, $participant, $request)
     		{
     			$message->from('no-reply@implementatiescan.nl', 'Team Implementatiescan');
