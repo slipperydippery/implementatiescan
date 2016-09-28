@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Scan;
+use App\User;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,8 +38,9 @@ class EmailController extends Controller
     	$user = $scan->beheerder;
     	$title = $request->subject;
 
-        foreach($scan->participants as $participant)
+        foreach($request->recipients as $recipient)
         {
+            $participant = User::findOrFail($recipient);
             $content = $request->body . '
 
 Uw gebruikersnaam is: ' . $user->email . '
