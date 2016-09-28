@@ -3724,6 +3724,10 @@ main {
       display: block; }
   .triblock .title_button:hover {
     box-shadow: 0 20px 20px -15px #22373e; }
+  .triblock .muted {
+    color: #9c9c9c; }
+    .triblock .muted img {
+      opacity: 0.5; }
 
 .paperclipper {
   position: absolute;

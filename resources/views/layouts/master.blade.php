@@ -21,7 +21,8 @@
 						<div class="navbarleft__hamburger" data-toggle="offCanvas"></div>
 					</div>
 
-	  				@include('layouts.partials.edituser')
+	  				@include('layouts.partials.editbaseuser')
+
 				</div>
 
 				<div class="content-group">

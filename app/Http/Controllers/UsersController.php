@@ -80,12 +80,8 @@ class UsersController extends Controller
         //
     }
 
-    public function edituserinfo(User $user, Scan $scan)
-    {
-        // return view('users.edituserinfo')
-    }
 
-    public function saveuserinfo(Request $request, User $user, Scan $scan)
+    public function edituserinfo(Request $request, User $user, Scan $scan)
     {
         $user->update($request->all());
         $user->save();
@@ -97,6 +93,13 @@ class UsersController extends Controller
         }
         $user->instanties()->save($instantie);
         return Redirect::back();
+    }
+
+    public function editbaseuser(Request $request, User $user)
+    {
+        $user->update($request->all());
+        $user->save();
+        return redirect()->back();
     }
 
     /**

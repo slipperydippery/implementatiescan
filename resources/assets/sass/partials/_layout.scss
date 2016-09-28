@@ -309,6 +309,12 @@ $sidetext_thickness : 15rem;
 	.title_button:hover {
 		box-shadow: 0 20px 20px -15px $primary-color;
 	}
+	.muted {
+		color: #9c9c9c;
+		img {
+			opacity: 0.5;
+		}
+	}
 }
 
 .paperclipper {

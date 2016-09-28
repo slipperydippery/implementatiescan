@@ -1,4 +1,4 @@
-    @if (Auth::check() && isset($scan)) 
+    @if (Auth::check()) 
         <div class="float-right top_bar--box dark">
             <a data-open="userModal"> 
            		<img src="{{asset('img/user_light.png')}}">
@@ -9,7 +9,7 @@
 
             <div class="reveal" id="userModal" data-reveal>
               	<h1>Bewerk uw gegevens</h1>
-              	{!! Form::open(['route' => ['users.edituserinfo', Auth::user(), $scan ]]) !!}
+              	{!! Form::open(['route' => ['users.editbaseuser', Auth::user()]]) !!}
 					<!-- Voornaam Form Input -->
 					<div class="form-group">
 					  {!! Form::label('name_first', 'Voornaam:') !!}
@@ -26,20 +26,6 @@
 					<div class="form-group">
 					{!! Form::label('email', 'Email:') !!}
 					{!! Form::text('email', Auth::user()->email, ['class' => 'form-control']) !!}
-					</div>
-
-					<!-- Instantie Form Input -->
-					<div class="form-group">
-					  	{!! Form::label('instantie', 'Instantie:') !!}
-					  	<select name="instantie" >
-					      	@foreach($scan->instanties as $instantie)
-								@if(count(Auth::user()->instanties->intersect([$instantie])))
-									<option value=" {{ $instantie->id }} " class="form-control" selected> {{ $instantie->title }} </option>  
-								@else
-									<option value=" {{ $instantie->id }} " class="form-control"> {{ $instantie->title }} </option>
-								@endif
-					      	@endforeach
-					  	</select>
 					</div>
 
 					<!-- Add Submit Field -->

@@ -1,6 +1,25 @@
 @extends('layouts.master')
 
+
+	<?php  
+		$logged = false;
+		$inrichten = false;
+		$starten = false;
+	?>
+	@if(Auth::user())
+		<?php
+			$logged = true;
+			if(count(Auth::user()->beheert)){
+				$inrichten = true;
+			}
+			if(count(Auth::user()->scans)){
+				$starten = true;
+			}
+
+		?>
+	@endif
 @section('content')
+
 <div class="row page-heading">
 	<div class="small-9 columns">
 		<div class="row">
@@ -26,7 +45,28 @@
 	<div class="small-9 columns">
 		<div class="row">
 			<div class="small-4 columns triblock">
-				<a href="{{ URL::route('voorzitter.scans') }}" role="button" class="title_button">
+				@if(!$logged)
+					<a href="{{ URL::route('voorzitter.scans') }}" 
+						role="button" 
+						class="title_button has-tip muted"
+						aria-haspopup="true" 
+						data-disable-hover="false" 
+						tabindex="1" title="Log in om scans in te kunnen richten"
+					>
+				@elseif($inrichten)
+					<a href="{{ URL::route('voorzitter.scans') }}" 
+						role="button" 
+						class="title_button"
+					>
+				@else
+					<a href="#" 
+						role="button" 
+						class="title_button muted has-tip"
+						aria-haspopup="true" 
+						data-disable-hover="false" 
+						tabindex="1" title="U heeft geen scans om in te richten"
+					>
+				@endif
 		    		<img src="{{asset('img/gearicon.png')}}">
 					<span class="">Scan Inrichten </span>
 					Voorzitter
@@ -35,7 +75,28 @@
 				<img src=" {{ asset('img/paperbottom.png') }} " class="paperclipper paperbottom">
 			</div>
 			<div class="small-4 columns triblock">
-				<a href="{{ URL::route('scans.start') }}" role="button" class="title_button">
+				@if(!$logged)
+					<a href="{{ URL::route('scans.start') }}" 
+						role="button" 
+						class="title_button muted has-tip"
+						aria-haspopup="true" 
+						data-disable-hover="false" 
+						tabindex="1" title="Log in om deel te nemen aan een scan"
+					>
+				@elseif($starten) 
+					<a href="{{ URL::route('scans.start') }}" 
+						role="button" 
+						class="title_button"
+					>
+				@else
+					<a href="#" 
+						role="button" 
+						class="title_button muted has-tip"
+						aria-haspopup="true" 
+						data-disable-hover="false" 
+						tabindex="1" title="U heeft geen scans waar u aan kunt deelnemen"
+					>
+				@endif
 		    		<img src="{{asset('img/scan.png')}}"><br>
 					<span class="">Scan Starten </span>
 					Deelnemer

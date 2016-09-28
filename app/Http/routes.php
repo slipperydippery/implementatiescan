@@ -100,7 +100,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::post('scans/{scan}/updatebeheerder', ['as' => 'scans.updatebeheerder', 'uses' => 'ScansController@updatebeheerder']);
     Route::post('scans/{scan}/updateinstantie', ['as' => 'scans.updateinstantie', 'uses' => 'ScansController@updateinstantie']);
     // Route::get('/users/{user}/scan/{scan}/edituserinfo', ['as' => 'users.edituserinfo', 'uses' => 'UsersController@edituserinfo ']);
-    Route::post('/users/{user}/scan/{scan}/edituserinfo', ['as' => 'users.saveuserinfo', 'uses' => 'UsersController@saveuserinfo']);
+    Route::post('/users/{user}/scan/{scan}/edituserinfo', ['as' => 'users.edituserinfo', 'uses' => 'UsersController@edituserinfo']);
+    Route::post('/users/{user}/editbaseuser', ['as' => 'users.editbaseuser', 'uses' => 'UsersController@editbaseuser']);
 
     // Route::post('/scans/addthema', ['as' => 'scans.addthemas', 'uses' => 'ScansController@addthema']);
     Route::post('/scanmodels/addthema', ['as' => 'scanmodels.addthemas', 'uses' => 'ScanmodelsController@addthema']);
