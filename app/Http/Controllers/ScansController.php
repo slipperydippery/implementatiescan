@@ -51,6 +51,7 @@ class ScansController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->all();
         // return $request->datedeeleen;
         $scan = new Scan($request->all());
         $scan->datedeeleen = $request->datedeeleen;

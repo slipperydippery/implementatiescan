@@ -11,8 +11,10 @@
 	  				Hieronder kunt u zien wat iedereen zojuist heeft ingevuld. Wat valt u op? Bespreek de resultaten de komende 15 minuten, en selecteer dan de in uw ogen belangrijkste 2 verbeterpunten.
 	  			</p>
 			</fieldset>
-			<div class="large-4 column align-self-bottom ">
-				<div id="time">01:00</div>	
+			<div class="large-4 columns">
+				@if(count(Auth::user()->beheert->intersect([$scan])))
+					<div id="time">15:00</div>	
+				@endif
 			</div>
 		</div>
 	</div>

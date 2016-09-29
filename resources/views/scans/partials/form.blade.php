@@ -36,7 +36,8 @@
 
 <div class="form-group">
 	{!! Form::label('datepicker', 'Datum scan:') !!}
-	<input type="date" name="datedeeleen" id="datedeeleen">
+	<input id="datedeeleen" class="hidden" name="datedeeleen" type="hidden" placeholder="Choose a date">
+  
 </div>
 
 <!-- Email Bericht Form Input -->

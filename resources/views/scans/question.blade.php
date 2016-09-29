@@ -15,7 +15,9 @@
 				</p>
 			</fieldset>
 			<div class="large-4 columns">
-				<div id="time">01:00</div>	
+				@if(count(Auth::user()->beheert->intersect([$scan])))
+					<div id="time">01:00</div>	
+				@endif
 			</div>
 			
 		</div>

@@ -9,7 +9,9 @@
     <meta name="keywords" content="ImplementatieScan">
     <meta name="csrf-token" value="{{ csrf_token() }}">
     <link href="{{ URL::asset('/css/app.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('/css/pikaday.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('/css/classic.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('/css/classic.date.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('/css/classic.time.css') }}" rel="stylesheet">
     <link rel="shortcut icon" href="{{{ asset('img/favicon.png') }}}">
     
     {{-- This is the token Laravel requires for non-GET requests --}}

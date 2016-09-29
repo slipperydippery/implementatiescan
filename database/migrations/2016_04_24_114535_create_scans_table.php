@@ -26,6 +26,7 @@ class CreateScansTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('scanmodel_id')->unsigned();
             $table->foreign('scanmodel_id')->references('id')->on('scanmodels')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

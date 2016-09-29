@@ -18,7 +18,7 @@
 	<div class="large-12 columns table">
 	
 			<div class="row table-row table-header">
-				<div class="small-3 columns">
+				<div class="small-2 columns">
 					School
 				</div>
 				<div class="small-2 columns">
@@ -36,13 +36,16 @@
 				<div class="small-1 columns">
 					Edit
 				</div>
+				<div class="small-1 columns">
+					Verwijder
+				</div>
 				
 			</div>
 		
 
 		@foreach($scans as $scan)
 			<div class="row table-row">
-				<div class="small-3 columns">
+				<div class="small-2 columns">
 					<a href=" {{ URL::route('scans.invoerendeelnemers', $scan) }} ">{{ $scan->title }}</a>
 				</div>
 				<div class="small-2 columns">
@@ -60,6 +63,11 @@
 				<div class="small-1 columns">
 					<a href=" {{ URL::route('scans.edit', $scan) }} ">
 						edit
+					</a>
+				</div>
+				<div class="small-1 columns">
+					<a href=" {{ URL::route('scans.delete', $scan) }} ">
+						X
 					</a>
 				</div>
 

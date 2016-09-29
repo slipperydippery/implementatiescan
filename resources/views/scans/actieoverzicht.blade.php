@@ -11,7 +11,9 @@
       			</p>
     		</fieldset>
             <div class="large-4 columns">
-                <div id="time">01:00</div>  
+                @if(count(Auth::user()->beheert->intersect([$scan])))
+                    <div id="time">15:00</div>  
+                @endif
             </div>
     	</div>
     </div>
@@ -24,22 +26,20 @@
 
 	</div>
 </div>
-<div class="row">
+<div class="row page-content">
 
 	<div class="small-8 date__container">
 	   <label for="datepicker"><h4>
         Plan een vervolgdatum voor het maken van de werkagenda. </h4></label>
         <div class="small-6 columns">
-            <input type="text" id="datepicker">
+            <input id="datedeeleen" class="hidden" name="datedeeleen" type="text" placeholder="Choose a date">
         </div>
         <div class="small-6 columns">
             <!-- Tijd Form Input -->
             <div class="form-group">
-                {!! Form::text('tijd', null, ['class' => 'form-control', 'placeholder' => 'tijd']) !!}
+                <input id="timedeeleen" class="hidden" type="time" name="usr_time">
             </div>
         </div>
-
-
 
 	</div>
 
@@ -53,32 +53,29 @@
 </div>
 @stop
 
-@section('additional-scripts')
-    <script src="{{ URL::asset('js/pikaday.js') }}"></script>
+@section('additional-scripts')    
+    <script src="{{ URL::asset('/js/picker.js') }}"></script>
+    <script src="{{ URL::asset('/js/picker.date.js') }}"></script>
+    <script src="{{ URL::asset('/js/picker.time.js') }}"></script>
+
     <script>
-
-    var picker = new Pikaday(
-    {
-        field: document.getElementById('datepicker'),
-        firstDay: 1,
-        format: 'D MMM YY',
-        minDate: new Date(2000, 0, 1),
-        maxDate: new Date(2020, 12, 31),
-        yearRange: [2000,2020]
-    });
-
+      $(function() {
+        // Enable Pickadate on an input field
+        $('#timedeeleen').pickatime();
+        $('#datedeeleen').pickadate({
+            monthsFull: [ 'januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december' ],
+            monthsShort: [ 'jan', 'feb', 'maa', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec' ],
+            weekdaysFull: [ 'zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag' ],
+            weekdaysShort: [ 'zo', 'ma', 'di', 'wo', 'do', 'vr', 'za' ],
+            formatSubmit: 'yyyy/mm/dd',
+            hiddenName: true,
+            today: '',
+            clear: '',
+            close: ''
+        });
+      });   
     </script>
 
-    <template id="acties-template">
-    	<div class="row" v-for="thema in themas">
-    		@{{ thema.title }}
-    		@{{ thema.id }}
-    		<actie></actie>
-    	</div>
-    </template>
-    <template id="actie-template">
-    	
-    </template>
 
     <script>
         function startTimer(duration, display) {

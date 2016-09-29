@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Scan extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
     	'title',
     	'blurb',
@@ -15,6 +18,8 @@ class Scan extends Model
         'value',
         'datedeeleen',
     ];
+    
+    protected $dates = ['deleted_at'];
 
     public function scanmodel()
     {

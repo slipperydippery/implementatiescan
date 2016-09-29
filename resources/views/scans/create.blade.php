@@ -30,31 +30,25 @@
 
 @section('additional-scripts')
 
-    <script src="{{ URL::asset('js/pikaday.js') }}"></script>
+    <script src="{{ URL::asset('/js/picker.js') }}"></script>
+    <script src="{{ URL::asset('/js/picker.date.js') }}"></script>
+
     <script>
-
-    var picker = new Pikaday(
-    {
-        field: document.getElementById('datepicker'),
-        firstDay: 1,
-        format: 'D MMM YY',
-        minDate: new Date(2000, 0, 1),
-        maxDate: new Date(2020, 12, 31),
-        yearRange: [2000,2020]
-    });
-
+      $(function() {
+        // Enable Pickadate on an input field
+        $('#datedeeleen').pickadate({
+            monthsFull: [ 'januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december' ],
+            monthsShort: [ 'jan', 'feb', 'maa', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec' ],
+            weekdaysFull: [ 'zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag' ],
+            weekdaysShort: [ 'zo', 'ma', 'di', 'wo', 'do', 'vr', 'za' ],
+            formatSubmit: 'yyyy/mm/dd',
+            hiddenName: true,
+            today: '',
+            clear: '',
+            close: ''
+        });
+      });   
     </script>
-
-    <template id="acties-template">
-    	<div class="row" v-for="thema in themas">
-    		@{{ thema.title }}
-    		@{{ thema.id }}
-    		<actie></actie>
-    	</div>
-    </template>
-    <template id="actie-template">
-    	
-    </template>
 
 @stop
 
