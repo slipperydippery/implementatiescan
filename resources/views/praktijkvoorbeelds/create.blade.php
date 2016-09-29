@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin', ['title' => 'voeg een praktijkvoorbeeld toe'])
 
 @section('content')
 <div class="row page-heading">

@@ -1,4 +1,4 @@
-@include('layouts.partials.header')
+@include('layouts.partials.header', ['title' => $title])
 
 @if(Auth::user()->hasRole('admin'))
 

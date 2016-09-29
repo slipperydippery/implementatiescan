@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.admin', ['title' => 'overzicht gebruikers'])
 
 @section('content')
 <div class="row page-heading">

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.scan', ['title' => 'uitnodigen deelnemers'])
 
 @section('content')
 <div class="row page-heading">

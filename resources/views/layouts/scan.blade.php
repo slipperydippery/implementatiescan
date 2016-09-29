@@ -1,4 +1,5 @@
-@include('layouts.partials.header')
+@include('layouts.partials.header', ['title' => $title])
+
 
 @if(count(Auth::user()->scans->intersect([$scan])) || Auth::user()->hasRole('admin'))
 

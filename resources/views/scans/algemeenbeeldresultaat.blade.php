@@ -1,4 +1,4 @@
-@extends('layouts.scan')
+@extends('layouts.scan', ['title' => 'resultaat algemeen beeld'])
 
 @section('content')
 	<div class="page-heading--container">

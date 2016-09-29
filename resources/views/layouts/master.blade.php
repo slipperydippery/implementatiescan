@@ -1,4 +1,4 @@
-@include('layouts.partials.header')
+@include('layouts.partials.header', ['title' => $title])
 
 <div class="off-canvas-wrapper">
     <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>

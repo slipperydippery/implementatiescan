@@ -1,4 +1,4 @@
-@extends('layouts.scan')
+@extends('layouts.scan', ['title' => 'Gezamenlijke verbeteracties'])
 
 @section('content')
 <div class="page-heading--container">
@@ -48,7 +48,6 @@
 		<a class="button thema-submit" href="{{ URL::route('scans.actiesmailen', [$scan]) }}">Verbeteracties Mailen</a><br>
 				
 	</div>	
-
 
 </div>
 @stop

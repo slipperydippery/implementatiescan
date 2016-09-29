@@ -1,4 +1,4 @@
-@extends('layouts.beheer')
+@extends('layouts.beheer', ['title' => 'controleren deelnemersgegevens'])
 
 @section('content')
 <div class="page-heading--container">

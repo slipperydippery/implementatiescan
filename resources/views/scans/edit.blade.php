@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.admin', ['title' => 'bewerk scan ' . $scan->title])
 
 @section('content')
 <div class="row page-heading">

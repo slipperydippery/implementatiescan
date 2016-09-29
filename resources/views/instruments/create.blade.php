@@ -1,10 +1,10 @@
-@extends('layouts.admin')
+@extends('layouts.admin', ['title' => 'voeg instrument toe'])
 
 @section('content')
 <div class="row page-heading">
 	<div class="large-12 ">
 		<h1>Voeg een instrument of programma toe</h1>
-		<fieldset class="fieldset">
+		<fieldset class="fieldset small-8">
   			<p class="subheading subheading__time">
   				
 

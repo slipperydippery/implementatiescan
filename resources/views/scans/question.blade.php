@@ -1,4 +1,4 @@
-@extends('layouts.scan')
+@extends('layouts.scan', ['title' => 'thema ' . $thema_nr . ' vraag ' . $question_nr])
 
 @section('content')
 <div class="page-heading--container">

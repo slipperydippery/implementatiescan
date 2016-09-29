@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.scan', ['title' => 'bedankt!'])
 
 @section('content')
 <div class="row page-heading">

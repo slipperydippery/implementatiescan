@@ -1,5 +1,4 @@
-@extends('layouts.master')
-
+@extends('layouts.master', ['title' => 'home'])
 
 	<?php  
 		$logged = false;
