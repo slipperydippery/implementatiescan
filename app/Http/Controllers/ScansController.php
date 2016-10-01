@@ -387,12 +387,17 @@ Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastges
                     $verbeteractietext .= '<i>' . $verbeteractie->title . '</i><br>'  . 
                     'Omschrijving: ' . $verbeteractie->omschrijving . '<br>'  . 
                     'Initiatiefnemer: '  . $trekker . '<br>'  . 
-                    'Betrokkenen: ' .
-                    '<ul>';
-                    foreach($verbeteractie->betrokkenen as $betrokkene){
-                        $verbeteractietext .= '<li>' . $betrokkene->name_first . ' ' . $betrokkene->name_last . '</li>';
+                    'Betrokkenen: ';
+                    if(count($verbeteractie->betrokkenen)){
+                        $verbeteractietext .= '<ul>';
+                        foreach($verbeteractie->betrokkenen as $betrokkene){
+                            $verbeteractietext .= '<li>' . $betrokkene->name_first . ' ' . $betrokkene->name_last . '</li>';
+                        }
+                        $verbeteractietext .= '</ul>';
+                    } else {
+                        $verbeteractietext .= ' --- <br>';
                     }
-                    $verbeteractietext .= '</ul><br><br> ';
+                    $verbeteractietext .= '<br>';
                 }
             }
         }

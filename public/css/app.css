@@ -4235,6 +4235,11 @@ main {
   width: 8rem !important;
   float: right; }
 
+.verbeteractietext {
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid #aaa; }
+
 .table {
   background: rgba(255, 255, 255, 0.2);
   margin: 2rem 0;
@@ -4409,6 +4414,11 @@ input::placeholder {
 
 span.help-block {
   color: #C52D2D; }
+
+.verbeteractietext {
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid #aaa; }
 
 input[type=range] {
   position: relative;

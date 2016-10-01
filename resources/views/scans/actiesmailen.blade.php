@@ -25,32 +25,25 @@
 
 	<!-- CC Form Input -->
 	<div class="form-group">
-		{!! Form::label('cc', 'Aan:') !!}
-		{!! Form::text('cc', 'mijnemail@adress.com', ['class' => 'form-control']) !!}
+		{!! Form::label('to', 'Aan:') !!}
+		{!! Form::text('to', $scan->beheerder->email, ['class' => 'form-control']) !!}
 	</div>
 
 
-	{!! Form::label('cc', 'BCC:') !!}
-	<textarea name="BCC:" id="" cols="30" rows="8">
-<Gerard de Groot>gerard@gmail.com,
-<Piet Janssen>piet@mee.nl,
-<Henk de Graaf>henk@bouwservice.nl,
-<Gerard de Groot>gerard@gmail.com,
-<Piet Janssen>piet@mee.nl,
-<Henk de Graaf>henk@bouwservice.nl,
-<Gerard de Groot>gerard@gmail.com,
-<Piet Janssen>piet@mee.nl,
-<Henk de Graaf>henk@bouwservice.nl,
+	{!! Form::label('cc', 'CC:') !!}
+	<textarea name="CC:" id="" cols="30" rows="8">
+@foreach($scan->participants as $participant)<{{$participant->name_first}} {{$participant->name_last}}>{{$participant->email}},
+@endforeach
 	</textarea>
 
 	<!-- Email tekst Form Input -->
 	<div class="form-group">
 		{!! Form::label('mail_intro', 'Email tekst:') !!}
-		{!! Form::textarea('mail_intro', $emailtext, ['class' => 'form-control email_naar_participant', 'rows' => '9']) !!}
+		{!! Form::textarea('mail_intro', $emailtext, ['class' => 'form-control email_naar_participant']) !!}
 	</div>
-	<p>
+	<div class="verbeteractietext">
 		{!! $verbeteractietext !!}
-	</p>
+	</div>
 
 	<a href="{{ URL::route('scans.verbeteracties_bedankt', $scan) }}" class="button float-right">Verzend verbeteracties</a>
 </div>

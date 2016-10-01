@@ -1,4 +1,4 @@
-@extends('layouts.scan')
+@extends('layouts.scan', ['title' => 'thema ' . $thema_nr . ' resultaat'])
 
 @section('content')
 
