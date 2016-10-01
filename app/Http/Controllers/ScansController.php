@@ -366,9 +366,37 @@ Uw wachtwoord is: ' . $user->initial_pwd;
         // 
     }
 
-    public function actiesmailen(Scan $scan)
+    public function actiesmailen(Request $request, Scan $scan)
     {
-        return view ('scans.actiesmailen', compact('scan'));
+        // return $request->all();
+        $scan->datedeeltwee = $request->datedeeltwee;
+        $scan->timedeeltwee = $request->timedeeltwee;
+        $scan->save();
+        $emailtext = 'Beste <voornaam>,
+
+Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastgesteld. Deze vormen het huiswerk voor de door ons benoemde trekkers in samenwerking met anderen, ter voorbereiding op de, tweede en afrondende Werkagenda sessie. Daar zal het huiswerk worden besproken en worden definitieve verbeteracties afgesproken en op de gezamenlijke Werkagenda geplaatst. De trekkers gaan aan de slag met:';
+        $verbeteractietext = '';
+        foreach ($scan->scanmodel->themas as $thema) {
+            $verbeteractietext .= '<b>' . $thema->title . '</b><br>';
+            foreach($scan->verbeteracties as $verbeteractie){
+                if($verbeteractie->active && $verbeteractie->thema_id == $thema->id){
+                    $trekker = ' --- ';
+                    if($verbeteractie->user != null){
+                        $trekker = $verbeteractie->user->name_first . ' ' . $verbeteractie->user->name_last;
+                    }
+                    $verbeteractietext .= '<i>' . $verbeteractie->title . '</i><br>'  . 
+                    'Omschrijving: ' . $verbeteractie->omschrijving . '<br>'  . 
+                    'Initiatiefnemer: '  . $trekker . '<br>'  . 
+                    'Betrokkenen: ' .
+                    '<ul>';
+                    foreach($verbeteractie->betrokkenen as $betrokkene){
+                        $verbeteractietext .= '<li>' . $betrokkene->name_first . ' ' . $betrokkene->name_last . '</li>';
+                    }
+                    $verbeteractietext .= '</ul><br><br> ';
+                }
+            }
+        }
+        return view ('scans.actiesmailen', compact('scan', 'emailtext', 'verbeteractietext'));
     }
 
     public function verbeteracties_bedankt(Scan $scan)

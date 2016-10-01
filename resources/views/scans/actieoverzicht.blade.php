@@ -28,26 +28,30 @@
 </div>
 <div class="row page-content">
 
-	<div class="small-8 date__container">
-	   <label for="datepicker"><h4>
-        Plan een vervolgdatum voor het maken van de werkagenda. </h4></label>
-        <div class="small-6 columns">
-            <input id="datedeeleen" class="hidden" name="datedeeleen" type="text" placeholder="Choose a date">
-        </div>
-        <div class="small-6 columns">
-            <!-- Tijd Form Input -->
-            <div class="form-group">
-                <input id="timedeeleen" class="hidden" type="time" name="usr_time">
+    {!! Form::open(['route' => ['scans.actiesmailen', $scan->id]]) !!}
+        <div class="small-8 date__container">
+           <label for="datepicker"><h4>
+            Plan een vervolgdatum voor het maken van de werkagenda. </h4></label>
+            <div class="small-6 columns">
+                <input id="datedeeltwee" class="hidden" name="datedeeltwee" type="text" placeholder="Choose a date">
             </div>
+            <div class="small-6 columns">
+                <!-- Tijd Form Input -->
+                <div class="form-group">
+                    <input id="timedeeltwee" class="hidden" type="time" name="timedeeltwee">
+                </div>
+            </div>
+
         </div>
 
-	</div>
-
-	<div class="large-12 columns thema-submit-container">
-
-		<a class="button thema-submit" href="{{ URL::route('scans.actiesmailen', [$scan]) }}">Verbeteracties Mailen</a><br>
-				
-	</div>	
+        <div class="large-12 columns thema-submit-container">
+            <!-- Add Submit Field -->
+            <div class="form-group">
+                {!! Form::submit('Verbeteracties Mailen', ['class' => 'button form-control']) !!}
+            </div>
+            {{-- <a class="button thema-submit" href="{{ URL::route('scans.actiesmailen', [$scan]) }}">Verbeteracties Mailen</a><br> --}}
+        </div>  
+    {!! Form::close() !!}
 
 </div>
 @stop
@@ -60,8 +64,11 @@
     <script>
       $(function() {
         // Enable Pickadate on an input field
-        $('#timedeeleen').pickatime();
-        $('#datedeeleen').pickadate({
+        $('#timedeeltwee').pickatime({
+            formatSubmit: 'HH:i',
+            hiddenName: true
+        });
+        $('#datedeeltwee').pickadate({
             monthsFull: [ 'januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december' ],
             monthsShort: [ 'jan', 'feb', 'maa', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec' ],
             weekdaysFull: [ 'zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag' ],

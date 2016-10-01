@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Verbeteractie extends Model
 {
     protected $fillable = [
+        'title',
     	'omschrijving',
     	'user_id',
+        'question_id',
     	'thema_id',
-    	'scan_id',
+    	'scan_id'
     ];
 
     public function question()
@@ -23,19 +25,24 @@ class Verbeteractie extends Model
     	return $this->belongsTo('App\Scan');
     }
 
-    public function betrokkenen()
+    public function user()
     {
-    	return $this->belongsToMany('App\User');
+        return $this->belongsTo('App\User');
     }
 
-    public function trekker()
+    public function betrokkenen()
     {
-    	return $this->belongsTo('App\User');
+        return $this->belongsToMany('App\User');
     }
 
     public function thema()
     {
         return $this->belongsTo('App\Thema');
+    }
+
+    public function subacties()
+    {
+        return $this->hasMany('App\Subactie');
     }
 
 }

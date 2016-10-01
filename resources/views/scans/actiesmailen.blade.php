@@ -46,29 +46,11 @@
 	<!-- Email tekst Form Input -->
 	<div class="form-group">
 		{!! Form::label('mail_intro', 'Email tekst:') !!}
-		<?php 
-			$emailtext = "Beste <voornaam>,
-
-Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastgesteld. Deze vormen het huiswerk voor de door ons benoemde trekkers in samenwerking met anderen, ter voorbereiding op de, tweede en afrondende Werkagenda sessie. Daar zal het huiswerk worden besproken en worden definitieve verbeteracties afgesproken en op de gezamenlijke Werkagenda geplaatst. De trekkers gaan aan de slag met:
-
-Focus op werk en talent
-1. Werkend leren 
-   - Te quo fabulas impedit laboramus. Est sententiae reprimique ne.
-   - Trekker: Irene deLouvre
-   - Betrokkenen: Piet Klaas, Olivia Komreij, Douwe Benthulip
-
-2. etc...
-
-Datum volgende bijeenkomst: 16 October 2016
-
-Met vriendelijke groeten,
-
-Karel Janssen
-VSO School
- ";
-		?>
-		{!! Form::textarea('mail_intro', $emailtext, ['class' => 'form-control email_naar_participant', 'rows' => '18']) !!}
+		{!! Form::textarea('mail_intro', $emailtext, ['class' => 'form-control email_naar_participant', 'rows' => '9']) !!}
 	</div>
+	<p>
+		{!! $verbeteractietext !!}
+	</p>
 
 	<a href="{{ URL::route('scans.verbeteracties_bedankt', $scan) }}" class="button float-right">Verzend verbeteracties</a>
 </div>

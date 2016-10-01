@@ -22,6 +22,7 @@ class CreateScansTable extends Migration
             $table->date('datedeeleen');
             $table->boolean('deeltwee')->default(true);
             $table->date('datedeeltwee');
+            $table->time('timedeeltwee');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('scanmodel_id')->unsigned();
