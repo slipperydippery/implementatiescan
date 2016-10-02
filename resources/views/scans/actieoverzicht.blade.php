@@ -28,7 +28,7 @@
 </div>
 <div class="row page-content">
 
-    {!! Form::open(['route' => ['scans.actiesmailen', $scan->id]]) !!}
+    {!! Form::open(['route' => ['scans.actiesbevesitigen', $scan->id]]) !!}
         <div class="small-8 date__container">
            <label for="datepicker"><h4>
             Plan een vervolgdatum voor het maken van de werkagenda. </h4></label>

@@ -366,13 +366,19 @@ Uw wachtwoord is: ' . $user->initial_pwd;
         // 
     }
 
-    public function actiesmailen(Request $request, Scan $scan)
+    public function actiesbevesitigen(Request $request, Scan $scan)
     {
         // return $request->all();
         $scan->datedeeltwee = $request->datedeeltwee;
         $scan->timedeeltwee = $request->timedeeltwee;
         $scan->save();
+        return Redirect::route('scans.actiesmailen', $scan);
+    }
+
+    public function actiesmailen(Request $request, Scan $scan)
+    {
         $emailtext = 'Beste <voornaam>,
+
 
 Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastgesteld. Deze vormen het huiswerk voor de door ons benoemde trekkers in samenwerking met anderen, ter voorbereiding op de, tweede en afrondende Werkagenda sessie. Daar zal het huiswerk worden besproken en worden definitieve verbeteracties afgesproken en op de gezamenlijke Werkagenda geplaatst. De trekkers gaan aan de slag met:';
         $verbeteractietext = '';

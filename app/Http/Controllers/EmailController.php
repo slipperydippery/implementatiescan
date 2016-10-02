@@ -57,5 +57,36 @@ Uw wachtwoord is: ' . $user->initial_pwd;
     	}
     	return $request->all();
     }
+
+    public function verzendacties(Request $request, Scan $scan)
+    {
+        // return $request;
+        // return 'verzending it';
+        $user = $scan->beheerder;
+        $title = '';
+        $content = $request->mail_intro . ' <br><br> ' . $request->verbeteractietext;
+        $cc_recipients = [];
+        foreach($request->recipients as $recipient){
+            $recipient = User::findOrFail($recipient);
+              // $ua = [];
+              // $ua['email'] = $ccadress;
+              // $ua['name'] = $ccname;
+              // $users[$key] = (object)$ua;
+              $cc_recipients[] = $recipient->email; 
+        }
+        // return $cc_recipients;
+
+        $data = ['title' => $title, 'content' => nl2br($content)];
+        Mail::send('emails.send', $data, function ($message) use ($user, $request, $cc_recipients)
+        {
+            $message->from('no-reply@implementatiescan.nl', 'Team Implementatiescan');
+            $message->to($user->email, $user->name_first . ' ' . $user->name_last);
+            // $message->bcc($participant->email, $participant->name_first . ' ' . $participant->name_last);
+            $message->subject('Uitnodiging Implementatiescan');
+            $message->replyTo($user->email, $user->name_first . ' ' . $user->name_last);
+
+            $message->cc($cc_recipients);
+        });
+    }
 }
 

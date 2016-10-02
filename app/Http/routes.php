@@ -124,7 +124,9 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::get('/scans/{scan}/actieoverzicht', ['as' => 'scans.actieoverzicht', 'uses' => 'ScansController@actieoverzicht']);
     Route::post('/scans/{scan}/actieoverzicht', ['as' => 'scans.post_verbeteracties', 'uses' => 'ScansController@post_verbeteracties']);
-    Route::post('/scans/{scan}/actiesmailen', ['as' => 'scans.actiesmailen', 'uses' => 'ScansController@actiesmailen']);
+    Route::post('/scans/{scan}/actiesbevesitigen', ['as' => 'scans.actiesbevesitigen', 'uses' => 'ScansController@actiesbevesitigen']);
+    Route::get('/scans/{scan}/actiesmailen', ['as' => 'scans.actiesmailen', 'uses' => 'ScansController@actiesmailen']);
+    Route::post('send/verzendacties/scan/{scan}', ['as' => 'email.verzendacties', 'uses' => 'EmailController@verzendacties']); 
     Route::get('scans/{scan}/verbeteracties_bedankt', ['as' => 'scans.verbeteracties_bedankt', 'uses' => 'ScansController@verbeteracties_bedankt']);
 
     Route::get('scans/{scan}/werkagenda', ['as' => 'scans.werkagenda', 'uses' => 'ScansController@werkagenda']);
