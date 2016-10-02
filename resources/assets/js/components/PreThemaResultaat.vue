@@ -1,12 +1,15 @@
 <template>
 	<div class="small-12 center">
 		<a :href="themaURL" class="button answered" v-if="unanswered == 0">
-			Laat Resultaat Zien
+			Laat resultaat zien
 		</a>
 
 		<span class="unanswered" v-else>
 			Dank u voor uw antwoorden. <br>
-			We wachten nog op {{ unanswered }} overige deelnemer<span v-if="unanswered > 1">s</span> voor het tonen van de resultaten.
+			We wachten nog op {{ unanswered }} overige deelnemer<span v-if="unanswered > 1">s</span> voor het tonen van de resultaten. <br>
+			<a :href="themaURL" class="button answered">
+				Laat resultaat alsnog zien
+			</a>
 
 		</span>
 	</div>

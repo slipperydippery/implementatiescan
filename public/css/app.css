@@ -3762,7 +3762,7 @@ main {
     vertical-align: text-bottom; }
   .top_bar span.edituser {
     color: #fff;
-    line-height: 1.5rem;
+    line-height: 1.9rem;
     padding: 0 .5rem;
     font-size: 1.2rem; }
   .top_bar .edit_user_reset {
@@ -4298,6 +4298,9 @@ main {
     height: 1.5rem;
     width: auto;
     margin-top: -.5rem; }
+
+.textual_table__bordered {
+  border: 1px solid #333; }
 
 .textual_table--row:nth-of-type(2) {
   background: rgba(0, 0, 0, 0.2); }

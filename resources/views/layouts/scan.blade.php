@@ -22,8 +22,8 @@
 						<div class="top_bar--box float-left">
 							<div class="navbarleft__hamburger" data-toggle="offCanvas"></div>
 						</div>
-
 		  				@include('layouts.partials.edituser')
+						@include('layouts.partials.beheerdeelnemers')
 					</div>
 
 					<div class="content-group">

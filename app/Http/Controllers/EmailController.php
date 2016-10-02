@@ -87,6 +87,8 @@ Uw wachtwoord is: ' . $user->initial_pwd;
 
             $message->cc($cc_recipients);
         });
+
+        
     }
 }
 

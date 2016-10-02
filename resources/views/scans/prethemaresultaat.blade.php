@@ -4,7 +4,7 @@
 <div class="page-heading--container">
 	<div class="row page-heading">
 		<div class="large-12 ">
-			<h1>Thema {{ $thema_nr }} : resultaat</h1>
+			<h1>Thema {{ $thema_nr }}: resultaat</h1>
 			<h2> {{ $thema->title }} </h2>
 			<fieldset class="fieldset large-8">
 	  			<p class="subheading subheading__time">

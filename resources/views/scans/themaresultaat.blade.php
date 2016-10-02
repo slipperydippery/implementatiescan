@@ -4,7 +4,7 @@
 <div class="page-heading--container">
 	<div class="row page-heading align-bottom">
 		<div class="large-12 ">
-			<h1>Thema {{ $thema_nr }} : resultaat</h1>
+			<h1>Thema {{ $thema_nr }}: resultaat</h1> 
 			<h2> {{ $thema->title }} </h2>
 			<fieldset class="fieldset large-8 column">
 	  			<p class="subheading subheading__time">
@@ -66,10 +66,12 @@
 	($answercount > 0) ? $average = $value / $answercount : $average = 0;
 
 ?>
-								<div class="rangeresult" >
-									<div class="rangeresult__value" style="width: <?= $average * 10 ?>%">
+								@if($answercount >0)
+									<div class="rangeresult" >
+										<div class="rangeresult__value" style="width: <?= $average * 10 ?>%">
+										</div>
 									</div>
-								</div>
+								@endif
 
 							</div>
 						@endforeach

@@ -2,15 +2,16 @@
 
 
 	<div class="large-12 columns algemeenbeeldslider--group">
-		<span class="unanswered" v-if=" ! allComplete ">
+		<span class="unanswered" v-if=" ! (allComplete || showAnyway)">
 			Dank u voor uw antwoord. <br>
 			We wachten nog op het antwoord van {{ unanswered }} overige deelnemer<span v-if="unanswered > 1">s</span> voor het tonen van een algemeen beeld van de huidige gezamenlijke aanpak: <br>
 			<span v-for="name in whoUnanswered">
 					{{name}} <br>
 			</span>
+			<span class="button" @click="showAnyway = true">laat antwoord alsnog zien</span>
 		</span>
 		<span style="display:none"> {{ averageValue }} </span>
-		<div class="row sliders-sub slider-gemiddeld" v-if="allComplete">
+		<div class="row sliders-sub slider-gemiddeld" v-if="allComplete || showAnyway">
 			<div class="large-2 small-2 columns">
 				Gemiddeld 
 			</div>
@@ -29,7 +30,7 @@
 			v-for="instantie in instantiePartValues" 
 			:class="'slider-'+instantie.id" 
 			v-show="instantie.participants.length"
-			v-if="allComplete"
+			v-if="allComplete || showAnyway"
 		>
 			<div class="large-2 small-2 columns">
 				{{ instantie.title }} 
@@ -38,6 +39,7 @@
 				<div class="rangeresult" 
 					v-for="participant in instantie.participants" 
 					:participant="participant"
+					v-if="participant.abvalue.value != null"
 				>
 					<span style="position: absolute; top: -.65rem; left: -1.5rem">{{ participant.abvalue.value }}</span>
 					<div class="rangeresult__value" 
@@ -63,12 +65,14 @@
 			return {
 				instantiePartValues: [],
 				allComplete: false,
+				showAnyway: false,
 				unanswered: 12,
 				whoUnanswered: [],
 				// instanties: instanties,
 				scan: scan,
 				thema_id: thema_id,
 				participantcount: 12,
+				averageValue: 5,
 			};
 		},
 
@@ -109,14 +113,17 @@
 				var unanswered = 0;
 				var whoUnanswered = [];
 				var userIDs = [];
+				// for each instantie
 				for (var insts in this.instantiePartValues)
 				{
+					//check all participants in the instantie
 					for (var parts in this.instantiePartValues[insts].participants)
 					{
+						//if the participant has not been chekced yet (and the participant result is not null)
 						if(!userIDs.includes(this.instantiePartValues[insts].participants[parts].id)){
-							participantcount++;
 							userIDs.push(this.instantiePartValues[insts].participants[parts].id);
 							if (this.instantiePartValues[insts].participants[parts].abvalue != null) {
+								participantcount++;
 								totalValue += this.instantiePartValues[insts].participants[parts].abvalue.value;
 							} else {
 								unanswered++;
@@ -136,7 +143,10 @@
 					this.whoUnanswered = whoUnanswered;
 					this.allComplete = false;
 					this.participantcount = participantcount;
-					return 50;
+					if(participantcount > 0){
+						return Math.round((totalValue * 10) / participantcount)/10;
+					}
+					return 5;
 				}
 				this.allComplete = true;
 				return Math.round((totalValue * 10) / participantcount)/10;

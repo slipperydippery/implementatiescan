@@ -189,12 +189,16 @@ Uw wachtwoord is: ' . $user->initial_pwd;
         $themasaverage = [];
         foreach($thema->questions as $question)
         {
+            $participantcount = 0;
             $thisaverage = 0;
             foreach($scan->participants as $participant)
             {
-                $thisaverage += $participant->answers->intersect($question->answers)->first()->value;
+                if(count($participant->answers->intersect($question->answers))){
+                    $thisaverage += $participant->answers->intersect($question->answers)->first()->value;
+                    $participantcount ++;
+                }
             }
-            $thisaverage = $thisaverage / count($scan->participants);
+            $thisaverage = $thisaverage / $participantcount;
             $themasaverage[$question->id] = $thisaverage;
         }
         return view ('scans.themaresultaat', compact('scan', 'thema', 'thema_nr', 'themasaverage'));
