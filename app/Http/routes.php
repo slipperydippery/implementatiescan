@@ -61,6 +61,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/api/scan/{scan}/thema/{thema}/getParticipantABValues', 'ApiController@getParticipantABValues');
     Route::get('/api/scan/{scan}/thema/{thema}/getNrUnanswered', 'ApiController@getNrUnanswered');
     Route::get('/api/scan/{scan}/thema/{thema}/getNrIncomplete', 'ApiController@getNrIncomplete');
+    Route::get('/api/scan/{scan}/thema/{thema}/getWhoIncomplete', 'ApiController@getWhoIncomplete');
     Route::get('/api/scan/{scan}/participants', 'ApiController@participants');
 
 

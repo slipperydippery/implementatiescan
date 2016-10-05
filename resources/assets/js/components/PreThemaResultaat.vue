@@ -6,7 +6,11 @@
 
 		<span class="unanswered" v-else>
 			Dank u voor uw antwoorden. <br>
-			We wachten nog op {{ unanswered }} overige deelnemer<span v-if="unanswered > 1">s</span> voor het tonen van de resultaten. <br>
+			We wachten nog op {{ unanswered }} overige deelnemer<span v-if="unanswered > 1">s</span> voor het tonen van de resultaten: <br><br>
+			<span v-for="name in whoUnanswered">
+					{{name}} 
+			</span>
+			<br>
 			<a :href="themaURL" class="button answered">
 				Laat resultaat alsnog zien
 			</a>
@@ -31,6 +35,7 @@
 				themaResultaat: [],
 				allComplete: false,
 				unanswered: 12,
+				whoUnanswered: [],
 				scan: scan,
 				thema_id: thema_id,
 				thema_nr: thema_nr,
@@ -42,6 +47,7 @@
 			this.getNrIncomplete();
 			setInterval(function () {
 				this.getNrIncomplete();
+				this.getWhoIncomplete();
 			}.bind(this), 1000);
 		},
 
@@ -63,6 +69,12 @@
 				});
 			},
 
+			getWhoIncomplete: function () {
+				this.$http.get('/api/scan/' + this.scan.id + '/thema/' + this.thema_id + '/getWhoIncomplete')
+				.then(response => {
+					this.whoUnanswered = response.data;
+				}) 
+			},
 
 			cssPercent: function (value) {
 				return value + '%';
@@ -80,6 +92,5 @@
 </script>
 
 
-<style lang="stylus">
-
+<style>
 </style>

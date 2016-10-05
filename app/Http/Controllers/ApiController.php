@@ -195,17 +195,32 @@ class ApiController extends Controller
             $themaComplete = true;
             foreach($thema->questions as $question)
             {
-                if(! count($participant->answers->intersect($question->answers)))
+                if($themaComplete == true && (! count($participant->answers->intersect($question->answers))))
                 {
                     $themaComplete = false;
+                    $unanswered++;                    
                 }
-            }
-            if ($themaComplete == false)
-            {
-                $unanswered ++;
             }
         }
         return $unanswered;
+    }
+
+    public function getWhoIncomplete(Scan $scan, Thema $thema)
+    {
+        $whoUnanswered = [];
+        foreach($scan->participants as $participant)
+        {
+            $themaComplete = true;
+            foreach($thema->questions as $question)
+            {
+                if($themaComplete == true && (! count($participant->answers->intersect($question->answers))))
+                {
+                    $themaComplete = false;
+                    $whoUnanswered[] = $participant->name_first . ' ' . $participant->name_last;
+                }
+            }
+        }
+        return $whoUnanswered;
     }
 
     public function participants(Scan $scan)

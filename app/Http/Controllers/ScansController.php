@@ -198,7 +198,11 @@ Uw wachtwoord is: ' . $user->initial_pwd;
                     $participantcount ++;
                 }
             }
-            $thisaverage = $thisaverage / $participantcount;
+            $thisaverage = 0;
+            if($participantcount > 0)
+            {
+                $thisaverage = $thisaverage / $participantcount;
+            }
             $themasaverage[$question->id] = $thisaverage;
         }
         return view ('scans.themaresultaat', compact('scan', 'thema', 'thema_nr', 'themasaverage'));

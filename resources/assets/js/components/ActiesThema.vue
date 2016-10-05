@@ -151,6 +151,6 @@
 </script>
 
 
-<style lang="stylus">
+<style>
 	
 </style>

@@ -1,14 +1,16 @@
-@extends('layouts.scan')
+@extends('layouts.scan', ['title' => 'Compleet'])
 
 @section('content')
-<div class="row page-heading">
-	<div class="large-12 ">
-		<h1>Bedankt!</h1>
-		<fieldset class="fieldset">
-  			<p class="subheading subheading__time">
-  				Op het centrale scherm kunt u gezamenlijk de verbeteracties kiezen. 
-  			</p>
-		</fieldset>
+<div class="page-heading--container">
+	<div class="row page-heading">
+		<div class="large-12 ">
+			<h1>Bedankt!</h1>
+			<fieldset class="fieldset">
+	  			<p class="subheading subheading__time">
+	  				Op het centrale scherm kunt u gezamenlijk de verbeteracties kiezen. 
+	  			</p>
+			</fieldset>
+		</div>
 	</div>
 </div>
 
@@ -22,8 +24,6 @@
 		</a>
 	</div>
 </div>
-
-@section('additional-scripts')
 
 
 @stop

@@ -76,7 +76,7 @@
 </script>
 
 
-<style lang="stylus">
+<style>
 
 .searchfilter {
 	text-align: right;

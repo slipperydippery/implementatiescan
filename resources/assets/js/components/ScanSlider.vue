@@ -4,7 +4,7 @@
 	<div class="large-12 columns algemeenbeeldslider--group">
 		<span class="unanswered" v-if=" ! (allComplete || showAnyway)">
 			Dank u voor uw antwoord. <br>
-			We wachten nog op het antwoord van {{ unanswered }} overige deelnemer<span v-if="unanswered > 1">s</span> voor het tonen van een algemeen beeld van de huidige gezamenlijke aanpak: <br>
+			We wachten nog op het antwoord van {{ unanswered }} overige deelnemer<span v-if="unanswered > 1">s</span> voor het tonen van een algemeen beeld van de huidige gezamenlijke aanpak: <br><br>
 			<span v-for="name in whoUnanswered">
 					{{name}} <br>
 			</span>
@@ -157,7 +157,7 @@
 </script>
 
 
-<style lang="stylus">
+<style>
 	.rangeresult {
 		position: relative;
 		display: block;

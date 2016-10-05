@@ -239,7 +239,7 @@
 </script>
 
 
-<style lang="stylus">
+<style>
 	.actie_removebetrokkene {
 		font-size: 2rem;
 		line-height: 1.5rem;
