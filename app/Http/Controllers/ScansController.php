@@ -390,8 +390,11 @@ Uw wachtwoord is: ' . $user->initial_pwd;
 
 Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastgesteld. Deze vormen het huiswerk voor de door ons benoemde trekkers in samenwerking met anderen, ter voorbereiding op de, tweede en afrondende Werkagenda sessie. Daar zal het huiswerk worden besproken en worden definitieve verbeteracties afgesproken en op de gezamenlijke Werkagenda geplaatst. De trekkers gaan aan de slag met:';
         $verbeteractietext = '';
+        $thema_nr = 0;
         foreach ($scan->scanmodel->themas as $thema) {
+            $thema_nr++;
             $verbeteractietext .= '<b>' . $thema->title . '</b><br>';
+            $verbeteractietext .= '<a href="http://www.implementatiescan.nl/scans/' . $scan->id . '/thema/' . $thema->id . '/' . $thema_nr . '/themaresultaat">bekijk resultaten</a><br>'; 
             foreach($scan->verbeteracties as $verbeteractie){
                 if($verbeteractie->active && $verbeteractie->thema_id == $thema->id){
                     $trekker = ' --- ';

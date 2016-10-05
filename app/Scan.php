@@ -17,6 +17,11 @@ class Scan extends Model
     	'scanmodel_id',
         'value',
         'datedeeleen',
+        'timedeeleen',
+        'deeleencomplete',
+        'datedeeltwee',
+        'timedeeltwee',
+        'deeltweecomplete',
     ];
     
     protected $dates = ['deleted_at'];

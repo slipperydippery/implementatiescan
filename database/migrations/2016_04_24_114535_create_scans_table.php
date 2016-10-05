@@ -19,10 +19,13 @@ class CreateScansTable extends Migration
             $table->string('regio');
             $table->boolean('locked')->default(false);
             $table->boolean('deeleen')->default(true);
+            $table->boolean('deeleencomplete')->default(false);
             $table->date('datedeeleen');
+            $table->time('timedeeleen');
             $table->boolean('deeltwee')->default(true);
             $table->date('datedeeltwee');
             $table->time('timedeeltwee');
+            $table->boolean('deeltweecomplete')->default(false);
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('scanmodel_id')->unsigned();
