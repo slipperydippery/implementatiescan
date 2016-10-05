@@ -30,7 +30,7 @@ class VideosTableSeeder extends Seeder
                 'blurbtitle' => 'A box of introtext',
                 'blurb' => 'lorem ipsum...',
                 'adress' => '0X6ksSfV51Y',
-                'download' => '1focusopwerk.avi',
+                'download' => 'noreason.mp3',
             ],
             [
                 'id' => '3',
@@ -39,7 +39,7 @@ class VideosTableSeeder extends Seeder
                 'blurbtitle' => 'A box of introtext',
                 'blurb' => 'lorem ipsum...',
                 'adress' => '3ONKjef81wk',
-                'download' => '2kwaliteitbegeleiding.avi',
+                'download' => 'noreason.mp3',
             ],
             [
                 'id' => '4',
@@ -48,7 +48,7 @@ class VideosTableSeeder extends Seeder
                 'blurbtitle' => 'A box of introtext',
                 'blurb' => 'lorem ipsum...',
                 'adress' => 'oL0zlTyQzig',
-                'download' => '3efficientesamenwerking.avi',
+                'download' => 'noreason.mp3',
             ],
         ];
 
