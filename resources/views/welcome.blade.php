@@ -115,6 +115,22 @@
 
 </div>
 
+@if(Auth::check())
+	@if(count(Auth::user()->beheert->first()))
+	<?php
+		$beheerscan = Auth::user()->beheert->first();
+	?>
+	<div class="row page-content">
+		<div class="small-4 colums">
+			<h4>download videos:</h4>
+			@foreach($beheerscan->scanmodel->themas as $thema )
+				<a href="http://www.implementatiescan.nl/video/{{ $thema->video->download }}"> {{ $thema->video->title }} </a><br>
+			@endforeach
+		</div>
+	</div>
+	@endif
+@endif
+
 
 
 @stop

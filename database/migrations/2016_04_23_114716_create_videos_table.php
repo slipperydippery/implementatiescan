@@ -19,6 +19,7 @@ class CreateVideosTable extends Migration
             $table->string('blurbtitle');
             $table->text('blurb');
             $table->string('adress');
+            $table->string('download');
             $table->timestamps();
         });
     }
