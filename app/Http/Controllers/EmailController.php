@@ -44,10 +44,10 @@ class EmailController extends Controller
             $participant = User::findOrFail($recipient);
             $content = $request->body . '
 
-Uw gebruikersnaam is: ' . $user->email;
-            if($user->password == Hash::make($user->initial_pwd)){
-            $content .= '
-Uw wachtwoord is: ' . $user->initial_pwd;
+Uw gebruikersnaam is: ' . $participant->email;
+            if (Hash::check($participant->initial_pwd, $participant->password)){
+                $content .= '
+Uw wachtwoord is: ' . $participant->initial_pwd;
             }
             $data = ['title' => $title, 'content' => nl2br($content)];
     		Mail::send('emails.send', $data, function ($message) use ($user, $participant, $request)

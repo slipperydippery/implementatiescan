@@ -18,7 +18,6 @@
 		?>
 	@endif
 @section('content')
-
 <div class="row page-heading">
 	<div class="small-9 columns">
 		<div class="row">
