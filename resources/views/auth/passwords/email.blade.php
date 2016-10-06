@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="row page-heading">
-    <div class="large-12 ">
+    <div class="small-12 ">
         <h1>Reset Wachtwoord</h1>
-        <fieldset class="fieldset large-8">
+        <fieldset class="fieldset small-8">
         <legend>Wachtwoord vergeten?</legend>
             <p >
                 Bent u uw wachtwoord vergeten? Hier kunt u uw wachtwoord resettten. Vul hieronder uw email adress in, en u krijgt een mail toegestuurd met daarin een link om zelf een nieuw wachtwoord in te stellen.
@@ -14,7 +14,7 @@
 </div>
 
 <div class="row page-content loginform">
-    <div class = "large-4">
+    <div class = "small-4">
         <h2>Reset Password</h2>
         @if (session('status'))
             <div class="alert alert-success">
