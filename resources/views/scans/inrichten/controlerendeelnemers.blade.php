@@ -28,6 +28,18 @@
 		</div>
 		<div class="row">
 			<div class="large-12 columns">
+			@if ($errors->any())
+				<div class="alert callout" data-closable>
+					<ul>
+						@foreach ($errors->all() as $error)
+							<li>{{ $error }} </li>
+						@endforeach
+					</ul>
+					<button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+					    <span aria-hidden="true">&times;</span>
+					  </button>
+				</div>
+			@endif
 				<controleren-deelnemers></controleren-deelnemers>
 
 					@if(count(Auth::user()->beheert->intersect([$scan])))
@@ -66,6 +78,7 @@
 									    {!! Form::submit('Voeg toe', ['class' => 'button form-control']) !!}
 									</div>
 								{!! Form::close() !!}
+
 								<button class="close-button" data-close aria-label="Close reveal" type="button">
 								    <span aria-hidden="true">&times;</span>
 								 </button>

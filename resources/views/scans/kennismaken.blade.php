@@ -20,6 +20,18 @@
 	
 	<div class="large-12 columns submitted-users">
 		<h4>Aan deze scan doen mee: </h4>
+			@if ($errors->any())
+				<div class="alert callout" data-closable>
+					<ul>
+						@foreach ($errors->all() as $error)
+							<li>{{ $error }} </li>
+						@endforeach
+					</ul>
+					<button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+					    <span aria-hidden="true">&times;</span>
+					  </button>
+				</div>
+			@endif
 
 				<controleren-deelnemers></controleren-deelnemers>
 				

@@ -537,7 +537,7 @@ Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastges
         return view ('scans.inrichten.uitnodigendeelnemers', compact('scan'));
     }
 
-    public function addparticipant(Request $request, Scan $scan)
+    public function addparticipant(Requests\CreateParticipantRequest $request, Scan $scan)
     {
         if (! User::where('email', '=', $request->email)->get()->count())
         {

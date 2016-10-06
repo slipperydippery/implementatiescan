@@ -167,7 +167,7 @@ $sidetext_thickness : 15rem;
 #content {
 	position: relative;
 	margin: 0 auto;
-	padding-bottom: 11rem;
+	padding-bottom: 6rem;
 	width: 100%;
 }
 
@@ -200,6 +200,15 @@ $sidetext_thickness : 15rem;
 			height: 2.5rem;
 			margin-top: .7rem;
 		}
+	}
+}
+
+.site-footer--home {
+	position: absolute;
+	bottom: 0;
+	.powered {
+		padding: 0 1rem;
+		font-style: italic;
 	}
 }
 

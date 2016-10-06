@@ -133,4 +133,11 @@
 
 
 
+	<div class="site-footer site-footer--home">
+		<div class="row">
+			<div class="small-12 columns text-center">
+				<span class="powered"><a href="https://www.lecso.nl/">'powered by lecso'</a> - <a href="http://www.ecorys.nl/">reseach bij ecorys</a> - <a href="http://embav.nl/">development & communicatie emb av</a></span>
+			</div>
+		</div>
+	</div>
 @stop
