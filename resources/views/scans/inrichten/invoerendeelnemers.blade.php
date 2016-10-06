@@ -44,11 +44,5 @@
 @stop
 
 @section('site-footer')
-<div class="row ">
-	<div class="large-4 columns page-next">	
-		<a href="{{ URL::route('scans.controlerendeelnemers', $scan) }}" class="button button-next">Volgende Stap</a>
-	</div>
-</div>
-
 
 @stop

@@ -12302,6 +12302,19 @@ exports.default = {
 	},
 
 	methods: {
+		alert: function (_alert) {
+			function alert(_x) {
+				return _alert.apply(this, arguments);
+			}
+
+			alert.toString = function () {
+				return _alert.toString();
+			};
+
+			return alert;
+		}(function (event) {
+			alert('Sla eerst uw bewerking op voordat u de pagina verlaat.');
+		}),
 
 		getParticipants: function getParticipants() {
 			var _this = this;
@@ -12336,7 +12349,7 @@ exports.default = {
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div v-for=\"instantie in participants\">\n\n\t\t<single-deelnemer v-for=\"participant in instantie.participants\" :participant=\"participant\" :editable.sync=\"editable\" :instantie=\"instantie\" :availableinstanties=\"availableinstanties\" :class=\"'instantie-' + instantie.modelid\" v-if=\"participant.beheerder\">\n\t\t</single-deelnemer>\n\n\t</div>\n\t<div v-for=\"instantie in participants\">\n\n\t\t<single-deelnemer v-for=\"participant in instantie.participants\" :participant=\"participant\" :editable.sync=\"editable\" :instantie=\"instantie\" :availableinstanties=\"availableinstanties\" :class=\"'instantie-' + instantie.modelid\" v-if=\"!participant.beheerder\">\n\t\t</single-deelnemer>\n\n\t</div>\t\n\n\t<add-single-deelnemer :editable.sync=\"editable\" :availableinstanties=\"availableinstanties\">\n\t</add-single-deelnemer>\n\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div v-for=\"instantie in participants\">\n\n\t\t<single-deelnemer v-for=\"participant in instantie.participants\" :participant=\"participant\" :editable.sync=\"editable\" :instantie=\"instantie\" :availableinstanties=\"availableinstanties\" :class=\"'instantie-' + instantie.modelid\" v-if=\"participant.beheerder\">\n\t\t</single-deelnemer>\n\n\t</div>\n\t<div v-for=\"instantie in participants\">\n\n\t\t<single-deelnemer v-for=\"participant in instantie.participants\" :participant=\"participant\" :editable.sync=\"editable\" :instantie=\"instantie\" :availableinstanties=\"availableinstanties\" :class=\"'instantie-' + instantie.modelid\" v-if=\"!participant.beheerder\">\n\t\t</single-deelnemer>\n\n\t</div>\t\n\n\t<add-single-deelnemer :editable.sync=\"editable\" :availableinstanties=\"availableinstanties\">\n\t</add-single-deelnemer>\n\n\t<div class=\"row\">\n\t\t<div class=\"small-4 columns page-next\" v-if=\"(editable.id == null)\">\n\t\t\t<a href=\"{{returnRoot}}/scans/{{scan.id}}/inrichten/controlerendeelnemers\" class=\"button button-next\">Volgende Stap</a>\n\t\t</div>\n\t\t<div class=\"small-4 columns page-next\" v-else=\"\">\n\t\t\t<a href=\"#\" class=\"button button-next has-tip\" aria-haspopup=\"true\" data-disable-hover=\"false\" tabindex=\"1\" title=\"Maak eerst uw bewerkingen af!\" @click=\"alert\">\n\t\t\t\tVolgende Stap\n\t\t\t</a>\n\t\t</div>\n\t</div>\n\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

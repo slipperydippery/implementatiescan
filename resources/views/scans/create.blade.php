@@ -18,6 +18,18 @@
 <div class="row page-content">
 	
 	<div class="large-8 columns submitted-users">
+  @if ($errors->any())
+    <div class="alert callout" data-closable>
+      <ul>
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }} </li>
+        @endforeach
+      </ul>
+      <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+  @endif
 	
 		{!! Form::open(['route' => 'scans.store']) !!}
 			@include('scans.partials.form', ['submittext' => 'Maak scan aan'])

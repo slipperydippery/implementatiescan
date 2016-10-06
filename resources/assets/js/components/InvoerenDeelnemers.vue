@@ -38,6 +38,23 @@
 	>
 	</add-single-deelnemer>
 
+	<div class="row">
+		<div class="small-4 columns page-next" v-if="(editable.id == null)">
+			<a href="{{returnRoot}}/scans/{{scan.id}}/inrichten/controlerendeelnemers" class="button button-next">Volgende Stap</a>
+		</div>
+		<div class="small-4 columns page-next" v-else>
+			<a href="#" 
+				class="button button-next has-tip"
+				aria-haspopup="true" 
+				data-disable-hover="false" 
+				tabindex="1" title="Maak eerst uw bewerkingen af!"
+				@click="alert"
+			>
+				Volgende Stap
+			</a>
+		</div>
+	</div>
+
 </template>
 
 <script>
@@ -73,6 +90,9 @@
 		},
 
 		methods: {
+			alert: function (event) {
+				alert('Sla eerst uw bewerking op voordat u de pagina verlaat.');
+			},
 
 			getParticipants: function () {
 			    this.$http.get('/api/scan/' + this.scan.id + '/participants')
