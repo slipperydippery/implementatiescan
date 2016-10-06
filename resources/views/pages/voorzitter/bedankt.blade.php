@@ -7,7 +7,7 @@
 			<h1>Uw mail is verzonden </h1>
 			<fieldset class="fieldset">
 	  			<p class="subheading subheading__time">
-	  				Op dit moment krijgen alle deelenemrs de uitnodiging in hun mailbox.
+	  				Op dit moment krijgen alle deelnemers de uitnodiging in hun mailbox.
 	  			</p>
 			</fieldset>
 		</div>

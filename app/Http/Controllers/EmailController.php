@@ -93,7 +93,7 @@ Uw wachtwoord is: ' . $participant->initial_pwd;
             $message->cc($cc_recipients);
         });
 
-        
+        return view ('scans.verzonden');
     }
 }
 

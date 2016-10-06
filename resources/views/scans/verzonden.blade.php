@@ -1,13 +1,13 @@
-@extends('layouts.scan', ['title' => 'Uitnodiging Verzonden'])
+@extends('layouts.master', ['title' => 'Verbeteracties Verzonden'])
 
 @section('content')
 <div class="page-heading--container">
 	<div class="row page-heading">
 		<div class="large-12 ">
-			<h1>Uw mail is verzonden naar de deelnemers</h1>
+			<h1>De verbeteracties zijn verzonden naar de deelnemers</h1>
 			<fieldset class="fieldset">
 	  			<p class="subheading subheading__time">
-	  				Op dit moment krijgen alle deelenemrs de uitnodiging in hun mailbox.
+	  				De verbeteracties komen nu aan in de mailboxen. 
 	  			</p>
 			</fieldset>
 		</div>
