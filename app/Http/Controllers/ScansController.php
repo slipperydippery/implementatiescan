@@ -59,7 +59,7 @@ class ScansController extends Controller
         if (! User::where('email', '=', $request->beheerder_email)->get()->count())
         {
             $user = new User();
-            $user->initial_pwd = str_random(8);
+            $user->initial_pwd = 'password'; //str_random(8);
             $user->password = Hash::make($user->initial_pwd);
             $user->email = $request->beheerder_email;
             $user->name_first = $request->name_first;
