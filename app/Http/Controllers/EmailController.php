@@ -6,6 +6,7 @@ use App\Scan;
 use App\User;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -43,8 +44,11 @@ class EmailController extends Controller
             $participant = User::findOrFail($recipient);
             $content = $request->body . '
 
-Uw gebruikersnaam is: ' . $user->email . '
+Uw gebruikersnaam is: ' . $user->email;
+            if($user->password == Hash::make($user->initial_pwd)){
+            $content .= '
 Uw wachtwoord is: ' . $user->initial_pwd;
+            }
             $data = ['title' => $title, 'content' => nl2br($content)];
     		Mail::send('emails.send', $data, function ($message) use ($user, $participant, $request)
     		{

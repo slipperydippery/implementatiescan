@@ -3652,7 +3652,8 @@ main {
   bottom: 0; }
   .site-footer--home .powered {
     padding: 0 1rem;
-    font-style: italic; }
+    font-style: italic;
+    color: #22373e; }
 
 /**
  *  PAGES LAYOUT
