@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'reset wachtwoord'])
+@extends('layouts.master', ['title' => 'reset wachtwoord'])
 
 @section('content')
 <div class="container">
