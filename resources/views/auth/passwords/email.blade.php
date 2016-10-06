@@ -13,7 +13,7 @@
     </div>
 </div>
 
-<div class="row loginform">
+<div class="row page-content loginform">
     <div class = "large-4">
         <h2>Reset Password</h2>
         @if (session('status'))
