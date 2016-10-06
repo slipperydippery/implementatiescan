@@ -35,6 +35,7 @@ class EmailController extends Controller
 
     public function senduitnodiging(Request $request, Scan $scan)
     {
+        $scan = $scan;
         // return $request->all();
     	$user = $scan->beheerder;
     	$title = $request->subject;
@@ -59,7 +60,7 @@ Uw wachtwoord is: ' . $participant->initial_pwd;
                 $message->replyTo($user->email, $user->name_first . ' ' . $user->name_last);
     		});
     	}
-    	return $request->all();
+    	return view ('pages.voorzitter.bedankt', compact('scan'));
     }
 
     public function verzendacties(Request $request, Scan $scan)
