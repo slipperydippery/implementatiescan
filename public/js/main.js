@@ -11898,7 +11898,7 @@ exports.default = {
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"small-12 center\">\n\t\t<a :href=\"themaURL\" class=\"button answered\" v-if=\"unanswered == 0\">\n\t\t\tLaat resultaat zien\n\t\t</a>\n\n\t\t<span class=\"unanswered\" v-else=\"\">\n\t\t\tDank u voor uw antwoorden. <br>\n\t\t\tWe wachten nog op {{ unanswered }} overige deelnemer<span v-if=\"unanswered > 1\">s</span> voor het tonen van de resultaten: <br><br>\n\t\t\t<span v-for=\"name in whoUnanswered\">\n\t\t\t\t\t{{name}} \n\t\t\t</span>\n\t\t\t<br>\n\t\t\t<a :href=\"themaURL\" class=\"button answered\">\n\t\t\t\tLaat resultaat alsnog zien\n\t\t\t</a>\n\n\t\t</span>\n\t</div>\n\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"small-12 center\">\n\t\t<a :href=\"themaURL\" class=\"button answered\" v-if=\"unanswered == 0\">\n\t\t\tLaat resultaat zien\n\t\t</a>\n\n\t\t<span class=\"unanswered\" v-else=\"\">\n\t\t\tDank u voor uw antwoorden. <br>\n\t\t\tWe wachten nog op {{ unanswered }} overige deelnemer<span v-if=\"unanswered > 1\">s</span> voor het tonen van de resultaten: <br><br>\n\t\t\t<span v-for=\"name in whoUnanswered\">\n\t\t\t\t\t{{name}} <br>\n\t\t\t</span>\n\t\t\t<br>\n\t\t\t<a :href=\"themaURL\" class=\"button answered\">\n\t\t\t\tLaat resultaat alsnog zien\n\t\t\t</a>\n\n\t\t</span>\n\t</div>\n\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

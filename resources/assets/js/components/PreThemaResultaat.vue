@@ -8,7 +8,7 @@
 			Dank u voor uw antwoorden. <br>
 			We wachten nog op {{ unanswered }} overige deelnemer<span v-if="unanswered > 1">s</span> voor het tonen van de resultaten: <br><br>
 			<span v-for="name in whoUnanswered">
-					{{name}} 
+					{{name}} <br>
 			</span>
 			<br>
 			<a :href="themaURL" class="button answered">
