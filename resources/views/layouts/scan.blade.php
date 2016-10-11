@@ -22,10 +22,12 @@
 						<div class="top_bar--box float-left">
 							<div class="navbarleft__hamburger" data-toggle="offCanvas"></div>
 						</div>
-						@if(count(Auth::user()->beheert->intersect([$scan])))
+		  				@if(Auth::user())
 			  				@include('layouts.partials.edituser')
 		  				@endif
-						@include('layouts.partials.beheerdeelnemers')
+						@if(count(Auth::user()->beheert->intersect([$scan])))
+							@include('layouts.partials.beheerdeelnemers')
+		  				@endif
 					</div>
 
 					<div class="content-group">
