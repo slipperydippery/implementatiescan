@@ -31,7 +31,7 @@
 				 </div>
 				 @foreach($thema->questions as $question)	
 				 	<div class="large-2 small-2 columns slider-columnhead">
-				 		<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title=" {{ $question->norm }} "> {{ $question->title }} <i class="float-right">i</i></span> 
+				 		<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title=" {{ $question->norm }} "> {{ $question->title }} <i class="float-right iclass">i</i></span> 
 				 	</div>	
 				 @endforeach
 			</div>

@@ -387,36 +387,38 @@ Uw wachtwoord is: ' . $user->initial_pwd;
     {
         $emailtext = 'Beste <voornaam>,
 
+Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastgesteld. Deze vormen het huiswerk voor de door ons benoemde initiatiefnemers/trekkers in samenwerking met andere betrokkenen. Zij bereiden de tweede, afrondende Werkagenda sessie voor. Daar zal het huiswerk worden besproken en worden definitieve verbeteracties afgesproken en op de gezamenlijke Werkagenda geplaatst. De initiatiefnemers gaan aan de slag met:';
+        $verbeteractietext = 'Hieronder ziet u de resultaten en afspraken die voortvloeien uit de implementatiescan die u gezamenlijke heeft uitgevoerd. Klik op "Bekijk hier het resultaat van de implementatiescan voor dit thema" om het resultaat per thema te zien. <br><br>
+            U heeft afgesproken om op ' . $scan->datedeeltwee . ' om ' . $scan->timedeeltwee . ' verder te gaan met het samenstellen van de werkagenda. <br><br>
 
-Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastgesteld. Deze vormen het huiswerk voor de door ons benoemde trekkers in samenwerking met anderen, ter voorbereiding op de, tweede en afrondende Werkagenda sessie. Daar zal het huiswerk worden besproken en worden definitieve verbeteracties afgesproken en op de gezamenlijke Werkagenda geplaatst. De trekkers gaan aan de slag met:';
-        $verbeteractietext = '';
+' ;
         $thema_nr = 0;
         foreach ($scan->scanmodel->themas as $thema) {
             $thema_nr++;
-            $verbeteractietext .= '<b>' . $thema->title . '</b><br>';
-            $verbeteractietext .= '<a href="http://www.implementatiescan.nl/scans/' . $scan->id . '/thema/' . $thema->id . '/' . $thema_nr . '/themaresultaat">bekijk resultaten</a><br>'; 
+            $verbeteractietext .= '<b>Verbeteracties voor het thema: ' . $thema->title . '</b><br>';
+            $verbeteractietext .= '<a href="http://www.implementatiescan.nl/scans/' . $scan->id . '/thema/' . $thema->id . '/' . $thema_nr . '/themaresultaat">Bekijk hier het resultaat van de implementatiescan voor dit thema</a><br><br>'; 
             foreach($scan->verbeteracties as $verbeteractie){
                 if($verbeteractie->active && $verbeteractie->thema_id == $thema->id){
                     $trekker = ' --- ';
                     if($verbeteractie->user != null){
                         $trekker = $verbeteractie->user->name_first . ' ' . $verbeteractie->user->name_last;
                     }
-                    $verbeteractietext .= '<i>' . $verbeteractie->title . '</i><br>'  . 
-                    'Omschrijving: ' . $verbeteractie->omschrijving . '<br>'  . 
-                    'Initiatiefnemer: '  . $trekker . '<br>'  . 
-                    'Betrokkenen: ';
+                    $verbeteractietext .= 'Succesfactor: ' . $verbeteractie->title . '<br>'  . 
+                    '- Verbeteractie: ' . $verbeteractie->omschrijving . '<br>'  . 
+                    '- Initiatiefnemer: '  . $trekker . '<br>'  . 
+                    '- Betrokkenen: ';
                     if(count($verbeteractie->betrokkenen)){
-                        $verbeteractietext .= '<ul>';
                         foreach($verbeteractie->betrokkenen as $betrokkene){
-                            $verbeteractietext .= '<li>' . $betrokkene->name_first . ' ' . $betrokkene->name_last . '</li>';
+                            $verbeteractietext .=  $betrokkene->name_first . ' ' . $betrokkene->name_last . ', ';
                         }
-                        $verbeteractietext .= '</ul>';
                     } else {
                         $verbeteractietext .= ' --- <br>';
                     }
-                    $verbeteractietext .= '<br>';
+                    $verbeteractietext .= '<br><br>';
                 }
+            
             }
+            $verbeteractietext .= '<br>';
         }
         return view ('scans.actiesmailen', compact('scan', 'emailtext', 'verbeteractietext'));
     }
