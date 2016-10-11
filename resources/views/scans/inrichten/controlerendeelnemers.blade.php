@@ -71,6 +71,9 @@
 									    {!! Form::select('instantie', $instantieoptions, 'none', ['class' => 'form-control']) !!}
 									</div>
 
+									<!-- Hidden prescan Type Form Input -->
+									{!! Form::hidden('prescan', true, null) !!}
+
 									<!-- Add Submit Field -->
 									<div class="form-group">
 									    {!! Form::submit('Voeg toe', ['class' => 'button form-control']) !!}

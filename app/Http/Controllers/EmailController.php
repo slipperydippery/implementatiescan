@@ -103,5 +103,6 @@ Uw wachtwoord is: ' . $participant->initial_pwd;
 
         return view ('scans.verzonden');
     }
+
 }
 

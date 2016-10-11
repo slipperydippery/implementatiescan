@@ -539,6 +539,7 @@ Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastges
 
     public function addparticipant(Requests\CreateParticipantRequest $request, Scan $scan)
     {
+        // return $request->prescan;
         if (! User::where('email', '=', $request->email)->get()->count())
         {
             $user = new User($request->all());
@@ -551,9 +552,28 @@ Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastges
         $instantie = Instantie::findOrFail($request->instantie);
         $instantie->participants()->save($user);
 
-        /**
-         * Send email
-         */
+        $beheerder = $scan->beheerder;
+        $title = 'Meld een extra deelnemer aan';
+        $content = 'Tijdens de implementatiescan sessie maken we gebruik van www.implementatiescan.nl. 
+Als deelnemer logt u in met de volgende gegevens:
+
+Uw gebruikersnaam is: ' . $user->email;
+            if (Hash::check($user->initial_pwd, $user->password)){
+                $content .= '
+Uw wachtwoord is: ' . $user->initial_pwd;
+            }
+
+        if(! $request->prescan ) {
+            $data = ['title' => $title, 'content' => nl2br($content)];
+            Mail::send('emails.send', $data, function ($message) use ($user, $beheerder, $request)
+            {
+                $message->from('no-reply@implementatiescan.nl', 'Team Implementatiescan');
+                $message->to($user->email, $user->name_first . ' ' . $user->name_last);
+                // $message->bcc($participant->email, $participant->name_first . ' ' . $participant->name_last);
+                $message->subject('Uitnodiging Implementatiescan');
+                $message->replyTo($beheerder->email, $beheerder->name_first . ' ' . $beheerder->name_last);
+            });
+        }
 
         return Redirect::back(); 
 
