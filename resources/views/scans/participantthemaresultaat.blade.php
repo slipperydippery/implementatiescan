@@ -17,6 +17,7 @@
 </div>
 
 <div class="row page-content">
+	<span class="unanswered">Op het centrale scherm kunt u de gemeenschappelijke resultaten bekijken. </span>
 
 </div>
 @stop
