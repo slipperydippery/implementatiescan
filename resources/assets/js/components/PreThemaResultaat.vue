@@ -10,7 +10,6 @@
 			<span v-for="name in whoUnanswered">
 					{{name}} <br>
 			</span>
-			<br>
 			<a :href="themaURL" class="button answered">
 				Laat resultaat alsnog zien
 			</a>
