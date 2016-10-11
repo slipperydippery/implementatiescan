@@ -46,7 +46,7 @@
 				@if(!$logged)
 					<a href="{{ URL::route('voorzitter.scans') }}" 
 						role="button" 
-						class="title_button has-tip muted"
+						class="title_button has-tip"
 						aria-haspopup="true" 
 						data-disable-hover="false" 
 						tabindex="1" title="Log in om scans in te kunnen richten"
@@ -59,7 +59,7 @@
 				@else
 					<a href="#" 
 						role="button" 
-						class="title_button muted has-tip"
+						class="title_button has-tip"
 						aria-haspopup="true" 
 						data-disable-hover="false" 
 						tabindex="1" title="U heeft geen scans om in te richten"
@@ -76,7 +76,7 @@
 				@if(!$logged)
 					<a href="{{ URL::route('scans.start') }}" 
 						role="button" 
-						class="title_button muted has-tip"
+						class="title_button has-tip"
 						aria-haspopup="true" 
 						data-disable-hover="false" 
 						tabindex="1" title="Log in om deel te nemen aan een scan"
@@ -89,7 +89,7 @@
 				@else
 					<a href="#" 
 						role="button" 
-						class="title_button muted has-tip"
+						class="title_button has-tip"
 						aria-haspopup="true" 
 						data-disable-hover="false" 
 						tabindex="1" title="U heeft geen scans waar u aan kunt deelnemen"
@@ -119,12 +119,22 @@
 	<?php
 		$beheerscan = Auth::user()->beheert->first();
 	?>
-	<div class="row page-content">
-		<div class="small-4 colums">
-			<h4>download videos:</h4>
-			@foreach($beheerscan->scanmodel->themas as $thema )
-				<a href="http://www.implementatiescan.nl/video/{{ $thema->video->download }}"> {{ $thema->video->title }} </a><br>
-			@endforeach
+	<div class="row page-content triblock--container">	
+		<div class="small-9 columns">
+			<div class="row">
+				@foreach($beheerscan->scanmodel->themas as $thema )
+					<div class="small-4 columns triblock">
+						<a href="http://www.implementatiescan.nl/video/{{ $thema->video->download }}"
+							role="button"
+							class="title_button"
+						> 
+				    		<img src="{{asset('img/gearicon.png')}}">
+							<span class="">Download video </span>
+							{{ $thema->video->title }}
+						</a>
+					</div>
+				@endforeach
+			</div>
 		</div>
 	</div>
 	@endif

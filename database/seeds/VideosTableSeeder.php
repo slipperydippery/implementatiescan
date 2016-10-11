@@ -43,8 +43,8 @@ class VideosTableSeeder extends Seeder
             ],
             [
                 'id' => '4',
-                'title' => 'Efficente Samenwerking',
-                'subtitle' => 'Video voor thema 3: Efficente Samenwerking ',
+                'title' => 'Efficiente Samenwerking',
+                'subtitle' => 'Video voor thema 3: Efficiente Samenwerking ',
                 'blurbtitle' => 'A box of introtext',
                 'blurb' => 'lorem ipsum...',
                 'adress' => 'oL0zlTyQzig',

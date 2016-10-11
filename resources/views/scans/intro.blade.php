@@ -8,7 +8,7 @@
 			<h1>Introductiefilm</h1>
 			<fieldset class="fieldset large-8">
 				<p class=subheading>
-					Bekijk de introductiefilm over het maken van de implementatiescan.
+					Bekijk de introductiefilm over het uitvoeren van de implementatiescan.
 				</p>
 			</fieldset>
 		</div>

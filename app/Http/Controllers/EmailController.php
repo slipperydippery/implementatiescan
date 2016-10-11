@@ -43,8 +43,12 @@ class EmailController extends Controller
         foreach($request->recipients as $recipient)
         {
             $participant = User::findOrFail($recipient);
-            $content = $request->body . '
+            $content = 'Beste ' . $participant->name_first . ' ' . $participant->name_last . ',
 
+            ';
+            $content .= $request->body . '
+
+Tijdens de implementatiescan sessie maken we gebruik van www.implementatiescan.nl. U dient een tablet of laptop mee te nemen met toegang tot internet. U kunt inloggen met uw persoonlijke gegevens. Met deze gegevens kunt u ook alvast kijken hoe de scan werkt. Dit zijn uw inloggegevens:
 Uw gebruikersnaam is: ' . $participant->email;
             if (Hash::check($participant->initial_pwd, $participant->password)){
                 $content .= '
