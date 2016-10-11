@@ -48,7 +48,11 @@ class EmailController extends Controller
             ';
             $content .= $request->body . '
 
-Tijdens de implementatiescan sessie maken we gebruik van www.implementatiescan.nl. U dient een tablet of laptop mee te nemen met toegang tot internet. U kunt inloggen met uw persoonlijke gegevens. Met deze gegevens kunt u ook alvast kijken hoe de scan werkt. Dit zijn uw inloggegevens:
+Tijdens de implementatiescan sessie maken we gebruik van www.implementatiescan.nl. 
+U dient een tablet of laptop mee te nemen met toegang tot internet. 
+U kunt inloggen met uw persoonlijke gegevens. Met deze gegevens kunt u ook alvast 
+kijken hoe de scan werkt. Als deelnemer logt u in met de volgende gegevens:
+
 Uw gebruikersnaam is: ' . $participant->email;
             if (Hash::check($participant->initial_pwd, $participant->password)){
                 $content .= '
