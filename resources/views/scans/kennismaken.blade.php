@@ -19,6 +19,7 @@
 <div class="row page-content">
 	
 	<div class="large-12 columns submitted-users">
+
 		<h4>Aan deze scan doen mee: </h4>
 			@if ($errors->any())
 				<div class="alert callout" data-closable>
@@ -27,6 +28,14 @@
 							<li>{{ $error }} </li>
 						@endforeach
 					</ul>
+					<button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+					    <span aria-hidden="true">&times;</span>
+					  </button>
+				</div>
+			@endif
+			@if (session('createsuccess'))
+				<div class="success  callout" data-closable>
+					Er is een mail verstuurd met de inloggegevens! 
 					<button class="close-button" aria-label="Dismiss alert" type="button" data-close>
 					    <span aria-hidden="true">&times;</span>
 					  </button>

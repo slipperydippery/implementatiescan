@@ -8,8 +8,7 @@
 			<fieldset class="fieldset large-8">
 			<legend>Een weelde aan informatie</legend>
 	  			<p class="subheading subheading__time">
-	  				Hieronder vindt u informatie over de succesfactoren voor het begeleiden van jongeren met LVB naar werk. 
-	Kijk gerust rond tussen de praktijkvoorbeelden, tools/interventies en hyperlinks die inspirerend kunnen zijn om mee te nemen voor het verbeteren van de situatie in uw omgeving.
+	  				Hieronder vindt u informatie over de succesfactoren voor het begeleiden van jongeren met LVB naar werk. In deze kennisbank kunt u kiezen uit praktijkvoorbeelden, landelijke- regio programma's, en praktijkvoorbeelden die inspirerend kunnen zijn om jongeren met LVB aan een baan te helpen. U kunt willekeurig zoeken op trefwoord, of filteren op categorie en subcategorie. Wanneer u op een zoekresultaat klikt wordt u doorgelinkt naar de betreffende informatie. 
 	  			</p>
 			</fieldset>
 		</div>

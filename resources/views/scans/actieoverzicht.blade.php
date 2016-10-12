@@ -7,7 +7,7 @@
     		<h1>Gezamenlijke verbeteracties</h1>
     		<fieldset class="fieldset large-8 columns">
       			<p class="subheading subheading__time">
-      				Tijdens de Implementatiescan-sessie zijn de volgende verbeteracties geformuleerd. Tijdens de tweede Werkagenda bijeenkomst wordt, met voorbereidend werk door de trekkers e.a., een definitieve keuze gemaakt voor de (formulering van) de verbeteracties die op de Werkagenda komen. Deze acties (met ruimte voor sub acties) kunt u hier invullen.
+      				Tijdens de Implementatiescan-sessie zijn de volgende verbeteracties geformuleerd. Tijdens de tweede Werkagenda bijeenkomst wordt, met voorbereidend werk door de trekkers, een definitieve keuze gemaakt voor de (formulering van) de verbeteracties die op de Werkagenda moeten komen. Deze acties (met ruimte voor sub acties) kunt u hier invullen.
       			</p>
     		</fieldset>
             <div class="large-4 columns">

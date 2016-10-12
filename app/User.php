@@ -21,6 +21,7 @@ class User extends Authenticatable
         'confirmation_code',
         'name_first', 
         'name_last', 
+        'last_online',
     ];
 
     /**

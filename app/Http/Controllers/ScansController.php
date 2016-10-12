@@ -198,7 +198,7 @@ Uw wachtwoord is: ' . $user->initial_pwd;
                     $participantcount ++;
                 }
             }
-            $thisaverage = 0;
+            // $thisaverage = 0;
             if($participantcount > 0)
             {
                 $thisaverage = $thisaverage / $participantcount;
@@ -385,7 +385,7 @@ Uw wachtwoord is: ' . $user->initial_pwd;
 
     public function actiesmailen(Request $request, Scan $scan)
     {
-        $emailtext = 'Beste <voornaam>,
+        $emailtext = 'Beste deelnemers,
 
 Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastgesteld. Deze vormen het huiswerk voor de door ons benoemde initiatiefnemers/trekkers in samenwerking met andere betrokkenen. Zij bereiden de tweede, afrondende Werkagenda sessie voor. Daar zal het huiswerk worden besproken en worden definitieve verbeteracties afgesproken en op de gezamenlijke Werkagenda geplaatst. De initiatiefnemers gaan aan de slag met:';
         $verbeteractietext = 'Hieronder ziet u de resultaten en afspraken die voortvloeien uit de implementatiescan die u gezamenlijke heeft uitgevoerd. Klik op "Bekijk hier het resultaat van de implementatiescan voor dit thema" om het resultaat per thema te zien. <br><br>
@@ -396,14 +396,14 @@ Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastges
         foreach ($scan->scanmodel->themas as $thema) {
             $thema_nr++;
             $verbeteractietext .= '<b>Verbeteracties voor het thema: ' . $thema->title . '</b><br>';
-            $verbeteractietext .= '<a href="http://www.implementatiescan.nl/scans/' . $scan->id . '/thema/' . $thema->id . '/' . $thema_nr . '/themaresultaat">Bekijk hier het resultaat van de implementatiescan voor dit thema</a><br><br>'; 
+            $verbeteractietext .= '<a href="http://www.implementatiescan.nl/scans/' . $scan->id . '/thema/' . $thema->id . '/' . $thema_nr . '/themaresultaat">Bekijk hier het resultaat van de implementatiescan voor dit thema</a><br>'; 
             foreach($scan->verbeteracties as $verbeteractie){
                 if($verbeteractie->active && $verbeteractie->thema_id == $thema->id){
                     $trekker = ' --- ';
                     if($verbeteractie->user != null){
                         $trekker = $verbeteractie->user->name_first . ' ' . $verbeteractie->user->name_last;
                     }
-                    $verbeteractietext .= 'Succesfactor: ' . $verbeteractie->title . '<br>'  . 
+                    $verbeteractietext .= '<br>Succesfactor: ' . $verbeteractie->title . '<br>'  . 
                     '- Verbeteractie: ' . $verbeteractie->omschrijving . '<br>'  . 
                     '- Initiatiefnemer: '  . $trekker . '<br>'  . 
                     '- Betrokkenen: ';
@@ -414,7 +414,7 @@ Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastges
                     } else {
                         $verbeteractietext .= ' --- <br>';
                     }
-                    $verbeteractietext .= '<br><br>';
+                    $verbeteractietext .= '<br>';
                 }
             
             }
@@ -576,8 +576,8 @@ Uw wachtwoord is: ' . $user->initial_pwd;
                 $message->replyTo($beheerder->email, $beheerder->name_first . ' ' . $beheerder->name_last);
             });
         }
-
-        return Redirect::back(); 
+        // $createsuccess = true;
+        return back()->with('createsuccess', true); 
 
     }
 

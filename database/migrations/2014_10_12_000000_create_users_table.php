@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('confirmation_code')->nullable();
             $table->string('name_first');
             $table->string('name_last');
+            $table->dateTime('last_online');
             $table->rememberToken();
             $table->timestamps();
         });

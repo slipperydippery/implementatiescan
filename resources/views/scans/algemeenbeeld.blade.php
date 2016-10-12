@@ -7,9 +7,10 @@
 			<h1>ALGEMEEN BEELD </h1>
 			<h2>HUIDIGE gezamenlijke AANPAK</h2>
 			<fieldset class="fieldset large-8 columns">
-	  			<legend>Algemeen beeld van de huidige gezamenlijke aanpak beoordelen</legend>
+	  			<legend>Beoordeel de huidige gezamenlijke aanpak </legend>
 				<p class=subheading>
-					Hieronder ziet u een schuif van 0 tot 100. Kunt u in algemene zin aangeven op uw eigen scherm hoe goed onze regio het volgens u doet voor wat betreft de huidige gezamenlijke aanpak om jongeren met LVB, zoals jongeren met LVB, tijdens en na hun schoolloopbaan goed te begeleiden naar werk? Nul is ‘we doen dat als regio slecht’ en honderd is ‘we doen dat als regio perfect’.
+					Hieronder ziet u een schuif van 0 tot 10. Kunt u in algemene zin met een rapportcijfer aangeven op uw eigen scherm hoe goed onze regio het volgens u doet voor wat betreft de huidige gezamenlijke aanpak om jongeren in een kwetsbare positie zoals jongeren met LVB, tijdens en na hun schoolloopbaan goed te begeleiden naar werk? Nul is ‘we doen dat als regio slecht’ en tien is ‘we doen dat als regio perfect’.
+
 				</p>
 			</fieldset>
 			<div class="large-4 columns">

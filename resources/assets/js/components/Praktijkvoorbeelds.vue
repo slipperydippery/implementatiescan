@@ -1,11 +1,13 @@
 <template>
 	<div class="row searchitems">
 		<div class="small-6 columns">
-			<input type="text" v-model="search" placeholder="Zoek in beschrijving">
+			<h3>Zoek op trefwoord</h3>
+			<input type="text" v-model="search" placeholder="Vul trefwoord in">
 		</div>
 		<div class="small-6 columns">
+			<h3 class="text-right">Zoekfilter</h3>
 			<div v-for="instantie in instanties" class="searchfilter">
-				<label :for="instantie">{{ instantie }}</label>
+				<label :for="instantie" class="inlinelabel">{{ instantie }}</label>
 				<input type="checkbox" :id="instantie" :value="instantie" v-model="checkedThemas">
 			</div>
 		</div>
@@ -21,7 +23,7 @@
 			Beschrijving
 		</div>
 		<div class="small-3 columns">
-			Themas
+		Thema's
 		</div>
 	</div>
 

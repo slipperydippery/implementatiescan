@@ -3495,6 +3495,14 @@ table.hover tr:nth-of-type(even):hover {
 .videocontainer {
   display: none; }
 
+.tabs-title > a {
+  font-size: 1rem !important;
+  font-weight: 500; }
+
+.inlinelabel {
+  clear: both;
+  display: inline-block !important; }
+
 input {
   z-index: 100; }
 

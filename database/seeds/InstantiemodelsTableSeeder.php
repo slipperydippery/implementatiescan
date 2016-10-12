@@ -15,7 +15,7 @@ class InstantiemodelsTableSeeder extends Seeder
 
         $instantiemodels = [
             [
-                'title' => 'Scholen',
+                'title' => 'VSO / PRO scholen',
                 'blurb' => '',
                 'scanmodel_id' => '1'
             ],
@@ -25,7 +25,7 @@ class InstantiemodelsTableSeeder extends Seeder
                 'scanmodel_id' => '1'
             ],
             [
-                'title' => 'Leerplicht / SMW',
+                'title' => 'Leerplicht / RMC',
                 'blurb' => '',
                 'scanmodel_id' => '1'
             ],

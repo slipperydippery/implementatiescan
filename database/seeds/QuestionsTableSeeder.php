@@ -48,7 +48,7 @@ class QuestionsTableSeeder extends Seeder
   </ul>
   </li>
 </ul>',
-                'norm' 						=> 'School hanteert een professionele aanpak in de relatie met werkgevers en heeft dus kennis van context, belangen en taal van bedrijven ',
+                'norm' 						=> 'School hanteert een professionele aanpak in de relatie met werkgevers en heeft dus kennis van context, belangen en taal van bedrijven. ',
                 'range' 					=> '100',
                 'locked' 					=> false,
             ],
@@ -99,7 +99,7 @@ class QuestionsTableSeeder extends Seeder
     <li>School heeft een voldoende groot netwerk voor plaatsingen na afronding school</li>
     <li>Het netwerk van bedrijven is divers en omvat een groot aantal branches en sectoren</li>
 </ul>',
-                'norm' 						=> 'School en gemeente hebben een voldoende groot en divers netwerk van geschikte bedrijven voor stages en plaatsingskansen voor jongeren met LVB',
+                'norm' 						=> 'School en gemeente hebben een voldoende groot en divers netwerk van geschikte bedrijven voor stages en plaatsingskansen voor jongeren met LVB.',
                 'range' 					=> '100',
                 'locked' 					=> false,
             ],
@@ -180,7 +180,7 @@ class QuestionsTableSeeder extends Seeder
     <li>Niet aansluitend, maar overlappend</li>
     <li>School verzorgt goede nazorg</li>
 </ul>',
-                'norm' 						=> 'Er is sprake van een tijdige warme overdracht, en nazorg zodra het moment dat de jongere school verlaat dichterbij komt en daarna',
+                'norm' 						=> 'Er is sprake van een tijdige warme overdracht, en nazorg zodra het moment dat de jongere school verlaat dichterbij komt en daarna.',
                 'range' 					=> '100',
                 'locked' 					=> false,
             ],
@@ -193,7 +193,7 @@ class QuestionsTableSeeder extends Seeder
     <li>Gezamenlijke visie op arbeidstoeleiding van de jongeren</li>
     <li>Rollen en verantwoordelijkheden zijn bekend en worden erkend en benut</li>
 </ul>',
-                'norm' 						=> 'Netwerkpartners hebben een gedeelde  visie  op de arbeidstoeleiding van de jongeren en op verantwoordelijkheden en inzet van betrokken partijen ',
+                'norm' 						=> 'Netwerkpartners hebben een gedeelde  visie  op de arbeidstoeleiding van de jongeren en op verantwoordelijkheden en inzet van betrokken partijen.',
                 'range' 					=> '100',
                 'locked' 					=> false,
             ],
@@ -242,7 +242,7 @@ class QuestionsTableSeeder extends Seeder
     </ul>
   </li>
 </ul>',
-                'norm' 						=> 'De VSO en PRO scholen werken zodanig samen dat er een goede samenwerking met gemeenten mogelijk is',
+                'norm' 						=> 'De VSO en PRO scholen werken zodanig samen dat er een goede samenwerking met gemeenten mogelijk is.',
                 'range' 					=> '100',
                 'locked' 					=> false,
             ],

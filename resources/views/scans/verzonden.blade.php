@@ -4,10 +4,10 @@
 <div class="page-heading--container">
 	<div class="row page-heading">
 		<div class="large-12 ">
-			<h1>De verbeteracties zijn verzonden naar de deelnemers</h1>
+			<h1>Verbeteracties gemaild</h1>
 			<fieldset class="fieldset">
 	  			<p class="subheading subheading__time">
-	  				De verbeteracties komen nu aan in de mailboxen. 
+	  				De resultaten van de Implementatiescan worden nu naar alle deelnemers verstuurd per email. 
 	  			</p>
 			</fieldset>
 		</div>

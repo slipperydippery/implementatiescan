@@ -1,7 +1,8 @@
 <template>
 	<div class="row searchitems">
 		<div class="small-6 columns">
-			<input type="text" v-model="search" placeholder="Zoek in beschrijving">
+			<h3>Zoek op trefwoord</h3>
+			<input type="text" v-model="search" placeholder="Vul trefwoord in">
 		</div>
 
 	</div>
