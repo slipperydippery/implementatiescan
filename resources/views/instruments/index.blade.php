@@ -8,7 +8,10 @@
 			<fieldset class="fieldset large-8">
 			<legend>Een weelde aan informatie</legend>
 	  			<p class="subheading subheading__time">
-	  				Hieronder vindt u informatie over de succesfactoren voor het begeleiden van jongeren met LVB naar werk. In deze kennisbank kunt u kiezen uit praktijkvoorbeelden, landelijke- regio programma's, en praktijkvoorbeelden die inspirerend kunnen zijn om jongeren met LVB aan een baan te helpen. U kunt willekeurig zoeken op trefwoord, of filteren op categorie en subcategorie. Wanneer u op een zoekresultaat klikt wordt u doorgelinkt naar de betreffende informatie. 
+	  				Laat u inspireren en maak gebruik van eerder ontwikkelde programma’s en instrumenten. <br><br>
+
+Hieronder vindt u informatie over de succesfactoren voor het begeleiden van jongeren met LVB naar werk. Experts hebben aangegeven dat deze veelal ook gelden voor andere kwetsbare jongeren. Kijk gerust rond tussen de instrumenten/tools, programma’s en praktijkvoorbeelden. En zie hoe je via de opgenomen hyperlinks in contact komt met andere kennisbanken en inspirerende omgevingen, die scholen, gemeenten en partners ook op weg kunnen helpen om jongeren zo goed mogelijk een werkende toekomst te geven. 
+
 	  			</p>
 			</fieldset>
 		</div>
@@ -20,7 +23,7 @@
 	<div class="large-12 columns">
 		<ul class="tabs" data-tabs id="example-tabs">
 		  	<li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Instrumenten</a></li>
-		  	<li class="tabs-title"><a href="#panel2">Landelijke- regio programma's</a></li>
+		  	<li class="tabs-title"><a href="#panel2">Programma's</a></li>
 		  	<li class="tabs-title"><a href="#panel3">Praktijkvoorbeelden</a></li>
 		</ul>
 		<div class="tabs-content" data-tabs-content="example-tabs">
