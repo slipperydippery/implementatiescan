@@ -102,6 +102,18 @@ class UsersController extends Controller
         return redirect()->back();
     }
 
+    public function password()
+    {
+        return view('auth.passwords.change');
+    }
+
+    public function changepassword(Requests\ChangePasswordRequest $request, User $user)
+    {
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return Redirect::route('home')->with('success', 'password has been changed');
+    }
+
     /**
      * Update the specified resource in storage.
      *

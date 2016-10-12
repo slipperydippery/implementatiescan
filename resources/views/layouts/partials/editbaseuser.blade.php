@@ -32,7 +32,7 @@
                   	<div class="form-group">
                       	{!! Form::submit('pas aan', ['class' => 'button float-left form-control']) !!}
                 	</div>
-                	<a href=" {{ URL::to('password/reset') }} " class="button float-right" >Reset Wachtwoord</a>
+                	<a href=" {{ URL::to('password/change') }} " class="button float-right" >Reset Wachtwoord</a>
              	{!! Form::close() !!}
 
               	<button class="close-button" data-close aria-label="Close reveal" type="button">

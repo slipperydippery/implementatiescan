@@ -41,6 +41,18 @@
 </div>
 <div class="row page-content triblock--container">	
 	<div class="small-9 columns">
+		@if(session('success'))
+			<div class="row">
+				<div class="small-12">
+					<div class="success callout" data-closable>
+						{{ session('success') }}
+						<button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+						    <span aria-hidden="true">&times;</span>
+						  </button>
+					</div>
+				</div>
+			</div>
+		@endif
 		<div class="row">
 			<div class="small-4 columns triblock">
 				@if(!$logged)

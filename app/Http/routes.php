@@ -29,7 +29,13 @@ Route::group(['middleware' => 'web'], function () {
 });
 
 Route::group(['middleware' => ['web', 'auth']], function () {
-/**
+
+    /**
+     * User
+     */
+    Route::get('/password/change', ['as' => 'password.change', 'uses' => 'UsersController@password']);
+
+    /**
      * API Calls
      */
     Route::get('/api/scan/{scan}/thema', 'ApiController@indexthema');
@@ -95,6 +101,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('videos', 'VideosController');
     Route::resource('scanmodels', 'ScanmodelsController');
     Route::resource('users', 'UsersController');
+    Route::post('/users/{user}/changepassword', ['as' => 'users.changepassword', 'uses' => 'UsersController@changepassword']);
     Route::get('scans/{scan}/destroy', ['as' => 'scans.delete', 'uses' => 'ScansController@destroy']);
     Route::post('scans/{scan}/updatetitle', ['as' => 'scans.updatetitle', 'uses' => 'ScansController@updatetitle']);
     Route::post('scans/{scan}/updateregio', ['as' => 'scans.updateregio', 'uses' => 'ScansController@updateregio']);
