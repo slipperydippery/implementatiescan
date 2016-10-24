@@ -1,8 +1,7 @@
 <template>
-	<div class="row actie-rij" v-if="actie.active">	
+	<div v-if="actie.active">	
 		<div class="row">
-
-			<div class="large-3 columns actie-omschrijving"> 
+			<div class="large-12 columns actie-titel"> 
 				<span class="remove_row"
 					@click="setActieInactive(actie)"
 				>
@@ -10,12 +9,28 @@
 				</span>
 				{{ actie.title }}
 			</div>
-
-			<div class="large-3 columns">
+		</div>
+		<div class="row actie-omschrijvingen">
+			<div class="large-4 columns actie-omschrijving">
+				Omschrijving
+			</div>
+			<div class="large-3 columns actie-omschrijving">
+				Initiatiefnemer
+			</div>
+			<div class="large-3 columns actie-omschrijving">
+				Betrokkenen
+			</div>
+			<div class="large-2 columns actie-omschrijving">
+				Extern Betrokkenen
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-4 columns">
 				<div class="form-group">
 					<textarea  
 						class="form-control" 
-						placeholder="Actie Omschrijving" 
+						placeholder="Actie Omschrijving"
+						rows="6"
 						v-model="actie.omschrijving" 
 						@blur="saveActie()"
 					>
@@ -69,7 +84,19 @@
 					</div>
 
 				</div>
-
+			</div>
+			<div class="large-2 columns">
+				<div class="form-group">
+					<div class="actie-exbetrokkene">
+						Gerard
+					</div>
+					<input type="text" placeholder="Voeg iemand toe">
+					<div class="actie-betrokkene"
+						v-for="exBetrokkene in exBetrokkenen"
+					>
+						{{ exBetrokkene.name_first }}
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -149,6 +176,7 @@
 				betrokkenen: [],
 				unBetrokkenen: [],
 				agendaType: agendaType,
+				exBetrokkenen: []
 			};
 		},
 

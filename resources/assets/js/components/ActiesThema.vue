@@ -2,10 +2,7 @@
 	<div class="row thema-group">
 			<div class="large-12">
 				<div class="row">	
-					<div class="large-3 actie-thema actie-thema-kop actiepunt-es columns"> {{ thema.title }} </div>
-					<div class="large-3 actie-thema actiepunt-es columns">Omschrijving</div>
-					<div class="large-3 actie-thema actiepunt-es columns">Initiatiefnemer</div>
-					<div class="large-3 actie-thema actiepunt-es columns">Betrokkenen</div>
+					<div class="large-12 actie-thema actie-thema-kop actiepunt-es columns"> {{ thema.title }} </div>
 				</div>
 				<actie 
 					v-for="actie in verbeteracties"

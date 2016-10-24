@@ -876,13 +876,26 @@ $sidetext_thickness : 15rem;
 	background: rgba(191, 230, 221, 0.9);	
 }
 
+.actie-titel {
+	position: relative;
+	display: block;
+	padding: .5rem;
+	background: #dae7eb;
+	/* font-weight: 500; */
+	font-size: 1.2rem;
+}
+
 .actie-omschrijving {
 	position: relative;
  	display: block;
  	padding: .5rem;
-	background: rgba(#fff, .3);
+	// background: $instantie1;
 	font-weight: 500;
+}
+
+.actie-omschrijvingen {
 	margin-bottom: 1rem;
+	background: #f3f3f3;
 }
 
 .actie-omschrijving span {
@@ -898,6 +911,17 @@ $sidetext_thickness : 15rem;
 }
 .betrokkenen__group:hover {
 	cursor: pointer;
+}
+
+.actie-exbetrokkene {
+	display: block;
+	padding: .5rem 0;
+	margin: .2rem;
+	width: 100%;
+	font-weight: 400;
+	color: #333;
+	transition: all 1s;
+
 }
 
 .actie-betrokkene {
@@ -977,7 +1001,9 @@ $sidetext_thickness : 15rem;
  }
 
  .actie-thema-kop {
- 	font-weight: 500;
+ 	font-weight: 300;
+ 	font-size: 2rem;
+ 	color: #fff;
  }
 
 .actiepunt-wet {
