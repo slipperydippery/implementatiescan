@@ -7,9 +7,8 @@
 			<h1> Thema {{ $thema_nr }}: {{ $thema->title }} </h1>
 			<h2>Succesfactor {{$question_nr}}: {{ $question->title }}</h2>
 			<fieldset class="fieldset large-8 columns">
-	  			<legend>Neem één minuut de tijd om de volgende vraag te beantwoorden:</legend>
+	  			<legend>In hoeverre wordt voldaan aan de volgende succesfactor:</legend>
 				<p class=subheading>
-	  			In hoeverre wordt in uw regio voldaan aan de uit onderzoek gebleken kritische succesfactor: <br>
 					{{ $question->norm }} 
 			
 				</p>
