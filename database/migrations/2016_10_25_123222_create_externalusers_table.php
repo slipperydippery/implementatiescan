@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOvbetrokkenenTable extends Migration
+class CreateExternalusersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateOvbetrokkenenTable extends Migration
      */
     public function up()
     {
-        Schema::create('ovbetrokkenen', function (Blueprint $table) {
+        Schema::create('externalusers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->integer('verbeteractie_id')->unsigned();
@@ -28,6 +28,6 @@ class CreateOvbetrokkenenTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ovbetrokkenen');
+        Schema::drop('externalusers');
     }
 }
