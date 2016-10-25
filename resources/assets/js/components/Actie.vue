@@ -130,6 +130,7 @@
 						<option 
 							v-for="participant in participants" 
 							:value="participant.id"
+							@blur="saveConsultant()"
 						> 
 							{{ participant.name_first }} 
 						</option>

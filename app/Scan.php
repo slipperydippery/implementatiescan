@@ -61,4 +61,9 @@ class Scan extends Model
         return $this->hasMany('App\Prebeteractie');
     }
 
+    public function consultants()
+    {
+        return $this->belongsToMany('App\User', 'consultants', 'scan_id', 'user_id');
+    }
+
 }

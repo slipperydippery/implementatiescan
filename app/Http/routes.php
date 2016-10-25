@@ -101,6 +101,13 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('videos', 'VideosController');
     Route::resource('scanmodels', 'ScanmodelsController');
     Route::resource('users', 'UsersController');
+    Route::resource('consultants', 'ConsultantsController');
+
+    // Consultants
+    Route::get('/scans/{scan}/addconsultant', ['as' => 'consultants.createwithscan', 'uses' => 'ConsultantsController@createwithscan']);
+    Route::post('/scans/{scan}/addconsultant', ['as' => 'consultants.storewithscan', 'uses' => 'ConsultantsController@storewithscan']);
+
+
     Route::post('/users/{user}/changepassword', ['as' => 'users.changepassword', 'uses' => 'UsersController@changepassword']);
     Route::get('scans/{scan}/destroy', ['as' => 'scans.delete', 'uses' => 'ScansController@destroy']);
     Route::post('scans/{scan}/updatetitle', ['as' => 'scans.updatetitle', 'uses' => 'ScansController@updatetitle']);
@@ -141,6 +148,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('scans/{scan}/werkagendamailen', ['as' => 'scans.werkagendamailen', 'uses' => 'ScansController@werkagendamailen']);
 
     Route::post('scans/{scan}/actieoverzicht', ['as' => 'werkagendas.store_changes', 'uses' => 'WerkagendasController@store_changes']);
+
 
 
 

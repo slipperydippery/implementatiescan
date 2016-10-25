@@ -87,4 +87,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Verbeteractie');
     }
+
+    public function consults()
+    {
+        return $this->belongsToMany('App\Scan', 'consultants', 'user_id', 'scan_id');
+    }
 }

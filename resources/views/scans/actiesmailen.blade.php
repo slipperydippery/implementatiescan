@@ -19,7 +19,7 @@
 
 	{!! Form::open(['route' => ['email.verzendacties', $scan]]) !!}
 		<!-- CC Form Input -->
-		<div class="form-group">
+		<div class="form-group"> 
 			{!! Form::label('cc', 'Onderwerp:') !!}
 			{!! Form::text('cc', 'Verbeteracties Implementatiescan', ['class' => 'form-control']) !!}
 		</div>
