@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Scan;
 use App\User;
+use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
-use App\Http\Requests;
+use Illuminate\Support\Facades\Redirect;
 
 class ConsultantsController extends Controller
 {
@@ -68,7 +68,7 @@ class ConsultantsController extends Controller
 	    	$user = User::where('email', '=', $request->email)->first();
     	}
     	$user->consults()->save($scan);
-        return($request->all());
+        return Redirect::route('scans.actieoverzicht', $scan);
     }
 
     /**

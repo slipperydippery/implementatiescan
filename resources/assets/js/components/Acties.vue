@@ -35,7 +35,7 @@
 
 		methods: {
 			getThemas: function () {
-				var home = this;
+			var home = this;
 				var resource = this.$resource('/api/scan/:scan/thema');
 				resource.get({scan: this.scan.id}).then(function (response) {
 				          home.$set('themas', response.data)
