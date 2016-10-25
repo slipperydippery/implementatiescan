@@ -134,18 +134,16 @@
 	<div class="row page-content triblock--container">	
 		<div class="small-9 columns">
 			<div class="row">
-				@foreach($beheerscan->scanmodel->themas as $thema )
-					<div class="small-4 columns triblock">
-						<a href="http://www.implementatiescan.nl/video/{{ $thema->video->download }}"
-							role="button"
-							class="title_button"
-						> 
-				    		<img src="{{asset('img/gearicon.png')}}">
-							<span class="">Download video </span>
-							{{ $thema->video->title }}
-						</a>
-					</div>
-				@endforeach
+				<div class="small-4 columns triblock">
+					<a href="http://www.implementatiescan.nl/video/noreason.mp3"
+						role="button"
+						class="title_button"
+					> 
+			    		<img src="{{asset('img/gearicon.png')}}">
+						<span class="">Download videos </span>
+						download alle videos
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
