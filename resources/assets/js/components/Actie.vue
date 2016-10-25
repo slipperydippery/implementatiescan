@@ -91,7 +91,14 @@
 						v-for="externalUser in externalUsers"
 					>
 						{{ externalUser.name }}
-						<a href="#" class="close-button closeicon" aria-label="Close alert" type="button" @click="removeExternaluser(externalUser.id)">&times;</a>
+						<a href="#" 
+							class="close-button closeicon" 
+							aria-label="Close alert" 
+							type="button" 
+							@click="removeExternaluser(externalUser.id)"
+						>
+							&times;
+						</a>
 					</div>
 					<input 
 						type="text" 
@@ -345,5 +352,13 @@
 		margin: 0 .5rem 0 0;
 		width: auto;
 		cursor: pointer;
+	}
+
+	.actie-exbetrokkene .closeicon {
+		display: none;
+	}
+
+	.actie-exbetrokkene:hover .closeicon {
+		display: block;
 	}
 </style>
