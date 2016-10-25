@@ -4176,6 +4176,7 @@ main {
   cursor: pointer; }
 
 .actie-exbetrokkene {
+  position: relative;
   display: block;
   padding: .5rem 0;
   margin: .2rem;

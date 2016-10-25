@@ -11003,12 +11003,14 @@ exports.default = {
 			betrokkenen: [],
 			unBetrokkenen: [],
 			agendaType: agendaType,
-			exBetrokkenen: []
+			newExternalUser: [''],
+			externalUsers: []
 		};
 	},
 	ready: function ready() {
 		this.betrokkenen = this.actie.betrokkenen;
 		this.unBetrokkenen = this.actie.unBetrokkenen;
+		this.getExternalusers();
 	},
 	created: function created() {},
 
@@ -11048,6 +11050,41 @@ exports.default = {
 			});
 		},
 
+		getExternalusers: function getExternalusers() {
+			var _this = this;
+
+			this.$http.get('/api/verbeteractie/' + this.actie.id + '/externaluser').then(function (response) {
+				_this.externalUsers = response.data;
+			});
+		},
+
+		addExternaluser: function addExternaluser(newExternalUser) {
+			// this.externalUsers.push(this.newExternalUser);
+			if (!this.newExternalUser == ['']) {
+				var home = this;
+				var resource = this.$resource('/api/verbeteractie/:actie/externaluser/');
+				resource.save({ actie: this.actie.id }, { externaluser: this.newExternalUser }).then(function (response) {
+					//success callback
+					home.newExternalUser = '';
+					home.getExternalusers();
+				}, function (response) {
+					//error callback
+				});
+			}
+		},
+
+		removeExternaluser: function removeExternaluser(externaluserid) {
+			var home = this;
+			var resource = this.$resource('/api/verbeteractie/:actie/externaluser/:externaluser');
+			resource.delete({ actie: this.actie.id, externaluser: externaluserid }, {}).then(function (response) {
+				home.getExternalusers();
+				//
+			}, function (response) {
+				//
+			});
+			this.getExternalusers();
+		},
+
 		saveActie: function saveActie() {
 			var home = this;
 			var resource = this.$resource('/api/verbeteractie/:actie');
@@ -11085,7 +11122,7 @@ exports.default = {
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div v-if=\"actie.active\">\t\n\t\t<div class=\"row\">\n\t\t\t<div class=\"large-12 columns actie-titel\"> \n\t\t\t\t<span class=\"remove_row\" @click=\"setActieInactive(actie)\">\n\t\t\t\t\tx\n\t\t\t\t</span>\n\t\t\t\t{{ actie.title }}\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row actie-omschrijvingen\">\n\t\t\t<div class=\"large-4 columns actie-omschrijving\">\n\t\t\t\tOmschrijving\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns actie-omschrijving\">\n\t\t\t\tInitiatiefnemer\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns actie-omschrijving\">\n\t\t\t\tBetrokkenen\n\t\t\t</div>\n\t\t\t<div class=\"large-2 columns actie-omschrijving\">\n\t\t\t\tExtern Betrokkenen\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row\">\n\t\t\t<div class=\"large-4 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<textarea class=\"form-control\" placeholder=\"Actie Omschrijving\" rows=\"6\" v-model=\"actie.omschrijving\" @blur=\"saveActie()\">\t\t\t\t\t</textarea>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<select v-model=\"actie.user_id\" @blur=\"saveActie()\">\n\t\t\t\t\t\t<option v-for=\"participant in participants\" :value=\"participant.id\"> \n\t\t\t\t\t\t\t{{ participant.name_first }} \n\t\t\t\t\t\t</option>\n\t\t\t\t\t</select>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div class=\"large-3 columns\">\n\n\t\t\t\t<div class=\"betrokkenen__group row\">\n\n\t\t\t\t\t<div class=\"betrokkenen__bet \">\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-if=\"!betrokkenen.length\">\n\t\t\t\t\t\t+\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in betrokkenen\" @click=\"removeBetrokkene(betrokkene)\">\n\t\t\t\t\t\t\t{{betrokkene.name_first}}\n\t\t\t\t\t\t\t<span class=\"indication\">-</span>\n\t\t\t\t\t\t</div>\t\t\t\t\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div class=\"betrokkenen__unbet\">\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in unBetrokkenen\" @click=\"addBetrokkene(betrokkene)\">\n\t\t\t\t\t\t\t{{ betrokkene.name_first }}\n\t\t\t\t\t\t\t<span class=\"indication\">+</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"large-2 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<div class=\"actie-exbetrokkene\">\n\t\t\t\t\t\tGerard\n\t\t\t\t\t</div>\n\t\t\t\t\t<input type=\"text\" placeholder=\"Voeg iemand toe\">\n\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"exBetrokkene in exBetrokkenen\">\n\t\t\t\t\t\t{{ exBetrokkene.name_first }}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"row subactie\" v-if=\"isWerkAgenda\">\n\t\t\t<div class=\"large-3 columns\"> \n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" placeholder=\"Subactie\" @blur=\"saveActie()\">\n\t\t\t\t\t\n\t\t\t\t</div>\t\t\t\t\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<textarea class=\"form-control\" rows=\"5\" placeholder=\"Actie Omschrijving\" @blur=\"saveActie()\">\t\t\t\t\t</textarea>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<select>\n\t\t\t\t\t\t<option value=\"\" disabled=\"\" selected=\"selected\"></option>\n\t\t\t\t\t\t<option v-for=\"participant in participants\" :value=\"participant.id\" @blur=\"saveConsultant()\"> \n\t\t\t\t\t\t\t{{ participant.name_first }} \n\t\t\t\t\t\t</option>\n\t\t\t\t\t</select>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<input type=\"date\" class=\"date\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row subactie\" v-if=\"isWerkAgenda\">\t\t\n\t\t\t<div class=\"small-12\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<a href=\"#\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+\tVoeg nog een subactie toe</a>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t</div>\n\t</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div v-if=\"actie.active\">\t\n\t\t<div class=\"row\">\n\t\t\t<div class=\"large-12 columns actie-titel\"> \n\t\t\t\t<span class=\"remove_row\" @click=\"setActieInactive(actie)\">\n\t\t\t\t\tx\n\t\t\t\t</span>\n\t\t\t\t{{ actie.title }}\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row actie-omschrijvingen\">\n\t\t\t<div class=\"large-4 columns actie-omschrijving\">\n\t\t\t\tUit te werken verbeterpunten\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns actie-omschrijving\">\n\t\t\t\tInitiatiefnemer\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns actie-omschrijving\">\n\t\t\t\tBetrokkenen\n\t\t\t</div>\n\t\t\t<div class=\"large-2 columns actie-omschrijving\">\n\t\t\t\tOverige Betrokkenen\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row\">\n\t\t\t<div class=\"large-4 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<textarea class=\"form-control\" placeholder=\"Actie Omschrijving\" rows=\"6\" v-model=\"actie.omschrijving\" @blur=\"saveActie()\">\t\t\t\t\t</textarea>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<select v-model=\"actie.user_id\" @blur=\"saveActie()\">\n\t\t\t\t\t\t<option v-for=\"participant in participants\" :value=\"participant.id\"> \n\t\t\t\t\t\t\t{{ participant.name_first }} \n\t\t\t\t\t\t</option>\n\t\t\t\t\t</select>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div class=\"large-3 columns\">\n\n\t\t\t\t<div class=\"betrokkenen__group row\">\n\n\t\t\t\t\t<div class=\"betrokkenen__bet \">\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-if=\"!betrokkenen.length\">\n\t\t\t\t\t\t+\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in betrokkenen\" @click=\"removeBetrokkene(betrokkene)\">\n\t\t\t\t\t\t\t{{betrokkene.name_first}}\n\t\t\t\t\t\t\t<span class=\"indication\">-</span>\n\t\t\t\t\t\t</div>\t\t\t\t\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div class=\"betrokkenen__unbet\">\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in unBetrokkenen\" @click=\"addBetrokkene(betrokkene)\">\n\t\t\t\t\t\t\t{{ betrokkene.name_first }}\n\t\t\t\t\t\t\t<span class=\"indication\">+</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"large-2 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<div class=\"actie-exbetrokkene\" v-for=\"externalUser in externalUsers\">\n\t\t\t\t\t\t{{ externalUser.name }}\n\t\t\t\t\t\t<a href=\"#\" class=\"close-button closeicon\" aria-label=\"Close alert\" type=\"button\" @click=\"removeExternaluser(externalUser.id)\">×</a>\n\t\t\t\t\t</div>\n\t\t\t\t\t<input type=\"text\" v-model=\"newExternalUser\" placeholder=\"Voeg iemand toe\" @blur=\"addExternaluser()\" @keyup.enter=\"addExternaluser()\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"row subactie\" v-if=\"isWerkAgenda\">\n\t\t\t<div class=\"large-3 columns\"> \n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" placeholder=\"Subactie\" @blur=\"saveActie()\">\n\t\t\t\t\t\n\t\t\t\t</div>\t\t\t\t\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<textarea class=\"form-control\" rows=\"5\" placeholder=\"Actie Omschrijving\" @blur=\"saveActie()\">\t\t\t\t\t</textarea>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<select>\n\t\t\t\t\t\t<option value=\"\" disabled=\"\" selected=\"selected\"></option>\n\t\t\t\t\t\t<option v-for=\"participant in participants\" :value=\"participant.id\" @blur=\"saveConsultant()\"> \n\t\t\t\t\t\t\t{{ participant.name_first }} \n\t\t\t\t\t\t</option>\n\t\t\t\t\t</select>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<input type=\"date\" class=\"date\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row subactie\" v-if=\"isWerkAgenda\">\t\t\n\t\t\t<div class=\"small-12\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<a href=\"#\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+\tVoeg nog een subactie toe</a>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t</div>\n\t</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

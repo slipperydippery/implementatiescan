@@ -55,6 +55,10 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::put('/api/scan/{scan}/participant/{user}', 'ApiController@updateparticipant');
     Route::delete('/api/scan/{scan}/participant/{user}', 'ApiController@removeparticipant');
 
+    Route::get('/api/verbeteractie/{verbeteractie}/externaluser', 'ApiController@indexexternaluser');
+    Route::post('/api/verbeteractie/{verbeteractie}/externaluser', 'ApiController@savenewexternaluser');
+    Route::delete('/api/verbeteractie/{verbeteractie}/externaluser/{externaluser}', 'ApiController@removeexternaluser');
+
     Route::get('/api/scan/{scan}/instantie', 'ApiController@indexinstantie');
 
     Route::get('/api/scan/{scan}/participantsininstantie', 'ApiController@participantsininstantie');

@@ -45,4 +45,9 @@ class Verbeteractie extends Model
         return $this->hasMany('App\Subactie');
     }
 
+    public function externalusers()
+    {
+        return $this->hasMany('App\Externaluser');
+    }
+
 }

@@ -12,7 +12,7 @@
 		</div>
 		<div class="row actie-omschrijvingen">
 			<div class="large-4 columns actie-omschrijving">
-				Omschrijving
+				Uit te werken verbeterpunten
 			</div>
 			<div class="large-3 columns actie-omschrijving">
 				Initiatiefnemer
@@ -21,7 +21,7 @@
 				Betrokkenen
 			</div>
 			<div class="large-2 columns actie-omschrijving">
-				Extern Betrokkenen
+				Overige Betrokkenen
 			</div>
 		</div>
 		<div class="row">
@@ -87,15 +87,19 @@
 			</div>
 			<div class="large-2 columns">
 				<div class="form-group">
-					<div class="actie-exbetrokkene">
-						Gerard
-					</div>
-					<input type="text" placeholder="Voeg iemand toe">
-					<div class="actie-betrokkene"
-						v-for="exBetrokkene in exBetrokkenen"
+					<div class="actie-exbetrokkene"
+						v-for="externalUser in externalUsers"
 					>
-						{{ exBetrokkene.name_first }}
+						{{ externalUser.name }}
+						<a href="#" class="close-button closeicon" aria-label="Close alert" type="button" @click="removeExternaluser(externalUser.id)">&times;</a>
 					</div>
+					<input 
+						type="text" 
+						v-model="newExternalUser"
+						placeholder="Voeg iemand toe"
+						@blur="addExternaluser()"
+						@keyup.enter="addExternaluser()"
+					>
 				</div>
 			</div>
 		</div>
@@ -177,13 +181,15 @@
 				betrokkenen: [],
 				unBetrokkenen: [],
 				agendaType: agendaType,
-				exBetrokkenen: []
+				newExternalUser: [''],
+				externalUsers: [],
 			};
 		},
 
 		ready() {
 			this.betrokkenen = this.actie.betrokkenen;
 			this.unBetrokkenen = this.actie.unBetrokkenen;
+			this.getExternalusers();
 		},
 
 		created() {
@@ -224,6 +230,42 @@
 					.then(function(response){
 						// home.betrokkenen = tempArray;
 					});
+			},
+
+			getExternalusers: function () {
+				this.$http.get('/api/verbeteractie/' + this.actie.id + '/externaluser')
+					.then(response => {
+						this.externalUsers = response.data;
+					})
+			},
+
+			addExternaluser: function (newExternalUser){
+				// this.externalUsers.push(this.newExternalUser);
+				if(! this.newExternalUser == ['']){
+					var home = this;
+					var resource = this.$resource('/api/verbeteractie/:actie/externaluser/');
+					resource.save({actie: this.actie.id}, {externaluser: this.newExternalUser})
+						.then(function (response){
+							//success callback
+							home.newExternalUser = '';
+							home.getExternalusers();
+						}, function(response) {
+							//error callback
+					});
+				}
+			},
+
+			removeExternaluser: function (externaluserid) {
+				var home = this;
+				var resource = this.$resource('/api/verbeteractie/:actie/externaluser/:externaluser');
+				resource.delete({actie: this.actie.id, externaluser: externaluserid}, {})
+					.then(function (response) {
+						home.getExternalusers();
+						//
+					}, function(response){
+						//
+					});
+				this.getExternalusers();
 			},
 
 			saveActie: function () {

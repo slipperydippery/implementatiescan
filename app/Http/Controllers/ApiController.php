@@ -9,6 +9,7 @@ use App\Instantie;
 use App\Programma;
 use App\Scanmodel;
 use App\Instrument;
+use App\Externaluser;
 use App\Http\Requests;
 use App\Verbeteractie;
 use App\Praktijkvoorbeeld;
@@ -297,6 +298,36 @@ class ApiController extends Controller
     public function getparticipant(Scan $scan, User $user)
     {
         return $user;
+    }
+
+    public function indexexternaluser($verbeteractie)
+    {
+        $verbeteractie = Verbeteractie::findOrFail($verbeteractie);
+        $externalusers = [];
+        foreach($verbeteractie->externalusers as $externaluser) {
+            $thisexternaluser = [];
+            $thisexternaluser['id'] = $externaluser->id;
+            $thisexternaluser['name'] = $externaluser->name;
+            $externalusers[$externaluser->id] = $thisexternaluser;
+        }
+        return $externalusers;
+    }
+
+    public function savenewexternaluser(Request $request, $verbeteractie)
+    {
+        $externaluser = new Externaluser();
+        $externaluser->name = $request->externaluser;
+        $verbeteractie = Verbeteractie::findOrFail($verbeteractie);
+        $verbeteractie->externalusers()->save($externaluser);
+        // $externaluser->verbeteracties()->save($verbeteractie);
+        return $verbeteractie;
+    }
+
+    public function removeexternaluser($verbeteractie, $externaluser)
+    {
+        $externaluser = Externaluser::findOrFail($externaluser);
+        $externaluser->delete();
+        return $externaluser;
     }
 
     public function savenewparticipant(Request $request, Scan $scan)
