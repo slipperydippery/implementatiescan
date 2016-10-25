@@ -1,5 +1,5 @@
 <template>
-	<div v-if="actie.active">	
+	<div v-if="actie.active" class="single_actie">	
 		<div class="row">
 			<div class="large-12 columns actie-titel"> 
 				<span class="remove_row"
@@ -333,23 +333,22 @@
 
 	span.remove_row {
 		display: none;
-		display: inline-block;
-		width: 0;
-		padding: 0;
+		float: right;
+		padding: 0 0.5rem;
 		margin: 0;
 		height: 100%;
-		background: #f00;
 		left: 0;
 		top: 0;
-		color: white;
+		color: #333;
+		background: rgba(255,255,255,0.85);
 		transition: all .5s;
 		overflow: hidden;
+		cursor: pointer;
 	}
 
-	.actie-omschrijving:hover span.remove_row{
+	.single_actie:hover span.remove_row{
 		display: inline-block;
 		padding: 0 0.5rem;
-		margin: 0 .5rem 0 0;
 		width: auto;
 		cursor: pointer;
 	}
