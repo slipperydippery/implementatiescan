@@ -11019,10 +11019,12 @@ exports.default = {
 		};
 	},
 	ready: function ready() {
-		this.betrokkenen = this.actie.betrokkenen;
-		this.unBetrokkenen = this.actie.unBetrokkenen;
-		this.getExternalusers();
-		this.getSubActies();
+		if (this.actie.active) {
+			this.betrokkenen = this.actie.betrokkenen;
+			this.unBetrokkenen = this.actie.unBetrokkenen;
+			this.getExternalusers();
+			this.getSubActies();
+		}
 	},
 	created: function created() {},
 
