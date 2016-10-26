@@ -503,7 +503,7 @@ Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastges
                                 $werkagendatext .=  $betrokkene->name_first . ' ' . $betrokkene->name_last . ', ';
                             }
                         } else {
-                            $verbeteractietext .= ' --- ';
+                            $werkagendatext .= ' --- ';
                         }
                         $werkagendatext .= '<br> - Overige Betrokkenen: ';
                         if(count($subactie->externalusers)){
