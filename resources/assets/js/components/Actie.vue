@@ -1,9 +1,29 @@
 <template>
-	<div v-if="actie.active" class="single_actie">	
+	<div v-if="!actie.werkactive" class="single_actie">
+		<div class="row">
+			<div class="large-12 columns actie-titel"> 
+				<span class="remove_row remove_row--werkadd"
+					v-if="isWerkAgenda"
+					@click="toggleWerkActieActive(actie)"
+				>
+					&#x2713;
+				</span>
+				{{ actie.title }}
+			</div>
+		</div>
+	</div>
+	<div v-if="actie.active && actie.werkactive" class="single_actie">	
 		<div class="row">
 			<div class="large-12 columns actie-titel"> 
 				<span class="remove_row"
+					v-if="!isWerkAgenda"
 					@click="setActieInactive(actie)"
+				>
+					&#x2716;
+				</span>
+				<span class="remove_row remove_row--werkremove"
+					v-if="isWerkAgenda"
+					@click="toggleWerkActieActive(actie)"
 				>
 					x
 				</span>
@@ -277,6 +297,11 @@
 				this.saveActie();
 			},
 
+			toggleWerkActieActive: function (actie) {
+				actie.werkactive = !actie.werkactive;
+				this.saveActie();
+			},
+
 			getSubActies: function () {
 				this.$http.get('/api/verbeteractie/' + this.actie.id + '/subactie')
 					.then(response => {
@@ -343,6 +368,14 @@
 		transition: all .5s;
 		overflow: hidden;
 		cursor: pointer;
+	}
+
+	span.remove_row--werkadd:hover {
+		background: green;
+	}
+
+	span.remove_row--werkremove:hover {
+		background: red;
 	}
 
 	.single_actie:hover span.remove_row{

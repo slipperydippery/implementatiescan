@@ -105,6 +105,7 @@ class ApiController extends Controller
     public function updateverbeteractie(Request $request, Verbeteractie $verbeteractie)
     {
         $verbeteractie->active = $request->actie['active'];
+        $verbeteractie->werkactive = $request->actie['werkactive'];
         $verbeteractie->omschrijving = $request->actie['omschrijving'];
         if ($verbeteractie->trekker != $request->actie['user_id'])
         {
