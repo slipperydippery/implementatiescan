@@ -60,7 +60,6 @@
 
 	{!! Form::close() !!}
 
-	<a href="{{ URL::route('scans.verbeteracties_bedankt', $scan) }}" class="button float-right">Verzend Werkagenda</a>
 </div>
 @stop
 
