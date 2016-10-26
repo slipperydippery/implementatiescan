@@ -88,8 +88,13 @@ class User extends Authenticatable
         return $this->hasMany('App\Verbeteractie');
     }
 
-    public function consults()
+    public function betrektSubacties()
     {
-        return $this->belongsToMany('App\Scan', 'consultants', 'user_id', 'scan_id');
+        return $this->belongsToMany('App\Subactie');
+    }
+
+    public function trektSubacties()
+    {
+        return $this->hasMany('App\Subactie');
     }
 }

@@ -59,6 +59,18 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::post('/api/verbeteractie/{verbeteractie}/externaluser', 'ApiController@savenewexternaluser');
     Route::delete('/api/verbeteractie/{verbeteractie}/externaluser/{externaluser}', 'ApiController@removeexternaluser');
 
+    Route::get('/api/verbeteractie/{verbeteractie}/subactie', 'ApiController@indexsubactie');
+    Route::get('/api/verbeteractie/{verbeteractie}/newsubactie', 'ApiController@savenewsubactie');
+    Route::get('/api/subactie/{subactie}/delete', 'ApiController@deletesubactie');
+    Route::get('/api/subactie/{subactie}/betrokkene', 'ApiController@indexsubbetrokkene');
+    Route::get('/api/subactie/{subactie}/unbetrokkene', 'ApiController@indexsubunbetrokkene');
+    Route::post('/api/subactie/{subactie}/betrokkene/{user}', 'ApiController@addsubbetrokkene');
+    Route::delete('/api/subactie/{subactie}/betrokkene/{user}', 'ApiController@removesubbetrokkene');
+    Route::put('/api/subactie/{subactie}', 'ApiController@updatesubactie');
+    Route::get('/api/subactie/{subactie}/externaluser', 'ApiController@indexsubexternaluser');
+    Route::post('/api/subactie/{subactie}/externaluser', 'ApiController@savenewsubexternaluser');
+    Route::delete('/api/subactie/{subactie}/subexternaluser/{subexternaluser}', 'ApiController@removesubexternaluser');
+
     Route::get('/api/scan/{scan}/instantie', 'ApiController@indexinstantie');
 
     Route::get('/api/scan/{scan}/participantsininstantie', 'ApiController@participantsininstantie');

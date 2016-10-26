@@ -976,8 +976,6 @@ $sidetext_thickness : 15rem;
 	height: auto;
 }
 
-
-
 .actiehelper {
 	width: 100%;
     text-align: center;
@@ -1040,4 +1038,20 @@ $sidetext_thickness : 15rem;
   padding: 1rem;
   background: rgba(0,0,0,0.05);
   border: 1px solid #aaa;
+}
+
+.subactie {
+    border-bottom: 1px solid #333;
+    background: rgba(0, 0, 0, 0.04);
+    padding: 1rem 0 0;
+}
+
+.subactie--titel {
+	font-size: 1.2rem;
+	background: rgba(0, 0, 0, 0.11);
+	padding: 1rem;
+}
+
+.subactie--date {
+	clear: both;
 }

@@ -110,55 +110,24 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="row subactie" v-if="isWerkAgenda">
-			<div class="large-3 columns"> 
-				<div class="form-group">
-					<input type="text" 
-						class="form-control" 
-						placeholder="Subactie"  
-						@blur="saveActie()"
-					>
-					</input>
-				</div>				
-			</div>
-			<div class="large-3 columns">
-				<div class="form-group">
-					<textarea  
-						class="form-control" 
-						rows="5"
-						placeholder="Actie Omschrijving" 
-						@blur="saveActie()"
-					>
-					</textarea>
-				</div>
-			</div>
-			<div class="large-3 columns">
-				<div class="form-group">
-					<select 
-					>
-						<option value="" disabled selected="selected"></option>
-						<option 
-							v-for="participant in participants" 
-							:value="participant.id"
-							@blur="saveConsultant()"
-						> 
-							{{ participant.name_first }} 
-						</option>
-					</select>
-				</div>
-			</div>
-			<div class="large-3 columns">
-				<div class="form-group">
-					<input type="date" class="date">
-				</div>
-			</div>
+		<div class="row subactie--titel" v-if="isWerkAgenda">
+			Wilt u het verbeterpunt meenemen naar de werkagenda? <br>
+			Forumuleer dan hieronder de acties die u kunt ondernemen.
 		</div>
-		<div class="row subactie" v-if="isWerkAgenda">		
+
+		<sub-actie 
+			 v-for="subactie in subacties"
+			 v-if="isWerkAgenda"
+			:subactie.sync="subactie"
+			:participants="participants"
+		>
+		</sub-actie>
+
+		<div class="row " v-if="isWerkAgenda">		
 			<div class="small-12">
-				<div class="form-group">
-					<a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+	Voeg nog een subactie toe</a>
-				</div>
+					<a href="#" @click="newSubactie()" class="voegsubactie">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+	Voeg nog een subactie toe
+					</a>
 			</div>
 
 		</div>
@@ -166,6 +135,8 @@
 </template>
 
 <script>
+	import SubActie from '../components/SubActie.vue';
+
 	export default {
 		http: {
 			root: '/root',
@@ -173,6 +144,9 @@
 				'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
 			}
 	    },
+
+		components: { SubActie },
+
 		props: [
 			'resource', 
 			'thema',
@@ -190,6 +164,7 @@
 				agendaType: agendaType,
 				newExternalUser: [''],
 				externalUsers: [],
+				subacties: [],
 			};
 		},
 
@@ -197,6 +172,7 @@
 			this.betrokkenen = this.actie.betrokkenen;
 			this.unBetrokkenen = this.actie.unBetrokkenen;
 			this.getExternalusers();
+			this.getSubActies();
 		},
 
 		created() {
@@ -275,6 +251,17 @@
 				this.getExternalusers();
 			},
 
+			newSubactie: function () {
+				var home = this;
+				var resource = this.$resource('/api/verbeteractie/:actie/newsubactie');
+				resource.get({actie: this.actie.id}, {})
+					.then(function(response){
+						home.getSubActies();						
+					}, function(response){
+						// 
+				});
+			},
+
 			saveActie: function () {
 				var home = this;
 				var resource = this.$resource('/api/verbeteractie/:actie');
@@ -287,6 +274,16 @@
 				actie.active = 0;
 				this.saveActie();
 			},
+
+			getSubActies: function () {
+				this.$http.get('/api/verbeteractie/' + this.actie.id + '/subactie')
+					.then(response => {
+						this.subacties = response.data;
+					})
+				
+			},
+
+
 
 			// getBetrokkenen: function () {
 			// 	var home = this;
@@ -359,5 +356,19 @@
 
 	.actie-exbetrokkene:hover .closeicon {
 		display: block;
+	}
+
+	.voegsubactie {
+		display: block;
+		padding: 1rem 0;
+		/* line-height: 3rem; */
+		/* height: 3rem; */
+		width: 100%;
+		/* color: white; */
+		font-size: .9rem;
+		font-weight: 500;
+	}
+	.voegsubactie:hover {
+		background: rgba(159, 194, 54, 0.71);
 	}
 </style>

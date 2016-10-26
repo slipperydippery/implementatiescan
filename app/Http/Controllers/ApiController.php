@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Scan;
 use App\User;
 use App\Thema;
+use App\Subactie;
 use App\Instantie;
 use App\Programma;
 use App\Scanmodel;
+use Carbon\Carbon;
 use App\Instrument;
 use App\Externaluser;
 use App\Http\Requests;
 use App\Verbeteractie;
+use App\Subexternaluser;
 use App\Praktijkvoorbeeld;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -26,9 +29,59 @@ class ApiController extends Controller
         return $thema->verbeteracties;
     }
 
+    public function indexsubactie(Verbeteractie $verbeteractie)
+    {
+        return $verbeteractie->subacties;
+    }
+
     public function indexbetrokkene(Verbeteractie $verbeteractie)
     {
         return $verbeteractie->betrokkenen;
+    }
+
+    public function indexsubbetrokkene($subactie)
+    {
+        $subactie = Subactie::findOrFail($subactie);
+        return $subactie->betrokkenen;
+    }
+
+    public function indexsubunbetrokkene($subactie)
+    {
+        $subactie = Subactie::findOrFail($subactie);
+        // return $subactie->betrokkenen;
+        // return $subactie->verbeteractie->scan->participants;
+        return $subactie->verbeteractie->scan->participants->diff($subactie->betrokkenen);
+    }
+
+    public function savenewsubactie(Verbeteractie $verbeteractie)
+    {
+        $subactie = new Subactie();
+        $subactie->datum = Carbon::now();
+        $subactie->verbeteractie_id = $verbeteractie->id;
+        $subactie->save();
+        // return $subactie;
+        // $subactie->verbeteractie->save($verbeteractie);
+        // $verbeteractie->subacties->save($subactie);
+        return $subactie->datum;
+    }
+
+    public function deletesubactie(Verbeteractie $verbeteractie, Subactie $subactie)
+    {
+        $subactie->delete();
+    }
+
+    public function addsubbetrokkene(Request $request, Subactie $subactie, User $user)
+    {
+        if(! $subactie->betrokkenen->intersect([$user])->count()) {
+            $user->betrektSubacties()->save($subactie);
+        }
+    }
+
+    public function removesubbetrokkene(Request $request, Subactie $subactie, User $user)
+    {
+        if($subactie->betrokkenen->intersect([$user])->count()) {
+            $user->betrektSubacties()->detach($subactie);
+        }
     }
 
     public function addbetrokkene(Request $request, Verbeteractie $verbeteractie, User $user)
@@ -66,6 +119,15 @@ class ApiController extends Controller
         $verbeteractie->save();
         return $verbeteractie;
          // return $request->actie;
+    }
+
+    public function updatesubactie(Request $request, Subactie $subactie)
+    {
+        $subactie->update($request->subactie);
+        // return $request->subactie;
+        // $subactie->title = $request->title;
+        // $subactie->save();
+        return $request->all(); 
     }
 
     public function setactieactive(Verbeteractie $verbeteractie)
@@ -300,34 +362,44 @@ class ApiController extends Controller
         return $user;
     }
 
-    public function indexexternaluser($verbeteractie)
+    public function indexexternaluser(Verbeteractie $verbeteractie)
     {
-        $verbeteractie = Verbeteractie::findOrFail($verbeteractie);
-        $externalusers = [];
-        foreach($verbeteractie->externalusers as $externaluser) {
-            $thisexternaluser = [];
-            $thisexternaluser['id'] = $externaluser->id;
-            $thisexternaluser['name'] = $externaluser->name;
-            $externalusers[$externaluser->id] = $thisexternaluser;
-        }
-        return $externalusers;
+        return $verbeteractie->externalusers;
     }
 
-    public function savenewexternaluser(Request $request, $verbeteractie)
+    public function indexsubexternaluser(Subactie $subactie)
+    {
+        return $subactie->externalusers;
+    }
+
+    public function savenewexternaluser(Request $request, Verbeteractie $verbeteractie)
     {
         $externaluser = new Externaluser();
         $externaluser->name = $request->externaluser;
-        $verbeteractie = Verbeteractie::findOrFail($verbeteractie);
         $verbeteractie->externalusers()->save($externaluser);
-        // $externaluser->verbeteracties()->save($verbeteractie);
         return $verbeteractie;
     }
 
-    public function removeexternaluser($verbeteractie, $externaluser)
+    public function savenewsubexternaluser(Request $request, Subactie $subactie)
     {
-        $externaluser = Externaluser::findOrFail($externaluser);
+        $subexternaluser = new Subexternaluser();
+        // return $request->all();
+        $subexternaluser->name = $request->externaluser;
+        $subactie->externalusers()->save($subexternaluser);
+        // $subexternaluser->subactie()->save($subactie);
+        return $subactie;
+    }
+
+    public function removeexternaluser($verbeteractie, Externaluser $externaluser)
+    {
         $externaluser->delete();
         return $externaluser;
+    }
+
+    public function removesubexternaluser($subactie, Subexternaluser $subexternaluser)
+    {
+        $subexternaluser->delete();
+        return ('done');
     }
 
     public function savenewparticipant(Request $request, Scan $scan)
