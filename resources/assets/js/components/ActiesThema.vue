@@ -11,7 +11,7 @@
 				>
 					
 				</actie> 
-				<div class="row actie-rij ">
+				<div class="row actie-rij " v-if="!isWerkAgenda">
 					<div class="large-12 columns actie-voegtoe" @click="showInactief =  ! showInactief"> 
 						<span v-show="! showInactief">+</span>
 						<span v-show="showInactief">-</span> 
@@ -54,6 +54,7 @@
 				questions: [],
 				verbeteracties: [],
 				showInactief: false,
+				agendaType: agendaType,
 			};
 		},
 
@@ -141,6 +142,14 @@
 		},
 
 		computed: {
+
+			isWerkAgenda: function () {
+				if (agendaType == 'werkagenda')
+				{
+					return true;
+				}
+				return false;
+			},
 
 		}
 

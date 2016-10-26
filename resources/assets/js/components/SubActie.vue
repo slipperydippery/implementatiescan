@@ -1,6 +1,6 @@
 <template>
 	<div class="row subactie" v-if="notdeleted">
-		<div class="large-10 columns"> 
+		<div class="large-11 columns"> 
 			<div class="form-group">
 				<input type="text" 
 					class="form-control" 
@@ -11,7 +11,7 @@
 				</input>
 			</div>				
 		</div>
-		<div class="large-2 columns">
+		<div class="large-1 columns">
 			<span class="remove_subactie"
 			@click="removeSubactie()"
 			>

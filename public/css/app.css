@@ -4284,8 +4284,9 @@ main {
   padding: 1rem 0 0; }
 
 .subactie--titel {
-  font-size: 1.2rem;
-  background: rgba(0, 0, 0, 0.11);
+  font-size: 1rem;
+  /* background: rgba(0, 0, 0, 0.11); */
+  border: 1px solid #333;
   padding: 1rem; }
 
 .subactie--date {
