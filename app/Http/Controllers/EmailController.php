@@ -73,32 +73,46 @@ Uw wachtwoord is: ' . $participant->initial_pwd;
 
     public function verzendacties(Request $request, Scan $scan)
     {
-        // return $request;
-        // return 'verzending it';
         $user = $scan->beheerder;
         $title = '';
         $content = $request->mail_intro . ' <br><br> ' . $request->verbeteractietext;
         $cc_recipients = [];
         foreach($request->recipients as $recipient){
             $recipient = User::findOrFail($recipient);
-              // $ua = [];
-              // $ua['email'] = $ccadress;
-              // $ua['name'] = $ccname;
-              // $users[$key] = (object)$ua;
               $cc_recipients[] = $recipient->email; 
         }
-        // return $cc_recipients;
 
         $data = ['title' => $title, 'content' => nl2br($content)];
         Mail::send('emails.send', $data, function ($message) use ($user, $request, $cc_recipients)
         {
             $message->from('no-reply@implementatiescan.nl', 'Team Implementatiescan');
             $message->to($user->email, $user->name_first . ' ' . $user->name_last);
-            // $message->bcc($participant->email, $participant->name_first . ' ' . $participant->name_last);
             $message->subject('Resultaten Implementatiescan');
             $message->replyTo($user->email, $user->name_first . ' ' . $user->name_last);
-
             $message->cc($cc_recipients);
+        });
+
+        return view ('scans.verzonden');
+    }
+
+    public function verzendwerkagenda(Request $request, Scan $scan)
+    {
+        $user = $scan->beheerder;
+        $title = '';
+        $content = $request->mail_intro . '<br><br>' . $request->werkagendatext;
+        $cc_recipients = [];
+        foreach($request->recipients as $recipient){
+            $recipient = User::findOrFail($recipient);
+            $cc_recipients[] = $recipient->email;
+        }
+        $data = ['title' => $title, 'content' => nl2br($content)];
+        Mail::send('emails.send', $data, function ($message) use ($user, $request, $cc_recipients)
+        {
+            $message->from('no-reply@implementatiescan.nl', 'Team Implementatiescan');
+            $message->to($user->email, $user->name_first . ' ' . $user->name_last);
+            $message->subject('Werkagenda Implementatiescan');
+            $message->replyTo($user->email, $user->name_first . ' ' . $user->name_last);
+            $message->cc($cc_recipients);            
         });
 
         return view ('scans.verzonden');

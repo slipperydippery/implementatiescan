@@ -1,4 +1,4 @@
-@extends('layouts.scan')
+@extends('layouts.scan', ['title' => 'Werkagenda Mailen'])
 
 @section('content')
 <div class="row page-heading">
@@ -15,60 +15,50 @@
 
 <div class="row page-content">
 
-	<!-- CC Form Input -->
-	<div class="form-group">
-		{!! Form::label('cc', 'Onderwerp:') !!}
-		{!! Form::text('cc', 'Verbeteracties Implementatiescan', ['class' => 'form-control']) !!}
-	</div>
+	{!! Form::open(['route' => ['email.verzendwerkagenda', $scan]]) !!}
+		
+		<!-- CC Form Input -->
+		<div class="form-group">
+			{!! Form::label('cc', 'Onderwerp:') !!}
+			{!! Form::text('cc', 'Werkagenda Implementatiescan', ['class' => 'form-control']) !!}
+		</div>
 
-	<!-- CC Form Input -->
-	<div class="form-group">
-		{!! Form::label('cc', 'Aan:') !!}
-		{!! Form::text('cc', 'mijnemail@adress.com', ['class' => 'form-control']) !!}
-	</div>
+		<!-- CC Form Input -->
+		<div class="form-group">
+			{!! Form::label('cc', 'Aan:') !!}
+			{!! Form::text('cc', $scan->beheerder->email, ['class' => 'form-control']) !!}
+		</div>
 
 
-	{!! Form::label('cc', 'BCC:') !!}
-	<textarea name="BCC:" id="" cols="30" rows="8">
-<Gerard de Groot>gerard@gmail.com,
-<Piet Janssen>piet@mee.nl,
-<Henk de Graaf>henk@bouwservice.nl,
-<Gerard de Groot>gerard@gmail.com,
-<Piet Janssen>piet@mee.nl,
-<Henk de Graaf>henk@bouwservice.nl,
-<Gerard de Groot>gerard@gmail.com,
-<Piet Janssen>piet@mee.nl,
-<Henk de Graaf>henk@bouwservice.nl,
-	</textarea>
+		{!! Form::label('cc', 'BCC:') !!}
+		@foreach($scan->participants as $participant)
+			{!! Form::checkbox('recipients[]', $participant->id, true) !!} {{ $participant->name_first }} {{ $participant->name_last }} - {{ $participant->email }}, <br>
+		@endforeach
+		<br>
+		<!-- Email tekst Form Input -->
+			<?php 
+				$emailtext = "Beste deelnemers,
 
-	<!-- Email tekst Form Input -->
-	<div class="form-group">
-		{!! Form::label('mail_intro', 'Email tekst:') !!}
-		<?php 
-			$emailtext = "Beste <voornaam>, 
+	Bedankt en gefeliciteerd! Tijdens de Werkagenda sessie Implementatiescan Jongeren met LVB hebben we de volgende verbeterpunten vastgesteld. Deze vormen de Werkagenda, waar we gezamenlijk en ieder voor zich mee aan de slag gaan in het komende jaar. Dat doen we als volgt:";
+			?>
+		<div class="form-group">
+			{!! Form::label('mail_intro', 'Email tekst:') !!}
+			{!! Form::textarea('mail_intro', $emailtext, ['class' => 'form-control email_naar_participant']) !!}
+		</div>
 
-Beste <voornaam>,
+		<div class="verbeteractietext form-group">
+			{!! $werkagendatext !!}
+		</div>
 
-Bedankt en gefeliciteerd! Tijdens de Werkagenda sessie Implementatiescan Jongeren met LVB hebben we de volgende verbeterpunten vastgesteld. Deze vormen de Werkagenda, waar we gezamenlijk en ieder voor zich mee aan de slag gaan in het komende jaar. Dat doen we als volgt:
+		<!-- Hidden werkagendatext Type Form Input -->
+		{!! Form::hidden('werkagendatext', $werkagendatext, null) !!}
 
-Focus op werk en talent
-1. Werkend leren 
-   - Te quo fabulas impedit laboramus. Est sententiae reprimique ne.
-   - Trekker: Irene deLouvre
-   - Betrokkenen: Piet Klaas, Olivia Komreij, Douwe Benthulip
+		<!-- Add Submit Field -->
+		<div class="form-group">
+		    {!! Form::submit('Verzend werkagenda', ['class' => 'button form-control']) !!}
+		</div>
 
-2. etc...
-
-Datum volgende bijeenkomst: 16 October 2016
-
-Met vriendelijke groeten,
-
-Karel Janssen
-VSO School
- ";
-		?>
-		{!! Form::textarea('mail_intro', $emailtext, ['class' => 'form-control email_naar_participant', 'rows' => '18']) !!}
-	</div>
+	{!! Form::close() !!}
 
 	<a href="{{ URL::route('scans.verbeteracties_bedankt', $scan) }}" class="button float-right">Verzend Werkagenda</a>
 </div>

@@ -4287,7 +4287,8 @@ main {
   font-size: 1rem;
   /* background: rgba(0, 0, 0, 0.11); */
   border: 1px solid #333;
-  padding: 1rem; }
+  padding: 1rem;
+  font-weight: 500; }
 
 .subactie--date {
   clear: both; }

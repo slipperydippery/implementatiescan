@@ -11230,7 +11230,7 @@ exports.default = {
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<acties-thema v-for=\"thema in themas\" :thema.sync=\"thema\" :participants=\"participants\">\n\t\t\n\t</acties-thema>\n\t\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<acties-thema v-for=\"thema in themas\" :thema.sync=\"thema\" :participants=\"participants\">\n\t\t\n\t</acties-thema>\n\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

@@ -6,7 +6,7 @@
 	>
 		
 	</acties-thema>
-	
+
 </template>
 
 <script>

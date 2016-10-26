@@ -404,12 +404,20 @@ Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastges
                         $trekker = $verbeteractie->user->name_first . ' ' . $verbeteractie->user->name_last;
                     }
                     $verbeteractietext .= '<br>Succesfactor: ' . $verbeteractie->title . '<br>'  . 
-                    '- Verbeteractie: ' . $verbeteractie->omschrijving . '<br>'  . 
+                    '- Uit te werken verbeterpunten: ' . $verbeteractie->omschrijving . '<br>'  . 
                     '- Initiatiefnemer: '  . $trekker . '<br>'  . 
                     '- Betrokkenen: ';
                     if(count($verbeteractie->betrokkenen)){
                         foreach($verbeteractie->betrokkenen as $betrokkene){
                             $verbeteractietext .=  $betrokkene->name_first . ' ' . $betrokkene->name_last . ', ';
+                        }
+                    } else {
+                        $verbeteractietext .= ' --- ';
+                    }
+                    $verbeteractietext .= '<br> - Overige Betrokkenen: ';
+                    if(count($verbeteractie->externalusers)){
+                        foreach ($verbeteractie->externalusers as $externaluser) {
+                            $verbeteractietext .= $externaluser->name . ', ';
                         }
                     } else {
                         $verbeteractietext .= ' --- <br>';
@@ -446,7 +454,72 @@ Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastges
 
     public function werkagendamailen(Scan $scan)
     {
-        return view('scans.werkagendamailen', compact('scan'));
+        $werkagendatext = 'Hieronder ziet u de resultaten en afspraken die voortvloeien uit de implementatiescan die u gezamenlijke heeft uitgevoerd. Klik op "Bekijk hier het resultaat van de implementatiescan voor dit thema" om het resultaat per thema te zien. <br><br>
+            U heeft afgesproken om op ' . $scan->datedeeltwee . ' om ' . $scan->timedeeltwee . ' verder te gaan met het samenstellen van de werkagenda. <br><br>
+
+' ;
+        $thema_nr = 0;
+        foreach ($scan->scanmodel->themas as $thema) {
+            $thema_nr++;
+            $werkagendatext .= '<b>Verbeteracties voor het thema: ' . $thema->title . '</b><br>';
+            $werkagendatext .= '<a href="http://www.implementatiescan.nl/scans/' . $scan->id . '/thema/' . $thema->id . '/' . $thema_nr . '/themaresultaat">Bekijk hier het resultaat van de implementatiescan voor dit thema</a><br>'; 
+            foreach($scan->verbeteracties as $verbeteractie){
+                if($verbeteractie->active && $verbeteractie->thema_id == $thema->id){
+                    $trekker = ' --- ';
+                    if($verbeteractie->user != null){
+                        $trekker = $verbeteractie->user->name_first . ' ' . $verbeteractie->user->name_last;
+                    }
+                    $werkagendatext .= '<br>Succesfactor: ' . $verbeteractie->title . '<br>'  . 
+                    '- Uit te werken verbeterpunten: ' . $verbeteractie->omschrijving . '<br>'  . 
+                    '- Initiatiefnemer: '  . $trekker . '<br>'  . 
+                    '- Betrokkenen: ';
+                    if(count($verbeteractie->betrokkenen)){
+                        foreach($verbeteractie->betrokkenen as $betrokkene){
+                            $werkagendatext .=  $betrokkene->name_first . ' ' . $betrokkene->name_last . ', ';
+                        }
+                    } else {
+                        $werkagendatext .= ' --- ';
+                    }
+                    $werkagendatext .= '<br> - Overige Betrokkenen: ';
+                    if(count($verbeteractie->externalusers)){
+                        foreach ($verbeteractie->externalusers as $externaluser) {
+                            $werkagendatext .= $externaluser->name . ', ';
+                        }
+                    } else {
+                        $werkagendatext .= ' --- ';
+                    }
+                    $werkagendatext .= '<br><br>';
+                    foreach($verbeteractie->subacties as $subactie) {
+                        $trekker = ' --- ';
+                        if($subactie->trekker != null){
+                            $trekker = $subactie->trekker->name_first . ' ' . $subactie->trekker->name_last;
+                        }
+                        $werkagendatext .= 'Subactie: ' . $subactie->title . '<br>' .
+                        '- Uit te werken verbeterpunten: ' . $subactie->omschrijving . '<br>' .
+                        '- Initiatiefnemer: ' . $trekker . '<br>' .
+                        '- Betrokkenen: ';
+                        if(count($subactie->betrokkenen)){
+                            foreach($subactie->betrokkenen as $betrokkene) {
+                                $werkagendatext .=  $betrokkene->name_first . ' ' . $betrokkene->name_last . ', ';
+                            }
+                        } else {
+                            $verbeteractietext .= ' --- ';
+                        }
+                        $werkagendatext .= '<br> - Overige Betrokkenen: ';
+                        if(count($subactie->externalusers)){
+                            foreach ($subactie->externalusers as $externaluser) {
+                                $werkagendatext .= $externaluser->name . ', ';
+                            }
+                        } else {
+                            $werkagendatext .= ' --- ';
+                        }
+                        $werkagendatext .= '<br><br>';
+                    }
+                }
+            }
+            $werkagendatext .= '<br>';
+        }
+        return view('scans.werkagendamailen', compact('scan', 'werkagendatext'));
     }
 
     public function voorzitterscans(Scan $scan)
