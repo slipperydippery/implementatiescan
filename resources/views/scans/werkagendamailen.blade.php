@@ -39,7 +39,7 @@
 			<?php 
 				$emailtext = "Beste deelnemers,
 
-	Bedankt en gefeliciteerd! Tijdens de Werkagenda sessie Implementatiescan Jongeren met LVB hebben we de volgende verbeterpunten vastgesteld. Deze vormen de Werkagenda, waar we gezamenlijk en ieder voor zich mee aan de slag gaan in het komende jaar. Dat doen we als volgt:";
+Bedankt en gefeliciteerd! Tijdens de Werkagenda sessie Implementatiescan Jongeren met LVB hebben we de volgende verbeterpunten vastgesteld. Deze vormen de Werkagenda, waar we gezamenlijk en ieder voor zich mee aan de slag gaan in het komende jaar. Dat doen we als volgt:";
 			?>
 		<div class="form-group">
 			{!! Form::label('mail_intro', 'Email tekst:') !!}

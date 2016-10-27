@@ -6,7 +6,7 @@
 
 <!-- Regio Form Input -->
 <div class="form-group">
-	{!! Form::label('regio', 'Regio:') !!}
+	{!! Form::label('regio', 'Regio / vestigingsplaats:') !!}
 	{!! Form::text('regio', null, ['class' => 'form-control']) !!}
 </div>
 

@@ -41,7 +41,7 @@
 				Betrokkenen
 			</div>
 			<div class="large-2 columns actie-omschrijving">
-				Overige Betrokkenen
+				Overige betrokkenen
 			</div>
 		</div>
 		<div class="row">
@@ -132,7 +132,7 @@
 		</div>
 		<div class="row subactie--titel" v-if="isWerkAgenda">
 			Wilt u het verbeterpunt meenemen naar de werkagenda? <br>
-			Formuleer dan hieronder de vervolgacties.
+			Formuleer dan hieronder de vervolgacties:
 		</div>
 
 		<sub-actie 
