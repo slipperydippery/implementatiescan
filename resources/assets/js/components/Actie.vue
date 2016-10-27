@@ -1,5 +1,5 @@
 <template>
-	<div v-if="!actie.werkactive" class="single_actie">
+	<div v-if="!actie.werkactive && isWerkAgenda" class="single_actie">
 		<div class="row">
 			<div class="large-12 columns actie-titel"> 
 				<span class="remove_row remove_row--werkadd"
@@ -12,7 +12,7 @@
 			</div>
 		</div>
 	</div>
-	<div v-if="actie.active && actie.werkactive" class="single_actie">	
+	<div v-if="(actie.active && actie.werkactive) || (!isWerkAgenda && actie.active)" class="single_actie">	
 		<div class="row">
 			<div class="large-12 columns actie-titel"> 
 				<span class="remove_row"

@@ -129,7 +129,7 @@
 			setActieActive: function (actie) {
 				actie.active = true;
 				this.saveActie(actie);
-				this.getVerbeteracties();
+				// this.getVerbeteracties();
 				this.showInactief = false;
 				// this.$dispatch('reloadData');
 				// $broadcast();
@@ -140,6 +140,7 @@
 				var resource = this.$resource('/api/verbeteractie/:actie');
 				resource.update({actie: actie.id}, {actie: actie})
 					.then(function(response){
+						home.getVerbeteracties();
 					});
 			},
 
