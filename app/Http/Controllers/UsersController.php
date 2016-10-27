@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Scan;
 use App\User;
 use App\Instantie;
+use App\Scanmodel;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -136,4 +137,11 @@ class UsersController extends Controller
     {
         //
     }
+
+    public function request()
+    {
+        $scanmodels = Scanmodel::findOrFail(1)->instantiemodels->lists('title', 'id');
+        return view('users.request', compact('scanmodels'));
+    }
+
 }

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 
 class EmailController extends Controller
 {
@@ -31,6 +32,34 @@ class EmailController extends Controller
         });
 
         return response()->json(['message' => 'Request completed']);
+    }
+
+    public function sendrequest(Request $request)
+    {
+        // return $request;
+        $title = 'Aanvraag Deelnaame Implementatiescan';
+        $email = $request->beheerder_email;
+        $name = $request->name_first . ' ' . $request->name_last;
+        // return $email;
+        $content = 'Naam School: ' . $request->title . '<br>' .
+            'Regio / vestigingsplaats: ' . $request->regio . '<br>' .
+            'Voornaam voorzitter: ' . $request->name_first . '<br>' .
+            'Achternaam voorzitter: ' . $request->name_last . '<br>' .
+            'Email adres: ' . $request->email . '<br>' .
+            'Instantie: ' . $request->instantie;
+        Mail::send('emails.send', ['title' => $title, 'content' => $content], function ($message) use ($email, $name)
+        {
+            $message->from('no-reply@implementatiescan.nl', 'Team Implementatiescan');
+            $message->to('susanne@embav.nl', 'Susanne Meeuwissen');
+            $message->subject('Aanvraag Implementatiescan');
+            $message->replyTo($email, $name);
+        });
+        return Redirect::route('users.requestthank');
+    }
+
+    public function requestthank()
+    {
+        return view ('users.requestthank');
     }
 
     public function senduitnodiging(Request $request, Scan $scan)

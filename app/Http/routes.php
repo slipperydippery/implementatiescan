@@ -25,6 +25,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/api/instruments', 'ApiController@getInstruments');
     Route::get('/api/programma', 'ApiController@getProgrammas');
     Route::get('/api/praktijkvoorbeeld', 'ApiController@getPraktijkvoorbeelds');
+    Route::get('/users/request', ['as' => 'users.request', 'uses' => 'UsersController@request']);
+    Route::post('/users/request', ['as' => 'users.sendrequest', 'uses' => 'EmailController@sendrequest']);
+    Route::get('/users/requestthank', ['as' => 'users.requestthank', 'uses' => 'EmailController@requestthank']);
 
 });
 
@@ -173,7 +176,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
      * Scan inrichten
      */
     Route::get('/voorzitter/scans', ['as' => 'voorzitter.scans', 'uses' => 'ScansController@voorzitterscans']);
-    
+    Route::get('/scans/{scan}/inrichten/instructiefilm', ['as' => 'scans.instructiefilm', 'uses' => 'ScansController@instructiefilm']);
     Route::get('/scans/{scan}/inrichten/invoerendeelnemers', ['as' => 'scans.invoerendeelnemers', 'uses' => 'ScansController@invoerendeelnemers']);
     Route::get('/scans/{scan}/inrichten/editinvoerdeelnemer/{user}', ['as' => 'scans.editinvoerdeelnemer', 'uses' => 'ScansController@editinvoerdeelnemer']);
     Route::post('/scans/{scan}/inrichten/invoerendeelnemers', ['as' => 'scans.storedeelnemer', 'uses' => 'ScansController@storedeelnemer']);

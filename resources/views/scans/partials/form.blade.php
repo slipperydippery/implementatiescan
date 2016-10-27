@@ -24,7 +24,7 @@
 
 <!-- Email adress beheerder Form Input -->
 <div class="form-group">
-	{!! Form::label('beheerder_email', 'Email adress voorzitter:') !!}
+	{!! Form::label('beheerder_email', 'Email adres voorzitter:') !!}
 	{!! Form::text('beheerder_email', null, ['class' => 'form-control']) !!}
 </div>
 

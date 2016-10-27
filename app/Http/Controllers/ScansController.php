@@ -532,8 +532,12 @@ Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastges
         } elseif (count($scans) < 1){
             return Redirect::route('home');
         }
-        return Redirect::route('scans.invoerendeelnemers', $user->beheert->first());
+        return Redirect::route('scans.instructiefilm', $user->beheert->first());
+    }
 
+    public function instructiefilm(Scan $scan)
+    {
+        return view ('scans.inrichten.instructiefilm', compact('scan'));
     }
 
     public function invoerendeelnemers(Scan $scan)
