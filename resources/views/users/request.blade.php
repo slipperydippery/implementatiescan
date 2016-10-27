@@ -6,7 +6,7 @@
 		<h1>Account aanvragen</h1>
 		<fieldset class="fieldset">
   			<p class="subheading subheading__time">
-  				Wilt u gezamenlijk met uw netwerkpartners een implementatiescan uitvoeren? Dan kun u hier een account aanvragen. Vul uw gegevens in en wij maken een scan voor u aan. U ontvangt uw inloggevens per email.
+  				Wilt u gezamenlijk met uw netwerkpartners een implementatiescan uitvoeren? Dan kunt u hier een account aanvragen. Vul uw gegevens in en wij maken een scan voor u aan. U ontvangt uw inloggevens per email.
   			</p>
 		</fieldset>
 	</div>

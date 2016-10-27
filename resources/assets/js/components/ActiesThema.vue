@@ -11,11 +11,11 @@
 				>
 					
 				</actie> 
-				<div class="row actie-rij " v-if="!isWerkAgenda">
+				<div class="row actie-rij " v-if="!isWerkAgenda && inactiveVerbeteracties">
 					<div class="large-12 columns actie-voegtoe" @click="showInactief =  ! showInactief"> 
 						<span v-show="! showInactief">+</span>
 						<span v-show="showInactief">-</span> 
-						voeg nog een verbeterpunt toe
+						voeg nog een verbeterpunt toe 
 					</div>
 					<div class="large12 columns actie-inactief" 
 						v-for="actie in verbeteracties" 
@@ -129,6 +129,9 @@
 			setActieActive: function (actie) {
 				actie.active = true;
 				this.saveActie(actie);
+				this.getVerbeteracties();
+				// this.$dispatch('reloadData');
+				// $broadcast();
 			},
 
 			saveActie: function (actie) {
@@ -149,6 +152,18 @@
 					return true;
 				}
 				return false;
+			},
+
+			inactiveVerbeteracties: function () {
+				var inactiveActies = 0;
+				for (var actie in this.verbeteracties)
+				{
+					if(this.verbeteracties[actie].active == false)
+					{
+						inactiveActies ++;
+					}
+				}
+				return inactiveActies;
 			},
 
 		}
