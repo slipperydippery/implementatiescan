@@ -33,7 +33,7 @@
 						We weten veel over wat werkt om de kansen voor jongeren in het VSO en PRO te vergroten. Management en beleid van scholen, gemeenten en andere netwerkpartners zijn verantwoordelijk voor het scheppen van goede randvoorwaarden voor de uitvoering binnen en tussen hun organisaties. Anders maken we het moeilijk voor docenten, klantmanagers en begeleiders om hun werk goed en efficiënt te kunnen doen. Het kan zoveel beter. Daarom om tafel. In open dialoog kansen benoemen en acties afspreken: 12 vertegenwoordigers, 15 kernvragen, 1 agenda!
 						<br><br>
 						<b>Account aanvragen</b><br>
-						Wilt u gezamenlijk met uw netwerkpartners een implementatiescan uitvoeren? Dan kun u <a href="{{ URL::route('users.request') }}">hier een account aanvragen</a>. Vul uw gegevens in en wij maken een scan voor u aan. U ontvangt uw inloggevens per email.
+						Wilt u gezamenlijk met uw netwerkpartners een implementatiescan uitvoeren? Dan kun u <a href="{{ URL::route('users.request') }}" class="visible_link">hier een account aanvragen</a>. Vul uw gegevens in en wij maken een scan voor u aan. U ontvangt uw inloggevens per email.
 					</p>
 				</fieldset>
 			</div>

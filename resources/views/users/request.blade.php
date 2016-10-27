@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row page-heading">
-	<div class="large-12 ">
+	<div class="large-8 ">
 		<h1>Account aanvragen</h1>
 		<fieldset class="fieldset">
   			<p class="subheading subheading__time">

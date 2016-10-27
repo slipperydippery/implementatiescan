@@ -1,8 +1,16 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,900,700,500italic,500,400italic,300italic);
 
+.visible_link {
+  color: #9fc236;
+}
+.visible_link:hover {
+  color: #6d8a16;
+}
+
 body, p, h1, h2, h3, h4, h5, h6 {
   color: #22373e;
 }
+
 p, span, body {
   font-family: Roboto, Arial, sans-serif;
   font-weight: 300;
