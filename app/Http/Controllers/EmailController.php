@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Scan;
 use App\User;
+use App\Instantie;
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 
@@ -40,13 +41,14 @@ class EmailController extends Controller
         $title = 'Aanvraag Deelnaame Implementatiescan';
         $email = $request->beheerder_email;
         $name = $request->name_first . ' ' . $request->name_last;
+        $instantie = Instantie::findOrFail($request->instantie);
         // return $email;
         $content = 'Naam School: ' . $request->title . '<br>' .
             'Regio / vestigingsplaats: ' . $request->regio . '<br>' .
             'Voornaam voorzitter: ' . $request->name_first . '<br>' .
             'Achternaam voorzitter: ' . $request->name_last . '<br>' .
-            'Email adres: ' . $request->email . '<br>' .
-            'Instantie: ' . $request->instantie;
+            'Email adres: ' . $email . '<br>' .
+            'Instantie: ' . $instantie->title;
         Mail::send('emails.send', ['title' => $title, 'content' => $content], function ($message) use ($email, $name)
         {
             $message->from('no-reply@implementatiescan.nl', 'Team Implementatiescan');
