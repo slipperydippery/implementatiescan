@@ -1,4 +1,4 @@
-@extends('layouts.admin', ['title' => 'maak nieuwe scans'])
+@extends('layouts.master', ['title' => 'maak nieuwe scans'])
 
 @section('content')
 <div class="row page-heading">
@@ -40,25 +40,7 @@
 
 @section('additional-scripts')
 
-    <script src="{{ URL::asset('/js/picker.js') }}"></script>
-    <script src="{{ URL::asset('/js/picker.date.js') }}"></script>
 
-    <script>
-      $(function() {
-        // Enable Pickadate on an input field
-        $('#datedeeleen').pickadate({
-            monthsFull: [ 'januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december' ],
-            monthsShort: [ 'jan', 'feb', 'maa', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec' ],
-            weekdaysFull: [ 'zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag' ],
-            weekdaysShort: [ 'zo', 'ma', 'di', 'wo', 'do', 'vr', 'za' ],
-            formatSubmit: 'yyyy/mm/dd',
-            hiddenName: true,
-            today: '',
-            clear: '',
-            close: ''
-        });
-      });   
-    </script>
 
 @stop
 
