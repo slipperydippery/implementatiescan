@@ -15,7 +15,7 @@
 					<div class="large-12 columns actie-voegtoe" @click="showInactief =  ! showInactief"> 
 						<span v-show="! showInactief">+</span>
 						<span v-show="showInactief">-</span> 
-						Werk hier uw verbeterpunt nader uit
+						voeg nog een verbeterpunt toe
 					</div>
 					<div class="large12 columns actie-inactief" 
 						v-for="actie in verbeteracties" 

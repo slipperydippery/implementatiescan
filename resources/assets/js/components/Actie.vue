@@ -146,7 +146,7 @@
 		<div class="row " v-if="isWerkAgenda">		
 			<div class="small-12">
 					<a href="#" @click="newSubactie()" class="voegsubactie">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+	Voeg nog een subactie toe
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+	Werk hier uw verbeterpunt nader uit
 					</a>
 			</div>
 
