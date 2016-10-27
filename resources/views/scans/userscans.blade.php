@@ -16,11 +16,14 @@
 <div class="row">
 	<div class="large-4">
 		<h2>Overzicht scans</h2>
-		<ul>
-			@foreach($scans as $scan)
-				<li><a href="{{ URL::route('scans.intro', $scan) }}"> {{ $scan->title }}, {{ $scan->regio }} </a></li>
-			@endforeach
-		</ul>
+		@foreach($scans as $scan)
+			<h5>{{ $scan->title }}, {{ $scan->regio }}</h5>
+			<ul>
+				<li><a href="{{ URL::route('scans.intro', $scan) }}" class="visible_link">{{ $scan->title }} - scan deel 1</a></li>
+				<li><a href="{{ URL::route('scans.werkagenda', $scan) }}" class="visible_link">{{ $scan->title }} - scan deel 2</a></li>
+				
+			</ul>
+		@endforeach
 
 	</div>
 </div>
