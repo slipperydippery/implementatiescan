@@ -64,6 +64,7 @@
 			<li >
 				<a href="#">Scan inrichten</a>
 				<ul class="menu vertical nested ">
+					<li><a href="{{ URL::route('scans.instructiefilm', $scan) }}">Instructiefilm</a></li>
 					<li><a href="{{ URL::route('scans.invoerendeelnemers', $scan) }}">Invoeren deelnemersgegevens</a></li>
 					<li><a href="{{ URL::route('scans.controlerendeelnemers', $scan) }}">Controleren deelnemersgegevens</a></li>
 					<li><a href="{{ URL::route('scans.uitnodigendeelnemers', $scan) }}">Mailen van uitnodiging</a></li>

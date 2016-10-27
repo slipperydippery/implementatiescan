@@ -22,11 +22,10 @@
 	</div>
 	<div class="large-8">
 		<div class="flex-video widescreen ">
-			<iframe width="853" height="480" src="https://www.youtube.com/embed/Ge0g_QiaCMo?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+			<iframe width="853" height="480" src="https://www.youtube.com/embed/yoP5QS2XJIE?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
 		</div>
 	</div>
 </div>
-
 
 
 @stop

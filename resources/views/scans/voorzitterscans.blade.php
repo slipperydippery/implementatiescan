@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master', ['title' => 'overzicht van uw scans'])
 
 @section('content')
 <div class="row page-heading">
@@ -16,7 +16,7 @@
 	</div>
 </div>
 <div class="row">
-	<div class="large-4">
+	<div class="large-4 columns">
 		<h2>Overzicht scans</h2>
 		<ul>
 			@foreach($scans as $scan)
