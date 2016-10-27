@@ -11353,6 +11353,7 @@ exports.default = {
 			actie.active = true;
 			this.saveActie(actie);
 			this.getVerbeteracties();
+			this.showInactief = false;
 			// this.$dispatch('reloadData');
 			// $broadcast();
 		},
