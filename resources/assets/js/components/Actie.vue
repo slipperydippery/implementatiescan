@@ -132,7 +132,7 @@
 		</div>
 		<div class="row subactie--titel" v-if="isWerkAgenda">
 			Wilt u het verbeterpunt meenemen naar de werkagenda? <br>
-			Forumuleer dan hieronder de acties die u kunt ondernemen.
+			Formuleer dan hieronder de vervolgacties.
 		</div>
 
 		<sub-actie 

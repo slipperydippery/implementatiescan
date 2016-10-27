@@ -58,8 +58,7 @@ Vanuit Lecso hopen we dat heel veel scholen het initiatief nemen om de netwerkpa
 Ga naar www.implementatiescan.nl en klik op de knop:
 scan inrichten - voorzitter - het proces wijst zich vanzelf.
 
-Heeft u vragen? Neem dan contact op met:
-xxxxx xxxxxx (nader in te vullen)', ['class' => 'form-control']) !!}
+Heeft u vragen? Neem dan contact op met Lecso', ['class' => 'form-control']) !!}
 </div>
 
 <!-- Hidden video_id Type Form Input -->

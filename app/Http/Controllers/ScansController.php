@@ -464,7 +464,7 @@ Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastges
             $werkagendatext .= '<b>Verbeteracties voor het thema: ' . $thema->title . '</b><br>';
             $werkagendatext .= '<a href="http://www.implementatiescan.nl/scans/' . $scan->id . '/thema/' . $thema->id . '/' . $thema_nr . '/themaresultaat">Bekijk hier het resultaat van de implementatiescan voor dit thema</a><br>'; 
             foreach($scan->verbeteracties as $verbeteractie){
-                if($verbeteractie->active && $verbeteractie->thema_id == $thema->id){
+                if($verbeteractie->active && $verbeteractie->werkactive && $verbeteractie->thema_id == $thema->id){
                     $trekker = ' --- ';
                     if($verbeteractie->user != null){
                         $trekker = $verbeteractie->user->name_first . ' ' . $verbeteractie->user->name_last;

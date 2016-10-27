@@ -4278,21 +4278,6 @@ main {
   background: rgba(0, 0, 0, 0.05);
   border: 1px solid #aaa; }
 
-.subactie {
-  border-bottom: 1px solid #333;
-  background: rgba(0, 0, 0, 0.04);
-  padding: 1rem 0 0; }
-
-.subactie--titel {
-  font-size: 1rem;
-  /* background: rgba(0, 0, 0, 0.11); */
-  border: 1px solid #333;
-  padding: 1rem;
-  font-weight: 500; }
-
-.subactie--date {
-  clear: both; }
-
 .table {
   background: rgba(255, 255, 255, 0.2);
   margin: 2rem 0;
