@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\RequestAccountRequest;
 
 class EmailController extends Controller
 {
@@ -35,7 +36,7 @@ class EmailController extends Controller
         return response()->json(['message' => 'Request completed']);
     }
 
-    public function sendrequest(Request $request)
+    public function sendrequest(RequestAccountRequest $request)
     {
         // return $request;
         $title = 'Aanvraag Deelnaame Implementatiescan';
