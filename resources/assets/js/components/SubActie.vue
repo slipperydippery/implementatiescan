@@ -304,10 +304,10 @@
 
 	.subactie--titel {
 		font-size: 1rem;
-		/* background: rgba(0, 0, 0, 0.11); */
-		border: 1px solid #333;
-		padding: 1rem;
-		font-weight: 500;
+	    background: rgb(187, 211, 112);
+	    /* border: 1px solid #333; */
+	    padding: 1rem;
+	    font-weight: 500;
 	}
 
 	.subactie--date {
