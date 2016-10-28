@@ -23,7 +23,7 @@
 		<div class="row">
 			<div class="small-12 ">
 				<h1>Implementatiescan</h1>
-				<h2>Focus op werk voor en talent van jongeren met LVB</h2>
+				<h2>Focus op werk voor en talent van jongeren met een kwetsbare positie</h2>
 				<fieldset class="fieldset">
 					<p >
 						<b>Gezamenlijke regionale Werkagenda</b><br>
