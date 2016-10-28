@@ -218,6 +218,10 @@ Uw wachtwoord is: ' . $user->initial_pwd;
             return Redirect::route('home');
         }
         $scan = $scans->first();
+        if($scan->deeleencomplete)
+        {
+            return Redirect::route('scans.werkagenda', compact('scan'));
+        }
         return Redirect::route('scans.intro', compact('scan'));
 
     }
@@ -379,6 +383,7 @@ Uw wachtwoord is: ' . $user->initial_pwd;
         // return $request->all();
         $scan->datedeeltwee = $request->datedeeltwee;
         $scan->timedeeltwee = $request->timedeeltwee;
+        $scan->deeleencomplete = true;
         $scan->save();
         return Redirect::route('scans.actiesmailen', $scan);
     }
