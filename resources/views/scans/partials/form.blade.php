@@ -34,10 +34,15 @@
     {!! Form::select('instantie', $scanmodels, 'none', ['class' => 'form-control']) !!}
 </div>
 
+<!-- Test scan Form Input -->
+<div class="form-group">
+	{!! Form::label('testscan', 'Is het een test scan?:') !!}
+	{!! Form::checkbox('testscan', 1, true, ['class' => 'form-control']) !!}
+</div>
+
 <div class="form-group">
 	{!! Form::label('datepicker', 'Datum scan:') !!}
 	<input id="datedeeleen" class="hidden" name="datedeeleen" type="hidden" placeholder="Choose a date">
-  
 </div>
 
 <!-- Email Bericht Form Input -->

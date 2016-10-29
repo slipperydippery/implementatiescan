@@ -38,18 +38,19 @@ class EmailController extends Controller
 
     public function sendrequest(RequestAccountRequest $request)
     {
-        // return $request;
+        // return $request->all();
         $title = 'Aanvraag Deelnaame Implementatiescan';
         $email = $request->beheerder_email;
         $name = $request->name_first . ' ' . $request->name_last;
         $instantie = Instantie::findOrFail($request->instantie);
-        // return $email;
+        $testscan = $request->testscan ? 'ja' : 'nee';
         $content = 'Naam School: ' . $request->title . '<br>' .
             'Regio / vestigingsplaats: ' . $request->regio . '<br>' .
             'Voornaam voorzitter: ' . $request->name_first . '<br>' .
             'Achternaam voorzitter: ' . $request->name_last . '<br>' .
             'Email adres: ' . $email . '<br>' .
-            'Instantie: ' . $instantie->title;
+            'Instantie: ' . $instantie->title . '<br>' .
+            'Test Scan: ' . $testscan;
         Mail::send('emails.send', ['title' => $title, 'content' => $content], function ($message) use ($email, $name)
         {
             $message->from('no-reply@implementatiescan.nl', 'Team Implementatiescan');
