@@ -3,6 +3,10 @@
 .visible_link {
   color: #9fc236;
 }
+visible_link--basic {
+  text-decoration: underline;
+  font-style: italic;
+}
 .visible_link:hover {
   color: #6d8a16;
 }
