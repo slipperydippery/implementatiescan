@@ -3,12 +3,14 @@
 .visible_link {
   color: #9fc236;
 }
+
+.visible_link:hover {
+  color: #6d8a16;
+}
+
 visible_link--basic {
   text-decoration: underline;
   font-style: italic;
-}
-.visible_link:hover {
-  color: #6d8a16;
 }
 
 body, p, h1, h2, h3, h4, h5, h6 {
