@@ -32,7 +32,7 @@
 		v-for="instrument in instruments | filterBy search | filterBy checkedThemas[0] | filterBy checkedThemas[1] | filterBy checkedThemas[2]"
 	>
 		<div class="small-2 columns">
-			<a :href="instrument.adress">
+			<a :href="instrument.adress" class="visible_link">
 				{{ instrument.title}}
 			</a>
 		</div>

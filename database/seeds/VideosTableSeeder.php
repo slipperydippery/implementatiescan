@@ -29,7 +29,7 @@ class VideosTableSeeder extends Seeder
                 'subtitle' => 'Video voor thema 1: focus op werk en talent',
                 'blurbtitle' => 'A box of introtext',
                 'blurb' => 'lorem ipsum...',
-                'adress' => '0X6ksSfV51Y',
+                'adress' => 'Y3nYAdGBFKU',
                 'download' => 'noreason.mp3',
             ],
             [
@@ -38,7 +38,7 @@ class VideosTableSeeder extends Seeder
                 'subtitle' => 'Video voor thema 2: Kwaliteit Begeleiding',
                 'blurbtitle' => 'A box of introtext',
                 'blurb' => 'lorem ipsum...',
-                'adress' => '3ONKjef81wk',
+                'adress' => 'JJEWn8ao6qY',
                 'download' => 'noreason.mp3',
             ],
             [
@@ -47,7 +47,7 @@ class VideosTableSeeder extends Seeder
                 'subtitle' => 'Video voor thema 3: Efficiente Samenwerking ',
                 'blurbtitle' => 'A box of introtext',
                 'blurb' => 'lorem ipsum...',
-                'adress' => 'oL0zlTyQzig',
+                'adress' => '_3bAx_-wshA',
                 'download' => 'noreason.mp3',
             ],
         ];
