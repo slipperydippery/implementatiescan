@@ -12,6 +12,7 @@ use JavaScript;
 use App\Question;
 use App\Instantie;
 use App\Scanmodel;
+use App\Scanrequest;
 use App\Http\Requests;
 use App\Verbeteractie;
 use Illuminate\Http\Request;
@@ -29,7 +30,9 @@ class ScansController extends Controller
     public function index()
     {
         $scans = Scan::get();
-        return view ('scans.index', compact ('scans'));
+        $users = User::get();
+        $scanrequests = Scanrequest::get();
+        return view ('scans.index', compact ('scans', 'users', 'scanrequests'));
     }
 
     /**

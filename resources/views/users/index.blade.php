@@ -36,7 +36,7 @@
 					Participeert
 				</div>
 				<div class="small-1 columns">
-					
+					Logins
 				</div>
 				
 			</div>
@@ -68,9 +68,7 @@
 					@endforeach
 				</div>
 				<div class="small-1 columns">
-					<a href=" {{ route('users.show', $user->id) }} ">
-						
-					</a>
+					{{ $user->logincount }}
 				</div>
 
 			</div>

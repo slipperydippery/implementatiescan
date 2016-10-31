@@ -185,6 +185,12 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::post('/scans/{scan}/inrichten/uitnodigendeelnemers', ['as' => 'scans.post_uitnodigendeelnemers', 'uses' => 'ScansController@post_uitnodigendeelnemers']);
     Route::get('/bedankt', ['as' => 'bedankt', 'uses' => 'PagesController@bedankt']);
 
+
+    /**
+     * Admin
+     */
+    Route::get('/admin/scanrequests', ['as' => 'admin.scanrequests', 'uses' => 'AdminController@scanrequests']);
+
 });
 
 Route::get('/testpage', ['as' => 'testpage', 'uses' => 'PagesController@testpage']);

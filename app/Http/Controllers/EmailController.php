@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Scan;
 use App\User;
 use App\Instantie;
+use App\Scanrequest;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +40,18 @@ class EmailController extends Controller
     public function sendrequest(RequestAccountRequest $request)
     {
         // return $request->all();
+        // Store request
+        $scanrequest = new Scanrequest();
+        $scanrequest->title = $request->title;
+        $scanrequest->regio = $request->regio;
+        $scanrequest->beheerder_name_first = $request->name_first;
+        $scanrequest->beheerder_name_last = $request->name_last;
+        $scanrequest->beheerder_email = $request->beheerder_email;
+        $scanrequest->beheerder_instantie = $request->instantie;
+        $scanrequest->testscan = $request->testscan;
+        // return $scanrequest;
+        $scanrequest->save();
+                
         $title = 'Aanvraag Deelnaame Implementatiescan';
         $email = $request->beheerder_email;
         $name = $request->name_first . ' ' . $request->name_last;
