@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('name_first');
             $table->string('name_last');
             $table->dateTime('last_online');
+            $table->boolean('logincount')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

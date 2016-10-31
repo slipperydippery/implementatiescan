@@ -17,6 +17,7 @@ class CreateVerbeteractiesTable extends Migration
             $table->boolean('active')->default(0);
             $table->string('title');
             $table->text('omschrijving');
+            $table->boolean('werkactive')->default(1);
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('question_id')->unsigned();
