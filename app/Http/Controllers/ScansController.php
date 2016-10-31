@@ -108,15 +108,15 @@ class ScansController extends Controller
 Uw gebruikersnaam is: ' . $user->email . '
 Uw wachtwoord is: ' . $user->initial_pwd;
         $data = ['title' => '', 'content' => nl2br($content)];
-        // Mail::send('emails.send', $data , function ($message) use ($request)
-        // {
-        //     $message->from('no-reply@implementatiescan.nl', 'Implementatiescan');
+        Mail::send('emails.send', $data , function ($message) use ($request)
+        {
+            $message->from('no-reply@implementatiescan.nl', 'Implementatiescan');
 
-        //     $message->to($request->input('beheerder_email'));
+            $message->to($request->input('beheerder_email'));
 
-        //     $message->subject('Uitnodiging Implementatiescan');
+            $message->subject('Uitnodiging Implementatiescan');
 
-        // });
+        });
 
         return Redirect::route('scans.index');
     }
