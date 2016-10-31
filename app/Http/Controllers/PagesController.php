@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Gate;
 use App\Scan;
+use App\User;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 
 class PagesController extends Controller
 {
@@ -16,7 +19,7 @@ class PagesController extends Controller
         return view ('welcome') ;
     }
 
-    public function bedankt(    )
+    public function bedankt()
     {
         return view('pages.voorzitter.bedankt');
     }
