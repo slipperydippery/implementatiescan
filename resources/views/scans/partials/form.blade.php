@@ -72,7 +72,11 @@ Heeft u vragen? Neem dan contact op met Lecso', ['class' => 'form-control']) !!}
 <!-- Hidden scanmodel Type Form Input -->
 {!! Form::hidden('scanmodel_id', '1', null) !!}
 
-    
+<!-- Test scan Form Input -->
+<div class="form-group">
+	{!! Form::label('withmail', 'Wilt u een email versturen?') !!}
+	{!! Form::checkbox('withmail', 1, true, ['class' => 'form-control']) !!}
+</div>    
 
 
 <!-- Add Submit Field -->
