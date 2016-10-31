@@ -138,7 +138,7 @@
 		<div class="small-9 columns">
 			<div class="row">
 				<div class="small-4 columns triblock">
-					<a href="http://www.implementatiescan.nl/video/noreason.mp3"
+					<a href="http://www.implementatiescan.nl/video/Implementatiescan_videos.zip"
 						role="button"
 						class="title_button"
 					> 
