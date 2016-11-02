@@ -14,43 +14,58 @@
 
 
 <div class="row page-content">
-	<div class="small-12 columns">
-		<div class="row">
+	<div class="small-4 columns table">
+		<div class="row table-row table-header">
+			Overzicht Scans
+		</div>
+		<div class="row table-row">
 			<a href="{{ URL::route('admin.scanrequests') }}">
-				<div class="small-2 columns">
-					# Inlog aanvragen: 
-				</div>
 				<div class="small-10 columns">
+					Aanvragen: 
+				</div>
+				<div class="small-2 columns">
 					{{ $scanrequests->count() }}
 				</div>
 			</a>
 		</div>
-		<div class="row">
+		<div class="row table-row">
 			<a href="{{ URL::route('users.index') }}">
-				<div class="small-2 columns">
-					# Inlogs: 
-				</div>
 				<div class="small-10 columns">
+					Inlogs: 
+				</div>
+				<div class="small-2 columns">
 					{{ $users->sum('logincount') }}
 				</div>
 			</a>
 		</div>
-		<div class="row">
-			<div class="small-2 columns">
-				# Deel 1 afgerond: 
-			</div>
+		<div class="row table-row">
 			<div class="small-10 columns">
+				Deel 1 afgerond: 
+			</div>
+			<div class="small-2 columns">
 				{{ $scans->sum('deeleencomplete') }}
 			</div>
 		</div>
-		<div class="row">
-			<div class="small-2 columns">
-				# Deel 2 afgerond: 
-			</div>
+		<div class="row table-row">
 			<div class="small-10 columns">
+				Deel 2 afgerond: 
+			</div>
+			<div class="small-2 columns">
 				{{ $scans->sum('deeltweecomplete') }}
 			</div>
 		</div>
+	</div>
+</div>]
+
+<div class="row page-content">
+	<div class="small-12 columns">
+		<deelnemersveld></deelnemersveld>
+	</div>
+</div>
+
+<div class="row page-content">
+	<div class="small-12 columns">
+		<criteria></criteria>
 	</div>
 </div>
 <div class="row page-content">

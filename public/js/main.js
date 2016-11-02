@@ -11135,15 +11135,6 @@ exports.default = {
 
 	},
 
-	// getBetrokkenen: function () {
-	// 	var home = this;
-	// 	var resource = this.$resource('/api/verbeteractie/:actie/betrokkene');
-	// 	resource.get({actie: this.actiee.id}, {})
-	// 		.then(function(response){
-	// 			home.$set('actie[betrokkenen]')
-	// 		});
-	// },
-
 	computed: {
 		unblength: function unblength() {
 			return this.unBetrokkenen.length;
@@ -11175,7 +11166,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"../components/SubActie.vue":26,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],14:[function(require,module,exports){
+},{"../components/SubActie.vue":28,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],14:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\t\n")
 'use strict';
 
@@ -11639,6 +11630,150 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],18:[function(require,module,exports){
+var __vueify_style__ = require("vueify-insert-css").insert("\n\t.graphbar {\n\t\theight: 1.5rem;\n\t\tbackground: #bed675;\n\t}\n\t\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	http: {
+		root: '/root',
+		headers: {
+			'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
+		}
+	},
+
+	props: [],
+
+	data: function data() {
+		return {
+			criteria: []
+		};
+	},
+	created: function created() {},
+	ready: function ready() {
+		this.getCriteria();
+	},
+
+
+	methods: {
+		getCriteria: function getCriteria() {
+			var home = this;
+			var resource = this.$resource('/api/criteria');
+			resource.get({}).then(function (response) {
+				home.$set('criteria', response.data);
+			});
+		},
+
+		cssPercent: function cssPercent(value) {
+			return value * 10 + '%';
+		}
+
+	},
+
+	computed: {
+		maxParticipants: function maxParticipants() {
+			var maxparticipants = 0;
+			for (var instantie in this.instantiesveld) {
+				maxparticipants = Math.max(maxparticipants, this.instantiesveld[instantie].allparticipants);
+			}
+			return maxparticipants;
+		}
+
+	}
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"table \">\n\t\t<div class=\"row table-row table-header\">\n\t\t\t<div class=\"small-6 columns\">\n\t\t\t\tCriterium\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns text-center\">\n\t\t\t\tGeselecteerd\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns text-center\">\n\t\t\t\tScore\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns text-center\">\n\t\t\t\tVerbeterpunten\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row table-row\" v-for=\"criterium in criteria \">\n\t\t\t<div class=\"small-6 columns\">\n\t\t\t\t{{criterium.themaid}} - {{criterium.title}}\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns text-center\">\n\t\t\t\t{{criterium.activecount}}\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns text-center\">\n\t\t\t\t{{ criterium.averagescore }}\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns text-center\">\n\t\t\t\t{{ criterium.subacties }}\n\t\t\t</div>\n\n\t\t</div>\n\t</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Criteria.vue"
+  module.hot.dispose(function () {
+    require("vueify-insert-css").cache["\n\t.graphbar {\n\t\theight: 1.5rem;\n\t\tbackground: #bed675;\n\t}\n\t\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, module.exports.template)
+  }
+})()}
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],19:[function(require,module,exports){
+var __vueify_style__ = require("vueify-insert-css").insert("\n\t.graphbar {\n\t\theight: 1.5rem;\n\t\tbackground: #bed675;\n\t}\n\t\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	http: {
+		root: '/root',
+		headers: {
+			'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
+		}
+	},
+
+	props: [],
+
+	data: function data() {
+		return {
+			instantiesveld: []
+		};
+	},
+	created: function created() {},
+	ready: function ready() {
+		this.getInstantiesVeld();
+	},
+
+
+	methods: {
+		getInstantiesVeld: function getInstantiesVeld() {
+			var home = this;
+			var resource = this.$resource('/api/instantiesveld');
+			resource.get({}).then(function (response) {
+				home.$set('instantiesveld', response.data);
+			});
+		},
+
+		cssPercent: function cssPercent(value) {
+			return value * 10 + '%';
+		}
+
+	},
+
+	computed: {
+		maxParticipants: function maxParticipants() {
+			var maxparticipants = 0;
+			for (var instantie in this.instantiesveld) {
+				maxparticipants = Math.max(maxparticipants, this.instantiesveld[instantie].allparticipants);
+			}
+			return maxparticipants;
+		}
+
+	}
+
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"table deelnemersveld\">\n\t\t<div class=\"row deelnemersveld--title table-row table-header\">\n\t\t\t<div class=\"small-3 columns\">\n\t\t\t\tOverzicht Deelnemersvelden\n\t\t\t</div>\n\t\t\t<div class=\"small-8 columns\">\n\t\t\t</div>\n\t\t\t<div class=\"small-1 columns\">\n\t\t\t\t#\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row table-row\" v-for=\"instantie in instantiesveld\">\n\t\t\t<div class=\"small-3 columns\">\n\t\t\t\t{{instantie.title}}\n\t\t\t</div>\n\t\t\t<div class=\"small-8 columns\">\n\t\t\t\t<div class=\"graphbar\" :style=\"{width: (instantie.allparticipants/maxParticipants) * 100 + '%'}\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"small-1 columns\">\n\t\t\t\t{{instantie.allparticipants}}\n\t\t\t</div>\n\t\t</div>\n\t</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Deelnemersveld.vue"
+  module.hot.dispose(function () {
+    require("vueify-insert-css").cache["\n\t.graphbar {\n\t\theight: 1.5rem;\n\t\tbackground: #bed675;\n\t}\n\t\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, module.exports.template)
+  }
+})()}
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],20:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\n.searchfilter {\n\ttext-align: right;\n\tlabel, input {\n\t\tdisplay: inline-block;\n\t}\n}\n\t\n")
 'use strict';
 
@@ -11728,7 +11863,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],19:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],21:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\t\n")
 'use strict';
 
@@ -11838,7 +11973,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"../components/AddSingleDeelnemer.vue":16,"../components/SingleDeelnemer.vue":24,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],20:[function(require,module,exports){
+},{"../components/AddSingleDeelnemer.vue":16,"../components/SingleDeelnemer.vue":26,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],22:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\n.searchfilter {\n\ttext-align: right;\n\tlabel, input {\n\t\tdisplay: inline-block;\n\t}\n}\n\t\n")
 'use strict';
 
@@ -11918,7 +12053,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],21:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],23:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n")
 'use strict';
 
@@ -12015,7 +12150,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"../components/SingleSlider.vue":25,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],22:[function(require,module,exports){
+},{"../components/SingleSlider.vue":27,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],24:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\n.searchfilter {\n\ttext-align: right;\n\tlabel, input {\n\t\tdisplay: inline-block;\n\t}\n}\n\t\n")
 'use strict';
 
@@ -12076,7 +12211,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],23:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],25:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\t.rangeresult {\n\t\tposition: relative;\n\t\tdisplay: block;\n\t\twidth: 100%;\n\t\theight: .5rem;\n\t\tbackground: #ec5840;\n\t    margin: .7rem 0 1.4rem;\n\t}\n\t.rangeresult__value {\n\t\tposition: absolute;\n\t\tdisplay: block;\n\t\ttop: 0;\n\t\tleft: 0;\n\t\theight: 100%;\n\t    background: #1CB32D;\n\t    webkit-transition: width 1s;\n\t    -webkit-transition: width 1s;\n\t    transition: width 1s;\n\t}\n\n\tinput[type=range]::after {\n\t    content:\"\";\n\t    display: block;\n\t    position: absolute;\n\t    top: 0;\n\t    left: 0;\n\t    width: 90%;\n\t    height: .6rem;\n\t    background: #1CB32D;\n\t}\n")
 'use strict';
 
@@ -12194,7 +12329,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],24:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],26:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\t\n")
 'use strict';
 
@@ -12334,7 +12469,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],25:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],27:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n")
 'use strict';
 
@@ -12423,7 +12558,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],26:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],28:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\t.subactie {\n\t    border-bottom: 1px solid #333;\n\t}\n\n\t.subactie .row {\n\t    background: whitesmoke;\n\t}\n\n\t.subactie .row:first-of-type {\n\t    padding-top: 1rem;\n\t}\n\n\t.subactie--titel {\n\t\tfont-size: 1rem;\n\t    background: rgb(187, 211, 112);\n\t    /* border: 1px solid #333; */\n\t    padding: 1rem;\n\t    font-weight: 500;\n\t}\n\n\t.subactie--date {\n\t\tclear: both;\n\t}\n\t.actie_removebetrokkene {\n\t\tfont-size: 2rem;\n\t\tline-height: 1.5rem;\n\t\tfont-weight: bold;\n\t\tfloat: right; \n\t\tpadding: 0 .5rem;\n\t\tcolor: #999;\n\t}\n\t.actie_removebetrokkene:hover {\n\t\tcursor:pointer;\n\t\tcolor: #000;\n\t}\n\n\tspan.remove_subactie {\n\t\tfloat: right;\n\t    padding: .3rem 0.6rem;\n\t    margin: 0;\n\t    height: 100%;\n\t    left: 0;\n\t    top: 0;\n\t    color: white;\n\t    background: rgba(0, 0, 0, 0.53);\n\t    font-weight: 500;\n\t    -webkit-transition: all .5s;\n\t    transition: all .5s;\n\t    overflow: hidden;\n\t    cursor: pointer;\n\t}\n\n\t.actie-exbetrokkene .closeicon {\n\t\tdisplay: none;\n\t}\n\n\t.actie-exbetrokkene:hover .closeicon {\n\t\tdisplay: block;\n\t}\n")
 'use strict';
 
@@ -12599,7 +12734,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],27:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],29:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n")
 'use strict';
 
@@ -12671,7 +12806,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"../components/SingleSlider.vue":25,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],28:[function(require,module,exports){
+},{"../components/SingleSlider.vue":27,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],30:[function(require,module,exports){
 'use strict';
 
 var _InvoerenDeelnemers = require('./components/InvoerenDeelnemers.vue');
@@ -12713,6 +12848,14 @@ var _Programmas2 = _interopRequireDefault(_Programmas);
 var _Praktijkvoorbeelds = require('./components/Praktijkvoorbeelds.vue');
 
 var _Praktijkvoorbeelds2 = _interopRequireDefault(_Praktijkvoorbeelds);
+
+var _Deelnemersveld = require('./components/Deelnemersveld.vue');
+
+var _Deelnemersveld2 = _interopRequireDefault(_Deelnemersveld);
+
+var _Criteria = require('./components/Criteria.vue');
+
+var _Criteria2 = _interopRequireDefault(_Criteria);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12757,7 +12900,9 @@ new Vue({
 		PreThemaResultaat: _PreThemaResultaat2.default,
 		Instrumenten: _Instrumenten2.default,
 		Programmas: _Programmas2.default,
-		Praktijkvoorbeelds: _Praktijkvoorbeelds2.default
+		Praktijkvoorbeelds: _Praktijkvoorbeelds2.default,
+		Deelnemersveld: _Deelnemersveld2.default,
+		Criteria: _Criteria2.default
 	},
 
 	methods: {},
@@ -12767,6 +12912,6 @@ new Vue({
 	ready: function ready() {}
 });
 
-},{"./components/Acties.vue":14,"./components/ControlerenDeelnemers.vue":17,"./components/Instrumenten.vue":18,"./components/InvoerenDeelnemers.vue":19,"./components/Praktijkvoorbeelds.vue":20,"./components/PreThemaResultaat.vue":21,"./components/Programmas.vue":22,"./components/ScanSlider.vue":23,"./components/SingleSlider.vue":25,"./components/ThemaResultaat.vue":27,"vue":11,"vue-resource":4}]},{},[28]);
+},{"./components/Acties.vue":14,"./components/ControlerenDeelnemers.vue":17,"./components/Criteria.vue":18,"./components/Deelnemersveld.vue":19,"./components/Instrumenten.vue":20,"./components/InvoerenDeelnemers.vue":21,"./components/Praktijkvoorbeelds.vue":22,"./components/PreThemaResultaat.vue":23,"./components/Programmas.vue":24,"./components/ScanSlider.vue":25,"./components/SingleSlider.vue":27,"./components/ThemaResultaat.vue":29,"vue":11,"vue-resource":4}]},{},[30]);
 
 //# sourceMappingURL=main.js.map

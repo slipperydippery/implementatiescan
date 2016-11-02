@@ -81,6 +81,7 @@
 
 	<br>
 		<a href=" {{ URL::route('scans.index') }} " class="button"> << Terug naar overzicht  </a>
+		<a href="{{ URL::route('scans.invoerendeelnemers', $scan) }}" class="button">Scan Inrichten</a>
 </div>
 
 @stop

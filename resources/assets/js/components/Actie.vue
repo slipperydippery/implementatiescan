@@ -310,17 +310,6 @@
 				
 			},
 
-
-
-			// getBetrokkenen: function () {
-			// 	var home = this;
-			// 	var resource = this.$resource('/api/verbeteractie/:actie/betrokkene');
-			// 	resource.get({actie: this.actiee.id}, {})
-			// 		.then(function(response){
-			// 			home.$set('actie[betrokkenen]')
-			// 		});
-			// },
-
 		},		
 
 		computed: {

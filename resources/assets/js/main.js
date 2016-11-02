@@ -19,6 +19,8 @@ import Acties from './components/Acties.vue';
 import Instrumenten from './components/Instrumenten.vue';
 import Programmas from './components/Programmas.vue';
 import Praktijkvoorbeelds from './components/Praktijkvoorbeelds.vue';
+import Deelnemersveld from './components/Deelnemersveld.vue';
+import Criteria from './components/Criteria.vue';
 
 // import Algemeenbeeld from './components/Algemeenbeeld.vue';
 
@@ -52,6 +54,8 @@ new Vue({
 		Instrumenten,
 		Programmas,
 		Praktijkvoorbeelds,
+		Deelnemersveld,
+		Criteria,
 	},
 	
 

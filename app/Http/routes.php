@@ -89,6 +89,9 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/api/scan/{scan}/thema/{thema}/getWhoIncomplete', 'ApiController@getWhoIncomplete');
     Route::get('/api/scan/{scan}/participants', 'ApiController@participants');
 
+    Route::get('/api/instantiesveld', 'ApiController@instantiesveld');
+    Route::get('/api/criteria', 'ApiController@criteria');
+
 
     /**
      * Themas

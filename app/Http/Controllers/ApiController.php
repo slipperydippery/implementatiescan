@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Scan;
 use App\User;
 use App\Thema;
+use App\Question;
 use App\Subactie;
 use App\Instantie;
 use App\Programma;
@@ -502,6 +503,76 @@ class ApiController extends Controller
     {
         $praktijkvoorbeelds = Praktijkvoorbeeld::with('themas')->get();
         return $praktijkvoorbeelds;
+    }
+
+    public function instantiesveld()
+    {
+        $instantiesveld = [];
+        foreach(Scan::findOrFail(1)->scanmodel->instantiemodels as $instantiemodel)
+        {
+            $instantie = [];
+            $instantie['id'] = $instantiemodel->id;
+            $instantie['title'] = $instantiemodel->title;
+            $instantie['allparticipants'] = 0;
+            $instantie['activeparticipants'] = 0;
+            foreach($instantiemodel->instanties as $thisinstantie)
+            {
+                $instantie['allparticipants'] += $thisinstantie->participants->count();
+                if(! $thisinstantie->scan->testscan)
+                {
+                    $instantie['activeparticipants'] += $thisinstantie->participants->count();
+                }
+            }
+            $instantiesveld[$instantiemodel->id] = $instantie;
+        }
+        return $instantiesveld;
+    }
+
+    public function criteria()
+    {
+        $criteria = [];
+        foreach(Question::all() as $question)
+        {
+            $thiscriterium = [];
+            $thiscriterium['title'] = $question->title;
+            $thiscriterium['allcount'] = 0;
+            $thiscriterium['activecount'] = 0;
+            $thiscriterium['themaid'] = $question->thema->first()->id;
+            $thiscriterium['thematitle'] = $question->thema->first()->title;
+            $thiscriterium['averagescore'] = 0;
+            $thiscriterium['subacties'] = 0;
+            $criteria[$question->id] = $thiscriterium;
+        }
+        foreach(Verbeteractie::all() as $actie)
+        {
+            // Get all Verbeteracties selected for the Werkagenda
+            if($actie->active)
+            {
+                $criteria[$actie->question_id]['allcount'] += 1;
+                if(! $actie->scan->testscan)
+                {
+                    $criteria[$actie->question_id]['activecount'] += 1;
+                }
+            }
+
+            $totalscore = 0;
+            $totalanswers = 0;
+            foreach($actie->question->answers as $answer)
+            {
+                $totalanswers++;
+                $totalscore += $answer->value;
+            }
+            if($totalanswers > 0)
+            {
+                $criteria[$actie->question_id]['averagescore'] = $totalscore / $totalanswers;
+            }
+            foreach($actie->subacties as $subactie)
+            {
+                $criteria[$actie->question_id]['subacties'] += 1;
+            }
+
+        }
+        return $criteria;
     }
 
 

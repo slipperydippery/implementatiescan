@@ -15,4 +15,9 @@ class Question extends Model
     {
     	return $this->hasOne('App\Verbeteractie');
     }
+
+    public function thema()
+    {
+    	return $this->belongsToMany('App\Thema');
+    }
 }
