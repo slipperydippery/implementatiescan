@@ -6,7 +6,7 @@
 		<h1>Overzicht Scans</h1>
 		<fieldset class="fieldset">
   			<p class="subheading subheading__time">
-  				Hier is een overzicht van all uw scans
+  				Hier is een overzicht van all uw scans. Bovenaan de pagina vindt u een aantal analyses van de scans. Onderaan de pagina kunt u de lijst van alle scans terugvinden. 
   			</p>
 		</fieldset>
 	</div>
