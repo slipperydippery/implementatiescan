@@ -33,6 +33,25 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public static function register($attributes)
+    {
+        if(User::where('email', '=', $attributes['email'])->get()->count()){
+            $user = User::where('email', '=', $attributes['email'])->first();
+        } else {
+            $user = static::create($attributes);
+            $user->initial_pwd = str_random(8);
+            $user->password = bcrypt($user->initial_pwd);
+            $user->save();
+        }
+        return $user;
+    }
+
+    public function addInstantieByModelid($modelid, Scan $scan)
+    {
+        $instantie = $scan->instanties()->where('instantiemodel_id', '=', $modelid)->first();
+        $this->instanties()->save($instantie);
+    }
+
     public function roles()
     {
         return $this->belongsToMany(Role::class);

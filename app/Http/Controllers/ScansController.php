@@ -54,56 +54,15 @@ class ScansController extends Controller
      */
     public function store(Requests\CreateScanRequest $request)
     {
-        // return $request->all();
-        // return $request->datedeeleen;
-        $scan = new Scan($request->all());
-        $scan->testscan = $request->testscan ? true : false;
-        $scan->datedeeleen = $request->datedeeleen;
-        // ADD BEHEERDER, CREATE USER IF DOESN'T EXIST
-        if (! User::where('email', '=', $request->beheerder_email)->get()->count())
-        {
-            $user = new User();
-            $user->initial_pwd = str_random(8);
-            $user->password = Hash::make($user->initial_pwd);
-            $user->email = $request->beheerder_email;
-            $user->name_first = $request->name_first;
-            $user->name_last = $request->name_last;
-            $user->save();
-        }
-        $user = User::where('email', '=', $request->beheerder_email)->first();
-        $user->beheert()->save($scan);
-        $user->scans()->save($scan);
-        $scan->save();
-        // CREATE INSTANTIES, CARBON COPY FROM INSTANTIEMODEL
-        foreach($scan->scanmodel->instantiemodels as $instantiemodel)
-        {
-            $instantie = new Instantie();
-            $instantie->title = $instantiemodel->title;
-            $instantie->blurb = $instantiemodel->blurb;
-            $instantie->scan_id = $scan->id;
-            $instantiemodel->instanties()->save($instantie);
-            $instantie->save();
 
-            if($instantiemodel->id == $request->instantie)
-            {
-                $user->instanties()->save($instantie);
-            }
-        }
-        // CREATE VERBETERACTIES
-        foreach($scan->scanmodel->themas as $thema)
-        {
-            foreach($thema->questions as $question)
-            {
-                $verbeteractie = new Verbeteractie();
-                $verbeteractie->user_id = null;
-                $verbeteractie->scan_id = $scan->id;
-                $verbeteractie->question_id = $question->id;
-                $verbeteractie->title = $question->title;
-                $verbeteractie->thema_id = $thema->id;
-                $verbeteractie->save();
-            }
-        }
-        
+        $user = User::register([
+            'name_first' => $request->name_first,
+            'name_last' => $request->name_last,
+            'email' => $request->beheerder_email,
+        ]);
+
+        $scan = Scan::register($user, $request->all());
+       
         // SEND MAIL   
         if($request->withmail) {
             $title = 'Uitnodiging Implementatiescan';
@@ -313,15 +272,9 @@ class ScansController extends Controller
 
     public function algemeenbeeldresultaat(Scan $scan)
     {
-        // $instanties = [];
-        // foreach($scan->instanties as $instantie)
-        // {
-        //     $instanties[] = $instantie->with('participants')->get();
-        // }
         JavaScript::put([
             'scan' => $scan,
             'thema_id' => 0,
-            // 'instanties' => $instanties,
         ]);
         return view ('scans.algemeenbeeldresultaat', compact('scan'));
     }

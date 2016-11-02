@@ -15,6 +15,11 @@ class Verbeteractie extends Model
     	'scan_id'
     ];
 
+    public static function register($attributes)
+    {
+        return static::create($attributes);
+    }
+
     public function question()
     {
         return $this->belongsTo('App\Question');

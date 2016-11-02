@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Scan;
+use App\Instantiemodel;
 use Illuminate\Database\Eloquent\Model;
 
 class Instantie extends Model
@@ -11,6 +13,13 @@ class Instantie extends Model
 		'blurb', 
 		'scan_id'
 	];
+
+    public static function register(Scan $scan, Instantiemodel $instantiemodel)
+    {
+        $instantie = new Instantie($instantiemodel->toArray());
+        $instantie->scan_id = $scan->id;
+        $instantiemodel->instanties()->save($instantie);
+    }
 
     public function scan()
     {

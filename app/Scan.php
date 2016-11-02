@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\User;
+use App\Instantie;
+use App\Verbeteractie;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -22,9 +25,46 @@ class Scan extends Model
         'datedeeltwee',
         'timedeeltwee',
         'deeltweecomplete',
+        'testscan',
     ];
     
     protected $dates = ['deleted_at'];
+
+    public static function register(User $user, $attributes)
+    {
+        $scan = new Scan($attributes);
+        $user->beheert()->save($scan);
+        $user->scans()->Save($scan);
+        $scan->registerInstanties();
+        $user->addInstantieByModelid($attributes['instantie'], $scan);
+        $scan->registerVerbeteracties();
+        return $scan;
+    }
+
+    public function registerInstanties()
+    {
+        foreach($this->scanmodel->instantiemodels as $instantiemodel)
+        {
+            Instantie::register($this, $instantiemodel);
+        }
+    }
+
+    public function registerVerbeteracties()
+    {
+        foreach($this->scanmodel->themas as $thema)
+        {
+            foreach($thema->questions as $question)
+            {
+                Verbeteractie::register([
+                    'user_id' => null,
+                    'scan_id' => $this->id,
+                    'question_id' => $question->id,
+                    'title' => $question->title,
+                    'thema_id' => $thema->id,
+                ]);
+            }
+        }
+    }
 
     public function scanmodel()
     {
