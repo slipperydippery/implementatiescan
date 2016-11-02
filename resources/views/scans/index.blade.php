@@ -12,7 +12,6 @@
 	</div>
 </div>
 
-
 <div class="row page-content">
 	<div class="small-4 columns table">
 		<div class="row table-row table-header">
