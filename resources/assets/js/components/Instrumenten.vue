@@ -12,7 +12,6 @@
 			</div>
 		</div>
 		<br>
-
 	</div>
 
 	<div class="row table-row table-header">
@@ -27,39 +26,29 @@
 		</div>
 	</div>
 
-
 	<div class="row table-row table-row--body"
-		v-for="instrument in instruments | filterBy search | filterBy checkedThemas[0] | filterBy checkedThemas[1] | filterBy checkedThemas[2]"
+		v-for="instrument in searchedAndFilteredInstruments"
 	>
 		<div class="small-2 columns">
 			<a :href="instrument.adress" class="visible_link--basic" >
-				{{ instrument.title}}
+				{{ instrument.title }}
 			</a>
 		</div>
 		<div class="small-7 columns">
 			{{ instrument.description }}
 		</div>
 		<div class="small-3 columns">
-			<span v-if="instrument.one">
-				{{ themas[0].title }} <br>
-			</span>
-			<span v-if="instrument.two">
-				{{ themas[1].title }} <br>
-			</span>
-			<span v-if="instrument.three">
-				{{ themas[2].title }} <br>
+			<span v-for="thema in instrument.themas">
+				{{ thema }} <br>
 			</span>
 		</div>
 	</div>
-	
-
 </template>
 
 <script>
-
 	export default {
-		
 		components: {  },
+
 		props: [],
 
 		data() {
@@ -74,13 +63,42 @@
 
 		ready() {
 			this.getThemas();
-			// this.getInstruments(); //get participants and set availableinstances
 		},
 
 		computed: {
 			returnRoot: function () {
 				return (window.location.protocol + "//" + window.location.host);
 			},
+
+			searchedAndFilteredInstruments: function () {
+				var self = this;
+				return self.filteredInstruments.filter(function(instrument) {
+					if( instrument.description.toLowerCase().includes(self.search.toLowerCase()) ||
+						instrument.title.toLowerCase().includes(self.search.toLowerCase()) ||
+						instrument.adress.toLowerCase().includes(self.search.toLowerCase()) 
+					)
+					{
+						return true;
+					}
+				})
+			},
+
+			filteredInstruments: function () {
+				var self = this;
+				return self.instruments.filter(function (instrument) {
+					for(var thema in self.checkedThemas)
+					{
+						if(instrument.themas.includes(self.checkedThemas[thema]))
+						{
+							return true;
+						}
+					}
+					if(self.checkedThemas.length == 0)
+					{
+						return true;
+					}
+				})
+			}
 		},
 
 		methods: {
@@ -91,6 +109,7 @@
 			            this.replaceThemas();
 			        });
 			},
+
 			getThemas: function () {
 				this.$http.get('/api/scanmodel/thema')
 					.then(response => {
@@ -98,47 +117,36 @@
 						this.getInstruments();
 					});
 			},
+
 			replaceThemas: function () {
 				for (var instrument in this.instruments)
 				{
-					// this.instruments[instrument].themas = [];
 					if(this.instruments[instrument].one)
 					{
-						this.instruments[instrument].one = 	this.themas[0].title;
+						this.instruments[instrument].one = this.themas[0].title;
 						this.instruments[instrument].themas.push(this.themas[0].title);
 					}
 					if(this.instruments[instrument].two)
 					{
-						this.instruments[instrument].two = 	this.themas[1].title;
+						this.instruments[instrument].two = this.themas[1].title;
 						this.instruments[instrument].themas.push(this.themas[1].title);
 					}
 					if(this.instruments[instrument].three)
 					{
-						this.instruments[instrument].three = 	this.themas[2].title;
+						this.instruments[instrument].three = this.themas[2].title;
 						this.instruments[instrument].themas.push(this.themas[2].title);
 					}
 				}
 			},
-
-	
-
 		},
-
-		events: {
-
-		},
-
 	}
 </script>
 
-
 <style>
-
-.searchfilter {
-	text-align: right;
-	label, input {
-		display: inline-block;
+	.searchfilter {
+		text-align: right;
+		label, input {
+			display: inline-block;
+		}
 	}
-}
-	
 </style>

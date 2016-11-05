@@ -11667,7 +11667,6 @@ exports.default = {
 
 
 	methods: {
-
 		addBetrokkene: function addBetrokkene(participant) {
 			this.betrokkenen.push(participant);
 			this.unBetrokkenen.splice(this.unBetrokkenen.indexOf(participant), 1);
@@ -11695,7 +11694,6 @@ exports.default = {
 		},
 
 		addExternaluser: function addExternaluser(newExternalUser) {
-			// this.externalUsers.push(this.newExternalUser);
 			if (!this.newExternalUser == ['']) {
 				var home = this;
 				var resource = this.$resource('/api/verbeteractie/:actie/externaluser/');
@@ -11714,10 +11712,7 @@ exports.default = {
 			var resource = this.$resource('/api/verbeteractie/:actie/externaluser/:externaluser');
 			resource.delete({ actie: this.actie.id, externaluser: externaluserid }, {}).then(function (response) {
 				home.getExternalusers();
-				//
-			}, function (response) {
-				//
-			});
+			}, function (response) {});
 			this.getExternalusers();
 		},
 
@@ -11726,9 +11721,11 @@ exports.default = {
 			var resource = this.$resource('/api/verbeteractie/:actie/newsubactie');
 			resource.get({ actie: this.actie.id }, {}).then(function (response) {
 				home.getSubActies();
-			}, function (response) {
-				// 
-			});
+			}, function (response) {});
+		},
+
+		removeSubactie: function removeSubactie(subactie) {
+			this.subacties.splice(this.subacties.indexOf(subactie), 1);
 		},
 
 		saveActie: function saveActie() {
@@ -11767,12 +11764,20 @@ exports.default = {
 				return true;
 			}
 			return false;
+		},
+
+		activeSubacties: function activeSubacties() {
+			if (this.isWerkAgenda) {
+				return this.subacties;
+			} else {
+				return [];
+			}
 		}
 	}
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div v-if=\"!actie.werkactive &amp;&amp; isWerkAgenda\" class=\"single_actie\">\n\t\t<div class=\"row\">\n\t\t\t<div class=\"large-12 columns actie-titel\"> \n\t\t\t\t<span class=\"remove_row remove_row--werkadd\" v-if=\"isWerkAgenda\" @click=\"toggleWerkActieActive(actie)\">\n\t\t\t\t\t✓\n\t\t\t\t</span>\n\t\t\t\t{{ actie.title }}\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<div v-if=\"(actie.active &amp;&amp; actie.werkactive) || (!isWerkAgenda &amp;&amp; actie.active)\" class=\"single_actie\">\t\n\t\t<div class=\"row\">\n\t\t\t<div class=\"large-12 columns actie-titel\"> \n\t\t\t\t<span class=\"remove_row\" v-if=\"!isWerkAgenda\" @click=\"setActieInactive(actie)\">\n\t\t\t\t\t✖\n\t\t\t\t</span>\n\t\t\t\t<span class=\"remove_row remove_row--werkremove\" v-if=\"isWerkAgenda\" @click=\"toggleWerkActieActive(actie)\">\n\t\t\t\t\tx\n\t\t\t\t</span>\n\t\t\t\t{{ actie.title }}\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row actie-omschrijvingen\">\n\t\t\t<div class=\"large-4 columns actie-omschrijving\">\n\t\t\t\tUit te werken verbeterpunten\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns actie-omschrijving\">\n\t\t\t\tInitiatiefnemer\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns actie-omschrijving\">\n\t\t\t\tBetrokkenen\n\t\t\t</div>\n\t\t\t<div class=\"large-2 columns actie-omschrijving\">\n\t\t\t\tOverige betrokkenen\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row\">\n\t\t\t<div class=\"large-4 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<textarea class=\"form-control\" placeholder=\"Actie Omschrijving\" rows=\"6\" v-model=\"actie.omschrijving\" @blur=\"saveActie()\">\t\t\t\t\t</textarea>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<select v-model=\"actie.user_id\" @blur=\"saveActie()\">\n\t\t\t\t\t\t<option v-for=\"participant in participants\" :value=\"participant.id\"> \n\t\t\t\t\t\t\t{{ participant.name_first }} \n\t\t\t\t\t\t</option>\n\t\t\t\t\t</select>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div class=\"large-3 columns\">\n\n\t\t\t\t<div class=\"betrokkenen__group row\">\n\n\t\t\t\t\t<div class=\"betrokkenen__bet \">\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-if=\"!betrokkenen.length\">\n\t\t\t\t\t\t+\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in betrokkenen\" @click=\"removeBetrokkene(betrokkene)\">\n\t\t\t\t\t\t\t{{betrokkene.name_first}}\n\t\t\t\t\t\t\t<span class=\"indication\">-</span>\n\t\t\t\t\t\t</div>\t\t\t\t\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div class=\"betrokkenen__unbet\">\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in unBetrokkenen\" @click=\"addBetrokkene(betrokkene)\">\n\t\t\t\t\t\t\t{{ betrokkene.name_first }}\n\t\t\t\t\t\t\t<span class=\"indication\">+</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"large-2 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<div class=\"actie-exbetrokkene\" v-for=\"externalUser in externalUsers\">\n\t\t\t\t\t\t{{ externalUser.name }}\n\t\t\t\t\t\t<a href=\"#\" class=\"close-button closeicon\" aria-label=\"Close alert\" type=\"button\" @click=\"removeExternaluser(externalUser.id)\">\n\t\t\t\t\t\t\t×\n\t\t\t\t\t\t</a>\n\t\t\t\t\t</div>\n\t\t\t\t\t<input type=\"text\" v-model=\"newExternalUser\" placeholder=\"Voeg iemand toe\" @blur=\"addExternaluser()\" @keyup.enter=\"addExternaluser()\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row subactie--titel\" v-if=\"isWerkAgenda\">\n\t\t\tWilt u het verbeterpunt meenemen naar de werkagenda? <br>\n\t\t\tFormuleer dan hieronder de vervolgacties:\n\t\t</div>\n\n\t\t<sub-actie v-for=\"subactie in subacties\" v-if=\"isWerkAgenda\" :subactie=\"subactie\" :participants=\"participants\">\n\t\t</sub-actie>\n\n\t\t<div class=\"row \" v-if=\"isWerkAgenda\">\t\t\n\t\t\t<div class=\"small-12\">\n\t\t\t\t\t<a href=\"#\" @click=\"newSubactie()\" class=\"voegsubactie\">\n\t\t\t\t\t\t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+\tWerk hier uw verbeterpunt nader uit\n\t\t\t\t\t</a>\n\t\t\t</div>\n\n\t\t</div>\n\t</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div v-if=\"!actie.werkactive &amp;&amp; isWerkAgenda\" class=\"single_actie\">\n\t\t<div class=\"row\">\n\t\t\t<div class=\"large-12 columns actie-titel\"> \n\t\t\t\t<span class=\"remove_row remove_row--werkadd\" v-if=\"isWerkAgenda\" @click=\"toggleWerkActieActive(actie)\">\n\t\t\t\t\t✓\n\t\t\t\t</span>\n\t\t\t\t{{ actie.title }}\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<div v-if=\"(actie.active &amp;&amp; actie.werkactive) || (!isWerkAgenda &amp;&amp; actie.active)\" class=\"single_actie\">\t\n\t\t<div class=\"row\">\n\t\t\t<div class=\"large-12 columns actie-titel\"> \n\t\t\t\t<span class=\"remove_row\" v-if=\"!isWerkAgenda\" @click=\"setActieInactive(actie)\">\n\t\t\t\t\t✖\n\t\t\t\t</span>\n\t\t\t\t<span class=\"remove_row remove_row--werkremove\" v-if=\"isWerkAgenda\" @click=\"toggleWerkActieActive(actie)\">\n\t\t\t\t\tx\n\t\t\t\t</span>\n\t\t\t\t{{ actie.title }}\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row actie-omschrijvingen\">\n\t\t\t<div class=\"large-4 columns actie-omschrijving\">\n\t\t\t\tUit te werken verbeterpunten\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns actie-omschrijving\">\n\t\t\t\tInitiatiefnemer\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns actie-omschrijving\">\n\t\t\t\tBetrokkenen\n\t\t\t</div>\n\t\t\t<div class=\"large-2 columns actie-omschrijving\">\n\t\t\t\tOverige betrokkenen\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row\">\n\t\t\t<div class=\"large-4 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<textarea class=\"form-control\" placeholder=\"Actie Omschrijving\" rows=\"6\" v-model=\"actie.omschrijving\" @blur=\"saveActie()\">\t\t\t\t\t</textarea>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<select v-model=\"actie.user_id\" @blur=\"saveActie()\">\n\t\t\t\t\t\t<option v-for=\"participant in participants\" :value=\"participant.id\"> \n\t\t\t\t\t\t\t{{ participant.name_first }} \n\t\t\t\t\t\t</option>\n\t\t\t\t\t</select>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div class=\"large-3 columns\">\n\n\t\t\t\t<div class=\"betrokkenen__group row\">\n\n\t\t\t\t\t<div class=\"betrokkenen__bet \">\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-if=\"!betrokkenen.length\">\n\t\t\t\t\t\t+\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in betrokkenen\" @click=\"removeBetrokkene(betrokkene)\">\n\t\t\t\t\t\t\t{{betrokkene.name_first}}\n\t\t\t\t\t\t\t<span class=\"indication\">-</span>\n\t\t\t\t\t\t</div>\t\t\t\t\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div class=\"betrokkenen__unbet\">\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in unBetrokkenen\" @click=\"addBetrokkene(betrokkene)\">\n\t\t\t\t\t\t\t{{ betrokkene.name_first }}\n\t\t\t\t\t\t\t<span class=\"indication\">+</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"large-2 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<div class=\"actie-exbetrokkene\" v-for=\"externalUser in externalUsers\">\n\t\t\t\t\t\t{{ externalUser.name }}\n\t\t\t\t\t\t<a href=\"#\" class=\"close-button closeicon\" aria-label=\"Close alert\" type=\"button\" @click=\"removeExternaluser(externalUser.id)\">\n\t\t\t\t\t\t\t×\n\t\t\t\t\t\t</a>\n\t\t\t\t\t</div>\n\t\t\t\t\t<input type=\"text\" v-model=\"newExternalUser\" placeholder=\"Voeg iemand toe\" @blur=\"addExternaluser()\" @keyup.enter=\"addExternaluser()\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row subactie--titel\" v-if=\"isWerkAgenda\">\n\t\t\tWilt u het verbeterpunt meenemen naar de werkagenda? <br>\n\t\t\tFormuleer dan hieronder de vervolgacties:\n\t\t</div>\n\n\t\t<sub-actie v-for=\"subactie in activeSubacties\" :subactie=\"subactie\" :participants=\"participants\" @removesubactie=\"removeSubactie\">\n\t\t</sub-actie>\n\n\t\t<div class=\"row \" v-if=\"isWerkAgenda\">\t\t\n\t\t\t<div class=\"small-12\">\n\t\t\t\t\t<a href=\"#\" @click=\"newSubactie()\" class=\"voegsubactie\">\n\t\t\t\t\t\t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+\tWerk hier uw verbeterpunt nader uit\n\t\t\t\t\t</a>\n\t\t\t</div>\n\n\t\t</div>\n\t</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -11803,7 +11808,6 @@ var _ActiesThema2 = _interopRequireDefault(_ActiesThema);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-
 	components: { ActiesThema: _ActiesThema2.default },
 
 	props: [],
@@ -11815,7 +11819,6 @@ exports.default = {
 			participants: participants
 		};
 	},
-	created: function created() {},
 	ready: function ready() {
 		this.getThemas();
 	},
@@ -11828,16 +11831,7 @@ exports.default = {
 			resource.get({ scan: this.scan.id }).then(function (response) {
 				home.$set('themas', response.data);
 			});
-		},
-
-		getparticipant: function getparticipant(participant) {
-			var home = this;
-			var resource = this.$resource('/api/scan/:scan/participant/:participant');
-			resource.get({ scan: this.scan.id, participant: participant }).then(function (response) {
-				//
-			});
 		}
-
 	},
 
 	computed: {},
@@ -11850,7 +11844,7 @@ exports.default = {
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<acties-thema v-for=\"thema in themas\" :thema=\"thema\" :participants=\"participants\">\n\t\t\n\t</acties-thema>\n\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<acties-thema v-for=\"thema in themas\" :thema=\"thema\" :participants=\"participants\">\n\t</acties-thema>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -11867,7 +11861,7 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"../components/ActiesThema.vue":15,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],15:[function(require,module,exports){
-var __vueify_style__ = require("vueify-insert-css").insert("\n\t\n")
+var __vueify_style__ = require("vueify-insert-css").insert("\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -11901,7 +11895,6 @@ exports.default = {
 			agendaType: agendaType
 		};
 	},
-	created: function created() {},
 	ready: function ready() {
 		this.getQuestions();
 		this.getVerbeteracties();
@@ -11909,13 +11902,6 @@ exports.default = {
 
 
 	methods: {
-		getThemas: function getThemas() {
-			var home = this;
-			var resource = this.$resource('/api/scan/:scan/thema');
-			resource.get({ scan: this.scan.id }).then(function (response) {
-				home.$set('themas', response.data);
-			});
-		},
 		getQuestions: function getQuestions() {
 			var home = this;
 			var resource = this.$resource('/api/thema/:thema/question');
@@ -11930,14 +11916,6 @@ exports.default = {
 			resource.get({ scan: this.scan.id, thema: this.thema.id }).then(function (response) {
 				home.$set('verbeteracties', response.data);
 				home.addUnbetrokkenen();
-			});
-		},
-
-		getparticipant: function getparticipant(participant) {
-			var home = this;
-			var resource = this.$resource('/api/scan/:scan/participant/:participant');
-			resource.get({ scan: this.scan.id, participant: participant }).then(function (response) {
-				//
 			});
 		},
 
@@ -11979,7 +11957,6 @@ exports.default = {
 	},
 
 	computed: {
-
 		isWerkAgenda: function isWerkAgenda() {
 			if (agendaType == 'werkagenda') {
 				return true;
@@ -11996,9 +11973,7 @@ exports.default = {
 			}
 			return inactiveActies;
 		}
-
 	}
-
 };
 if (module.exports.__esModule) module.exports = module.exports.default
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row thema-group\">\n\t\t\t<div class=\"large-12\">\n\t\t\t\t<div class=\"row\">\t\n\t\t\t\t\t<div class=\"large-12 actie-thema actie-thema-kop actiepunt-es columns\"> {{ thema.title }} </div>\n\t\t\t\t</div>\n\t\t\t\t<actie v-for=\"actie in verbeteracties\" :actie=\"actie\" :participants=\"participants\">\n\t\t\t\t\t\n\t\t\t\t</actie> \n\t\t\t\t<div class=\"row actie-rij \" v-if=\"!isWerkAgenda &amp;&amp; inactiveVerbeteracties\">\n\t\t\t\t\t<div class=\"large-12 columns actie-voegtoe\" @click=\"showInactief =  ! showInactief\"> \n\t\t\t\t\t\t<span v-show=\"! showInactief\">+</span>\n\t\t\t\t\t\t<span v-show=\"showInactief\">-</span> \n\t\t\t\t\t\tvoeg nog een verbeterpunt toe \n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"large12 columns actie-inactief\" v-for=\"actie in verbeteracties\" :actie=\"actie\" v-if=\" ! actie.active &amp;&amp; showInactief\" @click=\"setActieActive(actie)\">\n\t\t\t\t\t\t{{ actie.title }}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t</div>\n"
@@ -12008,7 +11983,7 @@ if (module.hot) {(function () {  module.hot.accept()
   if (!hotAPI.compatible) return
   var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/ActiesThema.vue"
   module.hot.dispose(function () {
-    require("vueify-insert-css").cache["\n\t\n"] = false
+    require("vueify-insert-css").cache["\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -12122,13 +12097,17 @@ exports.default = {
 
 		saveNewParticipant: function saveNewParticipant() {
 			this.setInstantiemodelData();
+			this.$emit('pushparticipant', this.participant);
 			var resource = this.$resource('/api/scan/:scan/participant/');
 			var home = this;
 			resource.save({ scan: this.scan.id }, { participant: this.participant }).then(function (response) {
-				home.$emit('pushparticipant', home.participant);
+				home.$emit('updateuser', home.participant, response.data);
 				home.resetNewParticipant();
-			}, function (response) {});
-			this.setNoneEditable();
+				this.setNoneEditable();
+			}, function (response) {
+				console.log('invalid');
+				home.$emit('removeparticipant', this.participant);
+			});
 		},
 
 		setInstantiemodelData: function setInstantiemodelData() {
@@ -12159,7 +12138,7 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],17:[function(require,module,exports){
-var __vueify_style__ = require("vueify-insert-css").insert("\n\t\n")
+var __vueify_style__ = require("vueify-insert-css").insert("\n\t.beheerder {\n\t\tbackground: rgba(0,0,0,0.1);\n\t}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -12167,13 +12146,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {
 	http: {
-		root: '/root',
+		base: '/base',
 		headers: {
 			'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
 		}
 	},
-
-	props: [],
 
 	data: function data() {
 		return {
@@ -12194,57 +12171,57 @@ exports.default = {
 	},
 
 	methods: {
-
 		getParticipants: function getParticipants() {
 			var _this = this;
 
 			this.$http.get('/api/scan/' + this.scan.id + '/participant').then(function (response) {
-				console.log('here');
 				_this.participants = response.data;
-				// this.calcAvailableInstanties();
+				_this.sortParticipants();
 			});
 		},
 
-		removeParticipant: function removeParticipant(participant_id) {
-			var resource = this.$resource('/api/scan/:scan/participant/:participant');
-			var home = this;
-			resource.delete({ scan: this.scan.id, participant: participant_id }, {}).then(function (response) {
-				home.getParticipants();
-			}, function (response) {});
+		sortParticipants: function sortParticipants() {
+			this.participants.sort(function (a, b) {
+				if (a.instantie_id > b.instantie_id) {
+					return 1;
+				}
+				if (a.instantie_id < b.instantie_id) {
+					return -1;
+				}
+				return 0;
+			});
+			var beheerder = this.getBeheerder();
+			this.participants.splice(this.participants.indexOf(beheerder), 1);
+			this.participants.unshift(beheerder);
 		},
 
-		calcAvailableInstanties: function calcAvailableInstanties() {
-			var tempavailable = [];
-			for (var thisparticipant in this.participants) {
-				// if(this.participants[insts].participants.length < 2)
-				// {
-				// 	tempavailable.push({
-				// 		'title' : this.participants[insts].title, 
-				// 		'id' : this.participants[insts].id
-				// 	});
-				// } 
+		getBeheerder: function getBeheerder() {
+			for (var participant in this.participants) {
+				if (this.participants[participant].beheerder) {
+					return this.participants[participant];
+				}
 			}
-			this.availableinstanties = tempavailable;
-		}
+		},
 
-	},
-
-	events: {
-		reloadParticipants: function reloadParticipants() {
-			this.getParticipants();
+		removeParticipant: function removeParticipant(participant) {
+			this.participants.splice(this.participants.indexOf(participant), 1);
+			var home = this;
+			var resource = this.$resource('/api/scan/:scan/participant/:participant');
+			resource.delete({ scan: this.scan.id, participant: participant.id }, {}).then(function (response) {}, function (response) {
+				home.getParticipants();
+			});
 		}
 	}
-
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div v-for=\"participant in participants | orderBy 'instantie_id'\">\n\t\t<div class=\"large-2 column submitted-user\">\n\t\t\t<a href=\"#\" class=\"close-button\" aria-label=\"Close alert\" type=\"button\" v-if=\"scanbeheerder\" @click=\"removeParticipant(participant.id)\">\n\t\t\t    <span aria-hidden=\"true\">×</span>\n\t\t\t</a>\n\t\t\t<img :src=\"returnRoot + '/img/user.png'\">\n\t\t\t<div class=\"participant_info\">\n\t\t\t\t<span class=\"name\"> {{ participant.name_first ? participant.name_first : \"---\" }} {{ participant.name_last ? participant.name_last : \"\" }} </span> \n\t\t\t\t<span class=\"functie\"> {{ participant.instantie_title }} </span>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div v-for=\"participant in participants\">\n\t\t<div class=\"large-2 column submitted-user\" :class=\"{ beheerder: participant.beheerder }\">\n\t\t\t<a href=\"#\" class=\"close-button\" aria-label=\"Close alert\" type=\"button\" v-if=\"scanbeheerder\" @click=\"removeParticipant(participant)\">\n\t\t\t    <span aria-hidden=\"true\">×</span>\n\t\t\t</a>\n\t\t\t<img :src=\"returnRoot + '/img/user.png'\">\n\t\t\t<div class=\"participant_info\">\n\t\t\t\t<span class=\"name\"> \n\t\t\t\t\t{{ participant.name_first ? participant.name_first : \"---\" }} {{ participant.name_last ? participant.name_last : \"\" }} \n\t\t\t\t</span> \n\t\t\t\t<span class=\"functie\"> \n\t\t\t\t\t{{ participant.instantie_title }} \n\t\t\t\t</span>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/ControlerenDeelnemers.vue"
   module.hot.dispose(function () {
-    require("vueify-insert-css").cache["\n\t\n"] = false
+    require("vueify-insert-css").cache["\n\t.beheerder {\n\t\tbackground: rgba(0,0,0,0.1);\n\t}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -12254,7 +12231,7 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],18:[function(require,module,exports){
-var __vueify_style__ = require("vueify-insert-css").insert("\n\t.graphbar {\n\t\theight: 1.5rem;\n\t\tbackground: #bed675;\n\t}\n\t\n")
+var __vueify_style__ = require("vueify-insert-css").insert("\n\t.graphbar {\n\t\theight: 1.5rem;\n\t\tbackground: #bed675;\n\t}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -12262,7 +12239,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {
 	http: {
-		root: '/root',
+		base: '/base',
 		headers: {
 			'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
 		}
@@ -12275,7 +12252,6 @@ exports.default = {
 			criteria: []
 		};
 	},
-	created: function created() {},
 	ready: function ready() {
 		this.getCriteria();
 	},
@@ -12293,7 +12269,6 @@ exports.default = {
 		cssPercent: function cssPercent(value) {
 			return value * 10 + '%';
 		}
-
 	},
 
 	computed: {
@@ -12304,19 +12279,17 @@ exports.default = {
 			}
 			return maxparticipants;
 		}
-
 	}
-
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"table \">\n\t\t<div class=\"row table-row table-header\">\n\t\t\t<div class=\"small-6 columns\">\n\t\t\t\tCriterium\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns text-center\">\n\t\t\t\tGeselecteerd\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns text-center\">\n\t\t\t\tScore\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns text-center\">\n\t\t\t\tVerbeterpunten\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row table-row\" v-for=\"criterium in criteria \">\n\t\t\t<div class=\"small-6 columns\">\n\t\t\t\t{{criterium.themaid}} - {{criterium.title}}\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns text-center\">\n\t\t\t\t{{criterium.activecount}}\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns text-center\">\n\t\t\t\t{{ criterium.averagescore }}\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns text-center\">\n\t\t\t\t{{ criterium.subacties }}\n\t\t\t</div>\n\n\t\t</div>\n\t</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"table \">\n\t\t<div class=\"row table-row table-header\">\n\t\t\t<div class=\"small-6 columns\">\n\t\t\t\tCriterium\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns text-center\">\n\t\t\t\tGeselecteerd\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns text-center\">\n\t\t\t\tScore\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns text-center\">\n\t\t\t\tVerbeterpunten\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row table-row\" v-for=\"criterium in criteria \">\n\t\t\t<div class=\"small-6 columns\">\n\t\t\t\t{{criterium.themaid}} - {{criterium.title}}\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns text-center\">\n\t\t\t\t{{criterium.activecount}}\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns text-center\">\n\t\t\t\t{{ criterium.averagescore }}\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns text-center\">\n\t\t\t\t{{ criterium.subacties }}\n\t\t\t</div>\n\t\t</div>\n\t</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/Criteria.vue"
   module.hot.dispose(function () {
-    require("vueify-insert-css").cache["\n\t.graphbar {\n\t\theight: 1.5rem;\n\t\tbackground: #bed675;\n\t}\n\t\n"] = false
+    require("vueify-insert-css").cache["\n\t.graphbar {\n\t\theight: 1.5rem;\n\t\tbackground: #bed675;\n\t}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -12334,7 +12307,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {
 	http: {
-		root: '/root',
+		base: '/base',
 		headers: {
 			'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
 		}
@@ -12398,15 +12371,15 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],20:[function(require,module,exports){
-var __vueify_style__ = require("vueify-insert-css").insert("\n\n.searchfilter {\n\ttext-align: right;\n\tlabel, input {\n\t\tdisplay: inline-block;\n\t}\n}\n\t\n")
+var __vueify_style__ = require("vueify-insert-css").insert("\n\t.searchfilter {\n\t\ttext-align: right;\n\t\tlabel, input {\n\t\t\tdisplay: inline-block;\n\t\t}\n\t}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.default = {
-
 	components: {},
+
 	props: [],
 
 	data: function data() {
@@ -12420,13 +12393,35 @@ exports.default = {
 	},
 	ready: function ready() {
 		this.getThemas();
-		// this.getInstruments(); //get participants and set availableinstances
 	},
 
 
 	computed: {
 		returnRoot: function returnRoot() {
 			return window.location.protocol + "//" + window.location.host;
+		},
+
+		searchedAndFilteredInstruments: function searchedAndFilteredInstruments() {
+			var self = this;
+			return self.filteredInstruments.filter(function (instrument) {
+				if (instrument.description.toLowerCase().includes(self.search.toLowerCase()) || instrument.title.toLowerCase().includes(self.search.toLowerCase()) || instrument.adress.toLowerCase().includes(self.search.toLowerCase())) {
+					return true;
+				}
+			});
+		},
+
+		filteredInstruments: function filteredInstruments() {
+			var self = this;
+			return self.instruments.filter(function (instrument) {
+				for (var thema in self.checkedThemas) {
+					if (instrument.themas.includes(self.checkedThemas[thema])) {
+						return true;
+					}
+				}
+				if (self.checkedThemas.length == 0) {
+					return true;
+				}
+			});
 		}
 	},
 
@@ -12439,6 +12434,7 @@ exports.default = {
 				_this.replaceThemas();
 			});
 		},
+
 		getThemas: function getThemas() {
 			var _this2 = this;
 
@@ -12447,9 +12443,9 @@ exports.default = {
 				_this2.getInstruments();
 			});
 		},
+
 		replaceThemas: function replaceThemas() {
 			for (var instrument in this.instruments) {
-				// this.instruments[instrument].themas = [];
 				if (this.instruments[instrument].one) {
 					this.instruments[instrument].one = this.themas[0].title;
 					this.instruments[instrument].themas.push(this.themas[0].title);
@@ -12464,21 +12460,17 @@ exports.default = {
 				}
 			}
 		}
-
-	},
-
-	events: {}
-
+	}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row searchitems\">\n\t\t<div class=\"small-6 columns\">\n\t\t\t<h3>Zoek op trefwoord</h3>\n\t\t\t<input type=\"text\" v-model=\"search\" placeholder=\"Vul trefwoord in\">\n\t\t</div>\n\t\t<div class=\"small-6 columns\">\n\t\t\t<h3 class=\"text-right\">Zoekfilter</h3>\n\t\t\t<div v-for=\"thema in themas\" class=\"searchfilter\">\n\t\t\t\t<label :for=\"thema.id\" class=\"inlinelabel\">{{ thema.title }}</label>\n\t\t\t\t<input type=\"checkbox\" :id=\"thema.id\" :value=\"thema.title\" v-model=\"checkedThemas\">\n\t\t\t</div>\n\t\t</div>\n\t\t<br>\n\n\t</div>\n\n\t<div class=\"row table-row table-header\">\n\t\t<div class=\"small-2 columns\">\n\t\t\tNaam\n\t\t</div>\n\t\t<div class=\"small-7 columns\">\n\t\t\tBeschrijving\n\t\t</div>\n\t\t<div class=\"small-3 columns\">\n\t\t\tThema's\n\t\t</div>\n\t</div>\n\n\n\t<div class=\"row table-row table-row--body\" v-for=\"instrument in instruments | filterBy search | filterBy checkedThemas[0] | filterBy checkedThemas[1] | filterBy checkedThemas[2]\">\n\t\t<div class=\"small-2 columns\">\n\t\t\t<a :href=\"instrument.adress\" class=\"visible_link--basic\">\n\t\t\t\t{{ instrument.title}}\n\t\t\t</a>\n\t\t</div>\n\t\t<div class=\"small-7 columns\">\n\t\t\t{{ instrument.description }}\n\t\t</div>\n\t\t<div class=\"small-3 columns\">\n\t\t\t<span v-if=\"instrument.one\">\n\t\t\t\t{{ themas[0].title }} <br>\n\t\t\t</span>\n\t\t\t<span v-if=\"instrument.two\">\n\t\t\t\t{{ themas[1].title }} <br>\n\t\t\t</span>\n\t\t\t<span v-if=\"instrument.three\">\n\t\t\t\t{{ themas[2].title }} <br>\n\t\t\t</span>\n\t\t</div>\n\t</div>\n\t\n\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row searchitems\">\n\t\t<div class=\"small-6 columns\">\n\t\t\t<h3>Zoek op trefwoord</h3>\n\t\t\t<input type=\"text\" v-model=\"search\" placeholder=\"Vul trefwoord in\">\n\t\t</div>\n\t\t<div class=\"small-6 columns\">\n\t\t\t<h3 class=\"text-right\">Zoekfilter</h3>\n\t\t\t<div v-for=\"thema in themas\" class=\"searchfilter\">\n\t\t\t\t<label :for=\"thema.id\" class=\"inlinelabel\">{{ thema.title }}</label>\n\t\t\t\t<input type=\"checkbox\" :id=\"thema.id\" :value=\"thema.title\" v-model=\"checkedThemas\">\n\t\t\t</div>\n\t\t</div>\n\t\t<br>\n\t</div>\n\n\t<div class=\"row table-row table-header\">\n\t\t<div class=\"small-2 columns\">\n\t\t\tNaam\n\t\t</div>\n\t\t<div class=\"small-7 columns\">\n\t\t\tBeschrijving\n\t\t</div>\n\t\t<div class=\"small-3 columns\">\n\t\t\tThema's\n\t\t</div>\n\t</div>\n\n\t<div class=\"row table-row table-row--body\" v-for=\"instrument in searchedAndFilteredInstruments\">\n\t\t<div class=\"small-2 columns\">\n\t\t\t<a :href=\"instrument.adress\" class=\"visible_link--basic\">\n\t\t\t\t{{ instrument.title }}\n\t\t\t</a>\n\t\t</div>\n\t\t<div class=\"small-7 columns\">\n\t\t\t{{ instrument.description }}\n\t\t</div>\n\t\t<div class=\"small-3 columns\">\n\t\t\t<span v-for=\"thema in instrument.themas\">\n\t\t\t\t{{ thema }} <br>\n\t\t\t</span>\n\t\t</div>\n\t</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/Instrumenten.vue"
   module.hot.dispose(function () {
-    require("vueify-insert-css").cache["\n\n.searchfilter {\n\ttext-align: right;\n\tlabel, input {\n\t\tdisplay: inline-block;\n\t}\n}\n\t\n"] = false
+    require("vueify-insert-css").cache["\n\t.searchfilter {\n\t\ttext-align: right;\n\t\tlabel, input {\n\t\t\tdisplay: inline-block;\n\t\t}\n\t}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -12518,7 +12510,6 @@ exports.default = {
 			nonbeheerders: [],
 			editable: {},
 			instanties: []
-
 		};
 	},
 	ready: function ready() {
@@ -12533,6 +12524,10 @@ exports.default = {
 		},
 		participantCount: function participantCount() {
 			return this.participants.length;
+		},
+
+		nextLink: function nextLink() {
+			return this.returnRoot + '/scans/' + this.scan.id + '/inrichten/controlerendeelnemers';
 		}
 	},
 
@@ -12543,7 +12538,16 @@ exports.default = {
 
 		pushParticipant: function pushParticipant(participant) {
 			this.participants.push(participant);
-			this.setBeheerder();
+			this.sortParticipants();
+		},
+
+		removeParticipant: function removeParticipant(participant) {
+			this.participants.splice(this.participants.indexOf(participant), 1);
+			this.nonbeheerders.splice(this.nonbeheerders.indexOf(participant), 1);
+		},
+
+		updateUser: function updateUser(oldparticipant, newparticipant) {
+			this.participants[this.participants.indexOf(oldparticipant)].id = newparticipant.id;
 		},
 
 		alert: function (_alert) {
@@ -12565,7 +12569,7 @@ exports.default = {
 
 			this.$http.get('/api/scan/' + this.scan.id + '/participant').then(function (response) {
 				_this.participants = response.data;
-				_this.setBeheerder();
+				_this.sortParticipants();
 			});
 		},
 
@@ -12578,16 +12582,8 @@ exports.default = {
 			});
 		},
 
-		setBeheerder: function setBeheerder() {
-			this.nonbeheerders = [];
-			for (var participant in this.participants) {
-				if (this.participants[participant].beheerder) {
-					this.beheerders = [this.participants[participant]];
-				} else {
-					this.nonbeheerders.push(this.participants[participant]);
-				}
-			}
-			this.nonbeheerders.sort(function (a, b) {
+		sortParticipants: function sortParticipants() {
+			this.participants.sort(function (a, b) {
 				if (a.instantie_id > b.instantie_id) {
 					return 1;
 				}
@@ -12596,6 +12592,17 @@ exports.default = {
 				}
 				return 0;
 			});
+			var beheerder = this.getBeheerder();
+			this.participants.splice(this.participants.indexOf(beheerder), 1);
+			this.participants.unshift(beheerder);
+		},
+
+		getBeheerder: function getBeheerder() {
+			for (var participant in this.participants) {
+				if (this.participants[participant].beheerder) {
+					return this.participants[participant];
+				}
+			}
 		},
 
 		calcAvailableInstanties: function calcAvailableInstanties() {
@@ -12611,16 +12618,10 @@ exports.default = {
 			}
 			this.instanties = tempavailable;
 		}
-	},
-
-	events: {
-		reloadParticipants: function reloadParticipants() {
-			this.getParticipants();
-		}
 	}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<single-deelnemer v-for=\"beheerder in beheerders\" :participant=\"beheerder\" :editable=\"editable\" :instanties=\"instanties\" :class=\"'instantie-' + beheerder.instantiemodel_id\" @editable=\"setEditable\">\n\t</single-deelnemer>\n\n\t<single-deelnemer v-for=\"participant in nonbeheerders\" :participant=\"participant\" :editable=\"editable\" :instanties=\"instanties\" :class=\"'instantie-' + participant.instantiemodel_id\" @editable=\"setEditable\">\n\t</single-deelnemer>\n\n\t<add-single-deelnemer :editable=\"editable\" @editable=\"setEditable\" @pushparticipant=\"pushParticipant\" :instanties=\"instanties\">\n\t</add-single-deelnemer>\n\n\t<div class=\"row\">\n\t\t<div class=\"small-4 columns page-next\" v-if=\"(editable.id == null)\">\n\t\t\t<a href=\"{{returnRoot}}/scans/{{scan.id}}/inrichten/controlerendeelnemers\" class=\"button button-next\">Volgende Stap</a>\n\t\t</div>\n\t\t<div class=\"small-4 columns page-next\" v-else=\"\">\n\t\t\t<a href=\"#\" class=\"button button-next has-tip\" aria-haspopup=\"true\" data-disable-hover=\"false\" tabindex=\"1\" title=\"Maak eerst uw bewerkingen af!\" @click=\"alert\">\n\t\t\t\tVolgende Stap\n\t\t\t</a>\n\t\t</div>\n\t</div>\n\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<single-deelnemer v-for=\"participant in participants\" :participant=\"participant\" :editable=\"editable\" :instanties=\"instanties\" :class=\"'instantie-' + participant.instantiemodel_id\" @editable=\"setEditable\" @removeparticipant=\"removeParticipant\">\n\t</single-deelnemer>\n\n\t<add-single-deelnemer :editable=\"editable\" @editable=\"setEditable\" @pushparticipant=\"pushParticipant\" @updateuser=\"updateUser\" @removeparticipant=\"removeParticipant\" :instanties=\"instanties\">\n\t</add-single-deelnemer>\n\n\t<div class=\"row\">\n\t\t<div class=\"small-4 columns page-next\" v-if=\"(editable.id == null)\">\n\t\t\t<a :href=\"nextLink\" class=\"button button-next\">Volgende Stap</a>\n\t\t</div>\n\t\t<div class=\"small-4 columns page-next\" v-else=\"\">\n\t\t\t<a href=\"#\" class=\"button button-next has-tip\" aria-haspopup=\"true\" data-disable-hover=\"false\" tabindex=\"1\" title=\"Maak eerst uw bewerkingen af!\" @click=\"alert\">\n\t\t\t\tVolgende Stap\n\t\t\t</a>\n\t\t</div>\n\t</div>\n\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -12637,16 +12638,14 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"../components/AddSingleDeelnemer.vue":16,"../components/SingleDeelnemer.vue":26,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],22:[function(require,module,exports){
-var __vueify_style__ = require("vueify-insert-css").insert("\n\n.searchfilter {\n\ttext-align: right;\n\tlabel, input {\n\t\tdisplay: inline-block;\n\t}\n}\n\t\n")
+var __vueify_style__ = require("vueify-insert-css").insert("\n\t.searchfilter {\n\t\ttext-align: right;\n\t\tlabel, input {\n\t\t\tdisplay: inline-block;\n\t\t}\n\t}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.default = {
-
 	components: {},
-	props: [],
 
 	data: function data() {
 		return {
@@ -12664,6 +12663,29 @@ exports.default = {
 	computed: {
 		returnRoot: function returnRoot() {
 			return window.location.protocol + "//" + window.location.host;
+		},
+
+		searchedAndFilteredPraktijkvoorbeelds: function searchedAndFilteredPraktijkvoorbeelds() {
+			var self = this;
+			return self.filteredPraktijkvoorbeelds.filter(function (praktijkvoorbeeld) {
+				if (praktijkvoorbeeld.description.toLowerCase().includes(self.search.toLowerCase()) || praktijkvoorbeeld.title.toLowerCase().includes(self.search.toLowerCase()) || praktijkvoorbeeld.adress.toLowerCase().includes(self.search.toLowerCase())) {
+					return true;
+				}
+			});
+		},
+
+		filteredPraktijkvoorbeelds: function filteredPraktijkvoorbeelds() {
+			var self = this;
+			return self.praktijkvoorbeelds.filter(function (praktijkvoorbeeld) {
+				for (var thema in self.checkedThemas) {
+					if (praktijkvoorbeeld.themas.includes(self.checkedThemas[thema])) {
+						return true;
+					}
+				}
+				if (self.checkedThemas.length == 0) {
+					return true;
+				}
+			});
 		}
 	},
 
@@ -12681,33 +12703,33 @@ exports.default = {
 			for (var praktijkvoorbeeld in this.praktijkvoorbeelds) {
 				if (this.praktijkvoorbeelds[praktijkvoorbeeld].bedrijven) {
 					this.praktijkvoorbeelds[praktijkvoorbeeld].bedrijven = 'bedrijven';
+					this.praktijkvoorbeelds[praktijkvoorbeeld].themas.push('bedrijven');
 				}
 				if (this.praktijkvoorbeelds[praktijkvoorbeeld].scholen) {
 					this.praktijkvoorbeelds[praktijkvoorbeeld].scholen = 'scholen';
+					this.praktijkvoorbeelds[praktijkvoorbeeld].themas.push('scholen');
 				}
 				if (this.praktijkvoorbeelds[praktijkvoorbeeld].gemeenten) {
 					this.praktijkvoorbeelds[praktijkvoorbeeld].gemeenten = 'gemeenten';
+					this.praktijkvoorbeelds[praktijkvoorbeeld].themas.push('gemeenten');
 				}
 				if (this.praktijkvoorbeelds[praktijkvoorbeeld].overig) {
 					this.praktijkvoorbeelds[praktijkvoorbeeld].overig = 'overig';
+					this.praktijkvoorbeelds[praktijkvoorbeeld].themas.push('overig');
 				}
 			}
 		}
-
-	},
-
-	events: {}
-
+	}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row searchitems\">\n\t\t<div class=\"small-6 columns\">\n\t\t\t<h3>Zoek op trefwoord</h3>\n\t\t\t<input type=\"text\" v-model=\"search\" placeholder=\"Vul trefwoord in\">\n\t\t</div>\n\t\t<div class=\"small-6 columns\">\n\t\t\t<h3 class=\"text-right\">Zoekfilter</h3>\n\t\t\t<div v-for=\"instantie in instanties\" class=\"searchfilter\">\n\t\t\t\t<label :for=\"instantie\" class=\"inlinelabel\">{{ instantie }}</label>\n\t\t\t\t<input type=\"checkbox\" :id=\"instantie\" :value=\"instantie\" v-model=\"checkedThemas\">\n\t\t\t</div>\n\t\t</div>\n\t\t<br>\n\n\t</div>\n\n\t<div class=\"row table-row table-header\">\n\t\t<div class=\"small-2 columns\">\n\t\t\tNaam\n\t\t</div>\n\t\t<div class=\"small-7 columns\">\n\t\t\tBeschrijving\n\t\t</div>\n\t\t<div class=\"small-3 columns\">\n\t\tThema's\n\t\t</div>\n\t</div>\n\n\n\t<div class=\"row table-row table-row--body\" v-for=\"praktijkvoorbeeld in praktijkvoorbeelds | filterBy search | filterBy checkedThemas[0] | filterBy checkedThemas[1] | filterBy checkedThemas[2]\">\n\t\t<div class=\"small-2 columns\">\n\t\t\t<a :href=\"praktijkvoorbeeld.adress\">\n\t\t\t\t{{ praktijkvoorbeeld.title}}\n\t\t\t</a>\n\t\t</div>\n\t\t<div class=\"small-7 columns\">\n\t\t\t{{ praktijkvoorbeeld.description }}\n\t\t</div>\n\t\t<div class=\"small-3 columns\">\n\t\t\t<span v-if=\"praktijkvoorbeeld.bedrijven\">\n\t\t\t\tBedrijven <br>\n\t\t\t</span>\n\t\t\t<span v-if=\"praktijkvoorbeeld.scholen\">\n\t\t\t\tScholen <br>\n\t\t\t</span>\n\t\t\t<span v-if=\"praktijkvoorbeeld.gemeenten\">\n\t\t\t\tGemeenten <br>\n\t\t\t</span>\n\t\t\t<span v-if=\"praktijkvoorbeeld.overig\">\n\t\t\t\tOverig <br>\n\t\t\t</span>\n\t\t</div>\n\t</div>\n\t\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row searchitems\">\n\t\t<div class=\"small-6 columns\">\n\t\t\t<h3>Zoek op trefwoord</h3>\n\t\t\t<input type=\"text\" v-model=\"search\" placeholder=\"Vul trefwoord in\">\n\t\t</div>\n\t\t<div class=\"small-6 columns\">\n\t\t\t<h3 class=\"text-right\">Zoekfilter</h3>\n\t\t\t<div v-for=\"instantie in instanties\" class=\"searchfilter\">\n\t\t\t\t<label :for=\"instantie\" class=\"inlinelabel\">{{ instantie }}</label>\n\t\t\t\t<input type=\"checkbox\" :id=\"instantie\" :value=\"instantie\" v-model=\"checkedThemas\">\n\t\t\t</div>\n\t\t</div>\n\t\t<br>\n\t</div>\n\n\t<div class=\"row table-row table-header\">\n\t\t<div class=\"small-2 columns\">\n\t\t\tNaam\n\t\t</div>\n\t\t<div class=\"small-7 columns\">\n\t\t\tBeschrijving\n\t\t</div>\n\t\t<div class=\"small-3 columns\">\n\t\tThema's\n\t\t</div>\n\t</div>\n\n\n\t<div class=\"row table-row table-row--body\" v-for=\"praktijkvoorbeeld in searchedAndFilteredPraktijkvoorbeelds\">\n\t\t<div class=\"small-2 columns\">\n\t\t\t<a :href=\"praktijkvoorbeeld.adress\">\n\t\t\t\t{{ praktijkvoorbeeld.title}}\n\t\t\t</a>\n\t\t</div>\n\t\t<div class=\"small-7 columns\">\n\t\t\t{{ praktijkvoorbeeld.description }}\n\t\t</div>\n\t\t<div class=\"small-3 columns\">\n\t\t\t<span v-if=\"praktijkvoorbeeld.bedrijven\">\n\t\t\t\tBedrijven <br>\n\t\t\t</span>\n\t\t\t<span v-if=\"praktijkvoorbeeld.scholen\">\n\t\t\t\tScholen <br>\n\t\t\t</span>\n\t\t\t<span v-if=\"praktijkvoorbeeld.gemeenten\">\n\t\t\t\tGemeenten <br>\n\t\t\t</span>\n\t\t\t<span v-if=\"praktijkvoorbeeld.overig\">\n\t\t\t\tOverig <br>\n\t\t\t</span>\n\t\t</div>\n\t</div>\n\t\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/Praktijkvoorbeelds.vue"
   module.hot.dispose(function () {
-    require("vueify-insert-css").cache["\n\n.searchfilter {\n\ttext-align: right;\n\tlabel, input {\n\t\tdisplay: inline-block;\n\t}\n}\n\t\n"] = false
+    require("vueify-insert-css").cache["\n\t.searchfilter {\n\t\ttext-align: right;\n\t\tlabel, input {\n\t\t\tdisplay: inline-block;\n\t\t}\n\t}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -12814,23 +12836,19 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"../components/SingleSlider.vue":27,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],24:[function(require,module,exports){
-var __vueify_style__ = require("vueify-insert-css").insert("\n\n.searchfilter {\n\ttext-align: right;\n\tlabel, input {\n\t\tdisplay: inline-block;\n\t}\n}\n\t\n")
+var __vueify_style__ = require("vueify-insert-css").insert("\n\t.searchfilter {\n\t\ttext-align: right;\n\t\tlabel, input {\n\t\t\tdisplay: inline-block;\n\t\t}\n\t}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.default = {
-
-	components: {},
 	props: [],
 
 	data: function data() {
 		return {
 			search: '',
-			programmas: [],
-			themas: [],
-			checkedThemas: []
+			programmas: []
 		};
 	},
 	ready: function ready() {
@@ -12841,6 +12859,15 @@ exports.default = {
 	computed: {
 		returnRoot: function returnRoot() {
 			return window.location.protocol + "//" + window.location.host;
+		},
+
+		searchedProgrammas: function searchedProgrammas() {
+			var self = this;
+			return self.programmas.filter(function (programma) {
+				if (programma.description.toLowerCase().includes(self.search.toLowerCase()) || programma.title.toLowerCase().includes(self.search.toLowerCase()) || programma.adress.toLowerCase().includes(self.search.toLowerCase())) {
+					return true;
+				}
+			});
 		}
 	},
 
@@ -12852,20 +12879,17 @@ exports.default = {
 				_this.programmas = response.data;
 			});
 		}
-	},
-
-	events: {}
-
+	}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row searchitems\">\n\t\t<div class=\"small-6 columns\">\n\t\t\t<h3>Zoek op trefwoord</h3>\n\t\t\t<input type=\"text\" v-model=\"search\" placeholder=\"Vul trefwoord in\">\n\t\t</div>\n\n\t</div>\n\n\t<div class=\"row table-row table-header\">\n\t\t<div class=\"small-2 columns\">\n\t\t\tNaam\n\t\t</div>\n\t\t<div class=\"small-10 columns\">\n\t\t\tBeschrijving\n\t\t</div>\n\t</div>\n\n\n\t<div class=\"row table-row table-row--body\" v-for=\"programma in programmas | filterBy search | filterBy checkedThemas[0] | filterBy checkedThemas[1] | filterBy checkedThemas[2]\">\n\t\t<div class=\"small-2 columns\">\n\t\t\t<a :href=\"programma.adress\">\n\t\t\t\t{{ programma.title}}\n\t\t\t</a>\n\t\t</div>\n\t\t<div class=\"small-10 columns\">\n\t\t\t{{ programma.description }}\n\t\t</div>\n\n\t</div>\n\t\n\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row searchitems\">\n\t\t<div class=\"small-6 columns\">\n\t\t\t<h3>Zoek op trefwoord</h3>\n\t\t\t<input type=\"text\" v-model=\"search\" placeholder=\"Vul trefwoord in\">\n\t\t</div>\n\n\t</div>\n\n\t<div class=\"row table-row table-header\">\n\t\t<div class=\"small-2 columns\">\n\t\t\tNaam\n\t\t</div>\n\t\t<div class=\"small-10 columns\">\n\t\t\tBeschrijving\n\t\t</div>\n\t</div>\n\n\t<div class=\"row table-row table-row--body\" v-for=\"programma in searchedProgrammas\">\n\t\t<div class=\"small-2 columns\">\n\t\t\t<a :href=\"programma.adress\">\n\t\t\t\t{{ programma.title}}\n\t\t\t</a>\n\t\t</div>\n\t\t<div class=\"small-10 columns\">\n\t\t\t{{ programma.description }}\n\t\t</div>\n\t</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/Programmas.vue"
   module.hot.dispose(function () {
-    require("vueify-insert-css").cache["\n\n.searchfilter {\n\ttext-align: right;\n\tlabel, input {\n\t\tdisplay: inline-block;\n\t}\n}\n\t\n"] = false
+    require("vueify-insert-css").cache["\n\t.searchfilter {\n\t\ttext-align: right;\n\t\tlabel, input {\n\t\t\tdisplay: inline-block;\n\t\t}\n\t}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -13001,7 +13025,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {
 	http: {
-		root: '/root',
+		base: '/base',
 		headers: {
 			'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
 		}
@@ -13073,27 +13097,38 @@ exports.default = {
 		},
 
 		removeParticipant: function removeParticipant() {
-			var resource = this.$resource('/api/scan/:scan/participant/:participant');
+			this.$emit('removeparticipant', this.participant);
 			var home = this;
-			resource.delete({ scan: this.scan.id, participant: this.participant.id }, {}).then(function (response) {
-				home.$dispatch('reloadParticipants');
-			}, function (response) {});
+			var resource = this.$resource('/api/scan/:scan/participant/:participant');
+			resource.delete({ scan: this.scan.id, participant: this.participant.id }, {}).then(function (response) {}, function (response) {
+				home.$emit('pushparticipant', home.participant);
+			});
 		},
 
 		saveChanges: function saveChanges() {
+			this.setInstantiemodelData();
 			var resource = this.$resource('/api/scan/:scan/participant/:participant');
 			var home = this;
 			resource.update({ scan: this.scan.id, participant: this.participant.id }, { participant: this.participant }).then(function (response) {
-				home.$dispatch('reloadParticipants');
+				home.$emit('pushparticipant', home.participant);
 			}, function (response) {});
 			this.setNoneEditable();
+		},
+
+		setInstantiemodelData: function setInstantiemodelData() {
+			for (instantie in this.instanties) {
+				if (this.participant.instantie_id == this.instanties[instantie].id) {
+					this.participant.instantiemodel_id = this.instanties[instantie].instantiemodel_id;
+					this.participant.instantie_title = this.instanties[instantie].title;
+				}
+			}
 		}
 
 	}
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row gebruikers_aanmelden--row\" :class=\"{'row_beheerder' : participant.beheerder}\">\n\t\t<div v-show=\"! isEditable\">\n\t\t\t<div class=\"small-1 columns\"> <img :src=\"returnRoot + '/img/user_dark.png'\"> </div>\n\t\t\t<div class=\"small-2 columns\"> {{ participant.name_first ? participant.name_first : \" ---\" }} </div>\n\t\t\t<div class=\"small-2 columns\"> {{ participant.name_last ? participant.name_last : \" --- \" }} </div>\n\t\t\t<div class=\"small-3 columns\"> {{ participant.email ? participant.email : \" --- \" }} </div>\n\t\t\t<div class=\"small-3 columns\"> {{ participant.instantie_title }} </div>\n\t\t\t<div class=\"small-1 columns\">\n\t\t\t\t<img :src=\"returnRoot +'/img/editicon.png'\" class=\"editicon vuelink\" @click=\"setThisEditable\" data-tooltip=\"\" aria-haspopup=\"true\" data-disable-hover=\"false\" tabindex=\"1\" title=\"Bewerk gegevens\">\n\t\t\t\t<a href=\"#\" class=\"close-button closeicon\" aria-label=\"Close alert\" type=\"button\" @click=\"removeParticipant\">×</a>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div v-show=\"isEditable\">\n\t\t\t<div class=\"small-1 columns\"> <img :src=\"returnRoot + '/img/user_dark.png'\"> </div>\n\t\t\t<div class=\"small-2 columns\"> <input type=\"text\" v-model=\"participant.name_first\" placeholder=\"edit me\"></div>\n\t\t\t<div class=\"small-2 columns\"> <input type=\"text\" v-model=\"participant.name_last\" placeholder=\"edit me\"> </div>\n\t\t\t<div class=\"small-3 columns\"> <input type=\"text\" v-model=\"participant.email\" placeholder=\"edit me\"> </div>\n\t\t\t<div class=\"small-3 columns\"> \n\t\t\t\t<select v-model=\"participant.instantie_id\">\n\t\t\t\t  <option v-for=\"instantie in instanties\" v-bind:value=\"instantie.id\">\n\t\t\t\t    {{ instantie.title }}\n\t\t\t\t  </option>\n\t\t\t\t</select>\n\t\t\t</div>\n\t\t\t<div class=\"small-1 columns\">\n\t\t\t\t<img :src=\"returnRoot +'/img/checkmark.png'\" class=\"editicon vuelink\" data-tooltip=\"\" aria-haspopup=\"true\" data-disable-hover=\"false\" tabindex=\"1\" title=\"Sla Bewerkingen op\" @click=\"saveChanges\" v-if=\"isValid\">\n\t\t\t</div>\t\n\t\t</div>\t\t\n\t</div>\n\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row gebruikers_aanmelden--row\" :class=\"{'row_beheerder' : participant.beheerder}\">\n\t\t<div v-show=\"! isEditable\">\n\t\t\t<div class=\"small-1 columns\"> <img :src=\"returnRoot + '/img/user_dark.png'\"> </div>\n\t\t\t<div class=\"small-2 columns\"> {{ participant.name_first ? participant.name_first : \" ---\" }} </div>\n\t\t\t<div class=\"small-2 columns\"> {{ participant.name_last ? participant.name_last : \" --- \" }} </div>\n\t\t\t<div class=\"small-3 columns\"> {{ participant.email ? participant.email : \" --- \" }} </div>\n\t\t\t<div class=\"small-3 columns\"> {{ participant.instantie_title }} </div>\n\t\t\t<div class=\"small-1 columns\">\n\t\t\t\t<img :src=\"returnRoot +'/img/editicon.png'\" class=\"has-tip editicon vuelink\" data-tooltip=\"\" aria-haspopup=\"true\" data-disable-hover=\"false\" tabindex=\"1\" title=\"Bewerk gegevens\" @click=\"setThisEditable\">\n\t\t\t\t<a href=\"#\" class=\"close-button closeicon\" aria-label=\"Close alert\" type=\"button\" v-if=\"!participant.beheerder\" @click=\"removeParticipant\">\n\t\t\t\t\t×\n\t\t\t\t</a>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div v-show=\"isEditable\">\n\t\t\t<div class=\"small-1 columns\"> <img :src=\"returnRoot + '/img/user_dark.png'\"> </div>\n\t\t\t<div class=\"small-2 columns\"> <input type=\"text\" v-model=\"participant.name_first\" placeholder=\"edit me\"></div>\n\t\t\t<div class=\"small-2 columns\"> <input type=\"text\" v-model=\"participant.name_last\" placeholder=\"edit me\"> </div>\n\t\t\t<div class=\"small-3 columns\"> <input type=\"text\" v-model=\"participant.email\" placeholder=\"edit me\"> </div>\n\t\t\t<div class=\"small-3 columns\"> \n\t\t\t\t<select v-model=\"participant.instantie_id\">\n\t\t\t\t  <option v-for=\"instantie in instanties\" v-bind:value=\"instantie.id\">\n\t\t\t\t    {{ instantie.title }}\n\t\t\t\t  </option>\n\t\t\t\t</select>\n\t\t\t</div>\n\t\t\t<div class=\"small-1 columns\">\n\t\t\t\t<img :src=\"returnRoot +'/img/checkmark.png'\" class=\"has-tip editicon vuelink\" data-tooltip=\"\" aria-haspopup=\"true\" data-disable-hover=\"false\" tabindex=\"1\" title=\"Sla Bewerkingen op\" v-if=\"isValid\" @click=\"saveChanges\">\n\t\t\t</div>\t\n\t\t</div>\t\t\n\t</div>\n\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -13218,30 +13253,28 @@ exports.default = {
 			externalUsers: [],
 			betrokkenen: [],
 			unBetrokkenen: [],
-			notdeleted: true
+			newExternalUser: { name: '' }
 		};
 	},
 	ready: function ready() {
 		this.getBetrokkenen();
-		this.betrokkenen = this.subactie.betrokkenen;
-		this.unBetrokkenen = this.subactie.unBetrokkenen;
 		this.getExternalusers();
 	},
 	created: function created() {},
 
 
 	methods: {
-
-		removeSubactie: function removeSubactie() {
+		saveSubActie: function saveSubActie() {
 			var home = this;
-			var resource = this.$resource('/api/subactie/:subactie/delete');
-			resource.get({ subactie: this.subactie.id }, {}).then(function (response) {
-				home.notdeleted = false;
-			}, function (response) {});
+			var resource = this.$resource('/api/subactie/:subactie');
+			resource.update({ subactie: this.subactie.id }, { subactie: this.subactie }).then(function (response) {});
 		},
 
-		reloadData: function reloadData() {
-			this.$dispatch('reloadData');
+		removeSubactie: function removeSubactie() {
+			this.$emit('removesubactie', this.subactie);
+			var home = this;
+			var resource = this.$resource('/api/subactie/:subactie/delete');
+			resource.get({ subactie: this.subactie.id }, {}).then(function (response) {}, function (response) {});
 		},
 
 		getBetrokkenen: function getBetrokkenen() {
@@ -13255,34 +13288,20 @@ exports.default = {
 			});
 		},
 
-		reloadUnBetrokkenen: function reloadUnBetrokkenen() {
-			this.$dispatch('reloadUnBetrokkenen');
-		},
-
 		addBetrokkene: function addBetrokkene(participant) {
 			this.betrokkenen.push(participant);
-			this.unBetrokkenen.$remove(participant);
-			// var tempArray = this.unBetrokkenen.splice(0);
-			// this.unBetrokkenen = [];
-			this.showUnBetrokkene = !this.showUnBetrokkene;
+			this.unBetrokkenen.splice(this.unBetrokkenen.indexOf(participant), 1);
 			var home = this;
 			var resource = this.$resource('/api/subactie/:subactie/betrokkene/:betrokkene');
-			resource.save({ subactie: this.subactie.id, betrokkene: participant.id }, {}).then(function (response) {
-				// home.unBetrokkenen = tempArray;
-			});
+			resource.save({ subactie: this.subactie.id, betrokkene: participant.id }, {}).then(function (response) {});
 		},
 
 		removeBetrokkene: function removeBetrokkene(participant) {
 			this.unBetrokkenen.push(participant);
-			this.betrokkenen.$remove(participant);
-			// var tempArray = this.betrokkenen.splice(0);
-			// this.betrokkenen = [];
-			this.showUnBetrokkene = !this.showUnBetrokkene;
+			this.betrokkenen.splice(this.betrokkenen.indexOf(participant), 1);
 			var home = this;
 			var resource = this.$resource('/api/subactie/:subactie/betrokkene/:betrokkene');
-			resource.delete({ subactie: this.subactie.id, betrokkene: participant.id }, {}).then(function (response) {
-				// home.betrokkenen = tempArray;
-			});
+			resource.delete({ subactie: this.subactie.id, betrokkene: participant.id }, {}).then(function (response) {});
 		},
 
 		getExternalusers: function getExternalusers() {
@@ -13294,61 +13313,30 @@ exports.default = {
 		},
 
 		addExternaluser: function addExternaluser(newExternalUser) {
-			// this.externalUsers.push(this.newExternalUser);
-			if (!this.newExternalUser == ['']) {
+			if (!this.newExternalUser.name == ['']) {
 				var home = this;
 				var resource = this.$resource('/api/subactie/:subactie/externaluser/');
-				resource.save({ subactie: this.subactie.id }, { externaluser: this.newExternalUser }).then(function (response) {
-					//success callback
-					home.newExternalUser = '';
+				resource.save({ subactie: this.subactie.id }, { externaluser: this.newExternalUser.name }).then(function (response) {
+					home.newExternalUser.name = '';
 					home.getExternalusers();
-				}, function (response) {
-					//error callback
-				});
+				}, function (response) {});
 			}
 		},
 
-		removeExternaluser: function removeExternaluser(externaluserid) {
+		removeExternaluser: function removeExternaluser(externaluser) {
+			this.externalUsers.splice(this.externalUsers.indexOf(externaluser), 1);
 			var home = this;
 			var resource = this.$resource('/api/subactie/:subactie/subexternaluser/:externaluser');
-			resource.delete({ subactie: this.subactie.id, externaluser: externaluserid }, {}).then(function (response) {
+			resource.delete({ subactie: this.subactie.id, externaluser: externaluser.id }, {}).then(function (response) {}, function (response) {
 				home.getExternalusers();
-				//
-			}, function (response) {
-				//
 			});
-			this.getExternalusers();
-		},
-
-		saveSubActie: function saveSubActie() {
-			var home = this;
-			var resource = this.$resource('/api/subactie/:subactie');
-			resource.update({ subactie: this.subactie.id }, { subactie: this.subactie }).then(function (response) {});
-		},
-
-		setActieInactive: function setActieInactive(actie) {
-			actie.active = 0;
-			this.saveSubActie();
 		}
-
 	},
 
-	computed: {
-		unblength: function unblength() {
-			return this.unBetrokkenen.length;
-		},
-
-		isWerkAgenda: function isWerkAgenda() {
-			if (agendaType == 'werkagenda') {
-				return true;
-			}
-			return false;
-		}
-	}
-
+	computed: {}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"subactie\" v-if=\"notdeleted\">\n\t\t\n\t\t<div class=\"row\">\n\t\t\t<div class=\"large-11 columns\"> \n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" placeholder=\"Titel Verbeterpunt\" v-model=\"subactie.title\" @blur=\"saveSubActie()\">\n\t\t\t\t\t\n\t\t\t\t</div>\t\t\t\t\n\t\t\t</div>\n\t\t\t<div class=\"large-1 columns\">\n\t\t\t\t<span class=\"remove_subactie\" @click=\"removeSubactie()\">\n\t\t\t\t\tx\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row\">\n\t\t\t<div class=\"large-4 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<textarea class=\"form-control\" placeholder=\"Actie Omschrijving\" rows=\"6\" v-model=\"subactie.omschrijving\" @blur=\"saveSubActie()\">\t\t\t\t\t</textarea>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<select v-model=\"subactie.user_id\" @blur=\"saveSubActie()\">\n\t\t\t\t\t\t<option v-for=\"participant in participants\" :value=\"participant.id\"> \n\t\t\t\t\t\t\t{{ participant.name_first }} \n\t\t\t\t\t\t</option>\n\t\t\t\t\t</select>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"betrokkenen__group row\">\n\t\t\t\t\t<div class=\"betrokkenen__bet \">\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-if=\"!betrokkenen.length\">\n\t\t\t\t\t\t+\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in betrokkenen\" @click=\"removeBetrokkene(betrokkene)\">\n\t\t\t\t\t\t\t{{betrokkene.name_first}}\n\t\t\t\t\t\t\t<span class=\"indication\">-</span>\n\t\t\t\t\t\t</div>\t\t\t\t\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div class=\"betrokkenen__unbet\">\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in unBetrokkenen\" @click=\"addBetrokkene(betrokkene)\">\n\t\t\t\t\t\t\t{{ betrokkene.name_first }}\n\t\t\t\t\t\t\t<span class=\"indication\">+</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"large-2 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<div class=\"actie-exbetrokkene\" v-for=\"externalUser in externalUsers\">\n\t\t\t\t\t\t{{ externalUser.name }}\n\t\t\t\t\t\t<a href=\"#\" class=\"close-button closeicon\" aria-label=\"Close alert\" type=\"button\" @click=\"removeExternaluser(externalUser.id)\">\n\t\t\t\t\t\t\t×\n\t\t\t\t\t\t</a>\n\t\t\t\t\t</div>\n\t\t\t\t\t<input type=\"text\" v-model=\"newExternalUser\" placeholder=\"Voeg iemand toe\" @blur=\"addExternaluser()\" @keyup.enter=\"addExternaluser()\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row\">\n\t\t\t<div class=\"small-4 columns subactie--date\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t<label>datum:</label> \n\t\t\t\t\t<input type=\"date\" v-model=\"subactie.datum\">\n\t\t\t\t</div>\n\n\t\t\t</div>\n\t\t</div>\n\t</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"subactie\">\n\t\t<div class=\"row\">\n\t\t\t<div class=\"large-11 columns\"> \n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" placeholder=\"Titel Verbeterpunt\" v-model=\"subactie.title\" @blur=\"saveSubActie()\">\n\t\t\t\t\t\n\t\t\t\t</div>\t\t\t\t\n\t\t\t</div>\n\t\t\t<div class=\"large-1 columns\">\n\t\t\t\t<span class=\"remove_subactie\" @click=\"removeSubactie()\">\n\t\t\t\t\tx\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row\">\n\t\t\t<div class=\"large-4 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<textarea class=\"form-control\" placeholder=\"Actie Omschrijving\" rows=\"6\" v-model=\"subactie.omschrijving\" @blur=\"saveSubActie()\">\t\t\t\t\t</textarea>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<select v-model=\"subactie.user_id\" @blur=\"saveSubActie()\">\n\t\t\t\t\t\t<option v-for=\"participant in participants\" :value=\"participant.id\"> \n\t\t\t\t\t\t\t{{ participant.name_first }} \n\t\t\t\t\t\t</option>\n\t\t\t\t\t</select>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"betrokkenen__group row\">\n\t\t\t\t\t<div class=\"betrokkenen__bet \">\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-if=\"!betrokkenen.length\">\n\t\t\t\t\t\t+\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in betrokkenen\" @click=\"removeBetrokkene(betrokkene)\">\n\t\t\t\t\t\t\t{{betrokkene.name_first}}\n\t\t\t\t\t\t\t<span class=\"indication\">-</span>\n\t\t\t\t\t\t</div>\t\t\t\t\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div class=\"betrokkenen__unbet\">\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in unBetrokkenen\" @click=\"addBetrokkene(betrokkene)\">\n\t\t\t\t\t\t\t{{ betrokkene.name_first }}\n\t\t\t\t\t\t\t<span class=\"indication\">+</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"large-2 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<div class=\"actie-exbetrokkene\" v-for=\"externalUser in externalUsers\">\n\t\t\t\t\t\t{{ externalUser.name }}\n\t\t\t\t\t\t<a href=\"#\" class=\"close-button closeicon\" aria-label=\"Close alert\" type=\"button\" @click=\"removeExternaluser(externalUser)\">\n\t\t\t\t\t\t\t×\n\t\t\t\t\t\t</a>\n\t\t\t\t\t</div>\n\t\t\t\t\t<input type=\"text\" v-model=\"newExternalUser.name\" placeholder=\"Voeg iemand toe\" @blur=\"addExternaluser()\" @keyup.enter=\"addExternaluser()\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row\">\n\t\t\t<div class=\"small-4 columns subactie--date\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t<label>datum:</label> \n\t\t\t\t\t<input type=\"date\" v-model=\"subactie.datum\">\n\t\t\t\t</div>\n\n\t\t\t</div>\n\t\t</div>\n\t</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -13505,7 +13493,7 @@ Vue.use(require('vue-resource'));
 
 new Vue({
 	http: {
-		root: '/root',
+		base: '/base',
 		headers: {
 			'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
 		}

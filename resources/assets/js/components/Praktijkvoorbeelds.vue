@@ -12,7 +12,6 @@
 			</div>
 		</div>
 		<br>
-
 	</div>
 
 	<div class="row table-row table-header">
@@ -29,7 +28,7 @@
 
 
 	<div class="row table-row table-row--body"
-		v-for="praktijkvoorbeeld in praktijkvoorbeelds | filterBy search | filterBy checkedThemas[0] | filterBy checkedThemas[1] | filterBy checkedThemas[2]"
+		v-for="praktijkvoorbeeld in searchedAndFilteredPraktijkvoorbeelds"
 	>
 		<div class="small-2 columns">
 			<a :href="praktijkvoorbeeld.adress">
@@ -58,11 +57,8 @@
 </template>
 
 <script>
-
 	export default {
-		
 		components: {  },
-		props: [],
 
 		data() {
 			return {
@@ -86,6 +82,36 @@
 			returnRoot: function () {
 				return (window.location.protocol + "//" + window.location.host);
 			},
+
+			searchedAndFilteredPraktijkvoorbeelds: function () {
+				var self = this;
+				return self.filteredPraktijkvoorbeelds.filter(function(praktijkvoorbeeld) {
+					if( praktijkvoorbeeld.description.toLowerCase().includes(self.search.toLowerCase()) ||
+						praktijkvoorbeeld.title.toLowerCase().includes(self.search.toLowerCase()) ||
+						praktijkvoorbeeld.adress.toLowerCase().includes(self.search.toLowerCase()) 
+					)
+					{
+						return true;
+					}
+				})
+			},
+
+			filteredPraktijkvoorbeelds: function () {
+				var self = this;
+				return self.praktijkvoorbeelds.filter(function (praktijkvoorbeeld) {
+					for(var thema in self.checkedThemas)
+					{
+						if(praktijkvoorbeeld.themas.includes(self.checkedThemas[thema]))
+						{
+							return true;
+						}
+					}
+					if(self.checkedThemas.length == 0)
+					{
+						return true;
+					}
+				})
+			}
 		},
 
 		methods: {
@@ -103,41 +129,35 @@
 					if(this.praktijkvoorbeelds[praktijkvoorbeeld].bedrijven)
 					{
 						this.praktijkvoorbeelds[praktijkvoorbeeld].bedrijven = 'bedrijven';
+						this.praktijkvoorbeelds[praktijkvoorbeeld].themas.push('bedrijven');
 					}
 					if(this.praktijkvoorbeelds[praktijkvoorbeeld].scholen)
 					{
 						this.praktijkvoorbeelds[praktijkvoorbeeld].scholen = 'scholen';
+						this.praktijkvoorbeelds[praktijkvoorbeeld].themas.push('scholen');
 					}
 					if(this.praktijkvoorbeelds[praktijkvoorbeeld].gemeenten)
 					{
 						this.praktijkvoorbeelds[praktijkvoorbeeld].gemeenten = 'gemeenten';
+						this.praktijkvoorbeelds[praktijkvoorbeeld].themas.push('gemeenten');
 					}
 					if(this.praktijkvoorbeelds[praktijkvoorbeeld].overig)
 					{
 						this.praktijkvoorbeelds[praktijkvoorbeeld].overig = 'overig';
+						this.praktijkvoorbeelds[praktijkvoorbeeld].themas.push('overig');
 					}
 				}
 			},
-
-	
-
 		},
-
-		events: {
-
-		},
-
 	}
 </script>
 
 
 <style>
-
-.searchfilter {
-	text-align: right;
-	label, input {
-		display: inline-block;
+	.searchfilter {
+		text-align: right;
+		label, input {
+			display: inline-block;
+		}
 	}
-}
-	
 </style>

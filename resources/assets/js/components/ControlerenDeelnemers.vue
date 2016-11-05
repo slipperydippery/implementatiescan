@@ -1,30 +1,40 @@
 <template>
-	<div v-for="participant in participants | orderBy 'instantie_id'">
-		<div class="large-2 column submitted-user">
-			<a href="#" class="close-button" aria-label="Close alert" type="button" v-if="scanbeheerder" @click="removeParticipant(participant.id)">
+	<div v-for="participant in participants">
+		<div 
+			class="large-2 column submitted-user"
+			:class="{ beheerder: participant.beheerder }"
+		>
+			<a href="#" 
+				class="close-button" 
+				aria-label="Close alert" 
+				type="button" 
+				v-if="scanbeheerder" 
+				@click="removeParticipant(participant)"
+			>
 			    <span aria-hidden="true">&times;</span>
 			</a>
-			<img :src="returnRoot + '/img/user.png'">
+			<img :src="returnRoot + '/img/user.png'"/>
 			<div class="participant_info">
-				<span class="name"> {{ participant.name_first ? participant.name_first : "---" }} {{ participant.name_last ? participant.name_last : "" }} </span> 
-				<span class="functie"> {{ participant.instantie_title }} </span>
+				<span class="name"> 
+					{{ participant.name_first ? participant.name_first : "---" }} {{ participant.name_last ? participant.name_last : "" }} 
+				</span> 
+				<span class="functie"> 
+					{{ participant.instantie_title }} 
+				</span>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-
 	export default {
 		http: {
-			root: '/root',
+			base: '/base',
 			headers: {
 				'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
 			}
 	    },
 		
-		props: [],
-
 		data() {
 			return {
 				participants: [],
@@ -44,53 +54,56 @@
 		},
 
 		methods: {
-
 			getParticipants: function () {
 			    this.$http.get('/api/scan/' + this.scan.id + '/participant')
 			        .then(response => {
-						console.log('here');
 			            this.participants = response.data;
-						// this.calcAvailableInstanties();
+						this.sortParticipants();
 			        });
 			},
 
-			removeParticipant: function (participant_id) {
-				var resource = this.$resource('/api/scan/:scan/participant/:participant');
-				var home = this;
-				resource.delete({scan: this.scan.id, participant: participant_id}, {})
-					.then(function (response) {
-						home.getParticipants();
-					}, function(response) {}
-				);
+			sortParticipants: function () {
+				this.participants.sort(function(a, b) {
+					if (a.instantie_id > b.instantie_id) {
+					  return 1;
+					}
+					if (a.instantie_id < b.instantie_id) {
+					  return -1;
+					}
+					return 0;
+				});
+				var beheerder = this.getBeheerder();
+				this.participants.splice(this.participants.indexOf(beheerder), 1);
+				this.participants.unshift(beheerder);
 			},
 
-			calcAvailableInstanties: function () {
-				var tempavailable = [];
-				for (var thisparticipant in this.participants) 
+			getBeheerder: function () {
+				for(var participant in this.participants)
 				{
-					// if(this.participants[insts].participants.length < 2)
-					// {
-					// 	tempavailable.push({
-					// 		'title' : this.participants[insts].title, 
-					// 		'id' : this.participants[insts].id
-					// 	});
-					// } 
+					if(this.participants[participant].beheerder)
+					{
+						return this.participants[participant];
+					}
 				}
-				this.availableinstanties = tempavailable;
-			}	
+			},
 
+			removeParticipant: function (participant) {
+				this.participants.splice(this.participants.indexOf(participant), 1);
+				var home = this;
+				var resource = this.$resource('/api/scan/:scan/participant/:participant');
+				resource.delete({scan: this.scan.id, participant: participant.id}, {})
+					.then(function (response) {
+					}, function(response) {
+						home.getParticipants();
+					}
+				);
+			},
 		},
-
-		events: {
-		    reloadParticipants: function () {
-		        this.getParticipants();
-		    }
-		},
-
 	}
 </script>
 
-
 <style>
-	
+	.beheerder {
+		background: rgba(0,0,0,0.1);
+	}
 </style>

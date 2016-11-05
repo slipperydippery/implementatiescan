@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class CreateParticipantRequest extends Request
+class CreateAPIParticipantRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,6 @@ class CreateParticipantRequest extends Request
      */
     public function authorize()
     {
-        //temp true
         return true;
     }
 
@@ -25,10 +24,10 @@ class CreateParticipantRequest extends Request
     public function rules()
     {
         return [
-            'name_first' => 'required|min:2',
-            'name_last' => 'required|min:2',
-            'email' => 'required|email|unique:users,email',
-            'instantie' => 'required'
+            'participant.name_first' => 'required|min:2',
+            'participant.name_last' => 'required|min:2',
+            'participant.email' => 'required|email|unique:users,email',
+            'participant.instantie_id' => 'required'
         ];
     }
 }

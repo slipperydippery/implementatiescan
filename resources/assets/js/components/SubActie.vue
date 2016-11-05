@@ -1,8 +1,5 @@
 <template>
-	<div class="subactie"
-		v-if="notdeleted"
-	>
-		
+	<div class="subactie">
 		<div class="row">
 			<div class="large-11 columns"> 
 				<div class="form-group">
@@ -90,14 +87,14 @@
 							class="close-button closeicon" 
 							aria-label="Close alert" 
 							type="button" 
-							@click="removeExternaluser(externalUser.id)"
+							@click="removeExternaluser(externalUser)"
 						>
 							&times;
 						</a>
 					</div>
 					<input 
 						type="text" 
-						v-model="newExternalUser"
+						v-model="newExternalUser.name"
 						placeholder="Voeg iemand toe"
 						@blur="addExternaluser()"
 						@keyup.enter="addExternaluser()"
@@ -136,14 +133,12 @@
 				externalUsers: [],
 				betrokkenen: [],
 				unBetrokkenen: [],
-				notdeleted: true,
+				newExternalUser: {name: ''},
 			};
 		},
 
 		ready() {
 			this.getBetrokkenen();
-			this.betrokkenen = this.subactie.betrokkenen;
-			this.unBetrokkenen = this.subactie.unBetrokkenen;
 			this.getExternalusers();
 		},
 
@@ -151,20 +146,22 @@
 		},
 
 		methods: {
+			saveSubActie: function () {
+				var home = this;
+				var resource = this.$resource('/api/subactie/:subactie');
+				resource.update({subactie: this.subactie.id}, {subactie: this.subactie})
+					.then(function (response) {
+					});
+			},
 
 			removeSubactie: function () {
+				this.$emit('removesubactie', this.subactie);
 				var home = this;
 				var resource = this.$resource('/api/subactie/:subactie/delete');
 				resource.get({subactie: this.subactie.id}, {})
 					.then(function(response){
-						home.notdeleted = false;
 					}, function(response){
-
 				});
-			},
-
-			reloadData: function () {
-				this.$dispatch('reloadData');
 			},
 
 			getBetrokkenen: function () {
@@ -178,35 +175,23 @@
 					})
 			},
 
-			reloadUnBetrokkenen: function () {
-				this.$dispatch('reloadUnBetrokkenen');
-			},
-
 			addBetrokkene: function (participant) {
 				this.betrokkenen.push(participant);
-				this.unBetrokkenen.$remove(participant);
-				// var tempArray = this.unBetrokkenen.splice(0);
-				// this.unBetrokkenen = [];
-				this.showUnBetrokkene = ! this.showUnBetrokkene;
+				this.unBetrokkenen.splice(this.unBetrokkenen.indexOf(participant), 1);
 				var home = this;
 				var resource = this.$resource('/api/subactie/:subactie/betrokkene/:betrokkene');
 				resource.save({subactie: this.subactie.id, betrokkene: participant.id}, {})
 					.then(function(response){
-						// home.unBetrokkenen = tempArray;
 					});
 			},
 
 			removeBetrokkene: function (participant){
 				this.unBetrokkenen.push(participant);
-				this.betrokkenen.$remove(participant);
-				// var tempArray = this.betrokkenen.splice(0);
-				// this.betrokkenen = [];
-				this.showUnBetrokkene = ! this.showUnBetrokkene;				
+				this.betrokkenen.splice(this.betrokkenen.indexOf(participant), 1);
 				var home = this;
 				var resource = this.$resource('/api/subactie/:subactie/betrokkene/:betrokkene');
 				resource.delete({subactie: this.subactie.id, betrokkene: participant.id}, {})
 					.then(function(response){
-						// home.betrokkenen = tempArray;
 					});
 			},
 
@@ -218,76 +203,34 @@
 			},
 
 			addExternaluser: function (newExternalUser){
-				// this.externalUsers.push(this.newExternalUser);
-				if(! this.newExternalUser == ['']){
+				if(! this.newExternalUser.name == ['']){
 					var home = this;
 					var resource = this.$resource('/api/subactie/:subactie/externaluser/');
-					resource.save({subactie: this.subactie.id}, {externaluser: this.newExternalUser})
+					resource.save({subactie: this.subactie.id}, {externaluser: this.newExternalUser.name})
 						.then(function (response){
-							//success callback
-							home.newExternalUser = '';
+							home.newExternalUser.name = '';
 							home.getExternalusers();
 						}, function(response) {
-							//error callback
 					});
 				}
 			},
 
-			removeExternaluser: function (externaluserid) {
+			removeExternaluser: function (externaluser) {
+				this.externalUsers.splice(this.externalUsers.indexOf(externaluser), 1);
 				var home = this;
 				var resource = this.$resource('/api/subactie/:subactie/subexternaluser/:externaluser');
-				resource.delete({subactie: this.subactie.id, externaluser: externaluserid}, {})
+				resource.delete({subactie: this.subactie.id, externaluser: externaluser.id}, {})
 					.then(function (response) {
-						home.getExternalusers();
-						//
 					}, function(response){
-						//
-					});
-				this.getExternalusers();
-			},
-
-			saveSubActie: function () {
-				var home = this;
-				var resource = this.$resource('/api/subactie/:subactie');
-				resource.update({subactie: this.subactie.id}, {subactie: this.subactie})
-					.then(function (response) {
+						home.getExternalusers();
 					});
 			},
-
-			setActieInactive: function (actie) {
-				actie.active = 0;
-				this.saveSubActie();
-			},
-
-			// getBetrokkenen: function () {
-			// 	var home = this;
-			// 	var resource = this.$resource('/api/verbeteractie/:actie/betrokkene');
-			// 	resource.get({actie: this.actiee.id}, {})
-			// 		.then(function(response){
-			// 			home.$set('actie[betrokkenen]')
-			// 		});
-			// },
-
 		},		
 
 		computed: {
-			unblength: function () {
-				return this.unBetrokkenen.length
-			},
-
-			isWerkAgenda: function () {
-				if (agendaType == 'werkagenda')
-				{
-					return true;
-				}
-				return false;
-			},
 		},
-
 	}
-
 </script>
-
 
 <style>
 	.subactie {

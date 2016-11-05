@@ -129,16 +129,19 @@
 
 			saveNewParticipant: function () {
 				this.setInstantiemodelData();
+		        this.$emit('pushparticipant', this.participant);
 				var resource = this.$resource('/api/scan/:scan/participant/');
 				var home = this;
 				resource.save({scan: this.scan.id}, 
 								{participant: this.participant })
 					.then(function (response) {
-				        home.$emit('pushparticipant', home.participant);
+						home.$emit('updateuser', home.participant, response.data);
 				        home.resetNewParticipant();
+						this.setNoneEditable();
 				    }, function (response) {
+				    	console.log('invalid');
+				    	home.$emit('removeparticipant', this.participant);
 				    });
-				this.setNoneEditable();
 			},
 
 			setInstantiemodelData: function () {

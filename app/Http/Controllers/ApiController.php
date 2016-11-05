@@ -405,8 +405,9 @@ class ApiController extends Controller
         return ('done');
     }
 
-    public function savenewparticipant(Request $request, Scan $scan)
+    public function savenewparticipant(Requests\CreateAPIParticipantRequest $request, Scan $scan)
     {
+
         if (! User::where('email', '=', $request->participant['email'])->get()->count())
         {
             $user = new User();
@@ -429,7 +430,7 @@ class ApiController extends Controller
         }
         $instantie = Instantie::findOrFail($request->participant['instantie_id']);
         $user->instanties()->attach($instantie);
-        return $request->all();
+        return $user;
     }
 
     public function updateparticipant(Request $request, Scan $scan, User $user)

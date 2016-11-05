@@ -16,9 +16,8 @@
 		</div>
 	</div>
 
-
 	<div class="row table-row table-row--body"
-		v-for="programma in programmas | filterBy search | filterBy checkedThemas[0] | filterBy checkedThemas[1] | filterBy checkedThemas[2]"
+		v-for="programma in searchedProgrammas"
 	>
 		<div class="small-2 columns">
 			<a :href="programma.adress">
@@ -28,25 +27,17 @@
 		<div class="small-10 columns">
 			{{ programma.description }}
 		</div>
-
 	</div>
-	
-
 </template>
 
 <script>
-
 	export default {
-		
-		components: {  },
 		props: [],
 
 		data() {
 			return {
 				search: '',
 				programmas: [],
-				themas: [],
-				checkedThemas: [],
 			}
 		},
 
@@ -58,6 +49,19 @@
 			returnRoot: function () {
 				return (window.location.protocol + "//" + window.location.host);
 			},
+
+			searchedProgrammas: function () {
+				var self = this;
+				return self.programmas.filter(function(programma) {
+					if( programma.description.toLowerCase().includes(self.search.toLowerCase()) ||
+						programma.title.toLowerCase().includes(self.search.toLowerCase()) ||
+						programma.adress.toLowerCase().includes(self.search.toLowerCase()) 
+					)
+					{
+						return true;
+					}
+				})
+			},
 		},
 
 		methods: {
@@ -68,22 +72,14 @@
 			        });
 			},
 		},
-
-		events: {
-
-		},
-
 	}
 </script>
 
-
 <style>
-
-.searchfilter {
-	text-align: right;
-	label, input {
-		display: inline-block;
+	.searchfilter {
+		text-align: right;
+		label, input {
+			display: inline-block;
+		}
 	}
-}
-	
 </style>

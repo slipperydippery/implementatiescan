@@ -29,7 +29,6 @@
 			<div class="small-2 columns text-center">
 				{{ criterium.subacties }}
 			</div>
-
 		</div>
 	</div>
 </template>
@@ -38,7 +37,7 @@
 	
 	export default {
 		http: {
-			root: '/root',
+			base: '/base',
 			headers: {
 				'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
 			}
@@ -51,9 +50,6 @@
 			return {
 				criteria: [],
 			};
-		},
-
-		created() {
 		},
 
 		ready() {
@@ -72,7 +68,6 @@
 			cssPercent: function (value) {
 				return (value * 10) + '%';
 			},
-
 		},
 
 		computed: {
@@ -84,9 +79,7 @@
 				}
 				return maxparticipants;
 			},
-
 		}
-
 	}
 </script>
 
@@ -96,5 +89,4 @@
 		height: 1.5rem;
 		background: #bed675;
 	}
-	
 </style>

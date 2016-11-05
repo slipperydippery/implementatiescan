@@ -4,16 +4,13 @@
 		 :thema="thema"
 		 :participants="participants"
 	>
-		
 	</acties-thema>
-
 </template>
 
 <script>
 	import ActiesThema from '../components/ActiesThema.vue';
 	
 	export default {
-
 		components: { ActiesThema },
 
 		props: [],
@@ -24,9 +21,6 @@
 				themas: [],
 				participants: participants,
 			};
-		},
-
-		created() {
 		},
 
 		ready() {
@@ -41,20 +35,9 @@
 				          home.$set('themas', response.data)
 				});
 			},
-
-
-			getparticipant: function (participant) {
-				var home = this;
-				var resource = this.$resource('/api/scan/:scan/participant/:participant');
-				resource.get({scan: this.scan.id, participant: participant}).then(function (response) {
-					//
-				});
-			},
-
 		},
 
 		computed: {
-
 		},
 
 		events: {

@@ -1,21 +1,12 @@
 <template>
 	<single-deelnemer 
-		v-for="beheerder in beheerders"
-		:participant="beheerder"
-		:editable="editable" 
-		:instanties="instanties"
-		:class="'instantie-' + beheerder.instantiemodel_id"
-		@editable="setEditable"
-	>
-	</single-deelnemer>
-
-	<single-deelnemer 
-		v-for="participant in nonbeheerders" 
+		v-for="participant in participants" 
 		:participant="participant"
 		:editable="editable" 
 		:instanties="instanties"
 		:class="'instantie-' + participant.instantiemodel_id"
 		@editable="setEditable"
+		@removeparticipant="removeParticipant"
 	>
 	</single-deelnemer>
 
@@ -23,13 +14,15 @@
 		:editable="editable" 
 		@editable="setEditable"
 		@pushparticipant="pushParticipant"
+		@updateuser="updateUser"
+		@removeparticipant="removeParticipant"
 		:instanties="instanties"
 	>
 	</add-single-deelnemer>
 
 	<div class="row">
 		<div class="small-4 columns page-next" v-if="(editable.id == null)">
-			<a href="{{returnRoot}}/scans/{{scan.id}}/inrichten/controlerendeelnemers" class="button button-next">Volgende Stap</a>
+			<a :href="nextLink" class="button button-next">Volgende Stap</a>
 		</div>
 		<div class="small-4 columns page-next" v-else>
 			<a href="#" 
@@ -63,7 +56,6 @@
 				nonbeheerders: [],
 				editable: {},
 				instanties: [],
-
 			}
 		},
 
@@ -79,6 +71,10 @@
 			participantCount: function () {
 				return this.participants.length;
 			},
+
+			nextLink: function () {
+				return this.returnRoot + '/scans/'  + this.scan.id + '/inrichten/controlerendeelnemers';
+			}
 		},
 
 		methods: {
@@ -88,7 +84,16 @@
 
 			pushParticipant: function (participant) {
 				this.participants.push(participant);
-				this.setBeheerder();
+				this.sortParticipants();
+			},
+
+			removeParticipant: function (participant) {
+				this.participants.splice(this.participants.indexOf(participant), 1);
+				this.nonbeheerders.splice(this.nonbeheerders.indexOf(participant), 1);
+			},
+
+			updateUser: function (oldparticipant, newparticipant) {
+				this.participants[this.participants.indexOf(oldparticipant)].id = newparticipant.id;
 			},
 
 			alert: function (event) {
@@ -99,7 +104,7 @@
 			    this.$http.get('/api/scan/' + this.scan.id + '/participant')
 			        .then(response => {
 			            this.participants = response.data;
-			            this.setBeheerder();
+			            this.sortParticipants();
 			        });
 			},
 
@@ -111,18 +116,8 @@
 					})
 			},
 
-			setBeheerder: function () {
-				this.nonbeheerders = [];
-				for (var participant in this.participants)
-				{
-					if (this.participants[participant].beheerder)
-					{
-						this.beheerders = [this.participants[participant]];
-					} else {
-						this.nonbeheerders.push(this.participants[participant]);
-					}
-				}
-				this.nonbeheerders.sort(function(a, b) {
+			sortParticipants: function () {
+				this.participants.sort(function(a, b) {
 					if (a.instantie_id > b.instantie_id) {
 					  return 1;
 					}
@@ -131,6 +126,19 @@
 					}
 					return 0;
 				});
+				var beheerder = this.getBeheerder();
+				this.participants.splice(this.participants.indexOf(beheerder), 1);
+				this.participants.unshift(beheerder);
+			},
+
+			getBeheerder: function () {
+				for (var participant in this.participants)
+				{
+					if(this.participants[participant].beheerder)
+					{
+						return this.participants[participant];
+					}
+				}
 			},
 
 			calcAvailableInstanties: function () {
@@ -147,12 +155,6 @@
 				}
 				this.instanties = tempavailable;
 			}	
-		},
-
-		events: {
-		    reloadParticipants: function () {
-		        this.getParticipants();
-		    }
 		},
 	}
 </script>

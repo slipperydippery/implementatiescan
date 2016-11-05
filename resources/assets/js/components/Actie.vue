@@ -136,10 +136,10 @@
 		</div>
 
 		<sub-actie 
-			 v-for="subactie in subacties"
-			 v-if="isWerkAgenda"
+			 v-for="subactie in activeSubacties"
 			:subactie="subactie"
 			:participants="participants"
+			@removesubactie="removeSubactie"
 		>
 		</sub-actie>
 
@@ -201,7 +201,6 @@
 		},
 
 		methods: {
-
 			addBetrokkene: function (participant) {
 				this.betrokkenen.push(participant);
 				this.unBetrokkenen.splice(this.unBetrokkenen.indexOf(participant), 1);
@@ -232,7 +231,6 @@
 			},
 
 			addExternaluser: function (newExternalUser){
-				// this.externalUsers.push(this.newExternalUser);
 				if(! this.newExternalUser == ['']){
 					var home = this;
 					var resource = this.$resource('/api/verbeteractie/:actie/externaluser/');
@@ -253,9 +251,7 @@
 				resource.delete({actie: this.actie.id, externaluser: externaluserid}, {})
 					.then(function (response) {
 						home.getExternalusers();
-						//
 					}, function(response){
-						//
 					});
 				this.getExternalusers();
 			},
@@ -267,8 +263,11 @@
 					.then(function(response){
 						home.getSubActies();						
 					}, function(response){
-						// 
 				});
+			},
+
+			removeSubactie: function (subactie) {
+				this.subacties.splice(this.subacties.indexOf(subactie), 1);
 			},
 
 			saveActie: function () {
@@ -311,6 +310,15 @@
 				}
 				return false;
 			},
+
+			activeSubacties: function () {
+				if(this.isWerkAgenda)
+				{
+					return this.subacties;
+				} else {
+					return [];
+				}
+			}
 		},
 
 	}

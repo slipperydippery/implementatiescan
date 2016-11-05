@@ -7,8 +7,24 @@
 			<div class="small-3 columns"> {{ participant.email ? participant.email : " --- " }} </div>
 			<div class="small-3 columns"> {{ participant.instantie_title }} </div>
 			<div class="small-1 columns">
-				<img :src="returnRoot +'/img/editicon.png'" class="editicon vuelink" @click="setThisEditable" data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' tabindex=1 title="Bewerk gegevens">
-				<a href="#" class="close-button closeicon" aria-label="Close alert" type="button" @click="removeParticipant">&times;</a>
+				<img 
+					:src="returnRoot +'/img/editicon.png'" 
+					class="has-tip editicon vuelink" 
+					data-tooltip aria-haspopup="true" 
+					data-disable-hover='false' 
+					tabindex=1 
+					title="Bewerk gegevens"
+					@click="setThisEditable" 
+				/>
+				<a href="#" 
+					class="close-button closeicon" 
+					aria-label="Close alert" 
+					type="button" 
+					v-if="!participant.beheerder"
+					@click="removeParticipant"
+				>
+					&times;
+				</a>
 			</div>
 		</div>
 
@@ -25,7 +41,15 @@
 				</select>
 			</div>
 			<div class="small-1 columns">
-				<img :src="returnRoot +'/img/checkmark.png'" class="editicon vuelink"  data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' tabindex=1 title="Sla Bewerkingen op" @click="saveChanges" v-if="isValid">
+				<img 
+					:src="returnRoot +'/img/checkmark.png'" 
+					class="has-tip editicon vuelink"  
+					data-tooltip aria-haspopup="true" 
+					data-disable-hover='false' 
+					tabindex=1 title="Sla Bewerkingen op" 
+					v-if="isValid"
+					@click="saveChanges" 
+				/>
 			</div>	
 		</div>		
 	</div>
@@ -35,7 +59,7 @@
 <script>
 	export default {
 		http: {
-			root: '/root',
+			base: '/base',
 			headers: {
 				'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
 			}
@@ -112,27 +136,40 @@
 			},
 
 			removeParticipant: function () {
-				var resource = this.$resource('/api/scan/:scan/participant/:participant');
+				this.$emit('removeparticipant', this.participant);
 				var home = this;
+				var resource = this.$resource('/api/scan/:scan/participant/:participant');
 				resource.delete({scan: this.scan.id, participant: this.participant.id}, {})
 					.then(function (response) {
-						home.$dispatch('reloadParticipants');
-					}, function(response) {}
+					}, function(response) {
+						home.$emit('pushparticipant', home.participant);
+					}
 				);
 			},
 
 			saveChanges: function () {
+				this.setInstantiemodelData();
 				var resource = this.$resource('/api/scan/:scan/participant/:participant');
 				var home = this;
 				resource.update({scan: this.scan.id, participant: this.participant.id}, 
 								{participant: this.participant})
 					.then(function (response) {
-						home.$dispatch('reloadParticipants');
-						
+						home.$emit('pushparticipant', home.participant);
 				    }, function (response) {
 				    });
 				this.setNoneEditable();
 			},
+
+			setInstantiemodelData: function () {
+				for(instantie in this.instanties)
+				{
+					if(this.participant.instantie_id == this.instanties[instantie].id)
+					{
+						this.participant.instantiemodel_id = this.instanties[instantie].instantiemodel_id;
+						this.participant.instantie_title = this.instanties[instantie].title;
+					}
+				}
+			}
 
 		},
 

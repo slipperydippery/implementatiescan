@@ -58,22 +58,12 @@
 			};
 		},
 
-		created() {
-		},
-
 		ready() {
 			this.getQuestions();
 			this.getVerbeteracties();
 		},
 
 		methods: {
-			getThemas: function () {
-				var home = this;
-				var resource = this.$resource('/api/scan/:scan/thema');
-				resource.get({scan: this.scan.id}).then(function (response) {
-				          home.$set('themas', response.data)
-				});
-			},
 			getQuestions: function() {
 				var home = this;
 				var resource = this.$resource('/api/thema/:thema/question');
@@ -88,14 +78,6 @@
 				resource.get({scan: this.scan.id, thema: this.thema.id}).then(function (response) {
 					home.$set('verbeteracties', response.data);
 					home.addUnbetrokkenen();
-				});
-			},
-
-			getparticipant: function (participant) {
-				var home = this;
-				var resource = this.$resource('/api/scan/:scan/participant/:participant');
-				resource.get({scan: this.scan.id, participant: participant}).then(function (response) {
-					//
 				});
 			},
 
@@ -144,7 +126,6 @@
 		},
 
 		computed: {
-
 			isWerkAgenda: function () {
 				if (agendaType == 'werkagenda')
 				{
@@ -164,13 +145,9 @@
 				}
 				return inactiveActies;
 			},
-
 		}
-
 	}
 </script>
 
-
 <style>
-	
 </style>
