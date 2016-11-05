@@ -138,7 +138,7 @@
 		<sub-actie 
 			 v-for="subactie in subacties"
 			 v-if="isWerkAgenda"
-			:subactie.sync="subactie"
+			:subactie="subactie"
 			:participants="participants"
 		>
 		</sub-actie>
@@ -159,7 +159,7 @@
 
 	export default {
 		http: {
-			root: '/root',
+			base: '/base',
 			headers: {
 				'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
 			}
@@ -202,38 +202,25 @@
 
 		methods: {
 
-			reloadData: function () {
-				this.$dispatch('reloadData');
-			},
-			reloadUnBetrokkenen: function () {
-				this.$dispatch('reloadUnBetrokkenen');
-			},
-
 			addBetrokkene: function (participant) {
 				this.betrokkenen.push(participant);
-				this.unBetrokkenen.$remove(participant);
-				// var tempArray = this.unBetrokkenen.splice(0);
-				// this.unBetrokkenen = [];
+				this.unBetrokkenen.splice(this.unBetrokkenen.indexOf(participant), 1);
 				this.showUnBetrokkene = ! this.showUnBetrokkene;
 				var home = this;
 				var resource = this.$resource('/api/verbeteractie/:actie/betrokkene/:betrokkene');
 				resource.save({actie: this.actie.id, betrokkene: participant.id}, {})
 					.then(function(response){
-						// home.unBetrokkenen = tempArray;
 					});
 			},
 
 			removeBetrokkene: function (participant){
 				this.unBetrokkenen.push(participant);
-				this.betrokkenen.$remove(participant);
-				// var tempArray = this.betrokkenen.splice(0);
-				// this.betrokkenen = [];
+				this.betrokkenen.splice(this.betrokkenen.indexOf(participant), 1);
 				this.showUnBetrokkene = ! this.showUnBetrokkene;				
 				var home = this;
 				var resource = this.$resource('/api/verbeteractie/:actie/betrokkene/:betrokkene');
 				resource.delete({actie: this.actie.id, betrokkene: participant.id}, {})
 					.then(function(response){
-						// home.betrokkenen = tempArray;
 					});
 			},
 

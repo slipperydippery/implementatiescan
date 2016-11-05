@@ -6,7 +6,7 @@
 				</div>
 				<actie 
 					v-for="actie in verbeteracties"
-					:actie.sync="actie"
+					:actie="actie"
 					:participants="participants"
 				>
 					
@@ -19,7 +19,7 @@
 					</div>
 					<div class="large12 columns actie-inactief" 
 						v-for="actie in verbeteracties" 
-						:actie.sync="actie"
+						:actie="actie"
 						v-if=" ! actie.active && showInactief"
 						@click="setActieActive(actie)"
 					>
@@ -35,7 +35,7 @@
 	
 	export default {
 		http: {
-			root: '/root',
+			base: '/base',
 			headers: {
 				'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
 			}
@@ -129,10 +129,7 @@
 			setActieActive: function (actie) {
 				actie.active = true;
 				this.saveActie(actie);
-				// this.getVerbeteracties();
 				this.showInactief = false;
-				// this.$dispatch('reloadData');
-				// $broadcast();
 			},
 
 			saveActie: function (actie) {

@@ -121,7 +121,7 @@
 <script>
 	export default {
 		http: {
-			root: '/root',
+			base: '/base',
 			headers: {
 				'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
 			}

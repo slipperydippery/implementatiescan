@@ -1,7 +1,7 @@
 <template>
 	<acties-thema 
 		 v-for="thema in themas"
-		 :thema.sync="thema"
+		 :thema="thema"
 		 :participants="participants"
 	>
 		

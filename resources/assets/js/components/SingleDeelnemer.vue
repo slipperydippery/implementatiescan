@@ -5,7 +5,7 @@
 			<div class="small-2 columns"> {{ participant.name_first ? participant.name_first : " ---" }} </div>
 			<div class="small-2 columns"> {{ participant.name_last ? participant.name_last : " --- " }} </div>
 			<div class="small-3 columns"> {{ participant.email ? participant.email : " --- " }} </div>
-			<div class="small-3 columns"> {{ instantie.title }} </div>
+			<div class="small-3 columns"> {{ participant.instantie_title }} </div>
 			<div class="small-1 columns">
 				<img :src="returnRoot +'/img/editicon.png'" class="editicon vuelink" @click="setThisEditable" data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' tabindex=1 title="Bewerk gegevens">
 				<a href="#" class="close-button closeicon" aria-label="Close alert" type="button" @click="removeParticipant">&times;</a>
@@ -18,8 +18,8 @@
 			<div class="small-2 columns"> <input type="text" v-model="participant.name_last" placeholder="edit me"> </div>
 			<div class="small-3 columns"> <input type="text" v-model="participant.email" placeholder="edit me"> </div>
 			<div class="small-3 columns"> 
-				<select v-model="instantie.id">
-				  <option v-for="instantie in myavailableinstanties" v-bind:value="instantie.id">
+				<select v-model="participant.instantie_id">
+				  <option v-for="instantie in instanties" v-bind:value="instantie.id">
 				    {{ instantie.title }}
 				  </option>
 				</select>
@@ -43,20 +43,17 @@
 
 		props: [
 			'participant', 
-			'instantie', 
 			'editable',
-			'availableinstanties',
+			'instanties',
 		],
 
 		data() {
 			return {
-				myavailableinstanties: [],
 				scan: scan,
 			}
 		},
 
 		ready() {
-			this.getMyAvailableInstanties();
 		},
 
 		computed: {
@@ -107,13 +104,11 @@
 
 		methods: {
 			setThisEditable: function () {
-				// reload participants
-				this.$dispatch('reloadParticipants');
-				this.editable = this.participant;
+				this.$emit('editable', this.participant);
 			},
 
 			setNoneEditable: function () {
-				this.editable = {};
+				this.$emit('editable', {});
 			},
 
 			removeParticipant: function () {
@@ -127,43 +122,18 @@
 			},
 
 			saveChanges: function () {
-				// save changes and reload
 				var resource = this.$resource('/api/scan/:scan/participant/:participant');
-
 				var home = this;
 				resource.update({scan: this.scan.id, participant: this.participant.id}, 
-								{participant: this.participant, instantie: this.instantie.id })
+								{participant: this.participant})
 					.then(function (response) {
-				        // success callback
 						home.$dispatch('reloadParticipants');
 						
 				    }, function (response) {
-				        // error callback
 				    });
-				// this.removeFromInstantie(this.participant);
 				this.setNoneEditable();
-				
-				// this.tasks = _.reject(this.instantie, participants => participant.id == this.participant.id);
-			},
-			
-			getMyAvailableInstanties: function () {
-				this.myavailableinstanties = this.availableinstanties.slice(0);
-				for (var thisinstantie in this.myavailableinstanties)
-				{
-					if (this.myavailableinstanties[thisinstantie].id == this.instantie.id)
-					{
-						return;
-					}
-				}
-				this.myavailableinstanties.push({'title' : this.instantie.title, 'id' : this.instantie.id});				
 			},
 
-			// getParticipants: function () {
-			//     this.$http.get('/api/scan/' + this.scan.id + '/participants')
-			//         .then(response => {
-			//             this.participants = response.data;
-			//         });
-			// },
 		},
 
 	}

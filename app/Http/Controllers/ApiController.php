@@ -352,9 +352,10 @@ class ApiController extends Controller
             $thisparticipant['name_last'] = $participant->name_last;
             $thisparticipant['email'] = $participant->email;
             $thisparticipant['instantie_id'] = $participant->instanties->intersect($scan->instanties)->first()->id;
+            $thisparticipant['instantiemodel_id'] = $participant->instanties->intersect($scan->instanties)->first()->instantiemodel->id;
             $thisparticipant['instantie_title'] = $participant->instanties->intersect($scan->instanties)->first()->title;
             (count($participant->beheert->intersect([$scan])) > 0) ? $thisparticipant['beheerder'] = true : $thisparticipant['beheerder'] = false;
-            $participants[$participant->id] = $thisparticipant;
+            $participants[] = $thisparticipant;
         }
         return $participants;
     }
@@ -437,7 +438,7 @@ class ApiController extends Controller
         $user->name_last = $request->participant['name_last'];
         $user->email = $request->participant['email'];
         $currentinstantie = $user->instanties->intersect($scan->instanties)->first();
-        $newinstantie = Instantie::findOrFail($request->instantie);
+        $newinstantie = Instantie::findOrFail($request->participant['instantie_id']);
         $user->instanties()->detach($currentinstantie);
         $user->instanties()->attach($newinstantie);
         $user->save();
@@ -457,7 +458,8 @@ class ApiController extends Controller
 
     public function indexinstantie(Scan $scan)
     {
-        return Instantie::get();
+        return $scan->instanties;
+        // return Instantie::get();
     }
 
     public function getThemaOverzichtValues(Scan $scan, Thema $thema)

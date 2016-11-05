@@ -2,6 +2,7 @@ var elixir = require('laravel-elixir');
 
 // elixir.config.sourcemaps = process.env.APP_DEBUG;
 
+require('laravel-elixir-browserify-official');
 require('laravel-elixir-vueify');
 
 elixir(function(mix) {
@@ -9,6 +10,7 @@ elixir(function(mix) {
     mix.sass(
         'app.scss', // Source files
         'public/css', // Destination folder
+        null,
         {includePaths: ['vendor/bower_components/foundation-sites/scss']}
     );
 

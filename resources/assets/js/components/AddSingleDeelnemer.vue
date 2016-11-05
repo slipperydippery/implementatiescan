@@ -16,7 +16,7 @@
 		<div class="small-3 columns"> <input type="text" v-model="participant.email" placeholder="Email"> </div>
 		<div class="small-3 columns"> 
 			<select v-model="participant.instantie_id">
-			  <option v-for="instantie in availableinstanties" v-bind:value="instantie.id">
+			  <option v-for="instantie in instanties" v-bind:value="instantie.id">
 			    {{ instantie.title }}
 			  </option>
 			</select>
@@ -25,13 +25,12 @@
 			<img :src="returnRoot +'/img/checkmark.png'" class="editicon vuelink"  data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' tabindex=1 title="Sla Bewerkingen op" @click="saveNewParticipant" v-if="isValid">
 		</div>	
 	</div>
-
 </template>
 
 <script>
 	export default {
 		http: {
-			root: '/root',
+			base: '/base',
 			headers: {
 				'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
 			}
@@ -39,7 +38,7 @@
 
 		props: [ 
 			'editable',
-			'availableinstanties',
+			'instanties',
 		],
 
 		data() {
@@ -51,12 +50,15 @@
 					name_last: '',
 					email: '',
 					instantie_id: '', 
+					instantiemodel_id: '',
+					instantie_title: ''
 				},
 				instantie: {id: 0},
 			}
 		},
 
 		ready() {
+			this.participant.id = Math.floor((Math.random() * 10000) + 10000);
 		},
 
 		computed: {
@@ -105,13 +107,11 @@
 
 		methods: {
 			setThisEditable: function () {
-				// reload participants
-				this.$dispatch('reloadParticipants');
-				this.editable = this.participant;
+				this.$emit('editable', this.participant);
 			},
 
 			setNoneEditable: function () {
-				this.editable = {};
+				this.$emit('editable', {});
 			},
 
 			resetNewParticipant: function () {
@@ -120,44 +120,40 @@
 					name_first: '',
 					name_last: '',
 					email: '',
-					instantie_id: '', 
+					instantie_id: '',
+					instantiemodel_id: '',
+					instantie_title: ''
 				};
-				this.$dispatch('reloadParticipants');
+				this.participant.id = Math.floor((Math.random() * 10000) + 10000);
 			},
 
 			saveNewParticipant: function () {
-				// save changes and reload
+				this.setInstantiemodelData();
 				var resource = this.$resource('/api/scan/:scan/participant/');
-
 				var home = this;
 				resource.save({scan: this.scan.id}, 
 								{participant: this.participant })
 					.then(function (response) {
-				        // success callback
+				        home.$emit('pushparticipant', home.participant);
 				        home.resetNewParticipant();
-						
 				    }, function (response) {
-				        // error callback
 				    });
-				// this.removeFromInstantie(this.participant);
 				this.setNoneEditable();
-				
-				// this.tasks = _.reject(this.instantie, participants => participant.id == this.participant.id);
 			},
-			
 
-			// getParticipants: function () {
-			//     this.$http.get('/api/scan/' + this.scan.id + '/participants')
-			//         .then(response => {
-			//             this.participants = response.data;
-			//         });
-			// },
+			setInstantiemodelData: function () {
+				for(instantie in this.instanties)
+				{
+					if(this.participant.instantie_id == this.instanties[instantie].id)
+					{
+						this.participant.instantiemodel_id = this.instanties[instantie].instantiemodel_id;
+						this.participant.instantie_title = this.instanties[instantie].title;
+					}
+				}
+			}
 		},
-
 	}
 </script>
 
-
 <style>
-	
 </style>
