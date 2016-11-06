@@ -11640,7 +11640,7 @@ exports.default = {
 
 	components: { SubActie: _SubActie2.default },
 
-	props: ['resource', 'thema', 'actie', 'participants'],
+	props: ['resource', 'thema', 'actie'],
 
 	data: function data() {
 		return {
@@ -11650,6 +11650,8 @@ exports.default = {
 			betrokkenen: [],
 			unBetrokkenen: [],
 			agendaType: agendaType,
+			participants: participants,
+			scanbeheerder: scanbeheerder,
 			newExternalUser: [''],
 			externalUsers: [],
 			subacties: []
@@ -11663,7 +11665,6 @@ exports.default = {
 			this.getSubActies();
 		}
 	},
-	created: function created() {},
 
 
 	methods: {
@@ -11751,7 +11752,6 @@ exports.default = {
 				_this2.subacties = response.data;
 			});
 		}
-
 	},
 
 	computed: {
@@ -11774,10 +11774,9 @@ exports.default = {
 			}
 		}
 	}
-
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div v-if=\"!actie.werkactive &amp;&amp; isWerkAgenda\" class=\"single_actie\">\n\t\t<div class=\"row\">\n\t\t\t<div class=\"large-12 columns actie-titel\"> \n\t\t\t\t<span class=\"remove_row remove_row--werkadd\" v-if=\"isWerkAgenda\" @click=\"toggleWerkActieActive(actie)\">\n\t\t\t\t\t✓\n\t\t\t\t</span>\n\t\t\t\t{{ actie.title }}\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<div v-if=\"(actie.active &amp;&amp; actie.werkactive) || (!isWerkAgenda &amp;&amp; actie.active)\" class=\"single_actie\">\t\n\t\t<div class=\"row\">\n\t\t\t<div class=\"large-12 columns actie-titel\"> \n\t\t\t\t<span class=\"remove_row\" v-if=\"!isWerkAgenda\" @click=\"setActieInactive(actie)\">\n\t\t\t\t\t✖\n\t\t\t\t</span>\n\t\t\t\t<span class=\"remove_row remove_row--werkremove\" v-if=\"isWerkAgenda\" @click=\"toggleWerkActieActive(actie)\">\n\t\t\t\t\tx\n\t\t\t\t</span>\n\t\t\t\t{{ actie.title }}\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row actie-omschrijvingen\">\n\t\t\t<div class=\"large-4 columns actie-omschrijving\">\n\t\t\t\tUit te werken verbeterpunten\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns actie-omschrijving\">\n\t\t\t\tInitiatiefnemer\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns actie-omschrijving\">\n\t\t\t\tBetrokkenen\n\t\t\t</div>\n\t\t\t<div class=\"large-2 columns actie-omschrijving\">\n\t\t\t\tOverige betrokkenen\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row\">\n\t\t\t<div class=\"large-4 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<textarea class=\"form-control\" placeholder=\"Actie Omschrijving\" rows=\"6\" v-model=\"actie.omschrijving\" @blur=\"saveActie()\">\t\t\t\t\t</textarea>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<select v-model=\"actie.user_id\" @blur=\"saveActie()\">\n\t\t\t\t\t\t<option v-for=\"participant in participants\" :value=\"participant.id\"> \n\t\t\t\t\t\t\t{{ participant.name_first }} \n\t\t\t\t\t\t</option>\n\t\t\t\t\t</select>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div class=\"large-3 columns\">\n\n\t\t\t\t<div class=\"betrokkenen__group row\">\n\n\t\t\t\t\t<div class=\"betrokkenen__bet \">\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-if=\"!betrokkenen.length\">\n\t\t\t\t\t\t+\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in betrokkenen\" @click=\"removeBetrokkene(betrokkene)\">\n\t\t\t\t\t\t\t{{betrokkene.name_first}}\n\t\t\t\t\t\t\t<span class=\"indication\">-</span>\n\t\t\t\t\t\t</div>\t\t\t\t\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div class=\"betrokkenen__unbet\">\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in unBetrokkenen\" @click=\"addBetrokkene(betrokkene)\">\n\t\t\t\t\t\t\t{{ betrokkene.name_first }}\n\t\t\t\t\t\t\t<span class=\"indication\">+</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"large-2 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<div class=\"actie-exbetrokkene\" v-for=\"externalUser in externalUsers\">\n\t\t\t\t\t\t{{ externalUser.name }}\n\t\t\t\t\t\t<a href=\"#\" class=\"close-button closeicon\" aria-label=\"Close alert\" type=\"button\" @click=\"removeExternaluser(externalUser.id)\">\n\t\t\t\t\t\t\t×\n\t\t\t\t\t\t</a>\n\t\t\t\t\t</div>\n\t\t\t\t\t<input type=\"text\" v-model=\"newExternalUser\" placeholder=\"Voeg iemand toe\" @blur=\"addExternaluser()\" @keyup.enter=\"addExternaluser()\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row subactie--titel\" v-if=\"isWerkAgenda\">\n\t\t\tWilt u het verbeterpunt meenemen naar de werkagenda? <br>\n\t\t\tFormuleer dan hieronder de vervolgacties:\n\t\t</div>\n\n\t\t<sub-actie v-for=\"subactie in activeSubacties\" :subactie=\"subactie\" :participants=\"participants\" @removesubactie=\"removeSubactie\">\n\t\t</sub-actie>\n\n\t\t<div class=\"row \" v-if=\"isWerkAgenda\">\t\t\n\t\t\t<div class=\"small-12\">\n\t\t\t\t\t<a href=\"#\" @click=\"newSubactie()\" class=\"voegsubactie\">\n\t\t\t\t\t\t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+\tWerk hier uw verbeterpunt nader uit\n\t\t\t\t\t</a>\n\t\t\t</div>\n\n\t\t</div>\n\t</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<!-- Collapsed view only possible in Werkagenda -->\n\t<div v-if=\"!actie.werkactive &amp;&amp; isWerkAgenda\" class=\"single_actie\">\n\t\t<div class=\"row\">\n\t\t\t<div class=\"large-12 columns actie-titel\"> \n\t\t\t\t<span class=\"remove_row remove_row--werkadd\" v-if=\"isWerkAgenda &amp;&amp; scanbeheerder\" @click=\"toggleWerkActieActive(actie)\">\n\t\t\t\t\t✓\n\t\t\t\t</span>\n\t\t\t\t{{ actie.title }}\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<!-- Full view -->\n\t<div v-if=\"(actie.active &amp;&amp; actie.werkactive) || (!isWerkAgenda &amp;&amp; actie.active)\" class=\"single_actie\">\t\n\t\t<div class=\"row\">\n\t\t\t<div class=\"large-12 columns actie-titel\"> \n\t\t\t\t<span class=\"remove_row\" v-if=\"!isWerkAgenda &amp;&amp; scanbeheerder\" @click=\"setActieInactive(actie)\">\n\t\t\t\t\t✖\n\t\t\t\t</span>\n\t\t\t\t<span class=\"remove_row remove_row--werkremove\" v-if=\"isWerkAgenda &amp;&amp; scanbeheerder\" @click=\"toggleWerkActieActive(actie)\">\n\t\t\t\t\tx\n\t\t\t\t</span>\n\t\t\t\t{{ actie.title }}\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row actie-omschrijvingen\">\n\t\t\t<div class=\"large-4 columns actie-omschrijving\">\n\t\t\t\tUit te werken verbeterpunten\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns actie-omschrijving\">\n\t\t\t\tInitiatiefnemer\n\t\t\t</div>\n\t\t\t<div class=\"large-3 columns actie-omschrijving\">\n\t\t\t\tBetrokkenen\n\t\t\t</div>\n\t\t\t<div class=\"large-2 columns actie-omschrijving\">\n\t\t\t\tOverige betrokkenen\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"row\">\n\t\t\t<div class=\"large-4 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<textarea class=\"form-control\" placeholder=\"Actie Omschrijving\" rows=\"6\" v-model=\"actie.omschrijving\" @blur=\"saveActie()\" :disabled=\"scanbeheerder ? false : true\">\t\t\t\t\t</textarea>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<select v-model=\"actie.user_id\" @blur=\"saveActie()\" :disabled=\"scanbeheerder ? false : true\">\n\t\t\t\t\t\t<option v-for=\"participant in participants\" :value=\"participant.id\"> \n\t\t\t\t\t\t\t{{ participant.name_first }} {{ participant.name_last }}\n\t\t\t\t\t\t</option>\n\t\t\t\t\t</select>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div class=\"large-3 columns\">\n\t\t\t\t<div class=\"betrokkenen__group row\">\n\t\t\t\t\t<div class=\"betrokkenen__bet \">\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-if=\"!betrokkenen.length\">\n\t\t\t\t\t\t+\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in betrokkenen\" @click=\"(scanbeheerder ? removeBetrokkene(betrokkene) : null)\">\n\t\t\t\t\t\t\t{{betrokkene.name_first}}\n\t\t\t\t\t\t\t<span class=\"indication\" v-if=\"scanbeheerder\">-</span>\n\t\t\t\t\t\t</div>\t\t\t\t\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"betrokkenen__unbet\">\n\t\t\t\t\t\t<div class=\"actie-betrokkene\" v-for=\"betrokkene in unBetrokkenen\" @click=\"(scanbeheerder ? addBetrokkene(betrokkene) : null)\">\n\t\t\t\t\t\t\t{{ betrokkene.name_first }}\n\t\t\t\t\t\t\t<span class=\"indication\" v-if=\"scanbeheerder\">+</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div class=\"large-2 columns\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<div class=\"actie-exbetrokkene\" v-for=\"externalUser in externalUsers\">\n\t\t\t\t\t\t{{ externalUser.name }}\n\t\t\t\t\t\t<a href=\"#\" class=\"close-button closeicon\" aria-label=\"Close alert\" type=\"button\" v-if=\"scanbeheerder\" @click=\"removeExternaluser(externalUser.id)\">\n\t\t\t\t\t\t\t×\n\t\t\t\t\t\t</a>\n\t\t\t\t\t</div>\n\t\t\t\t\t<input type=\"text\" v-model=\"newExternalUser\" placeholder=\"Voeg iemand toe\" v-if=\"scanbeheerder\" @blur=\"addExternaluser()\" @keyup.enter=\"addExternaluser()\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"row subactie--titel\" v-if=\"isWerkAgenda\">\n\t\t\tWilt u het verbeterpunt meenemen naar de werkagenda? <br>\n\t\t\tFormuleer dan hieronder de vervolgacties:\n\t\t</div>\n\n\t\t<sub-actie v-for=\"subactie in activeSubacties\" :subactie=\"subactie\" :participants=\"participants\" @removesubactie=\"removeSubactie\">\n\t\t</sub-actie>\n\n\t\t<div class=\"row \" v-if=\"isWerkAgenda\">\t\t\n\t\t\t<div class=\"small-12\">\n\t\t\t\t\t<a href=\"#\" @click=\"newSubactie()\" class=\"voegsubactie\">\n\t\t\t\t\t\t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+\tWerk hier uw verbeterpunt nader uit\n\t\t\t\t\t</a>\n\t\t\t</div>\n\n\t\t</div>\n\t</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -11794,7 +11793,7 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"../components/SubActie.vue":28,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],14:[function(require,module,exports){
-var __vueify_style__ = require("vueify-insert-css").insert("\n\t\n")
+var __vueify_style__ = require("vueify-insert-css").insert("\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -11810,13 +11809,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = {
 	components: { ActiesThema: _ActiesThema2.default },
 
-	props: [],
-
 	data: function data() {
 		return {
 			scan: scan,
-			themas: [],
-			participants: participants
+			themas: []
 		};
 	},
 	ready: function ready() {
@@ -11832,26 +11828,17 @@ exports.default = {
 				home.$set('themas', response.data);
 			});
 		}
-	},
-
-	computed: {},
-
-	events: {
-		reloadData: function reloadData() {
-			this.getThemas();
-		}
 	}
-
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<acties-thema v-for=\"thema in themas\" :thema=\"thema\" :participants=\"participants\">\n\t</acties-thema>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<acties-thema v-for=\"thema in themas\" :thema=\"thema\">\n\t</acties-thema>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/Acties.vue"
   module.hot.dispose(function () {
-    require("vueify-insert-css").cache["\n\t\n"] = false
+    require("vueify-insert-css").cache["\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -11884,7 +11871,7 @@ exports.default = {
 
 	components: { Actie: _Actie2.default },
 
-	props: ['thema', 'participants'],
+	props: ['thema'],
 
 	data: function data() {
 		return {
@@ -11892,7 +11879,9 @@ exports.default = {
 			questions: [],
 			verbeteracties: [],
 			showInactief: false,
-			agendaType: agendaType
+			agendaType: agendaType,
+			participants: participants,
+			scanbeheerder: scanbeheerder
 		};
 	},
 	ready: function ready() {
@@ -11953,7 +11942,6 @@ exports.default = {
 				home.getVerbeteracties();
 			});
 		}
-
 	},
 
 	computed: {
@@ -11976,7 +11964,7 @@ exports.default = {
 	}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row thema-group\">\n\t\t\t<div class=\"large-12\">\n\t\t\t\t<div class=\"row\">\t\n\t\t\t\t\t<div class=\"large-12 actie-thema actie-thema-kop actiepunt-es columns\"> {{ thema.title }} </div>\n\t\t\t\t</div>\n\t\t\t\t<actie v-for=\"actie in verbeteracties\" :actie=\"actie\" :participants=\"participants\">\n\t\t\t\t\t\n\t\t\t\t</actie> \n\t\t\t\t<div class=\"row actie-rij \" v-if=\"!isWerkAgenda &amp;&amp; inactiveVerbeteracties\">\n\t\t\t\t\t<div class=\"large-12 columns actie-voegtoe\" @click=\"showInactief =  ! showInactief\"> \n\t\t\t\t\t\t<span v-show=\"! showInactief\">+</span>\n\t\t\t\t\t\t<span v-show=\"showInactief\">-</span> \n\t\t\t\t\t\tvoeg nog een verbeterpunt toe \n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"large12 columns actie-inactief\" v-for=\"actie in verbeteracties\" :actie=\"actie\" v-if=\" ! actie.active &amp;&amp; showInactief\" @click=\"setActieActive(actie)\">\n\t\t\t\t\t\t{{ actie.title }}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row thema-group\">\n\t\t\t<div class=\"large-12\">\n\t\t\t\t<div class=\"row\">\t\n\t\t\t\t\t<div class=\"large-12 actie-thema actie-thema-kop actiepunt-es columns\"> {{ thema.title }}</div>\n\t\t\t\t</div>\n\t\t\t\t<actie v-for=\"actie in verbeteracties\" :actie=\"actie\" :participants=\"participants\">\n\t\t\t\t</actie> \n\t\t\t\t<div class=\"row actie-rij \" v-if=\"!isWerkAgenda &amp;&amp; inactiveVerbeteracties &amp;&amp; scanbeheerder\">\n\t\t\t\t\t<div class=\"large-12 columns actie-voegtoe\" @click=\"showInactief =  ! showInactief\"> \n\t\t\t\t\t\t<span v-show=\"! showInactief\">+</span>\n\t\t\t\t\t\t<span v-show=\"showInactief\">-</span> \n\t\t\t\t\t\tvoeg nog een verbeterpunt toe \n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"large12 columns actie-inactief\" v-for=\"actie in verbeteracties\" :actie=\"actie\" v-if=\" ! actie.active &amp;&amp; showInactief\" @click=\"setActieActive(actie)\">\n\t\t\t\t\t\t{{ actie.title }}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

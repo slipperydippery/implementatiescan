@@ -300,21 +300,15 @@ class ScansController extends Controller
 
     public function actieoverzicht(Scan $scan)
     {
-        $participantlist = [];
-        foreach($scan->participants as $participant)
-        {
-            $participantlist[] = $participant;
-        }
-        // JavaScript::put($themalist);
+        $scanbeheerder = (count(Auth::user()->beheert->intersect([$scan])));
+        $participantlist = $scan->participants;
         JavaScript::put([
             'scan' => $scan,
             'participants' => $participantlist,
+            'scanbeheerder' => $scanbeheerder,
             'agendaType' => 'actieoverzicht',
         ]);
-        $participantlist["0"] = ' ';
-        $participantlist = array_merge($participantlist, $scan->participants->lists('name_first', 'id')->all());
-        // return $participantlist;
-        return view ('scans.actieoverzicht', compact('scan', 'participantlist'));
+        return view ('scans.actieoverzicht', compact('scan'));
     }
 
     public function post_verbeteracties(Request $request, Scan $scan)
@@ -553,10 +547,7 @@ Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastges
 
     public function controlerendeelnemers(Scan $scan)
     {
-        $scanbeheerder = false;
-        if(count(Auth::user()->beheert->intersect([$scan]))) {
-            $scanbeheerder = true;
-        }
+        $scanbeheerder = (count(Auth::user()->beheert->intersect([$scan])));
         JavaScript::put([
             'scan' => $scan,
             'scanbeheerder' => $scanbeheerder,

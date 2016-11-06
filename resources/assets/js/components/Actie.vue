@@ -1,9 +1,10 @@
 <template>
+	<!-- Collapsed view only possible in Werkagenda -->
 	<div v-if="!actie.werkactive && isWerkAgenda" class="single_actie">
 		<div class="row">
 			<div class="large-12 columns actie-titel"> 
 				<span class="remove_row remove_row--werkadd"
-					v-if="isWerkAgenda"
+					v-if="isWerkAgenda && scanbeheerder"
 					@click="toggleWerkActieActive(actie)"
 				>
 					&#x2713;
@@ -12,17 +13,18 @@
 			</div>
 		</div>
 	</div>
+	<!-- Full view -->
 	<div v-if="(actie.active && actie.werkactive) || (!isWerkAgenda && actie.active)" class="single_actie">	
 		<div class="row">
 			<div class="large-12 columns actie-titel"> 
 				<span class="remove_row"
-					v-if="!isWerkAgenda"
+					v-if="!isWerkAgenda && scanbeheerder"
 					@click="setActieInactive(actie)"
 				>
 					&#x2716;
 				</span>
 				<span class="remove_row remove_row--werkremove"
-					v-if="isWerkAgenda"
+					v-if="isWerkAgenda && scanbeheerder"
 					@click="toggleWerkActieActive(actie)"
 				>
 					x
@@ -44,6 +46,7 @@
 				Overige betrokkenen
 			</div>
 		</div>
+
 		<div class="row">
 			<div class="large-4 columns">
 				<div class="form-group">
@@ -53,6 +56,7 @@
 						rows="6"
 						v-model="actie.omschrijving" 
 						@blur="saveActie()"
+						:disabled="scanbeheerder ? false : true"
 					>
 					</textarea>
 				</div>
@@ -63,21 +67,20 @@
 					<select 
 						v-model="actie.user_id"
 						@blur="saveActie()"
+						:disabled="scanbeheerder ? false : true"
 					>
 						<option 
 							v-for="participant in participants" 
 							:value="participant.id"
 						> 
-							{{ participant.name_first }} 
+							{{ participant.name_first }} {{ participant.name_last }}
 						</option>
 					</select>
 				</div>
 			</div>
 
 			<div class="large-3 columns">
-
 				<div class="betrokkenen__group row">
-
 					<div class="betrokkenen__bet ">
 						<div class="actie-betrokkene"
 							v-if="!betrokkenen.length"
@@ -86,25 +89,24 @@
 						</div>
 						<div class="actie-betrokkene" 
 							v-for="betrokkene in betrokkenen"
-							@click="removeBetrokkene(betrokkene)"
+							@click="(scanbeheerder ? removeBetrokkene(betrokkene) : null)"
 						>
 							{{betrokkene.name_first}}
-							<span class="indication">-</span>
+							<span class="indication" v-if="scanbeheerder">-</span>
 						</div>				
 					</div>
-
 					<div class="betrokkenen__unbet">
 						<div class="actie-betrokkene" 
 							v-for="betrokkene in unBetrokkenen"
-							@click="addBetrokkene(betrokkene)"
+							@click="(scanbeheerder ? addBetrokkene(betrokkene) : null)"
 						>
 							{{ betrokkene.name_first }}
-							<span class="indication">+</span>
+							<span class="indication" v-if="scanbeheerder">+</span>
 						</div>
 					</div>
-
 				</div>
 			</div>
+
 			<div class="large-2 columns">
 				<div class="form-group">
 					<div class="actie-exbetrokkene"
@@ -115,6 +117,7 @@
 							class="close-button closeicon" 
 							aria-label="Close alert" 
 							type="button" 
+							v-if="scanbeheerder"
 							@click="removeExternaluser(externalUser.id)"
 						>
 							&times;
@@ -124,12 +127,14 @@
 						type="text" 
 						v-model="newExternalUser"
 						placeholder="Voeg iemand toe"
+						v-if="scanbeheerder"
 						@blur="addExternaluser()"
 						@keyup.enter="addExternaluser()"
 					>
 				</div>
 			</div>
 		</div>
+
 		<div class="row subactie--titel" v-if="isWerkAgenda">
 			Wilt u het verbeterpunt meenemen naar de werkagenda? <br>
 			Formuleer dan hieronder de vervolgacties:
@@ -171,7 +176,6 @@
 			'resource', 
 			'thema',
 			'actie', 
-			'participants',
 		],
 
 		data() {
@@ -182,6 +186,8 @@
 				betrokkenen: [],
 				unBetrokkenen: [],
 				agendaType: agendaType,
+				participants: participants,
+				scanbeheerder: scanbeheerder,
 				newExternalUser: [''],
 				externalUsers: [],
 				subacties: [],
@@ -195,9 +201,6 @@
 				this.getExternalusers();
 				this.getSubActies();
 			}
-		},
-
-		created() {
 		},
 
 		methods: {
@@ -293,9 +296,7 @@
 					.then(response => {
 						this.subacties = response.data;
 					})
-				
 			},
-
 		},		
 
 		computed: {
@@ -320,10 +321,8 @@
 				}
 			}
 		},
-
 	}
 </script>
-
 
 <style>
 	.actie_removebetrokkene {

@@ -2,7 +2,6 @@
 	<acties-thema 
 		 v-for="thema in themas"
 		 :thema="thema"
-		 :participants="participants"
 	>
 	</acties-thema>
 </template>
@@ -13,13 +12,10 @@
 	export default {
 		components: { ActiesThema },
 
-		props: [],
-
 		data() {
 			return {
 				scan:scan,
 				themas: [],
-				participants: participants,
 			};
 		},
 
@@ -36,20 +32,8 @@
 				});
 			},
 		},
-
-		computed: {
-		},
-
-		events: {
-		    reloadData: function () {
-		        this.getThemas();
-		    }
-		},
-
 	}
 </script>
 
-
 <style>
-	
 </style>
