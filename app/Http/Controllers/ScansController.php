@@ -401,10 +401,12 @@ Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastges
         {
             $participantlist[] = $participant;
         }
+        $scanbeheerder = (count(Auth::user()->beheert->intersect([$scan])));
         JavaScript::put([
             'scan' => $scan,
             'participants' => $participantlist,
             'agendaType' => 'werkagenda',
+            'scanbeheerder' => $scanbeheerder,
         ]);        
         return view('pages.voorzitter.werkagenda', compact('scan'));
     }

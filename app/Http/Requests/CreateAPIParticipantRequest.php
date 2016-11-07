@@ -48,11 +48,4 @@ class CreateAPIParticipantRequest extends Request
             return [];
         }
     }
-
-    public function messages()
-    {
-        return [
-            'participant.email.required' => 'Email must be unique and not associated with the current scan',
-        ];
-    }
 }
