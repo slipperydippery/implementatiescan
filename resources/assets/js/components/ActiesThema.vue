@@ -1,31 +1,34 @@
 <template>
 	<div class="row thema-group">
-			<div class="large-12">
-				<div class="row">	
-					<div class="large-12 actie-thema actie-thema-kop actiepunt-es columns"> {{ thema.title }}</div>
+		<div class="large-12">
+			<div class="row">	
+				<div class="large-12 actie-thema actie-thema-kop actiepunt-es columns"> {{ thema.title }}</div>
+			</div>
+			<actie 
+				v-for="actie in verbeteracties"
+				:actie="actie"
+				:participants="participants"
+			>
+			</actie> 
+			<div class="row actie-rij " v-if="!isWerkAgenda && inactiveVerbeteracties.length && scanbeheerder">
+				<div class="large-12 columns actie-voegtoe" @click="showInactief =  ! showInactief"> 
+					<span v-show="! showInactief">+</span>
+					<span v-show="showInactief">-</span> 
+					voeg nog een verbeterpunt toe 
 				</div>
-				<actie 
-					v-for="actie in verbeteracties"
-					:actie="actie"
-					:participants="participants"
+				<div class=""
+					v-if="showInactief"
 				>
-				</actie> 
-				<div class="row actie-rij " v-if="!isWerkAgenda && inactiveVerbeteracties && scanbeheerder">
-					<div class="large-12 columns actie-voegtoe" @click="showInactief =  ! showInactief"> 
-						<span v-show="! showInactief">+</span>
-						<span v-show="showInactief">-</span> 
-						voeg nog een verbeterpunt toe 
-					</div>
 					<div class="large12 columns actie-inactief" 
-						v-for="actie in verbeteracties" 
+						v-for="actie in inactiveVerbeteracties" 
 						:actie="actie"
-						v-if=" ! actie.active && showInactief"
 						@click="setActieActive(actie)"
 					>
 						{{ actie.title }}
 					</div>
 				</div>
 			</div>
+		</div>
 	</div>
 </template>
 
@@ -134,12 +137,12 @@
 			},
 
 			inactiveVerbeteracties: function () {
-				var inactiveActies = 0;
+				var inactiveActies = [];
 				for (var actie in this.verbeteracties)
 				{
 					if(this.verbeteracties[actie].active == false)
 					{
-						inactiveActies ++;
+						inactiveActies.push(this.verbeteracties[actie]);
 					}
 				}
 				return inactiveActies;

@@ -134,7 +134,7 @@
 				betrokkenen: [],
 				unBetrokkenen: [],
 				newExternalUser: {name: ''},
-			};
+			}
 		},
 
 		ready() {
@@ -237,8 +237,8 @@
 	    border-bottom: 1px solid #333;
 	}
 
-	.subactie .row {
-	    background: whitesmoke;
+	.subactie > .row {
+	    background: rgba(187, 211, 112, 0.22);
 	}
 
 	.subactie .row:first-of-type {
@@ -247,7 +247,7 @@
 
 	.subactie--titel {
 		font-size: 1rem;
-	    background: rgb(187, 211, 112);
+	    background: rgba(187, 211, 112, 0.71);
 	    /* border: 1px solid #333; */
 	    padding: 1rem;
 	    font-weight: 500;

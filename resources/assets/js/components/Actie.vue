@@ -1,160 +1,162 @@
 <template>
 	<!-- Collapsed view only possible in Werkagenda -->
-	<div v-if="!actie.werkactive && isWerkAgenda" class="single_actie">
-		<div class="row">
-			<div class="large-12 columns actie-titel"> 
-				<span class="remove_row remove_row--werkadd"
-					v-if="isWerkAgenda && scanbeheerder"
-					@click="toggleWerkActieActive(actie)"
-				>
-					&#x2713;
-				</span>
-				{{ actie.title }}
-			</div>
-		</div>
-	</div>
-	<!-- Full view -->
-	<div v-if="(actie.active && actie.werkactive) || (!isWerkAgenda && actie.active)" class="single_actie">	
-		<div class="row">
-			<div class="large-12 columns actie-titel"> 
-				<span class="remove_row"
-					v-if="!isWerkAgenda && scanbeheerder"
-					@click="setActieInactive(actie)"
-				>
-					&#x2716;
-				</span>
-				<span class="remove_row remove_row--werkremove"
-					v-if="isWerkAgenda && scanbeheerder"
-					@click="toggleWerkActieActive(actie)"
-				>
-					x
-				</span>
-				{{ actie.title }}
-			</div>
-		</div>
-		<div class="row actie-omschrijvingen">
-			<div class="large-4 columns actie-omschrijving">
-				Uit te werken verbeterpunten
-			</div>
-			<div class="large-3 columns actie-omschrijving">
-				Initiatiefnemer
-			</div>
-			<div class="large-3 columns actie-omschrijving">
-				Betrokkenen
-			</div>
-			<div class="large-2 columns actie-omschrijving">
-				Overige betrokkenen
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="large-4 columns">
-				<div class="form-group">
-					<textarea  
-						class="form-control" 
-						placeholder="Actie Omschrijving"
-						rows="6"
-						v-model="actie.omschrijving" 
-						@blur="saveActie()"
-						:disabled="scanbeheerder ? false : true"
+	<div class="single_actie--container">
+		<div v-if="!actie.werkactive && isWerkAgenda" class="single_actie">
+			<div class="row">
+				<div class="large-12 columns actie-titel"> 
+					<span class="remove_row remove_row--werkadd"
+						v-if="isWerkAgenda && scanbeheerder"
+						@click="toggleWerkActieActive(actie)"
 					>
-					</textarea>
+						&#x2713;
+					</span>
+					{{ actie.title }}
+				</div>
+			</div>
+		</div>
+		<!-- Full view -->
+		<div v-if="(actie.active && actie.werkactive) || (!isWerkAgenda && actie.active)" class="single_actie">	
+			<div class="row">
+				<div class="large-12 columns actie-titel"> 
+					<span class="remove_row"
+						v-if="!isWerkAgenda && scanbeheerder"
+						@click="setActieInactive(actie)"
+					>
+						&#x2716;
+					</span>
+					<span class="remove_row remove_row--werkremove"
+						v-if="isWerkAgenda && scanbeheerder"
+						@click="toggleWerkActieActive(actie)"
+					>
+						x
+					</span>
+					{{ actie.title }}
+				</div>
+			</div>
+			<div class="row actie-omschrijvingen">
+				<div class="large-4 columns actie-omschrijving">
+					Uit te werken verbeterpunten
+				</div>
+				<div class="large-3 columns actie-omschrijving">
+					Initiatiefnemer
+				</div>
+				<div class="large-3 columns actie-omschrijving">
+					Betrokkenen
+				</div>
+				<div class="large-2 columns actie-omschrijving">
+					Overige betrokkenen
 				</div>
 			</div>
 
-			<div class="large-3 columns">
-				<div class="form-group">
-					<select 
-						v-model="actie.user_id"
-						@blur="saveActie()"
-						:disabled="scanbeheerder ? false : true"
-					>
-						<option 
-							v-for="participant in participants" 
-							:value="participant.id"
-						> 
-							{{ participant.name_first }} {{ participant.name_last }}
-						</option>
-					</select>
-				</div>
-			</div>
-
-			<div class="large-3 columns">
-				<div class="betrokkenen__group row">
-					<div class="betrokkenen__bet ">
-						<div class="actie-betrokkene"
-							v-if="!betrokkenen.length"
+			<div class="row">
+				<div class="large-4 columns">
+					<div class="form-group">
+						<textarea  
+							class="form-control" 
+							placeholder="Actie Omschrijving"
+							rows="6"
+							v-model="actie.omschrijving" 
+							@blur="saveActie()"
+							:disabled="(scanbeheerder ? false : true) || isWerkAgenda"
 						>
-						+
-						</div>
-						<div class="actie-betrokkene" 
-							v-for="betrokkene in betrokkenen"
-							@click="(scanbeheerder ? removeBetrokkene(betrokkene) : null)"
-						>
-							{{betrokkene.name_first}}
-							<span class="indication" v-if="scanbeheerder">-</span>
-						</div>				
-					</div>
-					<div class="betrokkenen__unbet">
-						<div class="actie-betrokkene" 
-							v-for="betrokkene in unBetrokkenen"
-							@click="(scanbeheerder ? addBetrokkene(betrokkene) : null)"
-						>
-							{{ betrokkene.name_first }}
-							<span class="indication" v-if="scanbeheerder">+</span>
-						</div>
+						</textarea>
 					</div>
 				</div>
+
+				<div class="large-3 columns">
+					<div class="form-group">
+						<select 
+							v-model="actie.user_id"
+							@blur="saveActie()"
+							:disabled="(scanbeheerder ? false : true) || isWerkAgenda"
+						>
+							<option 
+								v-for="participant in participants" 
+								:value="participant.id"
+							> 
+								{{ participant.name_first }} {{ participant.name_last }}
+							</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="large-3 columns">
+					<div class="betrokkenen__group row">
+						<div class="betrokkenen__bet ">
+							<div class="actie-betrokkene"
+								v-if="!betrokkenen.length"
+							>
+							+
+							</div>
+							<div class="actie-betrokkene" 
+								v-for="betrokkene in betrokkenen"
+								@click="((scanbeheerder && !isWerkAgenda) ? removeBetrokkene(betrokkene) : null)"
+							>
+								{{betrokkene.name_first}}
+								<span class="indication" v-if="scanbeheerder && !isWerkAgenda">-</span>
+							</div>				
+						</div>
+						<div class="betrokkenen__unbet" v-if="scanbeheerder && !isWerkAgenda">
+							<div class="actie-betrokkene" 
+								v-for="betrokkene in unBetrokkenen"
+								@click="((scanbeheerder && !isWerkAgenda) ? addBetrokkene(betrokkene) : null)"
+							>
+								{{ betrokkene.name_first }}
+								<span class="indication" v-if="scanbeheerder && !isWerkAgenda">+</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="large-2 columns">
+					<div class="form-group">
+						<div class="actie-exbetrokkene"
+							v-for="externalUser in externalUsers"
+						>
+							{{ externalUser.name }}
+							<a href="#" 
+								class="close-button closeicon" 
+								aria-label="Close alert" 
+								type="button" 
+								v-if="scanbeheerder && !isWerkAgenda"
+								@click="removeExternaluser(externalUser.id)"
+							>
+								&times;
+							</a>
+						</div>
+						<input 
+							type="text" 
+							v-model="newExternalUser"
+							placeholder="Voeg iemand toe"
+							v-if="scanbeheerder && !isWerkAgenda"
+							@blur="addExternaluser()"
+							@keyup.enter="addExternaluser()"
+						>
+					</div>
+				</div>
 			</div>
 
-			<div class="large-2 columns">
-				<div class="form-group">
-					<div class="actie-exbetrokkene"
-						v-for="externalUser in externalUsers"
-					>
-						{{ externalUser.name }}
-						<a href="#" 
-							class="close-button closeicon" 
-							aria-label="Close alert" 
-							type="button" 
-							v-if="scanbeheerder"
-							@click="removeExternaluser(externalUser.id)"
-						>
-							&times;
+			<div class="row subactie--titel" v-if="isWerkAgenda">
+				Wilt u het verbeterpunt meenemen naar de werkagenda? <br>
+				Formuleer dan hieronder de vervolgacties:
+			</div>
+
+			<sub-actie 
+				 v-for="subactie in activeSubacties"
+				:subactie="subactie"
+				:participants="participants"
+				@removesubactie="removeSubactie"
+			>
+			</sub-actie>
+
+			<div class="row " v-if="isWerkAgenda">		
+				<div class="small-12">
+						<a href="#" @click="newSubactie()" class="voegsubactie">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+	Voeg een vervolgactie toe
 						</a>
-					</div>
-					<input 
-						type="text" 
-						v-model="newExternalUser"
-						placeholder="Voeg iemand toe"
-						v-if="scanbeheerder"
-						@blur="addExternaluser()"
-						@keyup.enter="addExternaluser()"
-					>
 				</div>
+
 			</div>
-		</div>
-
-		<div class="row subactie--titel" v-if="isWerkAgenda">
-			Wilt u het verbeterpunt meenemen naar de werkagenda? <br>
-			Formuleer dan hieronder de vervolgacties:
-		</div>
-
-		<sub-actie 
-			 v-for="subactie in activeSubacties"
-			:subactie="subactie"
-			:participants="participants"
-			@removesubactie="removeSubactie"
-		>
-		</sub-actie>
-
-		<div class="row " v-if="isWerkAgenda">		
-			<div class="small-12">
-					<a href="#" @click="newSubactie()" class="voegsubactie">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+	Werk hier uw verbeterpunt nader uit
-					</a>
-			</div>
-
 		</div>
 	</div>
 </template>
@@ -378,15 +380,14 @@
 
 	.voegsubactie {
 		display: block;
-		padding: 1rem 0;
-		/* line-height: 3rem; */
-		/* height: 3rem; */
+	    padding: .5rem 0;
+		background: rgba(159, 194, 54, 0.71);
+	    margin: 0 0 2rem 0;
 		width: 100%;
-		/* color: white; */
 		font-size: .9rem;
 		font-weight: 500;
 	}
 	.voegsubactie:hover {
-		background: rgba(159, 194, 54, 0.71);
+	    background: rgb(159, 194, 54);
 	}
 </style>
