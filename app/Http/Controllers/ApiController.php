@@ -20,6 +20,7 @@ use App\Praktijkvoorbeeld;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\StoreParticipantRequest;
+use App\Http\Requests\CreateAPIParticipantRequest;
 
 class ApiController extends Controller
 {
@@ -405,28 +406,23 @@ class ApiController extends Controller
         return ('done');
     }
 
-    public function savenewparticipant(Requests\CreateAPIParticipantRequest $request, Scan $scan)
+    public function savenewparticipant(CreateAPIParticipantRequest $request, Scan $scan)
     {
-
         if (! User::where('email', '=', $request->participant['email'])->get()->count())
         {
-            $user = new User();
-            $user->initial_pwd = str_random(8);
-            $user->password = Hash::make($user->initial_pwd);
-            $user->name_first = $request->participant['name_first'];
-            $user->name_last = $request->participant['name_last'];
-            $user->email = $request->participant['email'];
-            $user->save();
+            User::register([
+                'name_first' => $request->participant['name_first'],
+                'name_last' => $request->participant['name_last'],
+                'email' => $request->participant['email'],
+            ]);
         }
         $user = User::where('email', '=', $request->participant['email'])->first();
-        if( ! $user->scans->intersect([$scan])->count() ) {
+        if(! $user->scans->intersect([$scan])->count()) {
             $user->scans()->attach($scan);
         }
-        if( $user->instanties->intersect($scan->instanties)->count() ) {
+        if($user->instanties->intersect($scan->instanties)->count()) {
             $currentinstantie = $user->instanties->intersect($scan->instanties)->first();
-            $newinstantie = Instantie::findOrFail($request->participant['instantie_id']);
             $user->instanties()->detach($currentinstantie);
-            $user->instanties()->attach($newinstantie);
         }
         $instantie = Instantie::findOrFail($request->participant['instantie_id']);
         $user->instanties()->attach($instantie);

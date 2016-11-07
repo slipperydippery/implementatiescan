@@ -6,14 +6,35 @@
 		</div>
 	</div>
 
-	<div class="row gebruikers_aanmelden--row" v-if=" isEditable ">
+	<div class="row gebruikers_aanmelden--row" v-if="isEditable ">
 		<div class="small-1 columns" @click="setNoneEditable"> 
 			<img :src="returnRoot + '/img/user_dark.png'"> 
 			<span class="plus">-</span>
 		</div>
-		<div class="small-2 columns"> <input type="text" v-model="participant.name_first" placeholder="Voornaam"></div>
-		<div class="small-2 columns"> <input type="text" v-model="participant.name_last" placeholder="Achternaam"> </div>
-		<div class="small-3 columns"> <input type="text" v-model="participant.email" placeholder="Email"> </div>
+		<div class="small-2 columns"> 
+			<input type="text" 
+				v-model="participant.name_first" 
+				:class="{ formerror : errors['participant.name_first'] }"
+				placeholder="Voornaam"
+			>
+			<span class="formerror">{{ errors['participant.name_first'] }}</span>
+		</div>
+		<div class="small-2 columns"> 
+			<input type="text" 
+				v-model="participant.name_last" 
+				:class="{ formerror : errors['participant.name_last'] }"
+				placeholder="Achternaam"
+			> 
+			<span class="formerror">{{ errors['participant.name_last'] }}</span>
+		</div>
+		<div class="small-3 columns"> 
+			<input type="text" 
+			v-model="participant.email" 
+			:class="{ formerror : errors['participant.email'] }"
+			placeholder="Email"
+		> 
+			<span class="formerror">{{ errors['participant.email'] }}</span>
+		</div>
 		<div class="small-3 columns"> 
 			<select v-model="participant.instantie_id">
 			  <option v-for="instantie in instanties" v-bind:value="instantie.id">
@@ -54,6 +75,7 @@
 					instantie_title: ''
 				},
 				instantie: {id: 0},
+				errors: [],
 			}
 		},
 
@@ -128,19 +150,17 @@
 			},
 
 			saveNewParticipant: function () {
-				this.setInstantiemodelData();
-		        this.$emit('pushparticipant', this.participant);
-				var resource = this.$resource('/api/scan/:scan/participant/');
 				var home = this;
+				var resource = this.$resource('/api/scan/:scan/participant/');
 				resource.save({scan: this.scan.id}, 
 								{participant: this.participant })
 					.then(function (response) {
-						home.$emit('updateuser', home.participant, response.data);
-				        home.resetNewParticipant();
+				        home.$emit('pushparticipant', response.data);
 						this.setNoneEditable();
+				        home.resetNewParticipant();
+
 				    }, function (response) {
-				    	console.log('invalid');
-				    	home.$emit('removeparticipant', this.participant);
+				    	home.errors = response.data;
 				    });
 			},
 
@@ -159,4 +179,11 @@
 </script>
 
 <style>
+	input.formerror {
+		border: 1px solid red;
+	}
+	span.formerror {
+		color: red;
+		font-style: italic;
+	}
 </style>
