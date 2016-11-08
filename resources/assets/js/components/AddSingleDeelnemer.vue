@@ -43,7 +43,18 @@
 			</select>
 		</div>
 		<div class="small-1 columns">
-			<img :src="returnRoot +'/img/checkmark.png'" class="editicon vuelink"  data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' tabindex=1 title="Sla Bewerkingen op" @click="saveNewParticipant" v-if="isValid">
+			<button
+				class="button editicon button-small button-small--invoerdeelnemers"  
+				data-tooltip aria-haspopup="true" 
+				class="has-tip" 
+				data-disable-hover='false' 
+				tabindex=1 
+				:title="isValid ? 'Sla Bewerkingen op' : 'Als alle gegevens zijn ingevoerd kunt u de bewerkingen opslaan'" 
+				@click="saveNewParticipant" 
+				:disabled="!isValid"
+			>
+				Sla op
+			</button>
 		</div>	
 	</div>
 </template>
@@ -185,5 +196,10 @@
 	span.formerror {
 		color: red;
 		font-style: italic;
+	}
+
+	.button-small--invoerdeelnemers {
+		width: 120% !important;
+		margin-left: -.5rem;
 	}
 </style>

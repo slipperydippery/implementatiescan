@@ -3575,6 +3575,9 @@ table.hover tbody tr:nth-of-type(even):hover {
 .clearfix::after {
   clear: both; }
 
+.border1 {
+  border: 1px solid red; }
+
 .hidden {
   display: none; }
 
@@ -4515,6 +4518,9 @@ h2 {
 
 .button-next:hover {
   background: #A7CC39 url(/img/button_arrow_right.png) no-repeat right top !important; }
+
+.button-small {
+  font-size: 0.7rem; }
 
 input::-webkit-input-placeholder {
   color: #aaa; }
