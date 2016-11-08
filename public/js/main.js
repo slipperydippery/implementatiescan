@@ -12085,10 +12085,10 @@ exports.default = {
 		},
 
 		saveNewParticipant: function saveNewParticipant() {
+			home.setInstantiemodelData();
 			var home = this;
 			var resource = this.$resource('/api/scan/:scan/participant/');
 			resource.save({ scan: this.scan.id }, { participant: this.participant }).then(function (response) {
-				home.setInstantiemodelData();
 				home.$emit('pushparticipant', response.data);
 				home.setNoneEditable();
 				home.resetNewParticipant();
