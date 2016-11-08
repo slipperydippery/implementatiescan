@@ -8,6 +8,8 @@ var Vue = require('vue');
 Vue.use(require('vue-resource'));
 window.scanoverviewHub = new Vue();
 
+// var bus = new Vue();
+
 // import scanoverviewHub from './eventhubs/ScanoverviewHub.js';
 import InvoerenDeelnemers from './components/InvoerenDeelnemers.vue';
 import ControlerenDeelnemers from './components/ControlerenDeelnemers.vue';

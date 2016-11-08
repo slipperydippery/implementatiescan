@@ -12254,7 +12254,6 @@ exports.default = {
 
 	methods: {
 		getCriteria: function getCriteria() {
-			console.log('getCriteria');
 			var home = this;
 			var resource = this.$resource('/api/criteria');
 			resource.get({}).then(function (response) {
@@ -13022,6 +13021,7 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 // import scanoverviewHub from '../eventhubs/ScanoverviewHub.js';
+
 exports.default = {
 	http: {
 		base: '/base',
@@ -13585,6 +13585,8 @@ $.ajaxSetup({
 var Vue = require('vue');
 Vue.use(require('vue-resource'));
 window.scanoverviewHub = new Vue();
+
+// var bus = new Vue();
 
 // import scanoverviewHub from './eventhubs/ScanoverviewHub.js';
 

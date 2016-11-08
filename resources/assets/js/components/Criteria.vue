@@ -58,16 +58,15 @@
 		},
 
 		created() {
-			scanoverviewHub.$on('reloadCriteria', this.getCriteria)
+			scanoverviewHub.$on('reloadCriteria', this.getCriteria);
 		},
 
 		destroyed() {
-			scanoverviewHub.$off('reloadCriteria', this.getCriteria)
+			scanoverviewHub.$off('reloadCriteria', this.getCriteria);
 		},
 
 		methods: {
 			getCriteria: function () {
-				console.log('getCriteria');
 				var home = this;
 				var resource = this.$resource('/api/criteria');
 				resource.get({}).then(function (response){

@@ -69,6 +69,7 @@
 
 <script>
 	// import scanoverviewHub from '../eventhubs/ScanoverviewHub.js';
+	
 	export default {
 		http: {
 			base: '/base',
