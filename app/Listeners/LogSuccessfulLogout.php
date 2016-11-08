@@ -4,11 +4,11 @@ namespace App\Listeners;
 
 use Auth;
 use Carbon\Carbon;
-use Illuminate\Auth\Events\Login;
+use Illuminate\Auth\Events\Logout;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class LogSuccessfulLogin
+class LogSuccessfulLogout
 {
     /**
      * Create the event listener.
@@ -23,13 +23,12 @@ class LogSuccessfulLogin
     /**
      * Handle the event.
      *
-     * @param  LogSuccessfulLogin  $event
+     * @param  LogSuccessfulLogout  $event
      * @return void
      */
-    public function handle(Login $event)
+    public function handle(Logout $event)
     {
-        Auth::user()->increment('logincount');
-        Auth::user()->last_online = Carbon::now();
+        Auth::user()->last_online = Carbon::yesterday();
         Auth::user()->save();
     }
 }

@@ -369,6 +369,8 @@ class ApiController extends Controller
             $thisparticipant['name_first'] = $participant->name_first;
             $thisparticipant['name_last'] = $participant->name_last;
             $thisparticipant['email'] = $participant->email;
+            $thisparticipant['last_online'] = $participant->last_online;
+            $thisparticipant['diff_last_online'] = Carbon::parse($participant->last_online)->diffInMinutes(Carbon::now());
             $thisparticipant['instantie_id'] = $participant->instanties->intersect($scan->instanties)->first()->id;
             $thisparticipant['instantiemodel_id'] = $participant->instanties->intersect($scan->instanties)->first()->instantiemodel->id;
             $thisparticipant['instantie_title'] = $participant->instanties->intersect($scan->instanties)->first()->title;

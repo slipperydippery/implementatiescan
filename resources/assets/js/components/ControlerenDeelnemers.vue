@@ -2,13 +2,13 @@
 	<div v-for="participant in participants">
 		<div 
 			class="large-2 column submitted-user"
-			:class="{ beheerder: participant.beheerder }"
+			:class="{ beheerder: participant.beheerder, offline: offline(participant) }"
 		>
 			<a href="#" 
 				class="close-button" 
 				aria-label="Close alert" 
 				type="button" 
-				v-if="scanbeheerder" 
+				v-if="scanbeheerder && !participant.beheerder" 
 				@click="removeParticipant(participant)"
 			>
 			    <span aria-hidden="true">&times;</span>
@@ -45,12 +45,19 @@
 
 		ready() {
 			this.getParticipants(); 
+			setInterval(function () {
+				this.getParticipants(); 
+			}.bind(this), 5000);
 		},
 
 		computed: {
 			returnRoot: function () {
 				return (window.location.protocol + "//" + window.location.host);
 			},
+
+			dateTime: function () {
+				return Date();
+			}
 		},
 
 		methods: {
@@ -98,6 +105,10 @@
 					}
 				);
 			},
+
+			offline: function (participant) {
+				return participant.diff_last_online < 120 ? false : true;
+			},
 		},
 	}
 </script>
@@ -105,5 +116,8 @@
 <style>
 	.beheerder {
 		background: rgba(0,0,0,0.1);
+	}
+	.offline {
+		opacity: .3;
 	}
 </style>

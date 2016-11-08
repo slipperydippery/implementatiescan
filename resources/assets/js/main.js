@@ -24,6 +24,8 @@ import Praktijkvoorbeelds from './components/Praktijkvoorbeelds.vue';
 import Deelnemersveld from './components/Deelnemersveld.vue';
 import Criteria from './components/Criteria.vue';
 import Scanlist from './components/Scanlist.vue';
+import Kennismaken from './components/Kennismaken.vue';
+
 
 new Vue({
 	http: {
@@ -53,6 +55,7 @@ new Vue({
 		Deelnemersveld,
 		Criteria,
 		Scanlist,
+		Kennismaken,
 	},
 	
 

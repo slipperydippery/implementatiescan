@@ -490,12 +490,12 @@ $sidetext_thickness : 15rem;
 
 .submitted-user {
 	position: relative;
+	// box-sizing: border-box;
+	// height: 16rem;
 	background: none;
 	border: 0;
  	text-align: center !important;
  	line-height: 1.1em;
- 	// border: 2px solid rgba(255,255,255,0.3); 
- 	// border-radius: .5rem;
  	padding: 2rem 0;
  	margin: .5rem 0;
  	overflow: hidden;

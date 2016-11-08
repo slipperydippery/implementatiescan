@@ -11792,7 +11792,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"../components/SubActie.vue":29,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],14:[function(require,module,exports){
+},{"../components/SubActie.vue":30,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],14:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n")
 'use strict';
 
@@ -12125,7 +12125,7 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],17:[function(require,module,exports){
-var __vueify_style__ = require("vueify-insert-css").insert("\n\t.beheerder {\n\t\tbackground: rgba(0,0,0,0.1);\n\t}\n")
+var __vueify_style__ = require("vueify-insert-css").insert("\n\t.beheerder {\n\t\tbackground: rgba(0,0,0,0.1);\n\t}\n\t.offline {\n\t\topacity: .3;\n\t}\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -12148,12 +12148,19 @@ exports.default = {
 	},
 	ready: function ready() {
 		this.getParticipants();
+		setInterval(function () {
+			this.getParticipants();
+		}.bind(this), 5000);
 	},
 
 
 	computed: {
 		returnRoot: function returnRoot() {
 			return window.location.protocol + "//" + window.location.host;
+		},
+
+		dateTime: function dateTime() {
+			return Date();
 		}
 	},
 
@@ -12197,18 +12204,22 @@ exports.default = {
 			resource.delete({ scan: this.scan.id, participant: participant.id }, {}).then(function (response) {}, function (response) {
 				home.getParticipants();
 			});
+		},
+
+		offline: function offline(participant) {
+			return participant.diff_last_online < 120 ? false : true;
 		}
 	}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div v-for=\"participant in participants\">\n\t\t<div class=\"large-2 column submitted-user\" :class=\"{ beheerder: participant.beheerder }\">\n\t\t\t<a href=\"#\" class=\"close-button\" aria-label=\"Close alert\" type=\"button\" v-if=\"scanbeheerder\" @click=\"removeParticipant(participant)\">\n\t\t\t    <span aria-hidden=\"true\">×</span>\n\t\t\t</a>\n\t\t\t<img :src=\"returnRoot + '/img/user.png'\">\n\t\t\t<div class=\"participant_info\">\n\t\t\t\t<span class=\"name\"> \n\t\t\t\t\t{{ participant.name_first ? participant.name_first : \"---\" }} {{ participant.name_last ? participant.name_last : \"\" }} \n\t\t\t\t</span> \n\t\t\t\t<span class=\"functie\"> \n\t\t\t\t\t{{ participant.instantie_title }} \n\t\t\t\t</span>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div v-for=\"participant in participants\">\n\t\t<div class=\"large-2 column submitted-user\" :class=\"{ beheerder: participant.beheerder, offline: offline(participant) }\">\n\t\t\t<a href=\"#\" class=\"close-button\" aria-label=\"Close alert\" type=\"button\" v-if=\"scanbeheerder &amp;&amp; !participant.beheerder\" @click=\"removeParticipant(participant)\">\n\t\t\t    <span aria-hidden=\"true\">×</span>\n\t\t\t</a>\n\t\t\t<img :src=\"returnRoot + '/img/user.png'\">\n\t\t\t<div class=\"participant_info\">\n\t\t\t\t<span class=\"name\"> \n\t\t\t\t\t{{ participant.name_first ? participant.name_first : \"---\" }} {{ participant.name_last ? participant.name_last : \"\" }} \n\t\t\t\t</span> \n\t\t\t\t<span class=\"functie\"> \n\t\t\t\t\t{{ participant.instantie_title }} \n\t\t\t\t</span>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\ControlerenDeelnemers.vue"
   module.hot.dispose(function () {
-    require("vueify-insert-css").cache["\n\t.beheerder {\n\t\tbackground: rgba(0,0,0,0.1);\n\t}\n"] = false
+    require("vueify-insert-css").cache["\n\t.beheerder {\n\t\tbackground: rgba(0,0,0,0.1);\n\t}\n\t.offline {\n\t\topacity: .3;\n\t}\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
@@ -12634,7 +12645,105 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"../components/AddSingleDeelnemer.vue":16,"../components/SingleDeelnemer.vue":27,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],22:[function(require,module,exports){
+},{"../components/AddSingleDeelnemer.vue":16,"../components/SingleDeelnemer.vue":28,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],22:[function(require,module,exports){
+var __vueify_style__ = require("vueify-insert-css").insert("\n\t.graphbar {\n\t\theight: 1.5rem;\n\t\tbackground: #bed675;\n\t}\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+// import scanoverviewHub from '../eventhubs/ScanoverviewHub.js';
+
+exports.default = {
+	http: {
+		base: '/base',
+		headers: {
+			'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
+		}
+	},
+
+	props: [],
+
+	data: function data() {
+		return {
+			scans: [],
+			users: []
+		};
+	},
+	ready: function ready() {
+		this.getScans();
+		this.getUsers();
+	},
+
+
+	methods: {
+		getScans: function getScans() {
+			var home = this;
+			var resource = this.$resource('/api/scan');
+			resource.get({}).then(function (response) {
+				home.$set('scans', response.data);
+			});
+		},
+
+		updateScan: function updateScan(scan) {
+			var home = this;
+			var resource = this.$resource('/api/scan/:scan');
+			resource.update({ scan: scan.id }, { scan: scan }).then(function (response) {
+				scanoverviewHub.$emit('reloadCriteria');
+			});
+		},
+
+		getUsers: function getUsers() {
+			var home = this;
+			var resource = this.$resource('/api/user');
+			resource.get({}).then(function (response) {
+				home.$set('users', response.data);
+			});
+		},
+
+		findUserById: function findUserById(user_id) {
+			for (user in this.users) {
+				if (this.users[user].id == user_id) {
+					return this.users[user];
+				}
+			}
+			return { name_first: '', name_last: '' };
+		},
+
+		updateTestscan: function updateTestscan(scan) {
+			scan.testscan = !scan.testscan;
+			this.updateScan(scan);
+		},
+
+		cssPercent: function cssPercent(value) {
+			return value * 10 + '%';
+		}
+	},
+
+	computed: {
+		returnRoot: function returnRoot() {
+			return window.location.protocol + "//" + window.location.host;
+		}
+	}
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"table\">\n\t\t<div class=\"row table-row table-header\">\n\t\t\t<div class=\"small-3 columns\">\n\t\t\t\tSchool\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns\">\n\t\t\t\tBeheerder\n\t\t\t</div>\n\t\t\t<div class=\"small-1 columns\">\n\t\t\t\tDeelnmrs\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns\">\n\t\t\t\tDatum\n\t\t\t</div>\n\t\t\t<div class=\"small-1 columns\">\n\t\t\t\tDeel 1\n\t\t\t</div>\n\t\t\t<div class=\"small-1 columns\">\n\t\t\t\tDeel 2\n\t\t\t</div>\n\t\t\t<div class=\"small-1 columns\">\n\t\t\t\tTest\n\t\t\t</div>\n\t\t\t<div class=\"small-1 columns\">\n\t\t\t\tAdmin\n\t\t\t</div>\n\t\t</div>\n\t\n\n\t\t<div class=\"row table-row\" v-for=\"scan in scans\">\n\t\t\t<div class=\"small-3 columns\">\n\t\t\t\t<a :href=\"returnRoot + '/scans/' + scan.id + '/edit' \">\n\t\t\t\t\t{{ scan.title }} - {{ scan.regio }}\n\t\t\t\t</a>\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns\">\n\t\t\t\t{{ findUserById(scan.user_id).name_first }} {{ findUserById(scan.user_id).name_last }}\n\t\t\t</div>\n\t\t\t<div class=\"small-1 columns\">\n\t\t\t\t{{ scan.participants.length }}\n\t\t\t</div>\n\t\t\t<div class=\"small-2 columns\">\n\t\t\t\t{{ scan.datedeeleen }}\n\t\t\t</div>\n\t\t\t<div class=\"small-1 columns\">\n\t\t\t\t{{ scan.deeleencomplete ? '✓' : '✖' }}\n\t\t\t</div>\n\t\t\t<div class=\"small-1 columns\">\n\t\t\t\t{{ scan.deeltweecomplete ? '✓' : '✖' }}\n\t\t\t</div>\n\t\t\t<div class=\"small-1 columns\" @click=\"updateTestscan(scan)\">\n\t\t\t\t{{ scan.testscan ? 'ja' : 'nee' }}\n\t\t\t</div>\n\t\t\t<div class=\"small-1 columns\">\n\t\t\t\t\n\t\t\t\t<a :href=\"returnRoot + '/scans/' + scan.id + '/edit' \"> Edit </a>\n\t\t\t\t<a :href=\"returnRoot + '/scans/' + scan.id + '/destroy' \"> Del </a>\n\t\t\t</div>\n\n\t\t</div>\n\t\t    \n\t</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Kennismaken.vue"
+  module.hot.dispose(function () {
+    require("vueify-insert-css").cache["\n\t.graphbar {\n\t\theight: 1.5rem;\n\t\tbackground: #bed675;\n\t}\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, module.exports.template)
+  }
+})()}
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],23:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\t.searchfilter {\n\t\ttext-align: right;\n\t\tlabel, input {\n\t\t\tdisplay: inline-block;\n\t\t}\n\t}\n")
 'use strict';
 
@@ -12735,7 +12844,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],23:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],24:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n")
 'use strict';
 
@@ -12832,7 +12941,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"../components/SingleSlider.vue":28,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],24:[function(require,module,exports){
+},{"../components/SingleSlider.vue":29,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],25:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\t.searchfilter {\n\t\ttext-align: right;\n\t\tlabel, input {\n\t\t\tdisplay: inline-block;\n\t\t}\n\t}\n")
 'use strict';
 
@@ -12895,7 +13004,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],25:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],26:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\t.rangeresult {\n\t\tposition: relative;\n\t\tdisplay: block;\n\t\twidth: 100%;\n\t\theight: .5rem;\n\t\tbackground: #ec5840;\n\t    margin: .7rem 0 1.4rem;\n\t}\n\t.rangeresult__value {\n\t\tposition: absolute;\n\t\tdisplay: block;\n\t\ttop: 0;\n\t\tleft: 0;\n\t\theight: 100%;\n\t    background: #1CB32D;\n\t    webkit-transition: width 1s;\n\t    -webkit-transition: width 1s;\n\t    transition: width 1s;\n\t}\n\n\tinput[type=range]::after {\n\t    content:\"\";\n\t    display: block;\n\t    position: absolute;\n\t    top: 0;\n\t    left: 0;\n\t    width: 90%;\n\t    height: .6rem;\n\t    background: #1CB32D;\n\t}\n")
 'use strict';
 
@@ -13013,7 +13122,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],26:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],27:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\t.graphbar {\n\t\theight: 1.5rem;\n\t\tbackground: #bed675;\n\t}\n")
 'use strict';
 
@@ -13111,7 +13220,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],27:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],28:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\t\n")
 'use strict';
 
@@ -13239,7 +13348,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],28:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],29:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n")
 'use strict';
 
@@ -13327,7 +13436,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],29:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],30:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\t.subactie {\n\t    border-bottom: 1px solid #333;\n\t}\n\n\t.subactie > .row {\n\t    background: rgba(187, 211, 112, 0.22);\n\t}\n\n\t.subactie .row:first-of-type {\n\t    padding-top: 1rem;\n\t}\n\n\t.subactie--titel {\n\t\tfont-size: 1rem;\n\t    background: rgba(187, 211, 112, 0.71);\n\t    /* border: 1px solid #333; */\n\t    padding: 1rem;\n\t    font-weight: 500;\n\t}\n\n\t.subactie--date {\n\t\tclear: both;\n\t}\n\t.actie_removebetrokkene {\n\t\tfont-size: 2rem;\n\t\tline-height: 1.5rem;\n\t\tfont-weight: bold;\n\t\tfloat: right; \n\t\tpadding: 0 .5rem;\n\t\tcolor: #999;\n\t}\n\t.actie_removebetrokkene:hover {\n\t\tcursor:pointer;\n\t\tcolor: #000;\n\t}\n\n\tspan.remove_subactie {\n\t\tfloat: right;\n\t    padding: .3rem 0.6rem;\n\t    margin: 0;\n\t    height: 100%;\n\t    left: 0;\n\t    top: 0;\n\t    color: white;\n\t    background: rgba(0, 0, 0, 0.53);\n\t    font-weight: 500;\n\t    -webkit-transition: all .5s;\n\t    transition: all .5s;\n\t    overflow: hidden;\n\t    cursor: pointer;\n\t}\n\n\t.actie-exbetrokkene .closeicon {\n\t\tdisplay: none;\n\t}\n\n\t.actie-exbetrokkene:hover .closeicon {\n\t\tdisplay: block;\n\t}\n")
 'use strict';
 
@@ -13447,7 +13556,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],30:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],31:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\t.slider-verbeterpunten {\n\t\tpadding-top: 1rem;\n\t}\n\n")
 'use strict';
 
@@ -13559,7 +13668,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"../components/SingleSlider.vue":28,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],31:[function(require,module,exports){
+},{"../components/SingleSlider.vue":29,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],32:[function(require,module,exports){
 'use strict';
 
 var _InvoerenDeelnemers = require('./components/InvoerenDeelnemers.vue');
@@ -13614,6 +13723,10 @@ var _Scanlist = require('./components/Scanlist.vue');
 
 var _Scanlist2 = _interopRequireDefault(_Scanlist);
 
+var _Kennismaken = require('./components/Kennismaken.vue');
+
+var _Kennismaken2 = _interopRequireDefault(_Kennismaken);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 $.ajaxSetup({
@@ -13658,7 +13771,8 @@ new Vue({
 		Praktijkvoorbeelds: _Praktijkvoorbeelds2.default,
 		Deelnemersveld: _Deelnemersveld2.default,
 		Criteria: _Criteria2.default,
-		Scanlist: _Scanlist2.default
+		Scanlist: _Scanlist2.default,
+		Kennismaken: _Kennismaken2.default
 	},
 
 	methods: {},
@@ -13668,6 +13782,6 @@ new Vue({
 	ready: function ready() {}
 });
 
-},{"./components/Acties.vue":14,"./components/ControlerenDeelnemers.vue":17,"./components/Criteria.vue":18,"./components/Deelnemersveld.vue":19,"./components/Instrumenten.vue":20,"./components/InvoerenDeelnemers.vue":21,"./components/Praktijkvoorbeelds.vue":22,"./components/PreThemaResultaat.vue":23,"./components/Programmas.vue":24,"./components/ScanSlider.vue":25,"./components/Scanlist.vue":26,"./components/SingleSlider.vue":28,"./components/ThemaResultaat.vue":30,"vue":11,"vue-resource":4}]},{},[31]);
+},{"./components/Acties.vue":14,"./components/ControlerenDeelnemers.vue":17,"./components/Criteria.vue":18,"./components/Deelnemersveld.vue":19,"./components/Instrumenten.vue":20,"./components/InvoerenDeelnemers.vue":21,"./components/Kennismaken.vue":22,"./components/Praktijkvoorbeelds.vue":23,"./components/PreThemaResultaat.vue":24,"./components/Programmas.vue":25,"./components/ScanSlider.vue":26,"./components/Scanlist.vue":27,"./components/SingleSlider.vue":29,"./components/ThemaResultaat.vue":31,"vue":11,"vue-resource":4}]},{},[32]);
 
 //# sourceMappingURL=main.js.map
