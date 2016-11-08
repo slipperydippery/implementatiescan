@@ -156,9 +156,9 @@
 								{participant: this.participant })
 					.then(function (response) {
 				        home.$emit('pushparticipant', response.data);
-						this.setNoneEditable();
+				        home.setInstantiemodelData();
+						home.setNoneEditable();
 				        home.resetNewParticipant();
-
 				    }, function (response) {
 				    	home.errors = response.data;
 				    });
