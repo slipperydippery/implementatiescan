@@ -149,7 +149,18 @@ class ScansController extends Controller
     }
 
     public function themaresultaat(Scan $scan, Thema $thema, $thema_nr)
-    {
+    {        
+        $scanbeheerder = false;
+        if(count(Auth::user()->beheert->intersect([$scan]))) {
+            $scanbeheerder = true;
+        }
+        JavaScript::put([
+            'scan' => $scan,
+            'thema' => $thema,
+            'thema_nr' => $thema_nr,
+            'scanbeheerder' => $scanbeheerder,
+        ]);
+
         $themasaverage = [];
         foreach($thema->questions as $question)
         {
@@ -162,7 +173,6 @@ class ScansController extends Controller
                     $participantcount ++;
                 }
             }
-            // $thisaverage = 0;
             if($participantcount > 0)
             {
                 $thisaverage = $thisaverage / $participantcount;

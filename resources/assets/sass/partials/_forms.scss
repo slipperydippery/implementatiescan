@@ -37,3 +37,29 @@ span.help-block {
   border: 1px solid #aaa;
   
 }
+
+$checkbox-size: 1.5rem;
+
+.checkbox {
+  display: inline-block;
+  width: $checkbox-size;
+  height: $checkbox-size;
+  background: #ffffff;
+  border: 1px solid #333;
+  border-radius: .3rem;
+}
+
+.checkbox {
+  cursor: pointer;
+  box-shadow: inset 0px 1px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.checkbox:hover {
+  box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.75);
+}
+
+.checkbox--check {
+  color: #000;
+  font-size: $checkbox-size;
+  line-height: $checkbox-size;
+}

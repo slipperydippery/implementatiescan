@@ -13448,7 +13448,7 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],30:[function(require,module,exports){
-var __vueify_style__ = require("vueify-insert-css").insert("\n")
+var __vueify_style__ = require("vueify-insert-css").insert("\n\t.slider-verbeterpunten {\n\t\tpadding-top: 1rem;\n\t}\n\n")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -13462,6 +13462,12 @@ var _SingleSlider2 = _interopRequireDefault(_SingleSlider);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
+	http: {
+		base: '/base',
+		headers: {
+			'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
+		}
+	},
 
 	components: { SingleSlider: _SingleSlider2.default },
 
@@ -13470,28 +13476,47 @@ exports.default = {
 	data: function data() {
 		return {
 			themaResultaat: [],
-			// allComplete: false,
-			// unanswered: 12,
 			scan: scan,
-			thema_id: thema_id
+			thema: thema,
+			thema_nr: thema_nr,
+			verbeteracties: []
 		};
 	},
 	ready: function ready() {
-		this.getThemaResultaat();
-		// setInterval(function () {
-		// 	this.getParticipants();
-		// }.bind(this), 1000);
+		this.getVerbeteracties();
 	},
 	created: function created() {},
 
 
 	methods: {
+		getVerbeteracties: function getVerbeteracties() {
+			var home = this;
+			var resource = this.$resource('/api/scan/:scan/thema/:thema/verbeteractie');
+			resource.get({ scan: this.scan.id, thema: this.thema.id }).then(function (response) {
+				home.$set('verbeteracties', response.data);
+			});
+		},
+
 		getThemaResultaat: function getThemaResultaat() {
 			var _this = this;
 
-			this.$http.get('/api/scan/' + this.scan.id + '/thema/' + this.thema_id + '/getThemaOverzichtValues').then(function (response) {
+			this.$http.get('/api/scan/' + this.scan.id + '/thema/' + this.thema.id + '/getThemaOverzichtValues').then(function (response) {
 				_this.themaResultaat = response.data;
 			});
+		},
+
+		toggleActie: function toggleActie(actie) {
+			actie.active = !actie.active;
+			var home = this;
+			var resource = this.$resource('/api/verbeteractie/:actie');
+			resource.update({ actie: actie.id }, { actie: actie }).then(function (response) {});
+		},
+
+		checkAndGo: function checkAndGo(event) {
+			if (event && this.selectedActies == 0) {
+				event.preventDefault();
+				confirm('U heeft geen verbeterpunten geslecteerd, wilt u alsnog de pagina verlaten?') ? window.location.href = this.nextLink : '';
+			}
 		},
 
 		cssPercent: function cssPercent(value) {
@@ -13499,18 +13524,33 @@ exports.default = {
 		}
 	},
 
-	computed: {}
+	computed: {
+		returnRoot: function returnRoot() {
+			return window.location.protocol + "//" + window.location.host;
+		},
 
+		nextLink: function nextLink() {
+			return this.returnRoot + '/scans/' + this.scan.id + '/thema/' + this.thema_nr + '/vraag/1000';
+		},
+
+		selectedActies: function selectedActies() {
+			var selectedcount = 0;
+			for (actie in this.verbeteracties) {
+				this.verbeteracties[actie].active ? selectedcount++ : '';
+			}
+			return selectedcount;
+		}
+	}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<single-slider :thema_id=\"1\"></single-slider>\n\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row sliders-sub slider-verbeterpunten\">\n\t\t<div class=\"large-2 small-2 columns\">Verbeterpunten</div>\n\t\t<div class=\"small-2 columns checkinput text-center\" v-for=\"actie in verbeteracties\" @click=\"toggleActie(actie)\">\n\t\t\t<div class=\"checkbox\" :class=\"actie.active ? 'checkbox--checked' : 'checkbox--unchecked' \">\n\t\t\t\t<span v-if=\"actie.active\" class=\"checkbox--check\">\n\t\t\t\t\t✔\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t\n\t\t</div>\n\t</div>\n\t<div class=\"row\">\n\t\t<div class=\"small-4 columns page-next\" v-else=\"\">\n\t\t\t<a :href=\"nextLink\" class=\"button button-next\" @click=\"checkAndGo($event)\">\n\t\t\t\tVolgende Stap\n\t\t\t</a>\n\t\t</div>\n\t</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\ThemaResultaat.vue"
   module.hot.dispose(function () {
-    require("vueify-insert-css").cache["\n"] = false
+    require("vueify-insert-css").cache["\n\t.slider-verbeterpunten {\n\t\tpadding-top: 1rem;\n\t}\n\n"] = false
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {

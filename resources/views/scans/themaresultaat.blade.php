@@ -8,7 +8,7 @@
 			<h2> {{ $thema->title }} </h2>
 			<fieldset class="fieldset large-8 column">
 	  			<p class="subheading subheading__time">
-	  				Hieronder kunt u zien wat iedereen zojuist heeft ingevuld. Wat valt u op? Bespreek de resultaten de komende 15 minuten, en selecteer dan de in uw ogen belangrijkste 2 verbeterpunten.
+	  				Hieronder kunt u zien wat iedereen zojuist heeft ingevuld. Wat valt u op? Bespreek de resultaten de komende 15 minuten, en selecteer dan de in uw ogen belangrijkste 2 verbeterpunten. 
 	  			</p>
 			</fieldset>
 			<div class="large-4 columns">
@@ -20,89 +20,73 @@
 	</div>
 </div>
 
-
-
 <div class="row page-content">
-
-	{!! Form::open(['route' => ['scans.store_prebeteracties', $scan, $thema]]) !!}
-		<div class="large-12 columns algemeenbeeldslider--group">
-			<div class="row sliders-sub slider-gemiddeld__thema">
-				<div class="large-2 small-2 columns slider-empty">.
-				 </div>
-				 @foreach($thema->questions as $question)	
-				 	<div class="large-2 small-2 columns slider-columnhead">
-				 		<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title=" {{ $question->norm }} "> {{ $question->title }} <i class="float-right iclass">i</i></span> 
-				 	</div>	
-				 @endforeach
-			</div>
-			<div class="row sliders-sub sliders-sub__thema ">
-				<div class="large-2 small-2 columns">Gemiddeld</div>
-				@foreach($themasaverage as $themaaverage_id => $themaaverage)
-					<div class="large-2 small-2 columns center">
-						<div class="rangeresult" >
-							<div class="rangeresult__value" style="width: <?= $themaaverage * 10 ?>%">
-							</div>
+	<div class="large-12 columns algemeenbeeldslider--group">
+		<div class="row sliders-sub slider-gemiddeld__thema">
+			<div class="large-2 small-2 columns slider-empty">.
+			 </div>
+			 @foreach($thema->questions as $question)	
+			 	<div class="large-2 small-2 columns slider-columnhead">
+			 		<span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title=" {{ $question->norm }} "> {{ $question->title }} <i class="float-right iclass">i</i></span> 
+			 	</div>	
+			 @endforeach
+		</div>
+		<div class="row sliders-sub sliders-sub__thema ">
+			<div class="large-2 small-2 columns">Gemiddeld</div>
+			@foreach($themasaverage as $themaaverage_id => $themaaverage)
+				<div class="large-2 small-2 columns center">
+					<div class="rangeresult" >
+						<div class="rangeresult__value" style="width: <?= $themaaverage * 10 ?>%">
 						</div>
 					</div>
-				@endforeach
-			</div>
-			@foreach($scan->instanties as $instantie)
-				@if(count($instantie->participants))
-					<div class="row sliders-sub slider-{{$instantie->instantiemodel->id}} ">
-						<div class="large-2 small-2 columns"> {{ $instantie->title }} </div>
-						@foreach($thema->questions as $question)
-							<div class="large-2 small-2 columns center">
+				</div>
+			@endforeach
+		</div>
+		@foreach($scan->instanties as $instantie)
+			@if(count($instantie->participants))
+				<div class="row sliders-sub slider-{{$instantie->instantiemodel->id}} ">
+					<div class="large-2 small-2 columns"> {{ $instantie->title }} </div>
+					@foreach($thema->questions as $question)
+						<div class="large-2 small-2 columns center">
 <?php 
-	$answercount = 0;
-	$value = 0;
-	foreach($instantie->participants as $participant)
-	{	
-		if(count($participant->answers->intersect($question->answers)))
-		{
-			$value += $participant->answers->intersect($question->answers)->first()->value;
-			$answercount++;
-		}
+$answercount = 0;
+$value = 0;
+foreach($instantie->participants as $participant)
+{	
+	if(count($participant->answers->intersect($question->answers)))
+	{
+		$value += $participant->answers->intersect($question->answers)->first()->value;
+		$answercount++;
 	}
-	($answercount > 0) ? $average = $value / $answercount : $average = 0;
+}
+($answercount > 0) ? $average = $value / $answercount : $average = 0;
 
 ?>
-								@if($answercount >0)
-									<div class="rangeresult" >
-										<div class="rangeresult__value" style="width: <?= $average * 10 ?>%">
-										</div>
+							@if($answercount >0)
+								<div class="rangeresult" >
+									<div class="rangeresult__value" style="width: <?= $average * 10 ?>%">
 									</div>
-								@endif
-
-							</div>
-						@endforeach
-					</div>
-				@endif
-			@endforeach
-			<div class="row sliders-sub slider-verbeterpunten">
-				<div class="large-2 small-2 columns">Verbeterpunten</div>
-				@foreach($scan->verbeteracties as $verbeteractie)
-					@if($verbeteractie->thema_id == $thema->id)
-						<div class="large-2 small-2 columns checkinput">
-							{!! Form::checkbox('verbeteractie[]', $verbeteractie->question_id, $verbeteractie->active) !!}
+								</div>
+							@endif
 						</div>
-					@endif
-				@endforeach
-			</div>
-		</div>
-
-	
-
-		<div class="large-12 columns thema-submit-container">
-			<div class="form-group">
-			    {!! Form::submit('Sla verbeterpunten op', ['class' => 'button form-control']) !!}
-			</div>
-		</div>	
-	{!! Form::close() !!}
-
+					@endforeach
+				</div>
+			@endif
+		@endforeach
+		<thema-resultaat></thema-resultaat>
+	</div>
 </div>
 @stop
 
-
+@section('site-footer')
+<div class="row ">
+	<div class="large-4 columns page-next">	
+	<?php $question_nr = 1000 ?>
+		{{-- <a href=" {{ URL::route('scans.invoerendeelnemers', $scan) }} " class="button button-nextbutton button-next">Volgende Stap</a> --}}
+		{{-- <a href="{{ URL::route('scans.director', $scan, $thema_nr, $question_nr) }}" class="button button-next">Volgende Stap</a> --}}
+	</div>
+</div>
+@stop
 
 @section('additional-scripts')
 <script>
