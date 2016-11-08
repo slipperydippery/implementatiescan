@@ -34,7 +34,8 @@
 </template>
 
 <script>
-	
+// import scanoverviewHub from '../eventhubs/ScanoverviewHub.js';
+
 	export default {
 		http: {
 			base: '/base',
@@ -56,8 +57,17 @@
 			this.getCriteria();
 		},
 
+		created() {
+			scanoverviewHub.$on('reloadCriteria', this.getCriteria)
+		},
+
+		destroyed() {
+			scanoverviewHub.$off('reloadCriteria', this.getCriteria)
+		},
+
 		methods: {
 			getCriteria: function () {
+				console.log('getCriteria');
 				var home = this;
 				var resource = this.$resource('/api/criteria');
 				resource.get({}).then(function (response){

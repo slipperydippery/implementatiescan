@@ -52,7 +52,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::post('/api/verbeteractie/{verbeteractie}/betrokkene/{user}', 'ApiController@addbetrokkene');
     Route::delete('/api/verbeteractie/{verbeteractie}/betrokkene/{user}', 'ApiController@removebetrokkene');
 
-    Route::get('/api/scan/{scan}/participant', 'ApiController@indexparticipant');
+    Route::get('/api/scan/{scan}/participant', 'ApiController@indexscanparticipant');
     Route::get('/api/scan/{scan}/participant/{user}', 'ApiController@getparticipant');
     Route::post('/api/scan/{scan}/participant/', 'ApiController@savenewparticipant');
     Route::put('/api/scan/{scan}/participant/{user}', 'ApiController@updateparticipant');
@@ -91,6 +91,9 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::get('/api/instantiesveld', 'ApiController@instantiesveld');
     Route::get('/api/criteria', 'ApiController@criteria');
+    Route::get('/api/scan', 'ApiController@indexscan');
+    Route::put('/api/scan/{scan}', 'ApiController@updatescan');
+    Route::get('/api/user', 'ApiController@indexuser');
 
 
     /**

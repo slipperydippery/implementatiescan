@@ -68,6 +68,7 @@
 			returnRoot: function () {
 				return (window.location.protocol + "//" + window.location.host);
 			},
+			
 			participantCount: function () {
 				return this.participants.length;
 			},

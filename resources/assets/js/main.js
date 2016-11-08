@@ -5,10 +5,10 @@ $.ajaxSetup({
 });
 
 var Vue = require('vue');
-
 Vue.use(require('vue-resource'));
+window.scanoverviewHub = new Vue();
 
-
+// import scanoverviewHub from './eventhubs/ScanoverviewHub.js';
 import InvoerenDeelnemers from './components/InvoerenDeelnemers.vue';
 import ControlerenDeelnemers from './components/ControlerenDeelnemers.vue';
 import ScanSlider from './components/ScanSlider.vue';
@@ -21,10 +21,7 @@ import Programmas from './components/Programmas.vue';
 import Praktijkvoorbeelds from './components/Praktijkvoorbeelds.vue';
 import Deelnemersveld from './components/Deelnemersveld.vue';
 import Criteria from './components/Criteria.vue';
-
-// import Algemeenbeeld from './components/Algemeenbeeld.vue';
-
-// Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('value');
+import Scanlist from './components/Scanlist.vue';
 
 new Vue({
 	http: {
@@ -33,9 +30,6 @@ new Vue({
 			'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
 		}
 	},
-	// headers: {
-	//   'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
-	// },
 
 	el: 'body', 
 	props: [],
@@ -56,6 +50,7 @@ new Vue({
 		Praktijkvoorbeelds,
 		Deelnemersveld,
 		Criteria,
+		Scanlist,
 	},
 	
 

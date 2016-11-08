@@ -25,6 +25,23 @@ use App\Http\Requests\CreateAPIParticipantRequest;
 class ApiController extends Controller
 {
 
+    public function indexscan()
+    {
+        return Scan::with('participants')->get();
+    }
+
+    public function updatescan (Request $request, Scan $scan)
+    {
+        $scan->testscan = $request->scan['testscan'];
+        $scan->save();
+        return $request->all();
+    }
+
+    public function indexuser()
+    {
+        return User::all();
+    }
+
     public function verbeteracties( $thema)
     {
         $thema = Thema::findOrFail($thema);
@@ -342,7 +359,7 @@ class ApiController extends Controller
         return $verbeteracties;
     }
 
-    public function indexparticipant(Scan $scan)
+    public function indexscanparticipant(Scan $scan)
     {
         $participants = [];
         foreach($scan->participants as $participant)
@@ -544,35 +561,31 @@ class ApiController extends Controller
         }
         foreach(Verbeteractie::all() as $actie)
         {
-            // Get all Verbeteracties selected for the Werkagenda
-            if($actie->active)
+            if(! $actie->scan->testscan)
             {
-                $criteria[$actie->question_id]['allcount'] += 1;
-                if(! $actie->scan->testscan)
+                if($actie->active)
                 {
                     $criteria[$actie->question_id]['activecount'] += 1;
                 }
-            }
 
-            $totalscore = 0;
-            $totalanswers = 0;
-            foreach($actie->question->answers as $answer)
-            {
-                $totalanswers++;
-                $totalscore += $answer->value;
+                $totalscore = 0;
+                $totalanswers = 0;
+                foreach($actie->question->answers as $answer)
+                {
+                    $totalanswers++;
+                    $totalscore += $answer->value;
+                }
+                if($totalanswers > 0)
+                {
+                    $criteria[$actie->question_id]['averagescore'] = $totalscore / $totalanswers;
+                }
+                foreach($actie->subacties as $subactie)
+                {
+                    $criteria[$actie->question_id]['subacties'] += 1;
+                }
             }
-            if($totalanswers > 0)
-            {
-                $criteria[$actie->question_id]['averagescore'] = $totalscore / $totalanswers;
-            }
-            foreach($actie->subacties as $subactie)
-            {
-                $criteria[$actie->question_id]['subacties'] += 1;
-            }
-
         }
         return $criteria;
     }
-
 
 }
