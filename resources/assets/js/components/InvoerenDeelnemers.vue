@@ -86,6 +86,7 @@
 			pushParticipant: function (participant) {
 				this.participants.push(participant);
 				this.sortParticipants();
+				this.getParticipants();
 			},
 
 			removeParticipant: function (participant) {

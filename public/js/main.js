@@ -12085,7 +12085,7 @@ exports.default = {
 		},
 
 		saveNewParticipant: function saveNewParticipant() {
-			this.setInstantiemodelData();
+			// this.setInstantiemodelData();
 			var home = this;
 			var resource = this.$resource('/api/scan/:scan/participant/');
 			resource.save({ scan: this.scan.id }, { participant: this.participant }).then(function (response) {
@@ -12536,6 +12536,7 @@ exports.default = {
 		pushParticipant: function pushParticipant(participant) {
 			this.participants.push(participant);
 			this.sortParticipants();
+			this.getParticipants();
 		},
 
 		removeParticipant: function removeParticipant(participant) {
