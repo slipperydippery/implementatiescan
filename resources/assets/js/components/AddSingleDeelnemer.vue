@@ -161,7 +161,7 @@
 			},
 
 			saveNewParticipant: function () {
-		        home.setInstantiemodelData();
+		        this.setInstantiemodelData();
 				var home = this;
 				var resource = this.$resource('/api/scan/:scan/participant/');
 				resource.save({scan: this.scan.id}, 
