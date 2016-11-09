@@ -13,7 +13,7 @@
 <!-- Link Form Input -->
 <div class="form-group">
 	{!! Form::label('adress', 'Link:') !!}
-	{!! Form::text('adress', null, ['class' => 'form-control']) !!}
+	{!! Form::text('adress', 'http://www.implementatiescan.nl/pdf/', ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
