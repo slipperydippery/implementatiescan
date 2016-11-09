@@ -25,6 +25,7 @@ Hieronder vindt u informatie over de succesfactoren voor het begeleiden van jong
 		  	<li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Instrumenten</a></li>
 		  	<li class="tabs-title"><a href="#panel2">Programma's</a></li>
 		  	<li class="tabs-title"><a href="#panel3">Praktijkvoorbeelden</a></li>
+		  	<li class="tabs-title"><a href="#panel4">PDFs</a></li>
 		</ul>
 		<div class="tabs-content" data-tabs-content="example-tabs">
 		  	<div class="tabs-panel is-active" id="panel1">
@@ -49,6 +50,16 @@ Hieronder vindt u informatie over de succesfactoren voor het begeleiden van jong
 		  	</div>
 		  	<div class="tabs-panel" id="panel3">
 		    	<praktijkvoorbeelds></praktijkvoorbeelds>
+				<div class="row">
+					@if(Auth::check())
+						@if(Auth::user()->hasRole('admin'))
+							<a href=" {{ route('praktijkvoorbeelds.create') }} " class="button float-right">Voeg een praktijkvoorbeeld toe</a>
+						@endif
+					@endif
+				</div>
+		  	</div>
+		  	<div class="tabs-panel" id="panel4">
+		    	<pdfs></pdfs>
 				<div class="row">
 					@if(Auth::check())
 						@if(Auth::user()->hasRole('admin'))

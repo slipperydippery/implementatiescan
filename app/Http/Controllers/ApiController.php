@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Pdf;
 use App\Scan;
 use App\User;
 use App\Thema;
@@ -507,20 +508,22 @@ class ApiController extends Controller
 
     public function getInstruments()
     {
-        $instruments = Instrument::with('themas')->get();
-        return $instruments;
+        return Instrument::with('themas')->get();
     }
 
     public function getProgrammas()
     {
-        $programmas = Programma::with('themas')->get();
-        return $programmas;
+        return Programma::with('themas')->get();
     }
 
     public function getPraktijkvoorbeelds()
     {
-        $praktijkvoorbeelds = Praktijkvoorbeeld::with('themas')->get();
-        return $praktijkvoorbeelds;
+        return Praktijkvoorbeeld::with('themas')->get();
+    }
+
+    public function getPdfs()
+    {
+        return Pdf::all();
     }
 
     public function instantiesveld()
