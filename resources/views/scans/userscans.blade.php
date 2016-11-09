@@ -19,8 +19,8 @@
 		@foreach($scans as $scan)
 			<h5>{{ $scan->title }}, {{ $scan->regio }}</h5>
 			<ul>
-				<li><a href="{{ URL::route('scans.intro', $scan) }}" class="visible_link">{{ $scan->title }} - scan deel 1</a></li>
-				<li><a href="{{ URL::route('scans.werkagenda', $scan) }}" class="visible_link">{{ $scan->title }} - scan deel 2</a></li>
+				<li><a href="{{ URL::route('scans.intro', $scan) }}" class="visible_link">Deel 1</a></li>
+				<li><a href="{{ URL::route('scans.werkagenda', $scan) }}" class="visible_link">Deel 2</a></li>
 				
 			</ul>
 		@endforeach

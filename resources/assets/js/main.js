@@ -25,6 +25,7 @@ import Deelnemersveld from './components/Deelnemersveld.vue';
 import Criteria from './components/Criteria.vue';
 import Scanlist from './components/Scanlist.vue';
 import Kennismaken from './components/Kennismaken.vue';
+import DeelnemersMenuItem from './components/DeelnemersMenuItem.vue';
 
 
 new Vue({
@@ -56,6 +57,7 @@ new Vue({
 		Criteria,
 		Scanlist,
 		Kennismaken,
+		DeelnemersMenuItem
 	},
 	
 

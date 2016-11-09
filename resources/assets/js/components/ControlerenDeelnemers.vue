@@ -2,7 +2,7 @@
 	<div v-for="participant in participants">
 		<div 
 			class="large-2 column submitted-user"
-			:class="{ beheerder: participant.beheerder, offline: offline(participant) }"
+			:class="{ beheerder: participant.beheerder, offline: (offline(participant) && kennismaken) }"
 		>
 			<a href="#" 
 				class="close-button" 
@@ -40,6 +40,7 @@
 				participants: [],
 				scan: scan,
 				scanbeheerder: scanbeheerder,
+				kennismaken: kennismaken,
 			}
 		},
 

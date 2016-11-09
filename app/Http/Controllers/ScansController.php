@@ -221,6 +221,7 @@ class ScansController extends Controller
         JavaScript::put([
             'scan' => $scan,
             'scanbeheerder' => $scanbeheerder,
+            'kennismaken' => true,
         ]);
         
         $instantieoptions = [];
@@ -563,6 +564,7 @@ Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastges
         JavaScript::put([
             'scan' => $scan,
             'scanbeheerder' => $scanbeheerder,
+            'kennismaken' => false,
         ]);
 
         $instantieoptions = [];

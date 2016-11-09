@@ -22,6 +22,7 @@
 		              	</div>
 	              	@endforeach
 	            </div>
+	            <deelnemers-menu-item></deelnemers-menu-item>
 
               	<button class="close-button" data-close aria-label="Close reveal" type="button">
                 	<span aria-hidden="true">&times;</span>
