@@ -15,7 +15,7 @@ class PdfsController extends Controller
      */
     public function index()
     {
-        //
+        return PDF::all();
     }
 
     /**
