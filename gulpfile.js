@@ -1,29 +1,30 @@
 var elixir = require('laravel-elixir');
 
-// elixir.config.sourcemaps = process.env.APP_DEBUG;
+// elixir.config. ... for various config options
 
 require('laravel-elixir-browserify-official');
 require('laravel-elixir-vueify');
 
 elixir(function(mix) {
     // Compile CSS
-    mix.sass(
-        'app.scss', // Source files
-        'public/css', // Destination folder
-        null,
-        {includePaths: ['vendor/bower_components/foundation-sites/scss']}
+    mix.sass([
+            'app.scss',                                                     // Source files
+            'datetimepicker.scss'
+        ],                                  
+        'public/css',                                                       // Destination folder
+        null,                                                               // Source base dir
+        {includePaths: ['vendor/bower_components/foundation-sites/scss']}   // Options
     );
 
     // Compile JavaScript
-    // mix.browserify('main.js');
-    mix.browserify("main.js", "public/js");
+    mix.browserify("main.js");
 
-    mix.scripts("quest.js", "public/js", "resources/assets/js");
-
-    mix.scripts(
-        ['modernizr/modernizr.js', 'jquery/dist/jquery.js', 'foundation-sites/dist/foundation.js'], // Source files. You can also selective choose only some components
-        'public/js/dependencies.js', // Destination file
-        'vendor/bower_components/' // Source files base directory
+    mix.scripts([
+            'modernizr/modernizr.js', 
+            'jquery/dist/jquery.js', 
+            'foundation-sites/dist/foundation.js'
+            ], 
+        'public/js/dependencies.js', 
+        'vendor/bower_components/' 
     );
-
 });

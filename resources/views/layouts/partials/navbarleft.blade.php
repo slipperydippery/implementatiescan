@@ -42,7 +42,7 @@
 				<a href="#">Scan inrichten</a>
 				<ul class="menu vertical nested">
 					@foreach(Auth::user()->beheert as $beheerscan)
-						<li><a href=" {{ URL::route('scans.invoerendeelnemers', $beheerscan) }} "> {{ $beheerscan->title }}</a></li>
+						<li><a href=" {{ URL::route('scans.inrichten.invoerendeelnemers', $beheerscan) }} "> {{ $beheerscan->title }}</a></li>
 					@endforeach
 				</ul>
 			</li>
@@ -64,10 +64,10 @@
 			<li >
 				<a href="#">Scan inrichten</a>
 				<ul class="menu vertical nested ">
-					<li><a href="{{ URL::route('scans.instructiefilm', $scan) }}">Instructiefilm</a></li>
-					<li><a href="{{ URL::route('scans.invoerendeelnemers', $scan) }}">Invoeren deelnemersgegevens</a></li>
-					<li><a href="{{ URL::route('scans.controlerendeelnemers', $scan) }}">Controleren deelnemersgegevens</a></li>
-					<li><a href="{{ URL::route('scans.uitnodigendeelnemers', $scan) }}">Mailen van uitnodiging</a></li>
+					<li><a href="{{ URL::route('scans.inrichten.instructiefilm', $scan) }}">Instructiefilm</a></li>
+					<li><a href="{{ URL::route('scans.inrichten.invoerendeelnemers', $scan) }}">Invoeren deelnemersgegevens</a></li>
+					<li><a href="{{ URL::route('scans.inrichten.controlerendeelnemers', $scan) }}">Controleren deelnemersgegevens</a></li>
+					<li><a href="{{ URL::route('scans.inrichten.uitnodigendeelnemers', $scan) }}">Mailen van uitnodiging</a></li>
 				</ul>
 			</li>
 		@endif

@@ -14,6 +14,7 @@
 				</div>
 			</div>
 		</div>
+
 		<!-- Full view -->
 		<div v-if="(actie.active && actie.werkactive) || (!isWerkAgenda && actie.active)" class="single_actie">	
 			<div class="row">

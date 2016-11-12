@@ -13970,4 +13970,4 @@ new Vue({
 
 },{"./components/Acties.vue":14,"./components/ControlerenDeelnemers.vue":17,"./components/Criteria.vue":18,"./components/DeelnemersMenuItem.vue":19,"./components/Deelnemersveld.vue":20,"./components/Instrumenten.vue":21,"./components/InvoerenDeelnemers.vue":22,"./components/Kennismaken.vue":23,"./components/Pdfs.vue":24,"./components/Praktijkvoorbeelds.vue":25,"./components/PreThemaResultaat.vue":26,"./components/Programmas.vue":27,"./components/ScanSlider.vue":28,"./components/Scanlist.vue":29,"./components/SingleSlider.vue":31,"./components/ThemaResultaat.vue":33,"vue":11,"vue-resource":4}]},{},[34]);
 
-//# sourceMappingURL=main.js.map
+//# sourceMappingURL=browserified.js.map

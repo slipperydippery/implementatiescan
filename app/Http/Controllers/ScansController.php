@@ -492,55 +492,6 @@ Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastges
         return view('scans.werkagendamailen', compact('scan', 'werkagendatext'));
     }
 
-    public function voorzitterscans(Scan $scan)
-    {
-        $user = Auth::user();
-        $scans = $user->beheert->all();
-        if(count($scans) > 1)
-        {
-            return view ('scans.voorzitterscans', compact('scans'));
-        } elseif (count($scans) < 1){
-            return Redirect::route('home');
-        }
-        return Redirect::route('scans.instructiefilm', $user->beheert->first());
-    }
-
-    public function instructiefilm(Scan $scan)
-    {
-        return view ('scans.inrichten.instructiefilm', compact('scan'));
-    }
-
-    public function invoerendeelnemers(Scan $scan)
-    {
-        $instantieoptions = [];
-        foreach($scan->instanties as $instantie)
-        {
-            // if(count($instantie->participants) < 2)
-            // {
-                $instantieoptions[$instantie->id] = $instantie->title;
-            // }
-        }
-        JavaScript::put([
-            'scan' => $scan,
-        ]);
-        return view ('scans.inrichten.invoerendeelnemers', compact('scan', 'instantieoptions'));
-    }
-
-    public function editinvoerdeelnemer(Scan $scan, User $user)
-    {
-        $instantieoptions = [];
-        foreach($scan->instanties as $instantie)
-        {
-            $hasinstantie = ($user->instanties->intersect($scan->instanties) == $instantie);
-            // if(count($instantie->participants) < 2 || $hasinstantie )
-            // {
-                $instantieoptions[$instantie->id] = $instantie->title;
-            // }
-        }
-
-        return view('scans.inrichten.invoerendeelnemers', compact('scan', 'instantieoptions', 'user'));
-    }
-
     public function storedeelnemer(Scan $scan, Request $request)
     {
         if (! User::where('email', '=', $request->email)->get()->count())
@@ -556,32 +507,6 @@ Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastges
         $instantie->participants()->save($user);
 
         return Redirect::back();    
-    }
-
-    public function controlerendeelnemers(Scan $scan)
-    {
-        $scanbeheerder = (count(Auth::user()->beheert->intersect([$scan])));
-        JavaScript::put([
-            'scan' => $scan,
-            'scanbeheerder' => $scanbeheerder,
-            'kennismaken' => false,
-        ]);
-
-        $instantieoptions = [];
-        foreach($scan->instanties as $instantie)
-        {
-            // if(count($instantie->participants) < 2)
-            // {
-                $instantieoptions[$instantie->id] = $instantie->title ;
-            // }
-        }  
-
-        return view ('scans.inrichten.controlerendeelnemers', compact('scan', 'instantieoptions'));
-    }
-
-    public function uitnodigendeelnemers(Scan $scan)
-    {
-        return view ('scans.inrichten.uitnodigendeelnemers', compact('scan'));
     }
 
     public function addparticipant(Requests\CreateParticipantRequest $request, Scan $scan)

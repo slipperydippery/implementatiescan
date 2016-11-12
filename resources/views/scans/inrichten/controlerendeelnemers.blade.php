@@ -99,7 +99,7 @@
 <div class="row ">
 	<div class="large-4 column page-next">	
 
-		<a href="{{ URL::route('scans.uitnodigendeelnemers', $scan) }}" class="button button-next">Volgende Stap</a>
+		<a href="{{ URL::route('scans.inrichten.uitnodigendeelnemers', $scan) }}" class="button button-next">Volgende Stap</a>
 	</div>
 </div>
 

@@ -15,7 +15,6 @@ use App\Thema;
 */
 
 Route::post('/send', 'EmailController@send');
-Route::post('/send/senduitnodiging/scan/{scan}', ['as' => 'senduitnodiging', 'uses' => 'EmailController@senduitnodiging']);
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
@@ -183,14 +182,16 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     /**
      * Scan inrichten
      */
-    Route::get('/voorzitter/scans', ['as' => 'voorzitter.scans', 'uses' => 'ScansController@voorzitterscans']);
-    Route::get('/scans/{scan}/inrichten/instructiefilm', ['as' => 'scans.instructiefilm', 'uses' => 'ScansController@instructiefilm']);
-    Route::get('/scans/{scan}/inrichten/invoerendeelnemers', ['as' => 'scans.invoerendeelnemers', 'uses' => 'ScansController@invoerendeelnemers']);
-    Route::get('/scans/{scan}/inrichten/editinvoerdeelnemer/{user}', ['as' => 'scans.editinvoerdeelnemer', 'uses' => 'ScansController@editinvoerdeelnemer']);
-    Route::post('/scans/{scan}/inrichten/invoerendeelnemers', ['as' => 'scans.storedeelnemer', 'uses' => 'ScansController@storedeelnemer']);
-    Route::get('/scans/{scan}/inrichten/controlerendeelnemers', ['as' => 'scans.controlerendeelnemers', 'uses' => 'ScansController@controlerendeelnemers']);
-    Route::get('/scans/{scan}/inrichten/uitnodigendeelnemers', ['as' => 'scans.uitnodigendeelnemers', 'uses' => 'ScansController@uitnodigendeelnemers']);
-    Route::post('/scans/{scan}/inrichten/uitnodigendeelnemers', ['as' => 'scans.post_uitnodigendeelnemers', 'uses' => 'ScansController@post_uitnodigendeelnemers']);
+    Route::get('/voorzitter/scans', ['as' => 'voorzitter.scans', 'uses' => 'InrichtenController@voorzitterscans']);
+    Route::get('/scans/{scan}/inrichten/instructiefilm', ['as' => 'scans.inrichten.instructiefilm', 'uses' => 'InrichtenController@instructiefilm']);
+    Route::get('/scans/{scan}/inrichten/invoerendeelnemers', ['as' => 'scans.inrichten.invoerendeelnemers', 'uses' => 'InrichtenController@invoerendeelnemers']);
+    Route::get('/scans/{scan}/inrichten/editinvoerdeelnemer/{user}', ['as' => 'scans.inrichten.editinvoerdeelnemer', 'uses' => 'InrichtenController@editinvoerdeelnemer']);
+    Route::post('/scans/{scan}/inrichten/invoerendeelnemers', ['as' => 'scans.inrichten.storedeelnemer', 'uses' => 'InrichtenController@storedeelnemer']);
+    Route::get('/scans/{scan}/inrichten/controlerendeelnemers', ['as' => 'scans.inrichten.controlerendeelnemers', 'uses' => 'InrichtenController@controlerendeelnemers']);
+    Route::get('/scans/{scan}/inrichten/uitnodigendeelnemers', ['as' => 'scans.inrichten.uitnodigendeelnemers', 'uses' => 'InrichtenController@uitnodigendeelnemers']);
+    Route::post('/send/senduitnodiging/scan/{scan}', ['as' => 'senduitnodiging', 'uses' => 'EmailController@senduitnodiging']);
+    Route::post('/scans/{scan}/inrichten/uitnodigendeelnemers', ['as' => 'scans.inrichten.post_uitnodigendeelnemers', 'uses' => 'InrichtenController@post_uitnodigendeelnemers']);
+    Route::get('/scans/{scan}/inrichten/mailverstuurd', ['as' => 'scans.inrichten.mailverstuurd', 'uses' => 'InrichtenController@mailverstuurd']);
     Route::get('/bedankt', ['as' => 'bedankt', 'uses' => 'PagesController@bedankt']);
 
 

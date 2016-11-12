@@ -7,7 +7,7 @@
 			<h1>Verbeteracties gemaild</h1>
 			<fieldset class="fieldset">
 	  			<p class="subheading subheading__time">
-	  				De resultaten van de Implementatiescan worden nu naar alle deelnemers verstuurd per email. 
+	  				De resultaten van de Implementatiescan worden nu naar alle deelnemers verstuurd per email.
 	  			</p>
 			</fieldset>
 		</div>
