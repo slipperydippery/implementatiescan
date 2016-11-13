@@ -62,22 +62,8 @@ class ScansController extends Controller
         
         $scan = Scan::register($user, $request->all());
        
-        // SEND MAIL   
         if($request->withmail) {
-            $title = 'Uitnodiging Implementatiescan';
-            $content = $request->input('email_bericht') . '
-
-    Uw gebruikersnaam is: ' . $user->email . '
-    Uw wachtwoord is: ' . $user->initial_pwd;
-            $data = ['title' => '', 'content' => nl2br($content)];
-            Mail::send('emails.send', $data , function ($message) use ($request)
-            {
-                $message->from('no-reply@implementatiescan.nl', 'Implementatiescan');
-
-                $message->to($request->input('beheerder_email'));
-
-                $message->subject('Uitnodiging Implementatiescan');
-            });
+            dispatch(new SendInvitation($user, $request));
         }
         return Redirect::route('scans.index');
     }

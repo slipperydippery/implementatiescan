@@ -19,12 +19,14 @@ Route::post('/send', 'EmailController@send');
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
-    Route::get('/databank', ['as' => 'databank', 'uses' => 'InstrumentsController@index']);
     Route::get('/api/scanmodel/thema', 'ApiController@indexscanmodelthema');
+    
+    Route::get('/databank', ['as' => 'databank', 'uses' => 'InstrumentsController@index']);
     Route::get('/api/instruments', 'ApiController@getInstruments');
-    Route::get('/api/pdfs', 'ApiController@getPdfs');
     Route::get('/api/programma', 'ApiController@getProgrammas');
     Route::get('/api/praktijkvoorbeeld', 'ApiController@getPraktijkvoorbeelds');
+    Route::get('/api/pdfs', 'ApiController@getPdfs');
+
     Route::get('/users/request', ['as' => 'users.request', 'uses' => 'UsersController@request']);
     Route::post('/users/request', ['as' => 'users.sendrequest', 'uses' => 'EmailController@sendrequest']);
     Route::get('/users/requestthank', ['as' => 'users.requestthank', 'uses' => 'EmailController@requestthank']);
@@ -81,7 +83,6 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::get('/api/scan/{scan}/thema/{thema_id}/themaanswered', 'ApiController@themaanswered');
     Route::get('/api/scan/{scan}/thema/{thema_id}/user/{user}/slidervalue', 'ApiController@slidervalue');
-    // Route::get('/api/verbeteracties/{id}', ['as' => 'temper', 'uses' => 'ApiController@verbeteracties']);
     Route::patch('/api/scan/{scan}/thema/{thema_id}/user/{user}/setslidervalue', 'ApiController@setslidervalue');
     Route::get('/api/scan/{scan}/thema/{thema}/getParticipantABValues', 'ApiController@getParticipantABValues');
     Route::get('/api/scan/{scan}/thema/{thema}/getNrUnanswered', 'ApiController@getNrUnanswered');
@@ -103,18 +104,15 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::post('/themas/{thema}/video', ['as' => 'themas.updatevideo', 'uses' => 'ThemasController@updatevideo']);
 
     /**
-     * Instruments
-     */
-    Route::resource('instruments', 'InstrumentsController');
-    Route::resource('programmas', 'ProgrammasController');
-    Route::resource('praktijkvoorbeelds', 'PraktijkvoorbeeldsController');
-    Route::resource('pdfs', 'PdfsController');
-
-    /**
      *  Beheerder
      */
     
     Route::post('/scans/{scan}', ['as' => 'scans.addparticipant', 'uses' => 'ScansController@addparticipant']);
+
+    /**
+     * Admin
+     */
+    Route::get('/admin/scanrequests', ['as' => 'admin.scanrequests', 'uses' => 'AdminController@scanrequests']);
     Route::get('/scans/{scan}/video', ['as' => 'scans.video', 'uses' => 'ScansController@video' ]);
     Route::post('scans/{scan}/video', ['as' => 'scans.updatevideo', 'uses' => 'ScansController@updatevideo']);
 
@@ -128,10 +126,6 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('scanmodels', 'ScanmodelsController');
     Route::resource('users', 'UsersController');
     Route::resource('consultants', 'ConsultantsController');
-
-    // Consultants
-    Route::get('/scans/{scan}/addconsultant', ['as' => 'consultants.createwithscan', 'uses' => 'ConsultantsController@createwithscan']);
-    Route::post('/scans/{scan}/addconsultant', ['as' => 'consultants.storewithscan', 'uses' => 'ConsultantsController@storewithscan']);
 
 
     Route::post('/users/{user}/changepassword', ['as' => 'users.changepassword', 'uses' => 'UsersController@changepassword']);
@@ -194,11 +188,13 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/scans/{scan}/inrichten/mailverstuurd', ['as' => 'scans.inrichten.mailverstuurd', 'uses' => 'InrichtenController@mailverstuurd']);
     Route::get('/bedankt', ['as' => 'bedankt', 'uses' => 'PagesController@bedankt']);
 
-
     /**
-     * Admin
+     * Kennisbank
      */
-    Route::get('/admin/scanrequests', ['as' => 'admin.scanrequests', 'uses' => 'AdminController@scanrequests']);
+    Route::resource('instruments', 'InstrumentsController');
+    Route::resource('programmas', 'ProgrammasController');
+    Route::resource('praktijkvoorbeelds', 'PraktijkvoorbeeldsController');
+    Route::resource('pdfs', 'PdfsController');
 
 });
 
