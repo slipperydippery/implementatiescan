@@ -54,13 +54,12 @@ class ScansController extends Controller
      */
     public function store(Requests\CreateScanRequest $request)
     {
-
         $user = User::register([
             'name_first' => $request->name_first,
             'name_last' => $request->name_last,
             'email' => $request->beheerder_email,
         ]);
-
+        
         $scan = Scan::register($user, $request->all());
        
         // SEND MAIL   
@@ -80,7 +79,6 @@ class ScansController extends Controller
                 $message->subject('Uitnodiging Implementatiescan');
             });
         }
-
         return Redirect::route('scans.index');
     }
 
@@ -197,7 +195,6 @@ class ScansController extends Controller
             return Redirect::route('scans.werkagenda', compact('scan'));
         }
         return Redirect::route('scans.intro', compact('scan'));
-
     }
 
     public function userscans()
@@ -227,20 +224,15 @@ class ScansController extends Controller
         $instantieoptions = [];
         foreach($scan->instanties as $instantie)
         {
-            // if(count($instantie->participants) < 2)
-            // {
-                $instantieoptions[$instantie->id] = $instantie->title ;
-            // }
+            $instantieoptions[$instantie->id] = $instantie->title ;
         }        
         return view ('scans.kennismaken', compact('scan', 'instantieoptions'));
     }
 
     public function removeuser(Scan $scan, User $user)
     {
-        // return $user->id;
         $scan->participants()->detach($user->id);
         $instantie = $user->instanties->intersect($scan->instanties)->first();
-        // return $instantie->first()->id;
         $user->instanties()->detach($instantie->id);
         return redirect()->back();
     }
@@ -292,8 +284,6 @@ class ScansController extends Controller
 
     public function store_prebeteracties(Request $request, Scan $scan, $thema_nr)
     {
-        // $thema = $scan->scanmodel->themas->get($thema_nr - 1);
-
         foreach($scan->verbeteracties as $verbeteractie)
         {
             if( $verbeteractie->thema_id == $thema_nr)
@@ -320,25 +310,6 @@ class ScansController extends Controller
             'agendaType' => 'actieoverzicht',
         ]);
         return view ('scans.actieoverzicht', compact('scan'));
-    }
-
-    public function post_verbeteracties(Request $request, Scan $scan)
-    {
-        
-
-        /**
-         * dit is voor de verbeteractie agenda
-         */
-        // $verbeteractie = new Verbeteractie();
-        // $verbeteractie->omschrijving
-        // $verbeteractie->thema()->save($thema);
-        // $verbetaractie->scan()->save($scan);
-        // $verbeteractie->trekker()->save($trekker);
-        // foreach($betrokkennen as $betrokkenne)
-        // {
-            // $betrokkenne->verbeteracties()->save($verbeteractie);
-        // }
-        // 
     }
 
     public function actiesbevesitigen(Request $request, Scan $scan)

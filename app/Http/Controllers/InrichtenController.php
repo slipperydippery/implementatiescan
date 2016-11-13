@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Redirect;
 use App\Scan;
 use JavaScript;
 use App\Http\Requests;
@@ -10,16 +11,16 @@ use Illuminate\Http\Request;
 
 class InrichtenController extends Controller
 {
-	public function inrichtscans()
+	public function overzichtscans()
 	{
 		$user = Auth::user();
 		$scans = $user->beheert->all();
 		if(count($scans) > 1) {
-		    return view ('scans.inrichten.inrichtscans', compact('scans'));
+		    return view ('scans.inrichten.overzichtscans', compact('scans'));
 		} elseif (count($scans) < 1) {
 		    return Redirect::route('home');
 		}
-		return Redirect::route('scans.instructiefilm', $user->beheert->first());
+		return Redirect::route('scans.inrichten.instructiefilm', $user->beheert->first());
 	}
 
     public function instructiefilm(Scan $scan)

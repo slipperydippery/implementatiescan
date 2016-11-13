@@ -182,7 +182,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     /**
      * Scan inrichten
      */
-    Route::get('/voorzitter/scans', ['as' => 'voorzitter.scans', 'uses' => 'InrichtenController@voorzitterscans']);
+    Route::get('/inrichten/overzichtscans', ['as' => 'scans.inrichten.overzichtscans', 'uses' => 'InrichtenController@overzichtscans']);
     Route::get('/scans/{scan}/inrichten/instructiefilm', ['as' => 'scans.inrichten.instructiefilm', 'uses' => 'InrichtenController@instructiefilm']);
     Route::get('/scans/{scan}/inrichten/invoerendeelnemers', ['as' => 'scans.inrichten.invoerendeelnemers', 'uses' => 'InrichtenController@invoerendeelnemers']);
     Route::get('/scans/{scan}/inrichten/editinvoerdeelnemer/{user}', ['as' => 'scans.inrichten.editinvoerdeelnemer', 'uses' => 'InrichtenController@editinvoerdeelnemer']);

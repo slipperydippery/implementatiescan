@@ -59,7 +59,7 @@
 		<div class="row">
 			<div class="small-4 columns triblock">
 				@if(!$logged)
-					<a href="{{ URL::route('voorzitter.scans') }}" 
+					<a href="{{ URL::route('scans.inrichten.overzichtscans') }}" 
 						role="button" 
 						class="title_button has-tip"
 						aria-haspopup="true" 
@@ -67,7 +67,7 @@
 						tabindex="1" title="Log in om scans in te kunnen richten"
 					>
 				@elseif($inrichten)
-					<a href="{{ URL::route('voorzitter.scans') }}" 
+					<a href="{{ URL::route('scans.inrichten.overzichtscans') }}" 
 						role="button" 
 						class="title_button"
 					>
