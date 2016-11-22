@@ -73,9 +73,9 @@
 			searchedAndFilteredInstruments: function () {
 				var self = this;
 				return self.filteredInstruments.filter(function(instrument) {
-					if( instrument.description.toLowerCase().includes(self.search.toLowerCase()) ||
-						instrument.title.toLowerCase().includes(self.search.toLowerCase()) ||
-						instrument.adress.toLowerCase().includes(self.search.toLowerCase()) 
+					if( (instrument.description.toLowerCase().indexOf(self.search.toLowerCase()) !== -1) ||
+						(instrument.title.toLowerCase().indexOf(self.search.toLowerCase()) !== -1) ||
+						(instrument.adress.toLowerCase().indexOf(self.search.toLowerCase()) !== -1) 
 					)
 					{
 						return true;

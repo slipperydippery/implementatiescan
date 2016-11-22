@@ -1,4 +1,4 @@
-<template>
+\<template>
 	<div class="row searchitems">
 		<div class="small-6 columns">
 			<h3>Zoek op trefwoord</h3>
@@ -53,9 +53,9 @@
 			searchedProgrammas: function () {
 				var self = this;
 				return self.programmas.filter(function(programma) {
-					if( programma.description.toLowerCase().includes(self.search.toLowerCase()) ||
-						programma.title.toLowerCase().includes(self.search.toLowerCase()) ||
-						programma.adress.toLowerCase().includes(self.search.toLowerCase()) 
+					if( (programma.description.toLowerCase().indexOf(self.search.toLowerCase()) !== -1) ||
+						(progrpamma.title.toLowerCase().indexOf(self.search.toLowerCase()) !== -1) ||
+						(programma.adress.toLowerCase().indexOf(self.search.toLowerCase()) !== -1) 
 					)
 					{
 						return true;

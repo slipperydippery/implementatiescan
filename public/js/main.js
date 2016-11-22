@@ -12516,7 +12516,7 @@ exports.default = {
 		searchedAndFilteredInstruments: function searchedAndFilteredInstruments() {
 			var self = this;
 			return self.filteredInstruments.filter(function (instrument) {
-				if (instrument.description.toLowerCase().includes(self.search.toLowerCase()) || instrument.title.toLowerCase().includes(self.search.toLowerCase()) || instrument.adress.toLowerCase().includes(self.search.toLowerCase())) {
+				if (instrument.description.toLowerCase().indexOf(self.search.toLowerCase()) !== -1 || instrument.title.toLowerCase().indexOf(self.search.toLowerCase()) !== -1 || instrument.adress.toLowerCase().indexOf(self.search.toLowerCase()) !== -1) {
 					return true;
 				}
 			});
@@ -13022,7 +13022,7 @@ exports.default = {
 		searchedAndFilteredPraktijkvoorbeelds: function searchedAndFilteredPraktijkvoorbeelds() {
 			var self = this;
 			return self.filteredPraktijkvoorbeelds.filter(function (praktijkvoorbeeld) {
-				if (praktijkvoorbeeld.description.toLowerCase().includes(self.search.toLowerCase()) || praktijkvoorbeeld.title.toLowerCase().includes(self.search.toLowerCase()) || praktijkvoorbeeld.adress.toLowerCase().includes(self.search.toLowerCase())) {
+				if (praktijkvoorbeeld.description.toLowerCase().indexOf(self.search.toLowerCase()) !== -1 || praktijkvoorbeeld.title.toLowerCase().indexOf(self.search.toLowerCase()) !== -1 || praktijkvoorbeeld.adress.toLowerCase().indexOf(self.search.toLowerCase()) !== -1) {
 					return true;
 				}
 			});
@@ -13218,7 +13218,7 @@ exports.default = {
 		searchedProgrammas: function searchedProgrammas() {
 			var self = this;
 			return self.programmas.filter(function (programma) {
-				if (programma.description.toLowerCase().includes(self.search.toLowerCase()) || programma.title.toLowerCase().includes(self.search.toLowerCase()) || programma.adress.toLowerCase().includes(self.search.toLowerCase())) {
+				if (programma.description.toLowerCase().indexOf(self.search.toLowerCase()) !== -1 || progrpamma.title.toLowerCase().indexOf(self.search.toLowerCase()) !== -1 || programma.adress.toLowerCase().indexOf(self.search.toLowerCase()) !== -1) {
 					return true;
 				}
 			});

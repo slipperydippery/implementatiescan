@@ -86,9 +86,9 @@
 			searchedAndFilteredPraktijkvoorbeelds: function () {
 				var self = this;
 				return self.filteredPraktijkvoorbeelds.filter(function(praktijkvoorbeeld) {
-					if( praktijkvoorbeeld.description.toLowerCase().includes(self.search.toLowerCase()) ||
-						praktijkvoorbeeld.title.toLowerCase().includes(self.search.toLowerCase()) ||
-						praktijkvoorbeeld.adress.toLowerCase().includes(self.search.toLowerCase()) 
+					if( (praktijkvoorbeeld.description.toLowerCase().indexOf(self.search.toLowerCase()) !== -1) ||
+						(praktijkvoorbeeld.title.toLowerCase().indexOf(self.search.toLowerCase()) !== -1) ||
+						(praktijkvoorbeeld.adress.toLowerCase().indexOf(self.search.toLowerCase()) !== -1) 
 					)
 					{
 						return true;
