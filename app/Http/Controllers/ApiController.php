@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Pdf;
+use App\Link;
 use App\Scan;
 use App\User;
 use App\Thema;
@@ -524,6 +525,11 @@ class ApiController extends Controller
     public function getPdfs()
     {
         return Pdf::all();
+    }
+
+    public function getLinks()
+    {
+        return Link::all();
     }
 
     public function instantiesveld()

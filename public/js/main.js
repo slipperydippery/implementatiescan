@@ -11792,7 +11792,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"../components/SubActie.vue":32,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],14:[function(require,module,exports){
+},{"../components/SubActie.vue":33,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],14:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n")
 'use strict';
 
@@ -12751,7 +12751,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"../components/AddSingleDeelnemer.vue":16,"../components/SingleDeelnemer.vue":30,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],23:[function(require,module,exports){
+},{"../components/AddSingleDeelnemer.vue":16,"../components/SingleDeelnemer.vue":31,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],23:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\n")
 'use strict';
 
@@ -12862,6 +12862,78 @@ exports.default = {
 	data: function data() {
 		return {
 			search: '',
+			links: [],
+			themas: [],
+			checkedThemas: [],
+			admin: admin
+		};
+	},
+	ready: function ready() {
+		this.getLinks();
+	},
+
+
+	computed: {
+		returnRoot: function returnRoot() {
+			return window.location.protocol + "//" + window.location.host;
+		},
+
+		searchedLinks: function searchedLinks() {
+			var self = this;
+			return this.links.filter(function (link) {
+				if (link.title.toLowerCase().includes(self.search.toLowerCase()) || link.adress.toLowerCase().includes(self.search.toLowerCase())) {
+					return true;
+				}
+			});
+		}
+	},
+
+	methods: {
+		getLinks: function getLinks() {
+			var _this = this;
+
+			this.$http.get('/api/links').then(function (response) {
+				_this.links = response.data;
+			});
+		},
+
+		pdfAdress: function pdfAdress(link) {
+			return this.returnRoot + '/link/' + link.adress;
+		}
+	}
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"row searchitems\">\n\t\t<div class=\"small-6 columns\">\n\t\t\t<h3>Zoek op trefwoord</h3>\n\t\t\t<input type=\"text\" v-model=\"search\" placeholder=\"Vul trefwoord in\">\n\t\t</div>\n\t</div>\n\n\t<div class=\"row table-row table-header\">\n\t\t<div class=\"small-4 columns\">\n\t\t\tLink\n\t\t</div>\n\t\t<div class=\"small-8 columns\">\n\t\t\tAdress\n\t\t</div>\n\t</div>\n\n\t<div class=\"row table-row table-row--body\" v-for=\"link in searchedLinks\">\n\t\t<div class=\"small-4 columns\">\n\t\t\t{{ link.title }}\n\t\t</div>\n\t\t<div class=\"small-8 columns\">\n\t\t\t<a :href=\"pdfAdress(link)\" class=\"visible_link--basic\">\n\t\t\t\t{{ link.adress }}\n\t\t\t</a>\n\t\t</div>\n\t</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Links.vue"
+  module.hot.dispose(function () {
+    require("vueify-insert-css").cache["\n\t.searchfilter {\n\t\ttext-align: right;\n\t\tlabel, input {\n\t\t\tdisplay: inline-block;\n\t\t}\n\t}\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, module.exports.template)
+  }
+})()}
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],25:[function(require,module,exports){
+var __vueify_style__ = require("vueify-insert-css").insert("\n\t.searchfilter {\n\t\ttext-align: right;\n\t\tlabel, input {\n\t\t\tdisplay: inline-block;\n\t\t}\n\t}\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	components: {},
+
+	props: [],
+
+	data: function data() {
+		return {
+			search: '',
 			pdfs: [],
 			themas: [],
 			checkedThemas: [],
@@ -12919,7 +12991,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],25:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],26:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\t.searchfilter {\n\t\ttext-align: right;\n\t\tlabel, input {\n\t\t\tdisplay: inline-block;\n\t\t}\n\t}\n")
 'use strict';
 
@@ -13020,7 +13092,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],26:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],27:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n")
 'use strict';
 
@@ -13117,7 +13189,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"../components/SingleSlider.vue":31,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],27:[function(require,module,exports){
+},{"../components/SingleSlider.vue":32,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],28:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\t.searchfilter {\n\t\ttext-align: right;\n\t\tlabel, input {\n\t\t\tdisplay: inline-block;\n\t\t}\n\t}\n")
 'use strict';
 
@@ -13180,7 +13252,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],28:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],29:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\t.rangeresult {\n\t\tposition: relative;\n\t\tdisplay: block;\n\t\twidth: 100%;\n\t\theight: .5rem;\n\t\tbackground: #ec5840;\n\t    margin: .7rem 0 1.4rem;\n\t}\n\t.rangeresult__value {\n\t\tposition: absolute;\n\t\tdisplay: block;\n\t\ttop: 0;\n\t\tleft: 0;\n\t\theight: 100%;\n\t    background: #1CB32D;\n\t    webkit-transition: width 1s;\n\t    -webkit-transition: width 1s;\n\t    transition: width 1s;\n\t}\n\n\tinput[type=range]::after {\n\t    content:\"\";\n\t    display: block;\n\t    position: absolute;\n\t    top: 0;\n\t    left: 0;\n\t    width: 90%;\n\t    height: .6rem;\n\t    background: #1CB32D;\n\t}\n")
 'use strict';
 
@@ -13298,7 +13370,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],29:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],30:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\t.graphbar {\n\t\theight: 1.5rem;\n\t\tbackground: #bed675;\n\t}\n")
 'use strict';
 
@@ -13396,7 +13468,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],30:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],31:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\t\n")
 'use strict';
 
@@ -13524,7 +13596,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],31:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],32:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n")
 'use strict';
 
@@ -13612,7 +13684,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],32:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],33:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\t.subactie {\n\t    border-bottom: 1px solid #333;\n\t}\n\n\t.subactie > .row {\n\t    background: rgba(187, 211, 112, 0.22);\n\t}\n\n\t.subactie .row:first-of-type {\n\t    padding-top: 1rem;\n\t}\n\n\t.subactie--titel {\n\t\tfont-size: 1rem;\n\t    background: rgba(187, 211, 112, 0.71);\n\t    /* border: 1px solid #333; */\n\t    padding: 1rem;\n\t    font-weight: 500;\n\t}\n\n\t.subactie--date {\n\t\tclear: both;\n\t}\n\t.actie_removebetrokkene {\n\t\tfont-size: 2rem;\n\t\tline-height: 1.5rem;\n\t\tfont-weight: bold;\n\t\tfloat: right; \n\t\tpadding: 0 .5rem;\n\t\tcolor: #999;\n\t}\n\t.actie_removebetrokkene:hover {\n\t\tcursor:pointer;\n\t\tcolor: #000;\n\t}\n\n\tspan.remove_subactie {\n\t\tfloat: right;\n\t    padding: .3rem 0.6rem;\n\t    margin: 0;\n\t    height: 100%;\n\t    left: 0;\n\t    top: 0;\n\t    color: white;\n\t    background: rgba(0, 0, 0, 0.53);\n\t    font-weight: 500;\n\t    -webkit-transition: all .5s;\n\t    transition: all .5s;\n\t    overflow: hidden;\n\t    cursor: pointer;\n\t}\n\n\t.actie-exbetrokkene .closeicon {\n\t\tdisplay: none;\n\t}\n\n\t.actie-exbetrokkene:hover .closeicon {\n\t\tdisplay: block;\n\t}\n")
 'use strict';
 
@@ -13732,7 +13804,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],33:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],34:[function(require,module,exports){
 var __vueify_style__ = require("vueify-insert-css").insert("\n\t.slider-verbeterpunten {\n\t\tpadding-top: 1rem;\n\t}\n\n")
 'use strict';
 
@@ -13844,7 +13916,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update(id, module.exports, module.exports.template)
   }
 })()}
-},{"../components/SingleSlider.vue":31,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],34:[function(require,module,exports){
+},{"../components/SingleSlider.vue":32,"vue":11,"vue-hot-reload-api":2,"vueify-insert-css":12}],35:[function(require,module,exports){
 'use strict';
 
 var _InvoerenDeelnemers = require('./components/InvoerenDeelnemers.vue');
@@ -13890,6 +13962,10 @@ var _Praktijkvoorbeelds2 = _interopRequireDefault(_Praktijkvoorbeelds);
 var _Pdfs = require('./components/Pdfs.vue');
 
 var _Pdfs2 = _interopRequireDefault(_Pdfs);
+
+var _Links = require('./components/Links.vue');
+
+var _Links2 = _interopRequireDefault(_Links);
 
 var _Deelnemersveld = require('./components/Deelnemersveld.vue');
 
@@ -13954,6 +14030,7 @@ new Vue({
 		Programmas: _Programmas2.default,
 		Praktijkvoorbeelds: _Praktijkvoorbeelds2.default,
 		Pdfs: _Pdfs2.default,
+		Links: _Links2.default,
 		Deelnemersveld: _Deelnemersveld2.default,
 		Criteria: _Criteria2.default,
 		Scanlist: _Scanlist2.default,
@@ -13968,6 +14045,6 @@ new Vue({
 	ready: function ready() {}
 });
 
-},{"./components/Acties.vue":14,"./components/ControlerenDeelnemers.vue":17,"./components/Criteria.vue":18,"./components/DeelnemersMenuItem.vue":19,"./components/Deelnemersveld.vue":20,"./components/Instrumenten.vue":21,"./components/InvoerenDeelnemers.vue":22,"./components/Kennismaken.vue":23,"./components/Pdfs.vue":24,"./components/Praktijkvoorbeelds.vue":25,"./components/PreThemaResultaat.vue":26,"./components/Programmas.vue":27,"./components/ScanSlider.vue":28,"./components/Scanlist.vue":29,"./components/SingleSlider.vue":31,"./components/ThemaResultaat.vue":33,"vue":11,"vue-resource":4}]},{},[34]);
+},{"./components/Acties.vue":14,"./components/ControlerenDeelnemers.vue":17,"./components/Criteria.vue":18,"./components/DeelnemersMenuItem.vue":19,"./components/Deelnemersveld.vue":20,"./components/Instrumenten.vue":21,"./components/InvoerenDeelnemers.vue":22,"./components/Kennismaken.vue":23,"./components/Links.vue":24,"./components/Pdfs.vue":25,"./components/Praktijkvoorbeelds.vue":26,"./components/PreThemaResultaat.vue":27,"./components/Programmas.vue":28,"./components/ScanSlider.vue":29,"./components/Scanlist.vue":30,"./components/SingleSlider.vue":32,"./components/ThemaResultaat.vue":34,"vue":11,"vue-resource":4}]},{},[35]);
 
 //# sourceMappingURL=main.js.map

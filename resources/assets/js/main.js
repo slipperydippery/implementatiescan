@@ -22,6 +22,7 @@ import Instrumenten from './components/Instrumenten.vue';
 import Programmas from './components/Programmas.vue';
 import Praktijkvoorbeelds from './components/Praktijkvoorbeelds.vue';
 import Pdfs from './components/Pdfs.vue';
+import Links from './components/Links.vue';
 import Deelnemersveld from './components/Deelnemersveld.vue';
 import Criteria from './components/Criteria.vue';
 import Scanlist from './components/Scanlist.vue';
@@ -55,6 +56,7 @@ new Vue({
 		Programmas,
 		Praktijkvoorbeelds,
 		Pdfs,
+		Links,
 		Deelnemersveld,
 		Criteria,
 		Scanlist,

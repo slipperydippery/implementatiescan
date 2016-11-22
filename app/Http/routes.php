@@ -24,6 +24,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/api/scanmodel/thema', 'ApiController@indexscanmodelthema');
     Route::get('/api/instruments', 'ApiController@getInstruments');
     Route::get('/api/pdfs', 'ApiController@getPdfs');
+    Route::get('/api/links', 'ApiController@getLinks');
     Route::get('/api/programma', 'ApiController@getProgrammas');
     Route::get('/api/praktijkvoorbeeld', 'ApiController@getPraktijkvoorbeelds');
     Route::get('/users/request', ['as' => 'users.request', 'uses' => 'UsersController@request']);
