@@ -33,7 +33,7 @@
 @section('site-footer')
 <div class="row ">
 	<div class="large-4 columns page-next">	
-		<a href="{{ URL::route('scans.invoerendeelnemers', $scan) }}" class="button button-next">Volgende Stap</a>
+		<a href="{{ URL::route('scans.inrichten.invoerendeelnemers', $scan) }}" class="button button-next">Volgende Stap</a>
 	</div>
 </div>
 

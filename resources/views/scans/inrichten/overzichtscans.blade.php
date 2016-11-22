@@ -10,7 +10,6 @@
 				Als voorzitter kunt u hier de scan inrichten. Kies eerst welke scan u wilt inrichten. Daarna kunt u de deelnemers aan de Implementatiescan-sessie uitnodigen om mee te doen. 
 				<br>
 				Dit proces wijst zichzelf.
-				
 			</p>
 		</fieldset>
 	</div>
@@ -20,12 +19,10 @@
 		<h2>Overzicht scans</h2>
 		<ul>
 			@foreach($scans as $scan)
-				<li><a href="{{ URL::route('scans.invoerendeelnemers', $scan) }}"> {{ $scan->title }}, {{ $scan->regio }} </a></li>
+				<li><a href="{{ URL::route('scans.inrichten.invoerendeelnemers', $scan) }}"> {{ $scan->title }}, {{ $scan->regio }} </a></li>
 			@endforeach
 		</ul>
-
 	</div>
 </div>
-
 
 @stop

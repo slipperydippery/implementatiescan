@@ -82,10 +82,8 @@ class EmailController extends Controller
     public function senduitnodiging(Request $request, Scan $scan)
     {
         $scan = $scan;
-        // return $request->all();
     	$user = $scan->beheerder;
     	$title = $request->subject;
-
         foreach($request->recipients as $recipient)
         {
             $participant = User::findOrFail($recipient);
@@ -114,7 +112,7 @@ Uw wachtwoord is: ' . $participant->initial_pwd;
                 $message->replyTo($user->email, $user->name_first . ' ' . $user->name_last);
     		});
     	}
-    	return view ('pages.voorzitter.bedankt', compact('scan'));
+    	return view ('scans.inrichten.verzonden', compact('scan'));
     }
 
     public function verzendacties(Request $request, Scan $scan)
