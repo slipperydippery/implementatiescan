@@ -11781,7 +11781,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/Actie.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Actie.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n\t.actie_removebetrokkene {\n\t\tfont-size: 2rem;\n\t\tline-height: 1.5rem;\n\t\tfont-weight: bold;\n\t\tfloat: right; \n\t\tpadding: 0 .5rem;\n\t\tcolor: #999;\n\t}\n\t.actie_removebetrokkene:hover {\n\t\tcursor:pointer;\n\t\tcolor: #000;\n\t}\n\n\tspan.remove_row {\n\t\tdisplay: none;\n\t\tfloat: right;\n\t\tpadding: 0 0.5rem;\n\t\tmargin: 0;\n\t\theight: 100%;\n\t\tleft: 0;\n\t\ttop: 0;\n\t\tcolor: #333;\n\t\tbackground: rgba(255,255,255,0.85);\n\t\t-webkit-transition: all .5s;\n\t\ttransition: all .5s;\n\t\toverflow: hidden;\n\t\tcursor: pointer;\n\t}\n\n\tspan.remove_row--werkadd:hover {\n\t\tbackground: green;\n\t}\n\n\tspan.remove_row--werkremove:hover {\n\t\tbackground: red;\n\t}\n\n\t.single_actie:hover span.remove_row{\n\t\tdisplay: inline-block;\n\t\tpadding: 0 0.5rem;\n\t\twidth: auto;\n\t\tcursor: pointer;\n\t}\n\n\t.actie-exbetrokkene .closeicon {\n\t\tdisplay: none;\n\t}\n\n\t.actie-exbetrokkene:hover .closeicon {\n\t\tdisplay: block;\n\t}\n\n\t.voegsubactie {\n\t\tdisplay: block;\n\t    padding: .5rem 0;\n\t\tbackground: rgba(159, 194, 54, 0.71);\n\t    margin: 0 0 2rem 0;\n\t\twidth: 100%;\n\t\tfont-size: .9rem;\n\t\tfont-weight: 500;\n\t}\n\t.voegsubactie:hover {\n\t    background: rgb(159, 194, 54);\n\t}\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -11836,7 +11836,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/Acties.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Acties.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -11969,7 +11969,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/ActiesThema.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\ActiesThema.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -12113,7 +12113,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/AddSingleDeelnemer.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\AddSingleDeelnemer.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n\tinput.formerror {\n\t\tborder: 1px solid red;\n\t}\n\tspan.formerror {\n\t\tcolor: red;\n\t\tfont-style: italic;\n\t}\n\n\t.button-small--invoerdeelnemers {\n\t\twidth: 120% !important;\n\t\tmargin-left: -.5rem;\n\t}\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -12218,7 +12218,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/ControlerenDeelnemers.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\ControlerenDeelnemers.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n\t.beheerder {\n\t\tbackground: rgba(0,0,0,0.1);\n\t}\n\t.offline {\n\t\topacity: .3;\n\t}\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -12294,7 +12294,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/Criteria.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Criteria.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n\t.graphbar {\n\t\theight: 1.5rem;\n\t\tbackground: #bed675;\n\t}\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -12399,7 +12399,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/DeelnemersMenuItem.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\DeelnemersMenuItem.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n\t.beheerder {\n\t\tbackground: rgba(0,0,0,0.1);\n\t}\n\t.offline {\n\t\topacity: .3;\n\t}\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -12471,7 +12471,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/Deelnemersveld.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Deelnemersveld.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n\t.graphbar {\n\t\theight: 1.5rem;\n\t\tbackground: #bed675;\n\t}\n\t\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -12580,7 +12580,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/Instrumenten.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Instrumenten.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n\t.searchfilter {\n\t\ttext-align: right;\n\t\tlabel, input {\n\t\t\tdisplay: inline-block;\n\t\t}\n\t}\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -12740,7 +12740,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/InvoerenDeelnemers.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\InvoerenDeelnemers.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n\t\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -12836,7 +12836,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/Kennismaken.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Kennismaken.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -12881,7 +12881,7 @@ exports.default = {
 		searchedLinks: function searchedLinks() {
 			var self = this;
 			return this.links.filter(function (link) {
-				if (link.title.toLowerCase().includes(self.search.toLowerCase()) || link.adress.toLowerCase().includes(self.search.toLowerCase())) {
+				if (link.title.toLowerCase().indexOf(self.search.toLowerCase()) !== -1 || link.adress.toLowerCase().indexOf(self.search.toLowerCase()) !== -1) {
 					return true;
 				}
 			});
@@ -12908,7 +12908,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/Links.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Links.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n\t.searchfilter {\n\t\ttext-align: right;\n\t\tlabel, input {\n\t\t\tdisplay: inline-block;\n\t\t}\n\t}\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -12953,7 +12953,7 @@ exports.default = {
 		searchedAndFilteredPdfs: function searchedAndFilteredPdfs() {
 			var self = this;
 			return this.pdfs.filter(function (pdf) {
-				if (pdf.organisation.toLowerCase().includes(self.search.toLowerCase()) || pdf.description.toLowerCase().includes(self.search.toLowerCase()) || pdf.publication_year.toLowerCase().includes(self.search.toLowerCase()) || pdf.adress.toLowerCase().includes(self.search.toLowerCase())) {
+				if (pdf.organisation.toLowerCase().indexOf(self.search.toLowerCase()) !== -1 || pdf.description.toLowerCase().indexOf(self.search.toLowerCase()) !== -1 || pdf.publication_year.toLowerCase().indexOf(self.search.toLowerCase()) !== -1 || pdf.adress.toLowerCase().indexOf(self.search.toLowerCase()) !== -1) {
 					return true;
 				}
 			});
@@ -12980,7 +12980,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/Pdfs.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Pdfs.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n\t.searchfilter {\n\t\ttext-align: right;\n\t\tlabel, input {\n\t\t\tdisplay: inline-block;\n\t\t}\n\t}\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -13081,7 +13081,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/Praktijkvoorbeelds.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Praktijkvoorbeelds.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n\t.searchfilter {\n\t\ttext-align: right;\n\t\tlabel, input {\n\t\t\tdisplay: inline-block;\n\t\t}\n\t}\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -13178,7 +13178,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/PreThemaResultaat.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\PreThemaResultaat.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -13241,7 +13241,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/Programmas.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Programmas.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n\t.searchfilter {\n\t\ttext-align: right;\n\t\tlabel, input {\n\t\t\tdisplay: inline-block;\n\t\t}\n\t}\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -13359,7 +13359,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/ScanSlider.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\ScanSlider.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n\t.rangeresult {\n\t\tposition: relative;\n\t\tdisplay: block;\n\t\twidth: 100%;\n\t\theight: .5rem;\n\t\tbackground: #ec5840;\n\t    margin: .7rem 0 1.4rem;\n\t}\n\t.rangeresult__value {\n\t\tposition: absolute;\n\t\tdisplay: block;\n\t\ttop: 0;\n\t\tleft: 0;\n\t\theight: 100%;\n\t    background: #1CB32D;\n\t    webkit-transition: width 1s;\n\t    -webkit-transition: width 1s;\n\t    transition: width 1s;\n\t}\n\n\tinput[type=range]::after {\n\t    content:\"\";\n\t    display: block;\n\t    position: absolute;\n\t    top: 0;\n\t    left: 0;\n\t    width: 90%;\n\t    height: .6rem;\n\t    background: #1CB32D;\n\t}\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -13457,7 +13457,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/Scanlist.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\Scanlist.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n\t.graphbar {\n\t\theight: 1.5rem;\n\t\tbackground: #bed675;\n\t}\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -13585,7 +13585,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/SingleDeelnemer.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\SingleDeelnemer.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n\t\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -13673,7 +13673,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/SingleSlider.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\SingleSlider.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -13793,7 +13793,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/SubActie.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\SubActie.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n\t.subactie {\n\t    border-bottom: 1px solid #333;\n\t}\n\n\t.subactie > .row {\n\t    background: rgba(187, 211, 112, 0.22);\n\t}\n\n\t.subactie .row:first-of-type {\n\t    padding-top: 1rem;\n\t}\n\n\t.subactie--titel {\n\t\tfont-size: 1rem;\n\t    background: rgba(187, 211, 112, 0.71);\n\t    /* border: 1px solid #333; */\n\t    padding: 1rem;\n\t    font-weight: 500;\n\t}\n\n\t.subactie--date {\n\t\tclear: both;\n\t}\n\t.actie_removebetrokkene {\n\t\tfont-size: 2rem;\n\t\tline-height: 1.5rem;\n\t\tfont-weight: bold;\n\t\tfloat: right; \n\t\tpadding: 0 .5rem;\n\t\tcolor: #999;\n\t}\n\t.actie_removebetrokkene:hover {\n\t\tcursor:pointer;\n\t\tcolor: #000;\n\t}\n\n\tspan.remove_subactie {\n\t\tfloat: right;\n\t    padding: .3rem 0.6rem;\n\t    margin: 0;\n\t    height: 100%;\n\t    left: 0;\n\t    top: 0;\n\t    color: white;\n\t    background: rgba(0, 0, 0, 0.53);\n\t    font-weight: 500;\n\t    -webkit-transition: all .5s;\n\t    transition: all .5s;\n\t    overflow: hidden;\n\t    cursor: pointer;\n\t}\n\n\t.actie-exbetrokkene .closeicon {\n\t\tdisplay: none;\n\t}\n\n\t.actie-exbetrokkene:hover .closeicon {\n\t\tdisplay: block;\n\t}\n"] = false
     document.head.removeChild(__vueify_style__)
@@ -13905,7 +13905,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/Users/silvernitrate/Code/quest/resources/assets/js/components/ThemaResultaat.vue"
+  var id = "F:\\projects\\Code\\quest\\resources\\assets\\js\\components\\ThemaResultaat.vue"
   module.hot.dispose(function () {
     require("vueify-insert-css").cache["\n\t.slider-verbeterpunten {\n\t\tpadding-top: 1rem;\n\t}\n\n"] = false
     document.head.removeChild(__vueify_style__)

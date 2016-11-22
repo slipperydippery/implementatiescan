@@ -57,8 +57,8 @@
 			searchedLinks: function () {
 				var self = this;
 				return this.links.filter(function(link) {
-					if( link.title.toLowerCase().includes(self.search.toLowerCase()) ||
-						link.adress.toLowerCase().includes(self.search.toLowerCase()) 
+					if( (link.title.toLowerCase().indexOf(self.search.toLowerCase()) !== -1) ||
+						(link.adress.toLowerCase().indexOf(self.search.toLowerCase()) !== -1)
 					)
 					{
 						return true;
@@ -77,7 +77,7 @@
 
 			pdfAdress: function (link) {
 				return this.returnRoot + '/link/' + link.adress;
-			}
+			},
 		},
 	}
 </script>

@@ -63,10 +63,10 @@
 			searchedAndFilteredPdfs: function () {
 				var self = this;
 				return this.pdfs.filter(function(pdf) {
-					if( pdf.organisation.toLowerCase().includes(self.search.toLowerCase()) ||
-						pdf.description.toLowerCase().includes(self.search.toLowerCase()) ||
-						pdf.publication_year.toLowerCase().includes(self.search.toLowerCase()) ||
-						pdf.adress.toLowerCase().includes(self.search.toLowerCase()) 
+					if( (pdf.organisation.toLowerCase().indexOf(self.search.toLowerCase()) !== -1) ||
+						(pdf.description.toLowerCase().indexOf(self.search.toLowerCase()) !== -1) ||
+						(pdf.publication_year.toLowerCase().indexOf(self.search.toLowerCase()) !== -1) ||
+						(pdf.adress.toLowerCase().indexOf(self.search.toLowerCase()) !== -1) 
 					)
 					{
 						return true;
