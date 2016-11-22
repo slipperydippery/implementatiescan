@@ -63,7 +63,19 @@ class ScansController extends Controller
         $scan = Scan::register($user, $request->all());
        
         if($request->withmail) {
-            dispatch(new SendInvitation($user, $request));
+            $title = 'Uitnodiging Implementatiescan';
+            $content = $request->input('email_bericht') . '
+
+Uw gebruikersnaam is: ' . $user->email . '
+Uw wachtwoord is: ' . $user->initial_pwd;
+            $data = ['title' => '', 'content' => nl2br($content)];
+            Mail::send('emails.send', $data , function ($message) use ($request)
+            {
+                $message->from('no-reply@implementatiescan.nl', 'Implementatiescan');
+                $message->to($request->input('beheerder_email'));
+                $message->subject('Uitnodiging Implementatiescan');
+            });
+            // dispatch(new SendInvitation($user, $request));
         }
         return Redirect::route('scans.index');
     }
@@ -303,13 +315,14 @@ class ScansController extends Controller
         // return $request->all();
         $scan->datedeeltwee = $request->datedeeltwee;
         $scan->timedeeltwee = $request->timedeeltwee;
-        $scan->deeleencomplete = true;
         $scan->save();
         return Redirect::route('scans.actiesmailen', $scan);
     }
 
     public function actiesmailen(Request $request, Scan $scan)
     {
+        $scan->deeleencomplete = true;
+        $scan->save();
         $emailtext = 'Beste deelnemers,
 
 Tijdens de Implementatiescan-sessie hebben we de volgende verbeterpunten vastgesteld. Deze vormen het huiswerk voor de door ons benoemde initiatiefnemers/trekkers in samenwerking met andere betrokkenen. Zij bereiden de tweede, afrondende Werkagenda sessie voor. Daar zal het huiswerk worden besproken en worden definitieve verbeteracties afgesproken en op de gezamenlijke Werkagenda geplaatst. De initiatiefnemers gaan aan de slag met:';
