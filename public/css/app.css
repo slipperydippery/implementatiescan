@@ -4670,6 +4670,13 @@ input[type=range]:focus::-ms-fill-upper {
 .qanda img {
   margin: 2rem 0; }
 
+.qanda_logos img {
+  height: 4rem;
+  width: auto; }
+
+.qanda_logos .row {
+  padding: 2rem 0; }
+
 @charset "UTF-8";
 /* ==========================================================================
    $BASE-PICKER

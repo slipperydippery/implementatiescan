@@ -5,12 +5,28 @@
 <div class="page-heading--container">
 	<div class="row page-heading">
 		<div class="large-12 ">
-			<h1>Q&A Implementatiescan Arbeidsparticipatie Jongeren met een Kwetsbare Positie</h1>
+			<h1>Q&A Implementatiescan </h1>
 			<fieldset class="fieldset large-8">
 				<p class=subheading>
-					bla
+					Arbeidsparticipatie Jongeren met een Kwetsbare Positie
 				</p>
 			</fieldset>
+		</div>
+	</div>
+</div>
+<div class="row page-content qanda_logos">	
+	<div class="small-12 large-8 columns">	
+		<div class="row">	
+			<div class="small-3 columns float"><img src="{{ asset('img/lecso.png') }}" class="float-center" alt=""></div>
+			<div class="small-3 columns float"><img src="{{ asset('img/divosa.png') }}" class="float-center" alt=""></div>
+			<div class="small-3 columns float"><img src="{{ asset('img/ecorys.png') }}" class="float-center" alt=""></div>
+			<div class="small-3 columns float"><img src="{{ asset('img/uwv.png') }}" class="float-center" alt=""></div>
+		</div>
+		<div class="row">	
+			<div class="small-3 columns float"><img src="{{ asset('img/mee.png') }}" class="float-center" alt=""></div>
+			<div class="small-3 columns float"><img src="{{ asset('img/vobc.png') }}" class="float-center" alt=""></div>
+			<div class="small-3 columns float"><img src="{{ asset('img/bs.png') }}" class="float-center" alt=""></div>
+			<div class="small-3 columns float"><img src="{{ asset('img/ingrado.png') }}" class="float-center" alt=""></div>
 		</div>
 	</div>
 </div>
@@ -67,7 +83,7 @@
 
 		<h2>10. Hoe niet aanwezige organisaties betrekken en committeren?</h2>
 		<p>Wat de schaal/afbakening van de regio is, dat bepaalt iedere initiatiefnemer zelf, kijkend naar de eigen situatie. Ieder domein hanteert op landelijk niveau eigen regio-indelingen, zodat landelijke blauwdrukken en sturing niet vruchtbaar zijn. Als een school andere organisaties om tafel roept om samen te komen tot een verbeteragenda, dan is het zaak daar zelf goed over na te denken. Waar wonen de jongeren? Welke samenwerking (dienstverlening/expertise/netwerken) heb je nodig voor optimale begeleiding van en hulp aan jongeren op weg van school naar werk? En als afgeleide daarvan: wat zijn dan de twaalf belangrijkste organisaties met bijbehorende sleutelpersonen op het niveau van management/beleid, met wie je in gesprek wilt gaan over samenwerking, die de kansen voor de jongeren vergroot?</p>
-		<img src=" {{ asset('img/qanda_tafel.png') }} " alt="">
+		<img src=" {{ asset('img/qanda_tafel.png') }} " alt="" class="float-center">
 		<p>De twaalf personen aan tafel bestaan uit twee vertegenwoordigers per domein:</p>
 		<ol>
 			<li>Onderwijs: scholen (VSO/PRO/MBO)</li>
