@@ -38,4 +38,9 @@ class PagesController extends Controller
     {
     	return view('pages.databank');
     }
+
+    public function qanda()
+    {
+        return view('pages.qanda');
+    }
 }

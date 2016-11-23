@@ -21,6 +21,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
     Route::get('/api/scanmodel/thema', 'ApiController@indexscanmodelthema');
     
+    Route::get('/qanda', ['as' => 'qanda', 'uses' => 'PagesController@qanda']);
     Route::get('/databank', ['as' => 'databank', 'uses' => 'InstrumentsController@index']);
     Route::get('/api/instruments', 'ApiController@getInstruments');
 

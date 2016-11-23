@@ -4661,6 +4661,15 @@ input[type=range]:focus::-ms-fill-lower {
 input[type=range]:focus::-ms-fill-upper {
   background: #ed644e; }
 
+.qanda h2 {
+  margin: 2rem 0 .5rem; }
+
+.qanda p {
+  text-align: justify; }
+
+.qanda img {
+  margin: 2rem 0; }
+
 @charset "UTF-8";
 /* ==========================================================================
    $BASE-PICKER
