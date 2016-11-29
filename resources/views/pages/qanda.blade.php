@@ -7,20 +7,20 @@
 		<div class="large-12 ">
 			<h1>Q&A Implementatiescan </h1>
 			<fieldset class="fieldset large-8">
-				<p class="subheading qanda_index">
-					<a href="#1">1. Waar vind ik de Implementatiescan Arbeidsparticipatie Jongeren met een Kwetsbare Positie?</a><br>
-					<a href="#2">2. Wat heb ik er als gemeente, school of andere betrokken organisatie aan?</a><br>
-					<a href="#3">3. Voor wie is de Implementatiescan bedoeld? Wie zijn de gebruikers?</a><br>
-					<a href="#4">4. Over welke jongeren hebben we het?</a><br>
-					<a href="#5">5. Waarop is de kennis over succesvolle arbeidstoeleiding gebaseerd?</a><br>
-					<a href="#6">6. Is de Implementatiescan weer iets extra’s? Nog meer beleidsdrukte en tools?</a><br>
-					<a href="#7">7. Van wie is de Implementatiescan?</a><br>
-					<a href="#8">8. Wie verzorgt het voorzitterschap tijdens de jaarlijkse Implementatiescan sessies?</a><br>
-					<a href="#9">9. Wat komt er kijken bij het beleggen en uitvoeren van een Implementatiesessie?</a><br>
-					<a href="#10">10. Hoe niet aanwezige organisaties betrekken en committeren?</a><br>
-					<a href="#11">11. Hoe verder na de totstandkoming van de gezamenlijke Verbeteragenda?</a><br>
-					<a href="#12">12. Waar kan ik contact opnemen als ik vragen heb?</a>
-				</p>
+				<ol class="qanda_index">
+					<li><a href="#1"> Waar vind ik de Implementatiescan Arbeidsparticipatie Jongeren met een Kwetsbare Positie?</a><br></li>
+					<li><a href="#2"> Wat heb ik er als gemeente, school of andere betrokken organisatie aan?</a><br></li>
+					<li><a href="#3"> Voor wie is de Implementatiescan bedoeld? Wie zijn de gebruikers?</a><br></li>
+					<li><a href="#4"> Over welke jongeren hebben we het?</a><br></li>
+					<li><a href="#5"> Waarop is de kennis over succesvolle arbeidstoeleiding gebaseerd?</a><br></li>
+					<li><a href="#6"> Is de Implementatiescan weer iets extra’s? Nog meer beleidsdrukte en tools?</a><br></li>
+					<li><a href="#7"> Van wie is de Implementatiescan?</a><br></li>
+					<li><a href="#8"> Wie verzorgt het voorzitterschap tijdens de jaarlijkse Implementatiescan sessies?</a><br></li>
+					<li><a href="#9"> Wat komt er kijken bij het beleggen en uitvoeren van een Implementatiesessie?</a><br></li>
+					<li><a href="#10"> Hoe niet aanwezige organisaties betrekken en committeren?</a><br></li>
+					<li><a href="#11"> Hoe verder na de totstandkoming van de gezamenlijke Verbeteragenda?</a><br></li>
+					<li><a href="#12"> Waar kan ik contact opnemen als ik vragen heb?</a></li>
+					</ol>
 			</fieldset>
 		</div>
 	</div>

@@ -56,7 +56,9 @@ h2 {
   margin-top: -1rem;
 }
 
-.qanda_index a {
-  margin: 0 0 -.5rem 0;
-  display: block;
+.qanda_index li {
+  margin-bottom: .5rem;
+  a {
+    font-style: italic;
+  }
 }
