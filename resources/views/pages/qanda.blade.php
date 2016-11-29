@@ -121,23 +121,23 @@
 		<h2 id="12">12. Waar kan ik contact opnemen als ik vragen heb?</h2>
 		<p>Inhoudelijke vragen over de Implementatiescan kunnen worden gesteld aan het landelijke programmamanagement (Ecorys):</p>
 		<ul>
-			<li>Henk Bakker (henk.bakker@ecorys.com; 06-13000603)</li>
-			<li>Lisa van Beek (lisa.vanbeek@ecorys.com; 010 453 86 43)</li>
+			<li>Henk Bakker (<a href="mailto:henk.bakker@ecorys.com" class="visible_link">henk.bakker@ecorys.com</a>; 06-13000603)</li>
+			<li>Lisa van Beek (<a href="mailto:lisa.vanbeek@ecorys.com" class="visible_link">lisa.vanbeek@ecorys.com</a>; 010 453 86 43)</li>
 		</ul>
 		<p>Vragen van technische aard (werking Implementatiescan) graag stellen aan EMB AV:</p>
 		<ul>
-			<li>Susanne Meeuwissen: susanne@embav.nl</li>
+			<li>Susanne Meeuwissen: <a href="mailto:susanne@embav.nl" class="visible_link">susanne@embav.nl</a></li>
 		</ul>
 		<p>Heb je vragen aan je eigen landelijke vertegenwoordiger in de Stuurgroep?:</p>
 		<ul>
-			<li>Lecso: Albert Boelen en Marc Cantrijn (a.boelen@lecso.nl; m.cantrijn@lecso.nl)</li>
-			<li>Divosa: Peter Killestijn (pkillestijn@divosa.nl)</li>
-			<li>VNG: Paulina Hublart (paulina.hublart@vng.nl)</li>
-			<li>UWV: Alfred van Hardeveld (alfred.vanhardeveld@uwv.nl)</li>
-			<li>MEE NL: Angelika Herben (a.herben@mee.nl)</li>
-			<li>VOBC: Erie Merkus (e.merkus@vobc.nu)</li>
-			<li>S-BB: Will Seignette (w.seignette@s-bb.nl)</li>
-			<li>Ingrado: Ellen de Wit (e.dewit@ingrado.nl)</li>
+			<li>Lecso: Albert Boelen en Marc Cantrijn (<a href="mailto:a.boelen@lecso.nl" class="visible_link">a.boelen@lecso.nl</a>; <a href="mailto:m.cantrijn@lecso.nl" class="visible_link">m.cantrijn@lecso.nl</a>)</li>
+			<li>Divosa: Peter Killestijn (<a href="mailto:pkillestijn@divosa.nl" class="visible_link">pkillestijn@divosa.nl</a>)</li>
+			<li>VNG: Paulina Hublart (<a href="mailto:paulina.hublart@vng.nl" class="visible_link">paulina.hublart@vng.nl</a>)</li>
+			<li>UWV: Alfred van Hardeveld (<a href="mailto:alfred.vanhardeveld@uwv.nl" class="visible_link">alfred.vanhardeveld@uwv.nl</a>)</li>
+			<li>MEE NL: Angelika Herben (<a href="mailto:a.herben@mee.nl" class="visible_link">a.herben@mee.nl</a>)</li>
+			<li>VOBC: Erie Merkus (<a href="mailto:e.merkus@vobc.nu" class="visible_link">e.merkus@vobc.nu</a>)</li>
+			<li>S-BB: Will Seignette (<a href="mailto:w.seignette@s-bb.nl" class="visible_link">w.seignette@s-bb.nl</a>)</li>
+			<li>Ingrado: Ellen de Wit (<a href="mailto:e.dewit@ingrado.nl" class="visible_link">e.dewit@ingrado.nl</a>)</li>
 		</ul>
 	</div>
 </div>
