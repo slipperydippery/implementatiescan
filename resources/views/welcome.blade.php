@@ -34,6 +34,9 @@
 						<br><br>
 						<b>Account aanvragen</b><br>
 						Wilt u gezamenlijk met uw netwerkpartners een implementatiescan uitvoeren? Dan kunt u <a href="{{ URL::route('users.request') }}" class="visible_link">hier een account aanvragen</a>. Vul uw gegevens in en wij maken een scan voor u aan. U ontvangt uw inloggevens per email.
+						<br><br>
+						<b>Heeft u nog vragen?</b><br>
+						Voor al uw vragen kunt u terecht bij onze <a href="{{ URL::route('qanda') }}" class="visible_link">Q and A pagina</a>.
 					</p>
 				</fieldset>
 			</div>

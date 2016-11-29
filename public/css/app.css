@@ -4491,6 +4491,10 @@ h2 {
   font-weight: 400;
   margin-top: -1rem; }
 
+.qanda_index a {
+  margin: 0 0 -.5rem 0;
+  display: block; }
+
 .btn {
   border: 1px solid #22373e; }
 
