@@ -537,7 +537,8 @@ class ApiController extends Controller
         $instantiesveld = [];
         foreach(Scan::findOrFail(1)->scanmodel->instantiemodels as $instantiemodel)
         {
-            return $instantiemodel;
+            return $instantiemodel->instanties;
+
             $instantie = [];
             $instantie['id'] = $instantiemodel->id;
             $instantie['title'] = $instantiemodel->title;
