@@ -576,29 +576,32 @@ class ApiController extends Controller
         }
         foreach(Verbeteractie::all() as $actie)
         {
-            if(! $actie->scan->testscan)
-            {
-                if($actie->active)
+            if($actie->scan != null){
+                if(! $actie->scan->testscan)
                 {
-                    $criteria[$actie->question_id]['activecount'] += 1;
-                }
+                    if($actie->active)
+                    {
+                        $criteria[$actie->question_id]['activecount'] += 1;
+                    }
 
-                $totalscore = 0;
-                $totalanswers = 0;
-                foreach($actie->question->answers as $answer)
-                {
-                    $totalanswers++;
-                    $totalscore += $answer->value;
-                }
-                if($totalanswers > 0)
-                {
-                    $criteria[$actie->question_id]['averagescore'] = $totalscore / $totalanswers;
-                }
-                foreach($actie->subacties as $subactie)
-                {
-                    $criteria[$actie->question_id]['subacties'] += 1;
-                }
+                    $totalscore = 0;
+                    $totalanswers = 0;
+                    foreach($actie->question->answers as $answer)
+                    {
+                        $totalanswers++;
+                        $totalscore += $answer->value;
+                    }
+                    if($totalanswers > 0)
+                    {
+                        $criteria[$actie->question_id]['averagescore'] = $totalscore / $totalanswers;
+                    }
+                    foreach($actie->subacties as $subactie)
+                    {
+                        $criteria[$actie->question_id]['subacties'] += 1;
+                    }
+                }           
             }
+
         }
         return $criteria;
     }
