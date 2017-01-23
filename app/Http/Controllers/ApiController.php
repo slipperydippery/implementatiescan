@@ -544,7 +544,7 @@ class ApiController extends Controller
             $instantie['activeparticipants'] = 0;
             foreach($instantiemodel->instanties as $thisinstantie)
             {
-                if($thisinstantie->scan->count()) 
+                if($thisinstantie->scan != null)  
                 {
                     $instantie['allparticipants'] += $thisinstantie->participants->count();
                     if(! $thisinstantie->scan->testscan)
