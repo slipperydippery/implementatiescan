@@ -537,8 +537,6 @@ class ApiController extends Controller
         $instantiesveld = [];
         foreach(Scan::findOrFail(1)->scanmodel->instantiemodels as $instantiemodel)
         {
-            return $instantiemodel->instanties;
-
             $instantie = [];
             $instantie['id'] = $instantiemodel->id;
             $instantie['title'] = $instantiemodel->title;
@@ -546,11 +544,15 @@ class ApiController extends Controller
             $instantie['activeparticipants'] = 0;
             foreach($instantiemodel->instanties as $thisinstantie)
             {
-                $instantie['allparticipants'] += $thisinstantie->participants->count();
-                if(! $thisinstantie->scan->testscan)
+                if($thisinstantie->scan->count()) 
                 {
-                    $instantie['activeparticipants'] += $thisinstantie->participants->count();
+                    $instantie['allparticipants'] += $thisinstantie->participants->count();
+                    if(! $thisinstantie->scan->testscan)
+                    {
+                        $instantie['activeparticipants'] += $thisinstantie->participants->count();
+                    }                    
                 }
+
             }
             $instantiesveld[$instantiemodel->id] = $instantie;
         }
