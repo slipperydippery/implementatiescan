@@ -24,7 +24,7 @@
 				{{criterium.activecount}}
 			</div>
 			<div class="small-2 columns text-center">
-				{{ Math.round10(criterium.averagescore, -1) }}
+				{{ Math.round(criterium.averagescore * 10)/10 }}
 			</div>
 			<div class="small-2 columns text-center">
 				{{ criterium.subacties }}
