@@ -59,12 +59,14 @@
 <div class="row page-content">
 	<div class="small-12 columns">
 		<deelnemersveld></deelnemersveld>
+		<a href=" {{ URL::to('api/xlinstantiesveld')}}" class="visible_link">download</a>
 	</div>
 </div>
 
 <div class="row page-content">
 	<div class="small-12 columns">
 		<criteria></criteria>
+		<a href=" {{ URL::to('api/xlcriteria')}}" class="visible_link">download</a>
 	</div>
 </div>
 
