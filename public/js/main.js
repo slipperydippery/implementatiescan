@@ -12457,7 +12457,7 @@ exports.default = {
 		maxParticipants: function maxParticipants() {
 			var maxparticipants = 0;
 			for (var instantie in this.instantiesveld) {
-				maxparticipants = Math.max(maxparticipants, this.instantiesveld[instantie].allparticipants);
+				maxparticipants = Math.max(maxparticipants, this.instantiesveld[instantie].activeparticipants);
 			}
 			return maxparticipants;
 		}
@@ -12466,7 +12466,7 @@ exports.default = {
 
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"table deelnemersveld\">\n\t\t<div class=\"row deelnemersveld--title table-row table-header\">\n\t\t\t<div class=\"small-3 columns\">\n\t\t\t\tOverzicht Deelnemersvelden\n\t\t\t</div>\n\t\t\t<div class=\"small-8 columns\">\n\t\t\t</div>\n\t\t\t<div class=\"small-1 columns\">\n\t\t\t\t#\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row table-row\" v-for=\"instantie in instantiesveld\">\n\t\t\t<div class=\"small-3 columns\">\n\t\t\t\t{{instantie.title}}\n\t\t\t</div>\n\t\t\t<div class=\"small-8 columns\">\n\t\t\t\t<div class=\"graphbar\" :style=\"{width: (instantie.allparticipants/maxParticipants) * 100 + '%'}\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"small-1 columns\">\n\t\t\t\t{{instantie.allparticipants}}\n\t\t\t</div>\n\t\t</div>\n\t</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\t<div class=\"table deelnemersveld\">\n\t\t<div class=\"row deelnemersveld--title table-row table-header\">\n\t\t\t<div class=\"small-3 columns\">\n\t\t\t\tOverzicht Deelnemersvelden\n\t\t\t</div>\n\t\t\t<div class=\"small-8 columns\">\n\t\t\t</div>\n\t\t\t<div class=\"small-1 columns\">\n\t\t\t\t#\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row table-row\" v-for=\"instantie in instantiesveld\">\n\t\t\t<div class=\"small-3 columns\">\n\t\t\t\t{{instantie.title}}\n\t\t\t</div>\n\t\t\t<div class=\"small-8 columns\">\n\t\t\t\t<div class=\"graphbar\" :style=\"{width: (instantie.activeparticipants/maxParticipants) * 100 + '%'}\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"small-1 columns\">\n\t\t\t\t{{instantie.activeparticipants}}\n\t\t\t</div>\n\t\t</div>\n\t</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

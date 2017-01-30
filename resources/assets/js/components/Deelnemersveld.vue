@@ -18,12 +18,12 @@
 			</div>
 			<div class="small-8 columns">
 				<div class="graphbar" 
-				:style="{width: (instantie.allparticipants/maxParticipants) * 100 + '%'}"
+				:style="{width: (instantie.activeparticipants/maxParticipants) * 100 + '%'}"
 				>
 				</div>
 			</div>
 			<div class="small-1 columns">
-				{{instantie.allparticipants}}
+				{{instantie.activeparticipants}}
 			</div>
 		</div>
 	</div>
@@ -75,7 +75,7 @@
 				var maxparticipants = 0;
 				for (var instantie in this.instantiesveld)
 				{
-					maxparticipants = Math.max(maxparticipants, this.instantiesveld[instantie].allparticipants);
+					maxparticipants = Math.max(maxparticipants, this.instantiesveld[instantie].activeparticipants);
 				}
 				return maxparticipants;
 			}
