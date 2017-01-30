@@ -7,6 +7,7 @@ use App\Link;
 use App\Scan;
 use App\User;
 use App\Thema;
+use Response;
 use App\Question;
 use App\Subactie;
 use App\Instantie;
@@ -606,4 +607,91 @@ class ApiController extends Controller
         return $criteria;
     }
 
+
+    public function XLinstantiesveld()
+    {
+        $instantiesveld = "title; participants \n";
+        foreach(Scan::findOrFail(1)->scanmodel->instantiemodels as $instantiemodel)
+        {
+            $instantie = [];
+            $instantie['id'] = $instantiemodel->id;
+            $instantie['title'] = $instantiemodel->title;
+            $instantie['allparticipants'] = 0;
+            $instantie['activeparticipants'] = 0;
+            foreach($instantiemodel->instanties as $thisinstantie)
+            {
+                if($thisinstantie->scan != null)  
+                {
+                    $instantie['allparticipants'] += $thisinstantie->participants->count();
+                    if(! $thisinstantie->scan->testscan)
+                    {
+                        $instantie['activeparticipants'] += $thisinstantie->participants->count();
+                    }                    
+                }
+
+            }
+            $instantiesveld .= $instantie['title'] . '; ' . $instantie['activeparticipants'] . "\n";
+        }
+        // return $instantiesveld;
+
+        $myName = "instantieveld.csv";
+        $headers = ['Content-type'=>'text/plain', 'test'=>'YoYo', 'Content-Disposition'=>sprintf('attachment; filename="%s"', $myName),'X-BooYAH'=>'WorkyWorky','Content-Length'=>strlen($instantiesveld)];
+        return Response::make($instantiesveld, 200, $headers);
+
+    }
+
+    public function XLcriteria()
+    {
+        $criteria = [];
+        foreach(Question::all() as $question)
+        {
+            $thiscriterium = [];
+            $thiscriterium['title'] = $question->title;
+            $thiscriterium['allcount'] = 0;
+            $thiscriterium['activecount'] = 0;
+            $thiscriterium['themaid'] = $question->thema->first()->id;
+            $thiscriterium['thematitle'] = $question->thema->first()->title;
+            $thiscriterium['averagescore'] = 0;
+            $thiscriterium['subacties'] = 0;
+            $criteria[$question->id] = $thiscriterium;
+        }
+        foreach(Verbeteractie::all() as $actie)
+        {
+            if($actie->scan != null){
+                if(! $actie->scan->testscan)
+                {
+                    if($actie->active)
+                    {
+                        $criteria[$actie->question_id]['activecount'] += 1;
+                    }
+
+                    $totalscore = 0;
+                    $totalanswers = 0;
+                    foreach($actie->question->answers as $answer)
+                    {
+                        $totalanswers++;
+                        $totalscore += $answer->value;
+                    }
+                    if($totalanswers > 0)
+                    {
+                        $criteria[$actie->question_id]['averagescore'] = $totalscore / $totalanswers;
+                    }
+                    foreach($actie->subacties as $subactie)
+                    {
+                        $criteria[$actie->question_id]['subacties'] += 1;
+                    }
+                }           
+            }
+
+        }
+        $csvcriteria = "criterium; geselecteerd; score; verbeterpunten \n";
+        foreach ($criteria as $criterium)
+        {
+            $csvcriteria .= $criterium['title'] . "; " . $criterium['activecount'] . "; " . str_replace('.', ',', $criterium['averagescore']) . "; " . $criterium['subacties'] . "\n";
+        }
+        $myName = "criteria.csv";
+        $headers = ['Content-type'=>'text/plain', 'test'=>'YoYo', 'Content-Disposition'=>sprintf('attachment; filename="%s"', $myName),'X-BooYAH'=>'WorkyWorky','Content-Length'=>strlen($csvcriteria)];
+        return Response::make($csvcriteria, 200, $headers);
+        return $csvcriteria;
+    }
 }

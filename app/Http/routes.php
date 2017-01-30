@@ -95,6 +95,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::get('/api/instantiesveld', 'ApiController@instantiesveld');
     Route::get('/api/criteria', 'ApiController@criteria');
+    Route::get('/api/xlinstantiesveld', 'ApiController@XLinstantiesveld');
+    Route::get('/api/xlcriteria', 'ApiController@XLcriteria');
     Route::get('/api/scan', 'ApiController@indexscan');
     Route::put('/api/scan/{scan}', 'ApiController@updatescan');
     Route::get('/api/user', 'ApiController@indexuser');
