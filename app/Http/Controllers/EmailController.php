@@ -107,7 +107,7 @@ Uw wachtwoord is: ' . $participant->initial_pwd;
     		{
     			$message->from('no-reply@implementatiescan.nl', 'Team Implementatiescan');
     			$message->to($participant->email, $participant->name_first . ' ' . $participant->name_last);
-    			// $message->bcc($participant->email, $participant->name_first . ' ' . $participant->name_last);
+    			$message->bcc('implementatiescan@gmail.com', 'Team Implementatiescan');
     			$message->subject('Uitnodiging Implementatiescan');
                 $message->replyTo($user->email, $user->name_first . ' ' . $user->name_last);
     		});
