@@ -7,7 +7,7 @@
 			<h1>Verzoek gemaild</h1>
 			<fieldset class="fieldset">
 	  			<p class="subheading subheading__time">
-	  				Uw verzoek is verstuurd per email. 
+	  				Uw aanvraag voor een account is verstuurd. U krijgt binnen 24 uur de inloggegevens per email. Wanneer u niets ontvangt raden wij u aan uw spam /ongewenste email te controleren. 
 	  			</p>
 			</fieldset>
 		</div>
