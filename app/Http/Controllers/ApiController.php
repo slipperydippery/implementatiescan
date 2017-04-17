@@ -694,4 +694,48 @@ class ApiController extends Controller
         return Response::make($csvcriteria, 200, $headers);
         return $csvcriteria;
     }
+
+    public function XLantwoorden(Scan $scan)
+    {
+        $deelnemersveld = "email; achternaam; voornaam; algemeenbeeld; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12; 13; 14; 15 \n";
+        foreach($scan->participants as $participant)
+        {
+            $deelnemersveld .= $participant->email . '; ';
+            $deelnemersveld .= $participant->name_last . '; ';
+            $deelnemersveld .= $participant->name_first . '; ';
+            $thisbeeld = '-';
+            if($scan->answers->intersect($participant->answers))
+            {
+                if($scan->answers->intersect($participant->answers)->first()->user_id == $participant->id)
+                {
+
+                }
+                $thisbeeld = $scan->answers->intersect($participant->answers)->first()->value;
+            }
+            $deelnemersveld .= $thisbeeld . '; ';
+            foreach($scan->scanmodel->themas as $thema)
+            {
+                foreach($thema->questions as $question)
+                {
+                    $thisanswer = '-';
+                    foreach($question->answers as $answer)
+                    {
+                        if($participant->answers->intersect([$answer]) && $answer->user_id == $participant->id)
+                        {
+                            $thisanswer = $answer->value;
+                        }
+                    }
+                $deelnemersveld .=$thisanswer . '; ';
+                }
+            }
+            $deelnemersveld .= "\n";
+
+        }
+        // return $deelnemersveld;
+
+        $myName = "overzicht-" . $scan->title . "-" . $scan->regio .  ".csv";
+        $headers = ['Content-type'=>'text/plain', 'test'=>'YoYo', 'Content-Disposition'=>sprintf('attachment; filename="%s"', $myName),'X-BooYAH'=>'WorkyWorky','Content-Length'=>strlen($deelnemersveld)];
+        return Response::make($deelnemersveld, 200, $headers);
+
+    }
 }

@@ -84,6 +84,10 @@ class EmailController extends Controller
         $scan = $scan;
     	$user = $scan->beheerder;
     	$title = $request->subject;
+        if($request->recipients == null)
+        {
+            return "geen emails verzonden";
+        }
         foreach($request->recipients as $recipient)
         {
             $participant = User::findOrFail($recipient);
