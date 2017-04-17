@@ -704,13 +704,9 @@ class ApiController extends Controller
             $deelnemersveld .= $participant->name_last . '; ';
             $deelnemersveld .= $participant->name_first . '; ';
             $thisbeeld = '-';
-            if($scan->answers->intersect($participant->answers))
+            if($scan->answers->intersect($participant->answers)->count())
             {
-                return $scan->answers->intersect($participant->answers);
-                if($scan->answers->intersect($participant->answers)->first()->user_id == $participant->id)
-                {
-                    $thisbeeld = $scan->answers->intersect($participant->answers)->first()->value;
-                }
+                $thisbeeld = $scan->answers->intersect($participant->answers)->first()->value;
             }
             $deelnemersveld .= $thisbeeld . '; ';
             foreach($scan->scanmodel->themas as $thema)
@@ -720,7 +716,7 @@ class ApiController extends Controller
                     $thisanswer = '-';
                     foreach($question->answers as $answer)
                     {
-                        if($participant->answers->intersect([$answer]) && $answer->user_id == $participant->id)
+                        if($participant->answers->intersect([$answer])->count())
                         {
                             $thisanswer = $answer->value;
                         }
