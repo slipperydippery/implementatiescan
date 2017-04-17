@@ -706,11 +706,11 @@ class ApiController extends Controller
             $thisbeeld = '-';
             if($scan->answers->intersect($participant->answers))
             {
+                return $scan->answers->intersect($participant->answers);
                 if($scan->answers->intersect($participant->answers)->first()->user_id == $participant->id)
                 {
-
+                    $thisbeeld = $scan->answers->intersect($participant->answers)->first()->value;
                 }
-                $thisbeeld = $scan->answers->intersect($participant->answers)->first()->value;
             }
             $deelnemersveld .= $thisbeeld . '; ';
             foreach($scan->scanmodel->themas as $thema)
