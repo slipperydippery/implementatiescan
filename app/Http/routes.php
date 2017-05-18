@@ -131,7 +131,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('videos', 'VideosController');
     Route::resource('scanmodels', 'ScanmodelsController');
     Route::resource('users', 'UsersController');
-    Route::resource('consultants', 'ConsultantsController');
+    // Route::resource('consultants', 'ConsultantsController');
 
 
     Route::post('/users/{user}/changepassword', ['as' => 'users.changepassword', 'uses' => 'UsersController@changepassword']);

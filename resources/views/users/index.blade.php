@@ -69,7 +69,10 @@
 					@endforeach
 				</div>
 				<div class="small-1 columns">
-					{{ $user->logincount }}
+					{{ Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) }}
+						{{ $user->logincount }}
+						{{ Form::submit('del') }}
+					{{ Form::close() }}
 				</div>
 
 			</div>
