@@ -33,7 +33,7 @@
 		>
 			<div class="small-3 columns">
 				<a :href="returnRoot + '/scans/' + scan.id + '/edit' ">
-					{{ scan.title }} - {{ scan.regio }}
+					{{ scan.id }} - {{ scan.title }} - {{ scan.regio }}
 				</a>
 			</div>
 			<div class="small-2 columns">
