@@ -21,7 +21,7 @@
 
 			<div class="row table-row table-header">
 				<div class="small-2 columns">
-					Voornaam
+					id en Voornaam
 				</div>
 				<div class="small-2 columns">
 					Achternaam
@@ -43,6 +43,7 @@
 		@foreach($users as $user)
 			<div class="row table-row">
 				<div class="small-2 columns">
+					{{ $user->id }}
 					<a href=" {{ route('users.show', $user->id) }} ">{{ $user->name_first }}</a>
 				</div>
 				<div class="small-2 columns">
