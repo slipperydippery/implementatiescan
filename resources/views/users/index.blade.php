@@ -57,7 +57,7 @@
 						-
 					@endif
 					@foreach($user->beheert as $beheerscan)
-						{{ $beheerscan->title }}
+						{{ $beheerscan->title }} <br>
 					@endforeach
 				</div>
 				<div class="small-2 columns">
