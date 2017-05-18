@@ -4446,6 +4446,9 @@ main {
 .instantie-6 {
   background: rgba(136, 176, 190, 0.5); }
 
+#deelnemersModal {
+  min-width: 800px; }
+
 .visible_link {
   color: #9fc236; }
 

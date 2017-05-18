@@ -13,8 +13,11 @@
 		              		<div class="small-4 columns">
 								{{ $participant->name_first }} {{ $participant->name_last }} 
 		              		</div>
-		              		<div class="small-6 columns">
+		              		<div class="small-4 columns">
 								<i>{{ $participant->email }}</i>
+		              		</div>
+		              		<div class="small-2 columns">
+		              			{{ $participant->initial_pwd }}
 		              		</div>
 		              		<div class="small-2 columns">
 		              			<a href="{{ URL::route('scans.removeuser', [$scan, $participant]) }}" class="alert ">Verwijder</a>
