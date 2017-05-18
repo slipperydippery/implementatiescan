@@ -4549,10 +4549,16 @@ input::placeholder {
   display: none; }
 
 .login-info {
-  color: #22373e;
-  font-weight: 300;
+  color: #ffffff;
+  font-weight: 500;
   font-style: italic;
-  float: right; }
+  float: right;
+  font-size: 1.3rem;
+  display: block;
+  width: 100%;
+  background: #e46060;
+  padding: .5rem;
+  text-align: center; }
 
 span.help-block {
   color: #C52D2D; }
