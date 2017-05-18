@@ -65,7 +65,7 @@
 						-
 					@endif
 					@foreach($user->scans as $participeerscan)
-						{{ $participeerscan->title }}
+						{{ $participeerscan->title }} <br>
 					@endforeach
 				</div>
 				<div class="small-1 columns">
