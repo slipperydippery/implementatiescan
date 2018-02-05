@@ -43,4 +43,15 @@ class PagesController extends Controller
     {
         return view('pages.qanda');
     }
+
+    public function emails()
+    {
+        $users = User::get();
+        $emails = '';
+        foreach($users as $user) {
+            $emails .= $user->email . "; ";
+        }
+        return $emails;
+
+    }
 }
