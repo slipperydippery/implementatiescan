@@ -21,7 +21,7 @@
 
 			<div class="row table-row table-header">
 				<div class="small-2 columns">
-					Voornaam
+					id en Voornaam
 				</div>
 				<div class="small-2 columns">
 					Achternaam
@@ -43,6 +43,7 @@
 		@foreach($users as $user)
 			<div class="row table-row">
 				<div class="small-2 columns">
+					{{ $user->id }}
 					<a href=" {{ route('users.show', $user->id) }} ">{{ $user->name_first }}</a>
 				</div>
 				<div class="small-2 columns">
@@ -56,7 +57,7 @@
 						-
 					@endif
 					@foreach($user->beheert as $beheerscan)
-						{{ $beheerscan->title }}
+						{{ $beheerscan->title }} <br>
 					@endforeach
 				</div>
 				<div class="small-2 columns">
@@ -64,11 +65,14 @@
 						-
 					@endif
 					@foreach($user->scans as $participeerscan)
-						{{ $participeerscan->title }}
+						{{ $participeerscan->id }} {{ $participeerscan->title }} <br>
 					@endforeach
 				</div>
 				<div class="small-1 columns">
-					{{ $user->logincount }}
+					{{ Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) }}
+						{{ $user->logincount }}
+						{{ Form::submit('del') }}
+					{{ Form::close() }}
 				</div>
 
 			</div>

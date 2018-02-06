@@ -54,7 +54,7 @@
 
             <div class="form-group">
                 <div class="">
-                    <a href="{{ url('/password/reset') }}" class="login-info password-reset">Wachtwoord vergeten?</a>
+                    <a href="{{ url('/password/reset') }}" class="login-info password-reset">Klik hier voor een nieuw wachtwoord</a>
                     <button type="submit" class="btn btn-primary">
                         <i class=""></i>Log in
                     </button>

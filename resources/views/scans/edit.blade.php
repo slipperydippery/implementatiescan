@@ -6,7 +6,6 @@
 		<h1>Pas de scan aan</h1>
 		<fieldset class="fieldset">
   			<p class="subheading subheading__time">
-
   			</p>
 
 		</fieldset>
@@ -82,6 +81,13 @@
 	<br>
 		<a href=" {{ URL::route('scans.index') }} " class="button"> << Terug naar overzicht  </a>
 		<a href="{{ URL::route('scans.inrichten.invoerendeelnemers', $scan) }}" class="button">Scan Inrichten</a>
+
+		<br>
+
+
+		<br><br>
+
+<a href=" {{ URL::route('scans.xlantwoorden', $scan)}}" class="visible_link">download</a>
 </div>
 
 @stop

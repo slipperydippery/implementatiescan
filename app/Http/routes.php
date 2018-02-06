@@ -20,6 +20,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
     Route::get('/api/scanmodel/thema', 'ApiController@indexscanmodelthema');
+
+    // Route::get('/emails', 'PagesController@emails');
     
     Route::get('/qanda', ['as' => 'qanda', 'uses' => 'PagesController@qanda']);
     Route::get('/databank', ['as' => 'databank', 'uses' => 'InstrumentsController@index']);
@@ -97,6 +99,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/api/criteria', 'ApiController@criteria');
     Route::get('/api/xlinstantiesveld', 'ApiController@XLinstantiesveld');
     Route::get('/api/xlcriteria', 'ApiController@XLcriteria');
+    Route::get('/api/scan/{scan}/xlantwoorden', ['as' => 'scans.xlantwoorden', 'uses' => 'ApiController@XLantwoorden']);
     Route::get('/api/scan', 'ApiController@indexscan');
     Route::put('/api/scan/{scan}', 'ApiController@updatescan');
     Route::get('/api/user', 'ApiController@indexuser');
@@ -130,7 +133,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('videos', 'VideosController');
     Route::resource('scanmodels', 'ScanmodelsController');
     Route::resource('users', 'UsersController');
-    Route::resource('consultants', 'ConsultantsController');
+    // Route::resource('consultants', 'ConsultantsController');
 
 
     Route::post('/users/{user}/changepassword', ['as' => 'users.changepassword', 'uses' => 'UsersController@changepassword']);
