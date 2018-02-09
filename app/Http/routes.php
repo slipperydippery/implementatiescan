@@ -19,6 +19,7 @@ Route::post('/send', 'EmailController@send');
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
+    Route::get('/oud', ['as' => 'home', 'uses' => 'PagesController@oud']);
     Route::get('/api/scanmodel/thema', 'ApiController@indexscanmodelthema');
 
     // Route::get('/emails', 'PagesController@emails');

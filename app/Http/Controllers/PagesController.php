@@ -17,7 +17,12 @@ class PagesController extends Controller
     public function home()
     {
         return view ('participatiescan');
+    }
+
+    public function oud()
+    {
         return view ('welcome') ;
+        
     }
 
     public function bedankt()
